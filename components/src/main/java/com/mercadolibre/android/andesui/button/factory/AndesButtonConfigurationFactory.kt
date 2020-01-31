@@ -8,12 +8,13 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.button.factory.AndesButtonFactory.create
+import com.mercadolibre.android.andesui.button.factory.AndesButtonConfigurationFactory.create
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchyInterface
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.button.size.AndesButtonSizeInterface
+import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
 
 /**
  * Useful class that holds the data that the [AndesButton] will use to draw the button accordingly.
@@ -67,19 +68,7 @@ internal data class AndesButtonConfiguration(
  * Both techniques are based on reading each one of the properties received and putting
  * the solved value into the [AndesButtonConfiguration] that will return.
  */
-internal object AndesButtonFactory {
-
-    /**
-     * These constants are defined in the attrs XML file.
-     * They are just arbitrary values that were given to different params that can be received through custom params.
-     */
-    private const val ANDES_BUTTON_HIERARCHY_LOUD = "100"
-    private const val ANDES_BUTTON_HIERARCHY_QUIET = "101"
-    private const val ANDES_BUTTON_HIERARCHY_TRANSPARENT = "102"
-
-    private const val ANDES_BUTTON_SIZE_LARGE = "200"
-    private const val ANDES_BUTTON_SIZE_MEDIUM = "201"
-    private const val ANDES_BUTTON_SIZE_SMALL = "202"
+internal object AndesButtonConfigurationFactory {
 
     /**
      * Reads some properties of the [attr] received and then infers which hierarchy, size, background, etc should be used.
@@ -89,37 +78,22 @@ internal object AndesButtonFactory {
      * @param attr list of the attributes received. Main focus will be in the custom params defined in attrs.
      * @return an [AndesButtonConfiguration] that contains all the data that [AndesButton] needs to draw itself properly.
      */
-    fun create(context: Context, attr: AttributeSet?): AndesButtonConfiguration {
-        val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesButton)
-        val hierarchy =
-                when (typedArray.getString(R.styleable.AndesButton_andesButtonHierarchy)) {
-                    ANDES_BUTTON_HIERARCHY_TRANSPARENT -> AndesButtonHierarchy.TRANSPARENT.hierarchy
-                    ANDES_BUTTON_HIERARCHY_QUIET -> AndesButtonHierarchy.QUIET.hierarchy
-                    ANDES_BUTTON_HIERARCHY_LOUD -> AndesButtonHierarchy.LOUD.hierarchy
-                    else -> AndesButtonHierarchy.LOUD.hierarchy
-                }
-        val size =
-                when (typedArray.getString(R.styleable.AndesButton_andesButtonSize)) {
-                    ANDES_BUTTON_SIZE_SMALL -> AndesButtonSize.SMALL.size
-                    ANDES_BUTTON_SIZE_MEDIUM -> AndesButtonSize.MEDIUM.size
-                    ANDES_BUTTON_SIZE_LARGE -> AndesButtonSize.LARGE.size
-                    else -> AndesButtonSize.LARGE.size
-                }
-        val leftIcon = typedArray.getDrawable(R.styleable.AndesButton_andesButtonLeftIconCustom)
-        val rightIcon = typedArray.getDrawable(R.styleable.AndesButton_andesButtonRightIconCustom)
+    fun create(context: Context, andesButtonAttrs: AndesButtonAttrs): AndesButtonConfiguration {
+        val hierarchy = andesButtonAttrs.andesButtonHierarchy.hierarchy
+        val size = andesButtonAttrs.andesButtonSize.size
 
         return AndesButtonConfiguration(
                 background = resolveBackground(hierarchy, size, context),
-                text = typedArray.getString(R.styleable.AndesButton_andesButtonText),
+                text = andesButtonAttrs.andesButtonText,
                 textColor = resolveTextColor(hierarchy, context),
                 textSize = resolveTextSize(size, context),
-                margin = resolveMargin(size, leftIcon, rightIcon, context),
+                margin = resolveMargin(size, andesButtonAttrs.andesButtonLeftIcon, andesButtonAttrs.andesButtonRightIcon, context),
                 height = resolveHeight(size, context),
                 typeface = resolveTypeface(hierarchy, context),
-                iconConfig = resolveIconConfig(size, hierarchy, leftIcon, rightIcon, context),
-                enabled = resolveEnabled(typedArray),
+                iconConfig = resolveIconConfig(size, hierarchy, andesButtonAttrs.andesButtonLeftIcon, andesButtonAttrs.andesButtonRightIcon, context),
+                enabled = andesButtonAttrs.andesButtonEnabled,
                 lateralPadding = resolveLateralPadding(size, context)
-        ).also { typedArray.recycle() }
+        )
     }
 
     /**
