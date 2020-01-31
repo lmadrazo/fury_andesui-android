@@ -34,14 +34,18 @@ class ButtonShowcaseActivity : AppCompatActivity() {
 
     private fun addLoudButtons(container: View) {
         val andesButtonSmall = AndesButton(this, AndesButtonSize.SMALL, AndesButtonHierarchy.LOUD, null)
-        andesButtonSmall.setText(getString(R.string.loud_small_button_programmatic))
+        andesButtonSmall.text = getString(R.string.loud_small_button_programmatic)
         andesButtonSmall.isEnabled = false
 
         val andesButtonMedium = AndesButton(this, AndesButtonSize.MEDIUM, AndesButtonHierarchy.LOUD, AndesButtonIcon(ContextCompat.getDrawable(applicationContext, R.drawable.andesui_icon), AndesButtonIconOrientation.LEFT))
-        andesButtonMedium.setText(getString(R.string.loud_medium_button_programmatic))
+        andesButtonMedium.text = getString(R.string.loud_medium_button_programmatic)
 
-        val andesButtonLarge = AndesButton(this, AndesButtonSize.LARGE, AndesButtonHierarchy.LOUD, AndesButtonIcon(ContextCompat.getDrawable(applicationContext, R.drawable.andesui_icon), AndesButtonIconOrientation.LEFT))
-        andesButtonLarge.setText(getString(R.string.loud_large_button_programmatic))
+        val andesButtonLarge = AndesButton(this, AndesButtonSize.LARGE, AndesButtonHierarchy.QUIET, AndesButtonIcon(ContextCompat.getDrawable(applicationContext, R.drawable.andesui_icon), AndesButtonIconOrientation.LEFT))
+        andesButtonLarge.text = getString(R.string.loud_large_button_programmatic)
+        andesButtonLarge.hierarchy = AndesButtonHierarchy.LOUD
+        andesButtonLarge.setOnClickListener {
+            andesButtonLarge.text = getString(R.string.loud_large_button_text_updated)
+        }
 
         val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -61,13 +65,17 @@ class ButtonShowcaseActivity : AppCompatActivity() {
 
     private fun addQuietButtons(container: View) {
         val andesButtonSmall = AndesButton(this, AndesButtonSize.SMALL, AndesButtonHierarchy.QUIET, null)
-        andesButtonSmall.setText(getString(R.string.quiet_small_button_programmatic))
+        andesButtonSmall.text = getString(R.string.quiet_small_button_programmatic)
 
         val andesButtonMedium = AndesButton(this, AndesButtonSize.MEDIUM, AndesButtonHierarchy.QUIET, null)
-        andesButtonMedium.setText(getString(R.string.quiet_medium_button_programmatic))
+        andesButtonMedium.text = getString(R.string.quiet_medium_button_programmatic)
 
         val andesButtonLarge = AndesButton(this, AndesButtonSize.LARGE, AndesButtonHierarchy.QUIET, AndesButtonIcon(ContextCompat.getDrawable(applicationContext, R.drawable.andesui_icon), AndesButtonIconOrientation.RIGHT))
-        andesButtonLarge.setText(getString(R.string.quiet_large_button_programmatic))
+        andesButtonLarge.text = getString(R.string.quiet_large_button_programmatic)
+        andesButtonLarge.setOnClickListener {
+            andesButtonLarge.hierarchy = AndesButtonHierarchy.LOUD
+            andesButtonLarge.text = getString(R.string.quiet_large_button_hierarchy_updated)
+        }
 
         val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -87,16 +95,16 @@ class ButtonShowcaseActivity : AppCompatActivity() {
 
     private fun addTransparentButtons(container: View) {
         val andesButtonSmall = AndesButton(this, AndesButtonSize.SMALL, AndesButtonHierarchy.TRANSPARENT, null)
-        andesButtonSmall.setText(getString(R.string.transparent_small_button_programmatic))
+        andesButtonSmall.text = getString(R.string.transparent_small_button_programmatic)
 
         val andesButtonMedium = AndesButton(this, AndesButtonSize.MEDIUM, AndesButtonHierarchy.TRANSPARENT, null)
-        andesButtonMedium.setText(getString(R.string.transparent_medium_button_programmatic))
+        andesButtonMedium.text = getString(R.string.transparent_medium_button_programmatic)
 
         val andesButtonLarge = AndesButton(this, AndesButtonSize.LARGE, AndesButtonHierarchy.TRANSPARENT)
-        andesButtonLarge.setText(getString(R.string.transparent_large_button_programmatic))
+        andesButtonLarge.text = getString(R.string.transparent_large_button_programmatic)
 
         val andesButtonLargeInt = AndesButton(this, AndesButtonSize.LARGE, AndesButtonHierarchy.TRANSPARENT, AndesButtonIcon(ContextCompat.getDrawable(applicationContext, R.drawable.andesui_icon), AndesButtonIconOrientation.LEFT))
-        andesButtonLargeInt.setText(getString(R.string.transparent_large_button_programmatic_int))
+        andesButtonLargeInt.text = getString(R.string.transparent_large_button_programmatic_int)
 
         val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,

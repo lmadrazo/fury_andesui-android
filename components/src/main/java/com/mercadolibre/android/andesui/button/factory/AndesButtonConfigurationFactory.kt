@@ -71,12 +71,10 @@ internal data class AndesButtonConfiguration(
 internal object AndesButtonConfigurationFactory {
 
     /**
-     * Reads some properties of the [attr] received and then infers which hierarchy, size, background, etc should be used.
-     * Once determined, puts it into the [AndesButtonConfiguration] that it will return.
      *
      * @param context needed for accessing some resources.
-     * @param attr list of the attributes received. Main focus will be in the custom params defined in attrs.
-     * @return an [AndesButtonConfiguration] that contains all the data that [AndesButton] needs to draw itself properly.
+     * @param andesButtonAttrs parsed attributes with AndesButton data from XML
+     * @return [AndesButtonConfiguration] that contains all the data that [AndesButton] needs to draw itself properly.
      */
     fun create(context: Context, andesButtonAttrs: AndesButtonAttrs): AndesButtonConfiguration {
         val hierarchy = andesButtonAttrs.andesButtonHierarchy.hierarchy

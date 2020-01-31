@@ -14,7 +14,7 @@ internal data class AndesButtonAttrs(val andesButtonHierarchy: AndesButtonHierar
                                      val andesButtonSize: AndesButtonSize,
                                      val andesButtonLeftIcon: Drawable?,
                                      val andesButtonRightIcon: Drawable?,
-                                     val andesButtonText: String,
+                                     val andesButtonText: String?,
                                      val andesButtonEnabled: Boolean = true)
 
 /**
@@ -30,18 +30,28 @@ internal object AndesButtonAttrsParser {
 
     private const val ANDES_BUTTON_HIERARCHY_LOUD = "100"
     private const val ANDES_BUTTON_HIERARCHY_QUIET = "101"
+    private const val ANDES_BUTTON_HIERARCHY_TRANSPARENT = "102"
 
     private const val ANDES_BUTTON_SIZE_LARGE = "200"
     private const val ANDES_BUTTON_SIZE_MEDIUM = "201"
     private const val ANDES_BUTTON_SIZE_SMALL = "202"
 
 
+    /**
+     * Reads some properties of the [attr] and returns the [AndesButtonAttrs] with their parsed data.
+     *
+     * @param context needed for accessing some resources.
+     * @param attr list of the attributes received. Main focus will be in the custom params defined in attrs.
+     * @return [AndesButtonAttrs] that contains all the data that [AndesButtonConfigurationFactory]
+     * needs to create its configuration.
+     */
     fun parse(context: Context, attr: AttributeSet?): AndesButtonAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesButton)
 
         val hierarchy = when (typedArray.getString(R.styleable.AndesButton_andesButtonHierarchy)) {
             ANDES_BUTTON_HIERARCHY_LOUD -> AndesButtonHierarchy.LOUD
             ANDES_BUTTON_HIERARCHY_QUIET -> AndesButtonHierarchy.QUIET
+            ANDES_BUTTON_HIERARCHY_TRANSPARENT -> AndesButtonHierarchy.TRANSPARENT
             else -> AndesButtonHierarchy.LOUD
         }
 

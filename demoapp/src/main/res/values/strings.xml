@@ -7,6 +7,7 @@
     <string name="loud_medium_button_programmatic">Loud Medium Button Programmatic</string>
     <string name="loud_small_button_programmatic">Loud Small Button Programmatic disabled</string>
     <string name="loud_large_button_disabled">Loud large button disabled</string>
+    <string name="loud_large_button_text_updated">This text was updated programmatically</string>
 
     <string name="large_button_left_icon">Large button with left icon</string>
     <string name="large_button_right_icon">Large button with right icon</string>
@@ -17,6 +18,7 @@
     <string name="quiet_large_button_programmatic">Quiet Large Button Programmatic</string>
     <string name="quiet_medium_button_programmatic">Quiet Medium Button Programmatic</string>
     <string name="quiet_small_button_programmatic">Quiet Small Button Programmatic</string>
+    <string name="quiet_large_button_hierarchy_updated">Hierarchy was updated programmatically</string>
 
     <string name="transparent_large_button">Transparent Large Button</string>
     <string name="transparent_medium_button">Transparent Medium Button</string>
