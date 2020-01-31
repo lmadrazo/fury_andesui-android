@@ -1,3 +1,7 @@
+# v1.2.3
+# Added
+- AndesButton dynamic changes of configuration in runtime and properties getters and setters.
+
 # v1.2.2
 # Fixed
 - Some Message Types were still called States.
