@@ -45,6 +45,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         andesButtonLarge.hierarchy = AndesButtonHierarchy.LOUD
         andesButtonLarge.setOnClickListener {
             andesButtonLarge.text = getString(R.string.loud_large_button_text_updated)
+            andesButtonLarge.size = AndesButtonSize.SMALL
         }
 
         val params = LinearLayout.LayoutParams(

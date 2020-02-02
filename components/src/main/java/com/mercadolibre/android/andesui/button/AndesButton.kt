@@ -85,6 +85,19 @@ class AndesButton : ConstraintLayout {
         }
 
     /**
+     * Getter and setter for [size].
+     */
+    var size: AndesButtonSize
+        get() = andesButtonAttrs.andesButtonSize
+        set(value) {
+            andesButtonAttrs = andesButtonAttrs.copy(andesButtonSize = value)
+            val config = createConfig()
+            setupHeight(config)
+            updateDynamicComponents(config)
+            updateComponentsAlignment(config)
+        }
+
+    /**
      * Simplest constructor for creating an AndesButton programmatically.
      * Builds an AndesButton with Large Size and Hierarchy Loud by default.
      */
