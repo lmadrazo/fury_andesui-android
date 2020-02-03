@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.button
 
 import android.content.Context
 import android.os.Build
+import android.support.annotation.VisibleForTesting
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
 import android.support.v7.widget.AppCompatButton
@@ -58,9 +59,13 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 class AndesButton : ConstraintLayout {
 
     private lateinit var andesButtonAttrs: AndesButtonAttrs
-    internal lateinit var leftIconComponent: ImageView
-    internal lateinit var rightIconComponent: ImageView
-    internal lateinit var textComponent: TextView
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    lateinit var leftIconComponent: ImageView
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    lateinit var rightIconComponent: ImageView
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    lateinit var textComponent: TextView
+
 
     /**
      * Getter and setter for [text].
@@ -109,7 +114,7 @@ class AndesButton : ConstraintLayout {
 
     /**
      * Constructor for creating an AndesButton programmatically with the specified [buttonSize],
-     * [buttonSize] and optionally [buttonIcon] and [buttonText].
+     * and optionally [buttonIcon] and [buttonText].
      */
     constructor(context: Context,
                 buttonSize: AndesButtonSize = SIZE_DEFAULT,
