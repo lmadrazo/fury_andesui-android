@@ -20,22 +20,19 @@ internal data class AndesButtonAttrs(val andesButtonHierarchy: AndesButtonHierar
 /**
  * This object parse the attribute set and return an instance of AndesButtonAttrs to be used by AndesButton
  */
-
 internal object AndesButtonAttrsParser {
 
     /**
      * These constants are defined in the attrs XML file.
-     * They are just arbitrary values that were given to different params that can be received through custom params.
+     * They are just arbitrary values that were given to different params that can be received
+     * through custom params.
      */
-
     private const val ANDES_BUTTON_HIERARCHY_LOUD = "100"
     private const val ANDES_BUTTON_HIERARCHY_QUIET = "101"
     private const val ANDES_BUTTON_HIERARCHY_TRANSPARENT = "102"
-
     private const val ANDES_BUTTON_SIZE_LARGE = "200"
     private const val ANDES_BUTTON_SIZE_MEDIUM = "201"
     private const val ANDES_BUTTON_SIZE_SMALL = "202"
-
 
     /**
      * Reads some properties of the [attr] and returns the [AndesButtonAttrs] with their parsed data.

@@ -79,9 +79,10 @@ class AndesButton : ConstraintLayout {
         get() = andesButtonAttrs.andesButtonHierarchy
         set(value) {
             andesButtonAttrs = andesButtonAttrs.copy(andesButtonHierarchy = value)
-            val config = createConfig()
-            updateDynamicComponents(config)
-            updateComponentsAlignment(config)
+            createConfig().also {
+                updateDynamicComponents(it)
+                updateComponentsAlignment(it)
+            }
         }
 
     /**
@@ -91,10 +92,11 @@ class AndesButton : ConstraintLayout {
         get() = andesButtonAttrs.andesButtonSize
         set(value) {
             andesButtonAttrs = andesButtonAttrs.copy(andesButtonSize = value)
-            val config = createConfig()
-            setupHeight(config)
-            updateDynamicComponents(config)
-            updateComponentsAlignment(config)
+            createConfig().also {
+                setupHeight(it)
+                updateDynamicComponents(it)
+                updateComponentsAlignment(it)
+            }
         }
 
     /**
@@ -102,7 +104,7 @@ class AndesButton : ConstraintLayout {
      * Builds an AndesButton with Large Size and Hierarchy Loud by default.
      */
     constructor(context: Context) : super(context) {
-        initAttrs(SIZE_DEFAULT, HIERARCHY_DEFAULT, ICON_DEFAULT, TEXT_DEFAULT) //Consider AndesButtonIcon.NO_ICON
+        initAttrs(SIZE_DEFAULT, HIERARCHY_DEFAULT, ICON_DEFAULT, TEXT_DEFAULT)
     }
 
     /**
