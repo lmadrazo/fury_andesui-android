@@ -1,6 +1,8 @@
 package com.mercadolibre.android.andesui.button
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Build
 import android.support.annotation.VisibleForTesting
 import android.support.constraint.ConstraintLayout
@@ -14,10 +16,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrs
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrsParser
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.factory.AndesButtonConfiguration
 import com.mercadolibre.android.andesui.button.factory.AndesButtonConfigurationFactory
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
+import com.mercadolibre.android.andesui.button.hierarchy.*
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 
 
@@ -59,13 +63,9 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 class AndesButton : ConstraintLayout {
 
     private lateinit var andesButtonAttrs: AndesButtonAttrs
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    lateinit var leftIconComponent: ImageView
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    lateinit var rightIconComponent: ImageView
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    lateinit var textComponent: TextView
-
+    internal lateinit var leftIconComponent: ImageView
+    internal lateinit var rightIconComponent: ImageView
+    internal lateinit var textComponent: TextView
 
     /**
      * Getter and setter for [text].
@@ -336,7 +336,7 @@ class AndesButton : ConstraintLayout {
     private fun createConfig() = AndesButtonConfigurationFactory.create(context, andesButtonAttrs)
 
     /**
-     * Set the enabled state of this button and its children views.
+     * Set the enabled type of this button and its children views.
      *
      * @param enabled true if this view is enabled, false otherwise.
      */
@@ -345,6 +345,14 @@ class AndesButton : ConstraintLayout {
         textComponent.isEnabled = enabled
         leftIconComponent.isEnabled = enabled
         rightIconComponent.isEnabled = enabled
+    }
+
+    internal fun changeTextColor(color : Int){
+        textComponent.setTextColor(color)
+    }
+
+    fun changeBackgroundColor(backgroundColorConfig: BackgroundColorConfigMessage){
+        background = getConfiguredBackgroundMessage(context, context.resources.getDimension(R.dimen.andesui_button_border_radius_medium), backgroundColorConfig)
     }
 
     /**

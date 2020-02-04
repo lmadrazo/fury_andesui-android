@@ -1,6 +1,8 @@
 # v1.2.3
 # Added
-- AndesButton dynamic changes of configuration in runtime and properties getters and setters.
+- Stale Bot GitHub config.
+- Buttons can have primary and secondary actions.
+- AndesButton dynamic configuration changes in runtime.
 
 # v1.2.2
 # Fixed
