@@ -1,39 +1,41 @@
-# v1.2.3
-# Added
+# v1.2.2
+## Fixed
+- Some Message Types were still called States.
+
+## Added
 - Stale Bot GitHub config.
 - Buttons can have primary and secondary actions.
 - AndesButton dynamic configuration changes in runtime.
 
-# v1.2.2
-# Fixed
-- Some Message Types were still called States.
+## Refactor
+- AndesColor created to wrap the use of primitives android color types.
 
 # v1.2.1
-# Fixed
+## Fixed
 - An AndesMessage couldn't be found by its id due to a missing param in the constructor super() call.
 - Renamed `Highlight` type to `Neutral`.
 - `States` are now `Types`.
 - Changed App Name of Demo App.
 - Main buttons of Demo App now have lateral margins.
 
-# Added
+## Added
 - Enabled animateLayoutChanges() flag.
 
 # v1.2.0
-# Added
+## Added
 - Allows changes of state, hierarchy and dismiss in runtime.
 
-# Fixed
+## Fixed
 - Properties getters and setters.
 
 # v1.1.0
-# Added
+## Added
 - Initial release for AndesMessage.
 
-# Fixed
+## Fixed
 - Icon wasn't changing when AndesButton was disabled.
 - Changelog updated
 
 # v1.0.0
-# Welcome!
+## Welcome!
 - Initial release of Andes UI Library. AndesButton is included as the first component.

@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
