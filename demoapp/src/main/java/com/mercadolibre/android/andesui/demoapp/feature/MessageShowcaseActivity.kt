@@ -12,13 +12,14 @@ import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import android.widget.Spinner
 import android.widget.Toast
+import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
@@ -131,6 +132,13 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
                 }
             ))
+
+            val bullets = arrayListOf<BulletItem>()
+            bullets.add(BulletItem("Bullet 1", null))
+            bullets.add(BulletItem("Bullet 2", null))
+            bullets.add(BulletItem("Bullet 3", null))
+            bullets.add(BulletItem("Bullet 4", null))
+            changeMessage.bullets = bullets
 
             changeButton.setOnClickListener {
                 if (bodyText.text.toString().isEmpty()) {

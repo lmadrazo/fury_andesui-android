@@ -1,32 +1,20 @@
-package com.mercadolibre.android.andesui.message.factory
+package com.mercadolibre.android.andesui.bullet.factory
 
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.bullet.AndesBullet
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
-import com.mercadolibre.android.andesui.bulletgroup.AndesBulletGroup
-import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 
-/**
- * The data class that contains the public components of the message.
- */
-internal data class AndesMessageAttrs(
+internal data class AndesBulletAttrs(
     val andesMessageHierarchy: AndesMessageHierarchy,
     val andesMessageType: AndesMessageType,
-    val body: String?,
-    val title: String?,
-    val bullets: ArrayList<BulletItem>?,
-    val isDismissable: Boolean,
-    val bodyLinks: AndesBodyLinks?
+    val andesBulletText: String?,
+    val textLinks: AndesBodyLinks?
 )
 
-/**
- * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage
- */
-internal object AndesMessageAttrsParser {
+internal object AndesBulletAttrParser {
 
     private const val ANDES_MESSAGE_HIERARCHY_LOUD = "1000"
     private const val ANDES_MESSAGE_HIERARCHY_QUIET = "1001"
@@ -36,7 +24,7 @@ internal object AndesMessageAttrsParser {
     private const val ANDES_MESSAGE_TYPE_WARNING = "2002"
     private const val ANDES_MESSAGE_TYPE_ERROR = "2003"
 
-    fun parse(context: Context, attr: AttributeSet?): AndesMessageAttrs {
+    fun parse(context: Context, attr: AttributeSet?): AndesBulletAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesMessage)
 
         val hierarchy = when (typedArray.getString(R.styleable.AndesMessage_andesMessageHierarchy)) {
@@ -53,14 +41,11 @@ internal object AndesMessageAttrsParser {
             else -> AndesMessageType.NEUTRAL
         }
 
-        return AndesMessageAttrs(
-                andesMessageHierarchy = hierarchy,
-                andesMessageType = type,
-                body = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText),
-                title = typedArray.getString(R.styleable.AndesMessage_andesMessageTitleText),
-                bullets = arrayListOf(),
-                isDismissable = typedArray.getBoolean(R.styleable.AndesMessage_andesMessageDismissable, false),
-                bodyLinks = null
+        return AndesBulletAttrs(
+            andesMessageHierarchy = hierarchy,
+            andesMessageType = type,
+            andesBulletText = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText),
+            textLinks = null
         ).also { typedArray.recycle() }
     }
 }

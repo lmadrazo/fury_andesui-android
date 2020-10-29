@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_bullet_dot_size">6dp</dimen>
+    <dimen name="andes_bullet_margin_right">18dp</dimen>
+    <dimen name="andes_bullet_margin_left">8dp</dimen>
+    <dimen name="andes_bullet_margin_top">4dp</dimen>
+    <dimen name="andes_bullet_text">14sp</dimen>
+</resources>

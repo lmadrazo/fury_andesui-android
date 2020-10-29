@@ -26,11 +26,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textIsSelectable="true"
-            app:layout_constraintBottom_toTopOf="@+id/andes_bottom_guideline"
             app:layout_constraintEnd_toStartOf="@+id/andes_dismissableleft_guideline"
             app:layout_constraintStart_toStartOf="@+id/andes_righticon_guideline"
             app:layout_constraintTop_toBottomOf="@+id/andes_title"
             app:layout_constraintVertical_bias="0.0" />
+
+        <com.mercadolibre.android.andesui.bulletgroup.AndesBulletGroup
+            android:id="@+id/andes_bullets_groups"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/andes_bottom_guideline"
+            app:layout_constraintEnd_toStartOf="@+id/andes_dismissableleft_guideline"
+            app:layout_constraintStart_toStartOf="@+id/andes_righticon_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/andes_body"
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="visible" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/andes_icon"

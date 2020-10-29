@@ -55,7 +55,7 @@ class AndesMessageTest {
         var indexSelected = -1
 
         andesMessage = AndesMessage(context, AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS,
-                "This is a body message", "Title", true, null)
+                "This is a body message", "Title", null, true, null)
 
         val links = listOf(AndesBodyLink(0, 10))
         andesMessage.bodyLinks = AndesBodyLinks(links, listener = {

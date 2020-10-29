@@ -18,6 +18,8 @@ import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.bulletgroup.AndesBulletGroup
+import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
@@ -72,6 +74,16 @@ class AndesMessage : CardView {
         }
 
     /**
+     * Getter and setter for [bullets].
+     */
+    var bullets: ArrayList<BulletItem>?
+        get() = andesMessageAttrs.bullets
+        set(value) {
+            andesMessageAttrs = andesMessageAttrs.copy(bullets = value)
+            setupBulletComponent()
+        }
+
+    /**
      * Getter and setter for [isDismissable].
      */
     var isDismissable: Boolean
@@ -112,6 +124,7 @@ class AndesMessage : CardView {
     private lateinit var messageContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
     lateinit var bodyComponent: TextView
+    private lateinit var bulletsComponent: AndesBulletGroup
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var dismissableComponent: SimpleDraweeView
     private lateinit var pipeComponent: View
@@ -123,7 +136,7 @@ class AndesMessage : CardView {
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
         throw IllegalStateException(
-                "Constructor without parameters in Andes Message is not allowed. You must provide some attributes."
+            "Constructor without parameters in Andes Message is not allowed. You must provide some attributes."
         )
     }
 
@@ -142,10 +155,11 @@ class AndesMessage : CardView {
         type: AndesMessageType = STATE_DEFAULT,
         body: String,
         title: String? = TITLE_DEFAULT,
+        bullets: ArrayList<BulletItem>? = arrayListOf(),
         isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT,
         bodyLinks: AndesBodyLinks? = null
     ) : super(context) {
-        initAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
+        initAttrs(hierarchy, type, body, title, bullets, isDismissable, bodyLinks)
     }
 
     /**
@@ -165,10 +179,11 @@ class AndesMessage : CardView {
         type: AndesMessageType,
         body: String,
         title: String?,
+        bullets: ArrayList<BulletItem>?,
         isDismissable: Boolean,
         bodyLinks: AndesBodyLinks?
     ) {
-        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
+        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, bullets, isDismissable, bodyLinks)
         val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
         setupComponents(config)
     }
@@ -193,6 +208,7 @@ class AndesMessage : CardView {
     private fun setupColorComponents(config: AndesMessageConfiguration) {
         setupTitleComponent(config)
         setupBodyComponent(config)
+        setupBulletComponent()
         setupBackground(config)
         setupPipe(config)
         setupIcon(config)
@@ -206,11 +222,12 @@ class AndesMessage : CardView {
      */
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_message,
-                this, true)
+            this, true)
 
         messageContainer = container.findViewById(R.id.andes_message_container)
         titleComponent = container.findViewById(R.id.andes_title)
         bodyComponent = container.findViewById(R.id.andes_body)
+        bulletsComponent = container.findViewById(R.id.andes_bullets_groups)
         iconComponent = container.findViewById(R.id.andes_icon)
         dismissableComponent = container.findViewById(R.id.andes_dismissable)
         pipeComponent = container.findViewById(R.id.andes_pipe)
@@ -259,7 +276,7 @@ class AndesMessage : CardView {
             bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
             bodyComponent.setTextColor(config.textColor.colorInt(context))
             bodyComponent.typeface = config.bodyTypeface
-//          bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
+            //bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
         }
     }
 
@@ -279,16 +296,29 @@ class AndesMessage : CardView {
                         }
                     }
                     spannableString.setSpan(clickableSpan,
-                            andesBodyLink.startIndex, andesBodyLink.endIndex,
-                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        andesBodyLink.startIndex, andesBodyLink.endIndex,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 } else {
                     Log.d("AndesMessage", "Body link range incorrect: " +
-                            "${andesBodyLink.startIndex}, ${andesBodyLink.endIndex}")
+                        "${andesBodyLink.startIndex}, ${andesBodyLink.endIndex}")
                 }
             }
             bodyComponent.movementMethod = LinkMovementMethod.getInstance()
         }
         return spannableString
+    }
+
+    /**
+     * Gets data from the config and sets to the bullet component of this message.
+     *
+     */
+    private fun setupBulletComponent() {
+        bullets?.let {
+            bulletsComponent.hierarchy = HIERARCHY_DEFAULT
+            bulletsComponent.type = STATE_DEFAULT
+            bulletsComponent.visibility = View.VISIBLE
+            bulletsComponent.bullets = it
+        }
     }
 
     private fun setupBackground(config: AndesMessageConfiguration) {
@@ -347,9 +377,9 @@ class AndesMessage : CardView {
         if (primaryAction.visibility == View.GONE) {
 
             linkAction.setPadding(LINK_BUTTON_PADDING,
-                                  LINK_BUTTON_PADDING,
-                                  LINK_BUTTON_PADDING,
-                                  LINK_BUTTON_PADDING)
+                LINK_BUTTON_PADDING,
+                LINK_BUTTON_PADDING,
+                LINK_BUTTON_PADDING)
 
             linkAction.visibility = View.VISIBLE
             linkActionText = text
