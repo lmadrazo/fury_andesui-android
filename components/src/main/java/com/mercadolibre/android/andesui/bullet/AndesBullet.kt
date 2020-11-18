@@ -116,7 +116,7 @@ class AndesBullet : ConstraintLayout {
     }
 
     /**
-     * Creates all the views that are part of this checkbox.
+     * Creates all the views that are part of this bullet.
      * After a view is created then a view id is added to it.
      */
     private fun initComponents() {
@@ -125,7 +125,7 @@ class AndesBullet : ConstraintLayout {
     }
 
     /**
-     * Sets a view id to this radiobutton.
+     * Sets a view id to this bullet.
      */
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id

@@ -93,7 +93,7 @@ class AndesBulletGroup : LinearLayout {
     }
 
     /**
-     * Creates all the views that are part of this checkbox.
+     * Creates all the views that are part of this bullet group.
      * After a view is created then a view id is added to it.
      */
     private fun initComponents() {
@@ -101,7 +101,7 @@ class AndesBulletGroup : LinearLayout {
     }
 
     /**
-     * Sets a view id to this radiobutton.
+     * Sets a view id to this bullet group.
      */
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id
