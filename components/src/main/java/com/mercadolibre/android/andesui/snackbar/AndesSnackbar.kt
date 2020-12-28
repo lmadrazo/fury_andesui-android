@@ -3,9 +3,9 @@ package com.mercadolibre.android.andesui.snackbar
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
-import android.support.constraint.ConstraintLayout
-import android.support.design.widget.Snackbar
-import android.support.v7.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.snackbar.Snackbar
+import androidx.cardview.widget.CardView
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.LayoutInflater

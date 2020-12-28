@@ -8,7 +8,6 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
@@ -23,10 +22,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesTextfieldStateInterfaceTest {
     private var context = RuntimeEnvironment.application
     private lateinit var stateInterface: AndesTextfieldStateInterface
@@ -65,12 +65,14 @@ class AndesTextfieldStateInterfaceTest {
         assertEquals(R.color.andes_red_500.toAndesColor(), stateInterface.labelColor())
         assertEquals(R.color.andes_gray_200.toAndesColor(), stateInterface.placeholderColor())
         assertEquals(R.color.andes_red_500.toAndesColor(), stateInterface.helpersColor())
-        assertEquals(buildColoredCircularShapeWithIconDrawable(
+        val actual = stateInterface.icon(context)
+        val expected = buildColoredCircularShapeWithIconDrawable(
                 IconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
                 context,
                 R.color.andes_white.toAndesColor(),
                 R.color.andes_red_500.toColor(context),
-                context.resources.getDimension(R.dimen.andes_textfield_icon_diameter).toInt()), stateInterface.icon(context))
+                context.resources.getDimension(R.dimen.andes_textfield_icon_diameter).toInt())
+        assertEquals(Shadows.shadowOf(expected).createdFromResId, Shadows.shadowOf(actual).createdFromResId)
     }
 
     @Test

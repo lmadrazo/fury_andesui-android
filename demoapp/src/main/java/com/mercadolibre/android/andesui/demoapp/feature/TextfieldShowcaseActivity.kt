@@ -2,22 +2,19 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ScrollView
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.PagerAdapter
 import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.demoapp.InflateTextfieldHelper
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.textfield.AndesTextarea
@@ -33,16 +30,24 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         setContentView(R.layout.andesui_showcase_main)
 
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
-        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_textfield)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
-        viewPager.adapter = AndesShowcasePagerAdapter(this)
+        val adapter = AndesTextfieldShowcasePagerAdapter(initViews())
+        viewPager.adapter = adapter
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(position: Int) = Unit
+            override fun onPageScrolled(position: Int, p1: Float, p2: Int) = Unit
+            override fun onPageSelected(position: Int) {
+                supportActionBar?.title = getString(adapter.getTitleResource(position))
+            }
+        })
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)
     }
 
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
+        private val textAreaCounter = COUNTER_DEFAULT
 
         var views: List<View>
 
@@ -85,10 +90,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val helper = layoutTextfield.findViewById<AndesTextfield>(R.id.helper_text)
             val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
-            val mask = layoutTextfield.findViewById<EditText>(R.id.mask)
+            val mask = layoutTextfield.findViewById<AndesTextfield>(R.id.mask)
 
             counter.setText(COUNTER_DEFAULT)
-            textfield.counter = 50
+            textfield.counter = COUNTER_DEFAULT
 
             val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.textType_spinner)
             val typeAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
@@ -97,27 +102,27 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
             val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
             val stateAdapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_item,
-                context.resources.getStringArray(R.array.textfield_state_spinner)
+                    context,
+                    android.R.layout.simple_spinner_item,
+                    context.resources.getStringArray(R.array.textfield_state_spinner)
             )
             stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             stateSpinner.adapter = stateAdapter
 
             val preffixSpinner: Spinner = layoutTextfield.findViewById(R.id.prefix_spinner)
             val preffixAdapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_item,
-                context.resources.getStringArray(R.array.prefix_spinner)
+                    context,
+                    android.R.layout.simple_spinner_item,
+                    context.resources.getStringArray(R.array.prefix_spinner)
             )
             preffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             preffixSpinner.adapter = preffixAdapter
 
             val suffixSpinner: Spinner = layoutTextfield.findViewById(R.id.suffix_spinner)
             val suffixAdapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_item,
-                context.resources.getStringArray(R.array.suffix_spinner)
+                    context,
+                    android.R.layout.simple_spinner_item,
+                    context.resources.getStringArray(R.array.suffix_spinner)
             )
             suffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             suffixSpinner.adapter = suffixAdapter
@@ -142,23 +147,23 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     textfield.rightContent = null
                 } else {
                     textfield.rightContent = AndesTextfieldRightContent.fromString(
-                        suffixSpinner.selectedItem.toString()
+                            suffixSpinner.selectedItem.toString()
                     )
                     if (textfield.rightContent == AndesTextfieldRightContent.ACTION) {
                         textfield.setAction(
-                            "Button",
-                            View.OnClickListener {
-                                Toast.makeText(context, "Right action pressed", Toast.LENGTH_LONG).show()
-                            }
+                                "Button",
+                                View.OnClickListener {
+                                    Toast.makeText(context, "Right action pressed", Toast.LENGTH_LONG).show()
+                                }
                         )
                     }
                 }
 
-                mask.text.takeIf { it.isNotEmpty() }?.apply {
+                mask.text.takeIf { !it.isNullOrEmpty() }?.apply {
                     textfield.setTextFieldMask(it.toString())
                 }
 
-                if (mask.text.isNotEmpty()) {
+                if (!mask.text.isNullOrEmpty()) {
                     textfield.setTextFieldMask(mask.text.toString())
                 }
 
@@ -175,7 +180,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 placeholder.text = null
                 helper.text = null
                 counter.setText(COUNTER_DEFAULT)
-                mask.setText("")
+                mask.text = ""
                 stateSpinner.setSelection(0)
                 inputTypeSpinner.setSelection(0)
                 preffixSpinner.setSelection(0)
@@ -186,7 +191,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.label = null
                 textfield.placeholder = null
                 textfield.helper = null
-                textfield.counter = 50
+                textfield.counter = COUNTER_DEFAULT
                 textfield.state = AndesTextfieldState.IDLE
                 textfield.inputType = InputType.TYPE_CLASS_DATETIME
                 textfield.leftContent = null
@@ -207,13 +212,13 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
             counter.setText(COUNTER_DEFAULT)
-            textarea.counter = 50
+            textarea.counter = COUNTER_DEFAULT
 
             val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
             val stateAdapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_item,
-                context.resources.getStringArray(R.array.textfield_state_spinner)
+                    context,
+                    android.R.layout.simple_spinner_item,
+                    context.resources.getStringArray(R.array.textfield_state_spinner)
             )
             stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             stateSpinner.adapter = stateAdapter
@@ -241,7 +246,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textarea.label = null
                 textarea.placeholder = null
                 textarea.helper = null
-                textarea.counter = 50
+                textarea.counter = textAreaCounter
                 textarea.state = AndesTextfieldState.IDLE
             }
 
@@ -250,9 +255,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
         private fun addStaticTextfieldLayout(inflater: LayoutInflater): View {
             val layoutTextfield = inflater.inflate(
-                R.layout.andesui_textfield_showcase,
-                null,
-                false
+                    R.layout.andesui_textfield_showcase,
+                    null,
+                    false
             ) as ScrollView
             layoutTextfield.left
 
@@ -280,10 +285,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             // Set action
             val textfield3 = layoutTextfield.findViewById<AndesTextfield>(R.id.andesTextfield3)
             textfield3.setAction(
-                "Button",
-                View.OnClickListener {
-                    Toast.makeText(context, "Action pressed", Toast.LENGTH_LONG).show()
-                }
+                    "Button",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Action pressed", Toast.LENGTH_LONG).show()
+                    }
             )
 
             // Set text
@@ -304,23 +309,23 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val inputTypes = ArrayList<InputTypeItem>()
 
             inputTypes.add(
-                InputTypeItem("date", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE)
+                    InputTypeItem("date", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE)
             )
             inputTypes.add(
-                InputTypeItem("datetime", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_NORMAL)
+                    InputTypeItem("datetime", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_NORMAL)
             )
             inputTypes.add(InputTypeItem("none", InputType.TYPE_NULL))
             inputTypes.add(
-                InputTypeItem("number", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL)
+                    InputTypeItem("number", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL)
             )
             inputTypes.add(
-                InputTypeItem("numberDecimal", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL)
+                    InputTypeItem("numberDecimal", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL)
             )
             inputTypes.add(
-                InputTypeItem("numberPassword", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+                    InputTypeItem("numberPassword", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             )
             inputTypes.add(
-                InputTypeItem("numberSigned", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED)
+                    InputTypeItem("numberSigned", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED)
             )
             inputTypes.add(InputTypeItem("phone", InputType.TYPE_CLASS_PHONE))
             inputTypes.add(InputTypeItem("text", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL))
@@ -330,74 +335,74 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             inputTypes.add(InputTypeItem("textCapSentences", InputType.TYPE_TEXT_FLAG_CAP_SENTENCES))
             inputTypes.add(InputTypeItem("textCapWords", InputType.TYPE_TEXT_FLAG_CAP_WORDS))
             inputTypes.add(
-                InputTypeItem(
-                    "textEmailAddress",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                )
+                    InputTypeItem(
+                            "textEmailAddress",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                    )
             )
             inputTypes.add(
-                InputTypeItem(
-                    "textEmailSubject",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_SUBJECT
-                )
+                    InputTypeItem(
+                            "textEmailSubject",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_SUBJECT
+                    )
             )
             inputTypes.add(InputTypeItem("textFilter", InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE))
             inputTypes.add(
-                InputTypeItem(
-                    "textLongMessage",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
-                )
+                    InputTypeItem(
+                            "textLongMessage",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
+                    )
             )
             inputTypes.add(InputTypeItem("textMultiLine", InputType.TYPE_TEXT_FLAG_MULTI_LINE))
             inputTypes.add(InputTypeItem("textNoSuggestions", InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS))
             inputTypes.add(
-                InputTypeItem("textPassword", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                    InputTypeItem("textPassword", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
             )
             inputTypes.add(
-                InputTypeItem("textPersonName", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME)
+                    InputTypeItem("textPersonName", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME)
             )
             inputTypes.add(
-                InputTypeItem("textPhonetic", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PHONETIC)
+                    InputTypeItem("textPhonetic", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PHONETIC)
             )
             inputTypes.add(
-                InputTypeItem(
-                    "textPostalAddress",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS
-                )
+                    InputTypeItem(
+                            "textPostalAddress",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS
+                    )
             )
             inputTypes.add(
-                InputTypeItem(
-                    "textShortMessage",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE
-                )
+                    InputTypeItem(
+                            "textShortMessage",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE
+                    )
             )
             inputTypes.add(InputTypeItem("textUri", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI))
             inputTypes.add(
-                InputTypeItem(
-                    "textVisiblePassword",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                )
+                    InputTypeItem(
+                            "textVisiblePassword",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    )
             )
             inputTypes.add(
-                InputTypeItem(
-                    "textWebEditText",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT
-                )
+                    InputTypeItem(
+                            "textWebEditText",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT
+                    )
             )
             inputTypes.add(
-                InputTypeItem(
-                    "textWebEmailAddress",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
-                )
+                    InputTypeItem(
+                            "textWebEmailAddress",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
+                    )
             )
             inputTypes.add(
-                InputTypeItem(
-                    "textWebPassword",
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD
-                )
+                    InputTypeItem(
+                            "textWebPassword",
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD
+                    )
             )
             inputTypes.add(
-                InputTypeItem("time", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME)
+                    InputTypeItem("time", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME)
             )
 
             return inputTypes
@@ -412,6 +417,20 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
     companion object {
         const val NONE = "NONE"
-        const val COUNTER_DEFAULT = "50"
+        const val COUNTER_DEFAULT = 50
+    }
+
+    private fun initViews(): List<TextFieldPage> {
+        val dynamicTextfieldLayout = InflateTextfieldHelper.inflateAndesTextfield(this)
+        val dynamicTextareaLayout = InflateTextfieldHelper.inflateAndesTextfieldArea(this)
+        val dynamicTextfieldCodeLayout = InflateTextfieldHelper.inflateAndesTextfieldCode(this)
+        val staticTextfieldLayout = InflateTextfieldHelper.inflateStaticTextfieldLayout(this)
+
+        return listOf(
+                TextFieldPage(dynamicTextfieldLayout),
+                TextFieldPage(dynamicTextareaLayout),
+                TextFieldPage(dynamicTextfieldCodeLayout, R.string.andesui_demoapp_screen_textfield_code),
+                TextFieldPage(staticTextfieldLayout)
+        )
     }
 }

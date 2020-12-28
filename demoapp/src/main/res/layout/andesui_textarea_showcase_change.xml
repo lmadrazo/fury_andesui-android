@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:isScrollContainer="true">
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/simpleTypeTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -38,11 +38,11 @@
             android:id="@+id/state_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleTypeTextView"
             app:layout_constraintEnd_toEndOf="@+id/andesui_tag"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/simpleTypeTextView"
+            app:layout_constraintTop_toTopOf="@+id/simpleTypeTextView" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/label_text"
@@ -53,8 +53,8 @@
             app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/state_spinner"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintStart_toStartOf="@+id/simpleTypeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/simpleTypeTextView" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/placeholder_text"
@@ -129,7 +129,7 @@
             app:layout_constraintStart_toEndOf="@+id/change_button"
             app:layout_constraintTop_toTopOf="@+id/change_button" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
 

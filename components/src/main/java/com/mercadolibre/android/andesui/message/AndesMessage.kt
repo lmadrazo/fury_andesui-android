@@ -2,8 +2,8 @@ package com.mercadolibre.android.andesui.message
 
 import android.content.Context
 import android.graphics.Paint
-import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint

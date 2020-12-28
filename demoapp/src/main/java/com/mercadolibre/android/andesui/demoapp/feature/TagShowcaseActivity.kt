@@ -3,30 +3,36 @@ package com.mercadolibre.android.andesui.demoapp.feature
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.support.constraint.Group
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import androidx.constraintlayout.widget.Group
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
 import android.widget.LinearLayout
-import android.widget.ScrollView
-import android.widget.Spinner
 import android.widget.Switch
+import android.widget.AdapterView
+import android.widget.ScrollView
+import android.widget.TextView
 import android.widget.Toast
+import android.widget.Spinner
+import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
+import com.mercadolibre.android.andesui.tag.AndesTagChoice
 import com.mercadolibre.android.andesui.tag.AndesTagSimple
+import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
+import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
+import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
+import com.mercadolibre.android.andesui.tag.leftcontent.IconSize
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentIcon
@@ -81,8 +87,217 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val dinamicMessagesLayout = addDynamicTag(inflater)
             val staticMessagesLayout = addStaticTag(inflater)
+            val staticChoiceMessages = addChoiceStaticTag(inflater)
 
-            return listOf(dinamicMessagesLayout, staticMessagesLayout)
+            return listOf(dinamicMessagesLayout, staticMessagesLayout, staticChoiceMessages)
+        }
+
+        @Suppress("LongMethod")
+        private fun addChoiceStaticTag(inflater: LayoutInflater): View {
+            val layoutTag = inflater.inflate(R.layout.andesui_tags_showcase, null, false) as ScrollView
+            layoutTag.findViewById<AndesButton>(R.id.andesui_demoapp_andes_tag_specs_button).setOnClickListener {
+                launchSpecs(it.context, AndesSpecs.TAG)
+            }
+            val viewTitle: TextView = layoutTag.findViewById(R.id.static_tag_title)
+            viewTitle.text = "Choice tag"
+
+            val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
+            val firstColumn = layoutTag.findViewById<LinearLayout>(R.id.firstColumn)
+            val secondColumn = layoutTag.findViewById<LinearLayout>(R.id.secondColumn)
+
+            val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(0, 0, 0, context.resources.getDimension(R.dimen.badge_margin_vertical).toInt())
+
+            val iconLargeTag = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Icon large"
+            )
+            iconLargeTag.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable,
+                            iconColor = "#8C8C8C"
+                    )
+            )
+            firstColumn.addView(iconLargeTag, params)
+
+            val iconLargeColoredTag = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Icon large colored"
+            )
+
+            iconLargeColoredTag.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable
+                    )
+            )
+            firstColumn.addView(iconLargeColoredTag, params)
+
+            val iconSmallTag = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Icon small"
+            )
+            iconSmallTag.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable,
+                            iconColor = "#8C8C8C",
+                            iconSize = IconSize.SMALL
+                    )
+            )
+            firstColumn.addView(iconSmallTag, params)
+
+            val iconSmallTagColored = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Icon small colored"
+            )
+            iconSmallTagColored.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable,
+                            iconSize = IconSize.SMALL
+                    )
+            )
+            firstColumn.addView(iconSmallTagColored, params)
+
+            val tagChoiceSmall = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.SELECTED,
+                    "Small tag"
+            )
+            firstColumn.addView(tagChoiceSmall, params)
+
+            val tagAnimatedSmall = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.SELECTED,
+                    "Small animated"
+            )
+            tagAnimatedSmall.shouldAnimateTag = true
+            firstColumn.addView(tagAnimatedSmall, params)
+
+            val tagAnimatedLarge = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Large animated"
+            )
+            tagAnimatedLarge.shouldAnimateTag = true
+            firstColumn.addView(tagAnimatedLarge, params)
+
+            val discounts = context.resources.getDrawable(R.drawable.andes_navegacion_ofertas_24)
+            val iconSmallAnimated = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Descuentos"
+            )
+            iconSmallAnimated.shouldAnimateTag = true
+            iconSmallAnimated.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = discounts,
+                            iconSize = IconSize.SMALL
+                    )
+            )
+            iconSmallAnimated.shouldAnimateTag = true
+            firstColumn.addView(iconSmallAnimated, params)
+
+            val tagChoiceDropdown = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.IDLE,
+                    "Dropdown"
+            )
+            secondColumn.addView(tagChoiceDropdown, params)
+
+            val tagChoiceDropdownCallback = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.IDLE,
+                    "Callback false"
+            )
+            tagChoiceDropdownCallback.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
+                    return false
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallback, params)
+
+            val tagChoiceDropdownCallback2 = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.IDLE,
+                    "Callback true"
+            )
+            tagChoiceDropdownCallback2.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
+                    return true
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallback2, params)
+
+            val tagChoiceDropdownCallbackSmall = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.IDLE,
+                    "Callback false"
+            )
+            tagChoiceDropdownCallbackSmall.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
+                    return false
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallbackSmall, params)
+
+            val tagChoiceDropdownCallbackSmall2 = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.IDLE,
+                    "Callback true"
+            )
+            tagChoiceDropdownCallbackSmall2.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
+                    return true
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallbackSmall2, params)
+
+            return layoutTag
         }
 
         @Suppress("LongMethod")
@@ -300,16 +515,29 @@ class TagShowcaseActivity : AppCompatActivity() {
             ) as ScrollView
 
             val andesTagSimple: AndesTagSimple = layoutTag.findViewById(R.id.andesui_tag)
+            val simpleTypeTextView: TextView = layoutTag.findViewById(R.id.simpleTypeTextView)
+            val andesTagChoice: AndesTagChoice = layoutTag.findViewById(R.id.andesui_tag_choice)
 
-            val typeSpinner: Spinner = layoutTag.findViewById(R.id.type_spinner)
+            val typeSpinner: Spinner = layoutTag.findViewById(R.id.tag_type_spinner)
             ArrayAdapter.createFromResource(
-                context,
-                R.array.type_spinner,
-                android.R.layout.simple_spinner_item
+                    context,
+                    R.array.tag_type_spinner,
+                    android.R.layout.simple_spinner_item
             )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         typeSpinner.adapter = adapter
+                    }
+
+            val simpleTypeSpinner: Spinner = layoutTag.findViewById(R.id.simple_type_spinner)
+            ArrayAdapter.createFromResource(
+                context,
+                R.array.simple_type_spinner,
+                android.R.layout.simple_spinner_item
+            )
+                    .also { adapter ->
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        simpleTypeSpinner.adapter = adapter
                     }
 
             val groupDot: Group = layoutTag.findViewById(R.id.group_dot)
@@ -379,6 +607,34 @@ class TagShowcaseActivity : AppCompatActivity() {
             labelText.placeholder = context.resources.getString(R.string.andes_textfield_label_text)
 
             val dismissable: Switch = layoutTag.findViewById(R.id.dismissable)
+            val shouldAnimate: Switch = layoutTag.findViewById(R.id.should_animate)
+
+            typeSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Do nothing
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    when(typeSpinner.getItemAtPosition(position)) {
+                        "Simple" -> {
+                            andesTagChoice.visibility = View.INVISIBLE
+                            andesTagSimple.visibility = View.VISIBLE
+                            simpleTypeSpinner.visibility = View.VISIBLE
+                            simpleTypeTextView.visibility = View.VISIBLE
+                            dismissable.visibility = View.VISIBLE
+                            shouldAnimate.visibility = View.GONE
+                        }
+                        "Choice" -> {
+                            andesTagSimple.visibility = View.INVISIBLE
+                            andesTagChoice.visibility = View.VISIBLE
+                            simpleTypeSpinner.visibility = View.GONE
+                            simpleTypeTextView.visibility = View.GONE
+                            dismissable.visibility = View.GONE
+                            shouldAnimate.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
 
             leftContentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
@@ -424,6 +680,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 andesTagSimple.visibility = View.VISIBLE
 
                 dismissable.isChecked = false
+                simpleTypeSpinner.setSelection(0)
                 typeSpinner.setSelection(0)
                 sizeSpinner.setSelection(0)
                 leftContentSpinner.setSelection(0)
@@ -439,11 +696,6 @@ class TagShowcaseActivity : AppCompatActivity() {
             }
 
             changeButton.setOnClickListener {
-
-                andesTagSimple.visibility = View.VISIBLE
-
-                val isDismissable = dismissable.isChecked
-                val type = AndesTagType.fromString(typeSpinner.selectedItem as String)
                 val size = AndesTagSize.fromString(sizeSpinner.selectedItem as String)
 
                 if (labelText.text.isNullOrEmpty()) {
@@ -495,11 +747,8 @@ class TagShowcaseActivity : AppCompatActivity() {
                         )
                     }
                     "Icon" -> {
-                        if (iconBackgroundColor.text.isNullOrEmpty()) {
-                            iconBackgroundColor.state = AndesTextfieldState.ERROR
-                            iconBackgroundColor.helper = "Este capo es requerido"
-                            return@setOnClickListener
-                        } else if (!validateColor("#${iconBackgroundColor.text!!}")) {
+                        if (!iconBackgroundColor.text.isNullOrEmpty()
+                                && !validateColor("#${iconBackgroundColor.text!!}")) {
                             iconBackgroundColor.state = AndesTextfieldState.ERROR
                             iconBackgroundColor.helper = "Color inválido"
                             return@setOnClickListener
@@ -529,9 +778,13 @@ class TagShowcaseActivity : AppCompatActivity() {
                             "Info" -> "andes_ui_feedback_info_24"
                             else -> "andes_ui_close_24"
                         }
+                        var background: String? = null
+                        if (!iconBackgroundColor.text.isNullOrEmpty()) {
+                            background = "#${iconBackgroundColor.text!!}"
+                        }
                         leftContent = LeftContent(
                             icon = LeftContentIcon(
-                                backgroundColor = "#${iconBackgroundColor.text!!}",
+                                backgroundColor = background,
                                 path = path,
                                 iconColor = icon
                             )
@@ -564,11 +817,25 @@ class TagShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                andesTagSimple.text = text
-                andesTagSimple.type = type
-                andesTagSimple.size = size
-                andesTagSimple.isDismissable = isDismissable
-                andesTagSimple.leftContent = leftContent
+                when (typeSpinner.selectedItem as String) {
+                    "Simple" -> {
+                        val simpleType = AndesTagType.fromString(simpleTypeSpinner.selectedItem as String)
+                        val isDismissable = dismissable.isChecked
+
+                        andesTagSimple.text = text
+                        andesTagSimple.type = simpleType
+                        andesTagSimple.size = size
+                        andesTagSimple.isDismissable = isDismissable
+                        andesTagSimple.leftContent = leftContent
+                    }
+                    "Choice" -> {
+                        val animation = shouldAnimate.isChecked
+                        andesTagChoice.shouldAnimateTag = animation
+                        andesTagChoice.text = text
+                        andesTagChoice.size = size
+                        andesTagChoice.leftContent = leftContent
+                    }
+                }
             }
 
             return layoutTag

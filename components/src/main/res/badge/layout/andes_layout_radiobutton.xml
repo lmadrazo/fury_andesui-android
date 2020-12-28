@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/andesRadioButton"
@@ -31,11 +31,12 @@
 
     <TextView
         android:id="@+id/checkboxText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="@dimen/andes_tag_small_text_size"
         android:layout_marginLeft="@dimen/andes_radiobutton_text_margin"
         android:layout_marginRight="@dimen/andes_radiobutton_text_margin"
+        app:layout_constraintWidth_default="wrap"
         app:layout_constraintBottom_toBottomOf="@id/andesRadioButton"
         app:layout_constraintEnd_toStartOf="@+id/rightRadioButton"
         app:layout_constraintStart_toEndOf="@+id/leftRadioButton"
@@ -65,4 +66,4 @@
 
     </FrameLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,7 @@ build-job: &buildJob
     - restore_cache:
         key: gradlew-{{ checksum "./gradle/wrapper/gradle-wrapper.properties" }}
     - restore_cache:
-        key: dependencies-{{ checksum "components/build.gradle" }}-{{ checksum "demoapp/build.gradle" }}
+        key: dependencies-{{ checksum "components/build.gradle" }}-{{ checksum "coachmark/build.gradle" }}-{{ checksum "demoapp/build.gradle" }}
     - run:
         name: Run Code Analysis
         command: ./gradlew $MODULE:check -x test
@@ -52,7 +52,7 @@ build-job: &buildJob
         paths:
           - ./.gradle
           - ~/.android/build-cache/
-        key: dependencies-{{ checksum "components/build.gradle" }}-{{ checksum "demoapp/build.gradle" }}
+        key: dependencies-{{ checksum "components/build.gradle" }}-{{ checksum "coachmark/build.gradle" }}-{{ checksum "demoapp/build.gradle" }}
 ##
 # We define a job for deploying. This job will be in charge of running:
 # - Run deploy of a lib as release
@@ -66,6 +66,9 @@ deploy-release-job: &deployReleaseJob
     - run:
         name: Run Deploy
         command: ./gradlew assemble bintrayUpload --no-build-cache --rerun-tasks
+    - run:
+        name: Run MDS demoapp
+        command: ./scripts/run_mds.sh
 ##
 # We define our default workflow
 # This workflow will be used by our default builds
@@ -93,6 +96,10 @@ jobs:
     <<: *buildJob
     environment:
       MODULE: components
+  coachmark:
+    <<: *buildJob
+    environment:
+      MODULE: coachmark
   demoapp:
     <<: *buildJob
     environment:
@@ -111,6 +118,8 @@ workflows:
   build-test-deploy:
     jobs:
       - components:
+          <<: *defaultWorkflow
+      - coachmark:
           <<: *defaultWorkflow
       - demoapp:
           <<: *defaultWorkflow

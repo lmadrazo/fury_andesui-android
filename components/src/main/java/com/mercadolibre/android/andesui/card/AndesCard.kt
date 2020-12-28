@@ -2,9 +2,9 @@ package com.mercadolibre.android.andesui.card
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
-import android.support.constraint.Group
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.CardView
+import androidx.constraintlayout.widget.Group
+import androidx.core.content.ContextCompat
+import androidx.cardview.widget.CardView
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater

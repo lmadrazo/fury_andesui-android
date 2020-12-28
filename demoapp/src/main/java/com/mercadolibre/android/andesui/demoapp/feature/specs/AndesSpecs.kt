@@ -3,7 +3,7 @@ package com.mercadolibre.android.andesui.demoapp.feature.specs
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat.startActivity
 
 private const val HOME = "https://company-161429.frontify.com/d/kxHCRixezmfK"
 private const val COMPONENT_PREFIX = "$HOME/n-a#/componentes"

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/andes_list_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/andes_list_item_padding_left_right_small"
+    android:paddingEnd="@dimen/andes_list_item_padding_left_right_small">
+
+    <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+        android:id="@+id/andesCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:textSize="@dimen/andes_list_item_title_font_size_medium"
+        app:layout_constraintBottom_toTopOf="@+id/view_space_title_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/andesCheckbox"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Row text" />
+
+    <View
+        android:id="@+id/view_space_title_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/andes_list_item_space_between_title_subtitle_medium"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_item_sub_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_item_title" />
+
+    <TextView
+        android:id="@+id/text_view_item_sub_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textSize="@dimen/andes_list_item_title_font_size_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_view_item_title"
+        app:layout_constraintTop_toBottomOf="@+id/view_space_title_subtitle"
+        tools:text="Row text description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

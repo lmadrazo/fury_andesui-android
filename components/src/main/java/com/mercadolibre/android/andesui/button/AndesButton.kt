@@ -5,10 +5,10 @@ import android.graphics.drawable.Animatable
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.annotation.Nullable
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
-import android.support.v7.widget.AppCompatButton
+import androidx.annotation.Nullable
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.appcompat.widget.AppCompatButton
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue

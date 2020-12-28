@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.icons
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.Log
 import java.io.FileNotFoundException
 

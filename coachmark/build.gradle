@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
+apply from: rootProject.file('jacoco.gradle')
+apply from: rootProject.file('publish.gradle')
+apply from: rootProject.file('detekt.gradle')
+
+android {
+    compileSdkVersion maxApiLevel.toInteger()
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion minApiLevel
+        targetSdkVersion maxApiLevel
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    resourcePrefix 'andes'
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+        mds{
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    dexOptions.preDexLibraries = true
+}
+
+dependencies {
+    implementation project(':components')
+    implementation prod.kotlinStdlib
+    implementation prod.supportLibraryAppCompatV7
+    implementation prod.supportLibraryDesign
+    api prod.supportConstraintLayout
+
+    // Unit testing dependencies
+    testImplementation test.runner
+    testImplementation test.junit4
+    testImplementation test.mockitoKotlin
+    testImplementation test.assertj
+    testImplementation test.robolectric
+    testImplementation test.mockitoInline
+}

@@ -49,16 +49,6 @@
             app:andesButtonHierarchy="quiet"
             app:andesButtonText="@string/quiet_large_button_disabled" />
 
-        <com.mercadolibre.android.andesui.button.AndesButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="click"
-            android:layout_marginBottom="16dp"
-            app:andesButtonRightIconPath="andesui_icon"
-            app:andesButtonSize="large"
-            app:andesButtonHierarchy="quiet"
-            app:andesButtonText="@string/quiet_large_button" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

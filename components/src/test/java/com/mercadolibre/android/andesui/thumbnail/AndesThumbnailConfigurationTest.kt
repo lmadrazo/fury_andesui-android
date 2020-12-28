@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.thumbnail
 
 import android.os.Build
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
@@ -20,7 +20,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesThumbnailConfigurationTest {
 
     private var context = RuntimeEnvironment.application
@@ -30,69 +30,70 @@ class AndesThumbnailConfigurationTest {
 
     @Test
     fun `Thumbnail, Loud, Neutral, Icon, Enabled, background color`() {
+        val drawable = ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)
         attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), AndesThumbnailHierarchy.LOUD,
-            ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, AndesThumbnailType.ICON,
-            AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
+                drawable!!, AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_orange_800.toAndesColor(), config.backgroundColor)
         assertEquals(AndesThumbnailSize.SIZE_48.size.diameter(context), config.size)
-        assertEquals(ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, config.image)
+        assertEquals(drawable, config.image)
     }
 
     @Test
     fun `Thumbnail, Quiet, Neutral, Icon, Enabled, background color`() {
+        val drawable = ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)
         val expectedColor = R.color.andes_orange_500.toAndesColor()
         expectedColor.alpha = 0.1f
         attrs = AndesThumbnailAttrs(R.color.andes_orange_500.toAndesColor(), AndesThumbnailHierarchy.QUIET,
-            ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, AndesThumbnailType.ICON,
+            drawable!!, AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
         val config = configFactory.create(context, attrs)
         assertEquals(expectedColor, config.backgroundColor)
         assertEquals(AndesThumbnailSize.SIZE_48.size.diameter(context), config.size)
-        assertEquals(ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, config.image)
+        assertEquals(drawable, config.image)
     }
 
     @Test
     fun `Thumbnail, Default, Neutral, Icon, Enabled, background color`() {
+        val drawable = ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)
         attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), AndesThumbnailHierarchy.DEFAULT,
-            ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, AndesThumbnailType.ICON,
-            AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
+            drawable!!, AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_white.toAndesColor(), config.backgroundColor)
         assertEquals(AndesThumbnailSize.SIZE_48.size.diameter(context), config.size)
-        assertEquals(ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, config.image)
+        assertEquals(drawable!!, config.image)
     }
 
     @Test
     fun `Thumbnail, Loud, Neutral, Icon, Disabled, background color`() {
+        val drawable = ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)
         attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), AndesThumbnailHierarchy.LOUD,
-            ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, AndesThumbnailType.ICON,
-            AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
+            drawable!!, AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_gray_100_solid.toAndesColor(), config.backgroundColor)
         assertEquals(AndesThumbnailSize.SIZE_48.size.diameter(context), config.size)
-        assertEquals(ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, config.image)
+        assertEquals(drawable!!, config.image)
     }
 
     @Test
     fun `Thumbnail, Quiet, Neutral, Icon, Disabled, background color`() {
+        val drawable = ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)
         attrs = AndesThumbnailAttrs(R.color.andes_orange_500.toAndesColor(), AndesThumbnailHierarchy.QUIET,
-            ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, AndesThumbnailType.ICON,
-            AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
+                drawable!!, AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_gray_100_solid.toAndesColor(), config.backgroundColor)
         assertEquals(AndesThumbnailSize.SIZE_48.size.diameter(context), config.size)
-        assertEquals(ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, config.image)
+        assertEquals(drawable, config.image)
     }
 
     @Test
     fun `Thumbnail, Default, Neutral, Icon, Disabled, background color`() {
+        val drawable = ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)
         attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), AndesThumbnailHierarchy.DEFAULT,
-            ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, AndesThumbnailType.ICON,
-            AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
+            drawable!!, AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_white.toAndesColor(), config.backgroundColor)
         assertEquals(AndesThumbnailSize.SIZE_48.size.diameter(context), config.size)
-        assertEquals(ContextCompat.getDrawable(context, R.drawable.andes_pagar_y_cobrar_efectivo_24)!!, config.image)
+        assertEquals(drawable, config.image)
     }
 }

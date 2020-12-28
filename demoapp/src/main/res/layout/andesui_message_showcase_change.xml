@@ -34,7 +34,7 @@
                 android:layout_weight="1"/>
 
             <Spinner
-                android:id="@+id/type_spinner"
+                android:id="@+id/simple_type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>

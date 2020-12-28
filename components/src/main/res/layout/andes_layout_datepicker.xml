@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/andes_datepicker_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/Andes.customCalendar"
+        android:firstDayOfWeek="2"
+        android:weekDayTextAppearance="@style/Andes.CalendarDateWeek"
+        android:dateTextAppearance="@style/Andes.CalendarDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/andesBtnSelectDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:andesButtonHierarchy="loud"
+        app:andesButtonSize="large"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView"
+        app:layout_constraintStart_toStartOf="@+id/calendarView"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        android:layout_marginTop="@dimen/andes_title_font_size_m"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

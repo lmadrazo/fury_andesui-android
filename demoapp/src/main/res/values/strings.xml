@@ -48,6 +48,7 @@
     <string name="body_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
     <string name="title_text">Atention!</string>
     <string name="dismissable">Dismissable</string>
+    <string name="should_animate">Should animate</string>
     <string name="andes_message_showcase_change">Update</string>
     <string name="change_text">Title text</string>
     <string name="change_body">Body text</string>
@@ -63,16 +64,23 @@
     <string name="tag_description">Tags are compact components that represent complex information in a summarized way. Allowing users to make selections, enter information, or filter content.</string>
     <string name="snackbar_description">They communicate quickly and concisely the status of an event. For more complex or extensive communications, consider the use of tooltip or message.</string>
     <string name="checkbox_description">They allow multiple selections from a list of options, unlike radio buttons that only allow you to choose a single option.</string>
+    <string name="carousel_description">Groups and allows you to manipulate a horizontal sequence of content.</string>
 
     <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
+    <string name="andesui_demoapp_screen_bottom_sheet">Andes UI: Bottom Sheet</string>
     <string name="andesui_demoapp_screen_message">Andes UI: Message</string>
     <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
+    <string name="andesui_demoapp_screen_textfield_code">Andes UI: TextfieldCode</string>
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
     <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
+    <string name="andesui_demoapp_screen_list">Andes UI: List</string>
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
+    <string name="andesui_demoapp_screen_carousel">Andes UI: Carousel</string>
     <string name="andesui_demoapp_screen_card">Andes UI: Card</string>
     <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
+    <string name="andesui_demoapp_screen_coachmark">Andes UI: Coachmark</string>
     <string name="andesui_demoapp_screen_radiobutton">Andes UI: RadioButton</string>
+    <string name="andesui_demoapp_screen_datepicker">Andes UI: DatePicker</string>
     <string name="andesui_demoapp_screen_thumbnail">Andes UI: Thumbnail</string>
     <string name="andesui_demoapp_screen_whatsnew">Andes UI: What\'s new?</string>
     <string name="andesui_demoapp_changelog_error">What\'s New couldn\'t be loaded, please contact our support team.</string>
@@ -92,18 +100,20 @@
     <string name="andesui_demoapp_clear_button">Clear</string>
     <string name="andesui_demoapp_textfield">Andes Textfield</string>
     <string name="andesui_demoapp_textfield_state_text">State:</string>
+    <string name="andesui_demoapp_textfield_style_text">Style:</string>
     <string name="andesui_demoapp_textfield_prefix_text">Left component:</string>
     <string name="andesui_demoapp_textfield_suffix_text">Right component:</string>
     <string name="andesui_demoapp_counter_text">Counter:</string>
-    <string name="andesui_demoapp_mask_text">Mascara:</string>
-    <string name="andesui_demoapp_mask_hint">ejemplo: ##-###-######-#</string>
+    <string name="andesui_demoapp_mask_hint">Mascara: ##-###-######-#</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
+    <string name="andes_carousel_showcase">Andes Carousel</string>
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
     <string name="andes_card_showcase">Andes Card</string>
     <string name="andes_radiobutton_showcase">Andes RadioButton</string>
     <string name="andes_radiobuttongroup_showcase">Andes RadioButtonGroup</string>
     <string name="andes_tag_showcase">Andes Tag</string>
     <string name="andes_simple_tag_showcase">Simple tag</string>
+    <string name="andes_choice_tag_showcase">Choice tag</string>
     <string name="andes_snackbar_showcase">Andes Snackbar</string>
     <string name="andes_badge_showcase">Andes Badge</string>
     <string name="andes_badges_pill">Pill</string>
@@ -128,6 +138,8 @@
     <string name="andes_checkbox_type">Type</string>
     <string name="andes_checkbox_status">Status</string>
     <string name="andes_checkbox_align">Align</string>
+    <string name="andes_checkbox_text_list_divider">Divider</string>
+    <string name="andes_checkbox_text_list_selection">Selection</string>
 
     <string name="andes_card_type">Type</string>
     <string name="andes_card_style">Style</string>
@@ -135,6 +147,13 @@
     <string name="andes_card_hierarchy">Hierarchy</string>
     <string name="andes_card_title">Title</string>
     <string name="andes_card_link">Link</string>
+
+    <string name="andes_radiobutton_text_list_simple">Simple</string>
+    <string name="andes_radiobutton_text_list_icon">Icon</string>
+    <string name="andes_radiobutton_text_list_chevron">Chevron</string>
+    <string name="andes_radiobutton_text_list_thumbnail">Thumbnail</string>
+    <string name="andes_carousel_margin">Margin</string>
+    <string name="andes_carousel_center">Center</string>
 
     <string name="andes_radiobutton_text">Andes radiobutton</string>
     <string name="andes_radiobutton_type">Type</string>
@@ -164,6 +183,7 @@
 
     <string name="andesui_demoapp_tag_size">Size</string>
     <string name="andesui_demoapp_tag_type">Type</string>
+    <string name="andesui_demoapp_tag_type_simple">Simple Type</string>
     <string name="andesui_demoapp_tag_leftcontent">Left content</string>
     <string name="andesui_demoapp_tag_background_color">Background color</string>
     <string name="andesui_demoapp_tag_text_color">Text color</string>
@@ -176,6 +196,8 @@
     <string name="andesui_demoapp_snackbar_action">Action</string>
     <string name="andesui_demoapp_snackbar_duration">Duration</string>
     <string name="andesui_demoapp_snackbar_text_action">Text action</string>
+
+    <string name="andesui_demoapp_list">Andes List</string>
 
     <string name="andesui_demoapp_thumbnail">Andes Thumbnail</string>
     <string name="andesui_demoapp_thumbnail_state">State</string>
@@ -195,6 +217,25 @@
     <string name="andesui_demoapp_progress_large">LARGE</string>
     <string name="andesui_demoapp_progress_medium">MEDIUM</string>
     <string name="andesui_demoapp_progress_small">SMALL</string>
+
+    <string name="andesui_demoapp_coachmark">Andes Coachmark</string>
+
+    <string name="andesui_demoapp_bottom_sheet">Andes Bottom Sheet</string>
+    <string name="andesui_demoapp_bottom_sheet_attach_view_button">Attach View</string>
+    <string name="andesui_demoapp_bottom_sheet_attach_frag_butotn">Attach Fragment</string>
+    <string name="andesui_demoapp_bottom_sheet_toggle_title_button">Toggle Title</string>
+    <string name="andesui_demoapp_bottom_sheet_toggle_title_align_button">Toggle alignment</string>
+    <string name="andesui_demoapp_bottom_sheet_text_field">New peek height</string>
+    <string name="andesui_demoapp_bottom_sheet_set_button">Set</string>
+    <string name="andesui_demoapp_bottom_sheet_dummy_view">This is a dummy view</string>
+
+    <string name="andesui_demoapp_datepicker_text">Aplicar</string>
+    <string name="andesui_demoapp_datepicker_button">Andes DatePicker</string>
+    <string name="andesui_demoapp_datepicker_mindate_label">Setup min date</string>
+    <string name="andesui_demoapp_datepicker_maxdate_label">Setup max date</string>
+    <string name="andesui_demoapp_datepicker_placeholder">dd/MM/yyyy</string>
+    <string name="andesui_demoapp_datepicker_btn_send">Set MIN MAX Date</string>
+    <string name="andesui_demoapp_datepicker_btn_reset">Reset</string>
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 
@@ -217,6 +258,18 @@
         <item>Readonly</item>
     </string-array>
 
+    <string-array name="textfield_code_state_spinner">
+        <item>Idle</item>
+        <item>Error</item>
+        <item>Disabled</item>
+    </string-array>
+
+    <string-array name="textfield_code_style_spinner">
+        <item>Threesome</item>
+        <item>Foursome</item>
+        <item>Three_by_three</item>
+    </string-array>
+
     <string-array name="suffix_spinner">
         <item>None</item>
         <item>Action</item>
@@ -237,12 +290,17 @@
         <item>Dot</item>
     </string-array>
 
-    <string-array name="type_spinner">
+    <string-array name="simple_type_spinner">
         <item>Neutral</item>
         <item>Highlight</item>
         <item>Success</item>
         <item>Warning</item>
         <item>Error</item>
+    </string-array>
+
+    <string-array name="tag_type_spinner">
+        <item>Simple</item>
+        <item>Choice</item>
     </string-array>
 
     <string-array name="size_spinner">
@@ -267,6 +325,12 @@
         <item>Idle</item>
         <item>Error</item>
         <item>Disabled</item>
+    </string-array>
+
+    <string-array name="type_list_spinner">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
     </string-array>
 
     <string-array name="status_checkbox_spinner">
@@ -354,6 +418,16 @@
 
     <string-array name="thumbnail_type_spinner">
         <item>Icon</item>
+    </string-array>
+
+    <string-array name="carousel_margin_spinner">
+        <item>None</item>
+        <item>Default</item>
+    </string-array>
+
+    <string-array name="carousel_center_spinner">
+        <item>False</item>
+        <item>True</item>
     </string-array>
 
 </resources>

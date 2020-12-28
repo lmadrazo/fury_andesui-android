@@ -1,2 +1,2 @@
-include ':demoapp', ':components'
+include ':demoapp', ':components', ":coachmark"
 apply from: "$rootDir/gradle/build-cache-settings.gradle"

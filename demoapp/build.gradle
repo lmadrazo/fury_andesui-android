@@ -32,13 +32,11 @@ android {
         versionName "$libraryVersion"
 
         multiDexEnabled true
-
-        resValue("string", "andesui_demoapp_app_name", "Andes v${libraryVersion}")
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
 
     buildTypes {
         debug {
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             applicationIdSuffix '.debug'
             minifyEnabled false
             aaptOptions {
@@ -49,9 +47,29 @@ android {
         }
         release {
             initWith(buildTypes.debug)
+
             // We need this in true to test after executing ProGuard to check our ProGuard custom rules.
             minifyEnabled true
             shrinkResources true
+
+            applicationIdSuffix ''
+            resValue("string", "andesui_demoapp_app_name", "Andes v${libraryVersion}")
+        }
+        mds {
+            initWith(buildTypes.debug)
+
+            // We need this in true to test after executing ProGuard to check our ProGuard custom rules.
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            if (project.hasProperty('mdsAppIdSuffix')) {
+                applicationIdSuffix "${project.mdsAppIdSuffix}"
+            }
+            if (project.hasProperty('mdsVersionNameSuffix')) {
+                versionNameSuffix "${project.mdsVersionNameSuffix}"
+            }
+            resValue("string", "andesui_demoapp_app_name", "Andes v${libraryVersion}")
         }
     }
 
@@ -69,9 +87,15 @@ staticCodeAnalysis {
 
     androidLintConfig = "$project.rootProject.projectDir/config/android/android-lint-demoapp.xml"
 }
+configurations.all {
+    resolutionStrategy {
+        force "androidx.appcompat:appcompat:$appCompatVersion"
+    }
+}
 
 dependencies {
     implementation project(':components')
+    implementation project(':coachmark')
 
     implementation prod.kotlinStdlib
     implementation prod.supportConstraintLayout
@@ -80,6 +104,7 @@ dependencies {
 
     implementation showcase.glide
     implementation showcase.markwon
+    debugImplementation showcase.leakCanary
 }
 
 /**

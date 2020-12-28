@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.badge
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
-import android.support.v7.widget.CardView
+import androidx.cardview.widget.CardView
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -89,12 +89,12 @@ class AndesBadgePill : CardView {
 
     @Suppress("unused", "LongParameterList")
     constructor(
-        context: Context,
-        pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
-        type: AndesBadgeType = STATE_DEFAULT,
-        pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
-        pillSize: AndesBadgePillSize = SIZE_DEFAULT,
-        text: String? = TEXT_DEFAULT
+            context: Context,
+            pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
+            type: AndesBadgeType = STATE_DEFAULT,
+            pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
+            pillSize: AndesBadgePillSize = SIZE_DEFAULT,
+            text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(pillHierarchy, type, pillBorder, pillSize, text)
     }
@@ -111,11 +111,11 @@ class AndesBadgePill : CardView {
     }
 
     private fun initAttrs(
-        pillHierarchy: AndesBadgePillHierarchy,
-        type: AndesBadgeType,
-        pillBorder: AndesBadgePillBorder,
-        pillSize: AndesBadgePillSize,
-        title: String?
+            pillHierarchy: AndesBadgePillHierarchy,
+            type: AndesBadgeType,
+            pillBorder: AndesBadgePillBorder,
+            pillSize: AndesBadgePillSize,
+            title: String?
     ) {
         andesBadgeAttrs = AndesBadgePillAttrs(pillHierarchy, type, pillBorder, pillSize, title)
         val config = AndesBadgePillConfigurationFactory.create(context, andesBadgeAttrs)
@@ -180,20 +180,20 @@ class AndesBadgePill : CardView {
         val shape = GradientDrawable()
 
         (shape.mutate() as GradientDrawable).cornerRadii =
-                floatArrayOf(config.backgroundRadius[0], config.backgroundRadius[0],
-                        config.backgroundRadius[1], config.backgroundRadius[1],
-                        config.backgroundRadius[2], config.backgroundRadius[2],
-                        config.backgroundRadius[3], config.backgroundRadius[3])
+                floatArrayOf(config.backgroundRadius[BACKGROUND_RADIUS_0], config.backgroundRadius[BACKGROUND_RADIUS_0],
+                        config.backgroundRadius[BACKGROUND_RADIUS_1], config.backgroundRadius[BACKGROUND_RADIUS_1],
+                        config.backgroundRadius[BACKGROUND_RADIUS_2], config.backgroundRadius[BACKGROUND_RADIUS_2],
+                        config.backgroundRadius[BACKGROUND_RADIUS_3], config.backgroundRadius[BACKGROUND_RADIUS_3])
 
-                shape.setColor(config.backgroundColor.colorInt(context))
+        shape.setColor(config.backgroundColor.colorInt(context))
 
-                background = shape
-                if (layoutParams == null) {
-                    layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
-                }
+        background = shape
+        if (layoutParams == null) {
+            layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
+        }
 
-                minimumWidth = config.height.toInt()
-                minimumHeight = config.height.toInt()
+        minimumWidth = config.height.toInt()
+        minimumHeight = config.height.toInt()
     }
 
     private fun createConfig() = AndesBadgePillConfigurationFactory.create(context, andesBadgeAttrs)
@@ -205,5 +205,11 @@ class AndesBadgePill : CardView {
         private val SIZE_DEFAULT = AndesBadgePillSize.SMALL
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
         private val TEXT_DEFAULT = null
+
+        private const val BACKGROUND_RADIUS_0 = 0
+        private const val BACKGROUND_RADIUS_1 = 1
+        private const val BACKGROUND_RADIUS_2 = 2
+        private const val BACKGROUND_RADIUS_3 = 3
+
     }
 }

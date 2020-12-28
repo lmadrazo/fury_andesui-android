@@ -75,7 +75,7 @@
     <!-- Usability:Icons -->
     <issue id="IconDensities" severity="error" />
     <issue id="IconDipSize" severity="error" />
-    <issue id="IconDuplicates" severity="error" />
+    <issue id="IconDuplicates" severity="warning" />
     <issue id="IconDuplicatesConfig" severity="error" />
     <issue id="IconExpectedSize" severity="error" />
     <issue id="IconLocation" severity="error" />

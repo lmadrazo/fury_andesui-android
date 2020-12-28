@@ -1,3 +1,69 @@
+# v3.2.0
+## 🚀 Fixes
+- Fix the size of the right and left componente of text
+## 🚀 Features
+- Migración Constraint layout v2
+
+# v3.1.0
+## 🚀 Features
+- AndesList | Author: [@snti](https://github.com/snti)
+
+# v3.0.0
+## 🚀 Features
+- Migration AndroidX
+
+## 🛠 Fixes
+- Fix constraint Radio Button
+
+# v2.18.0
+## 🚀 Features
+- AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
+
+## 🛠 Fixes
+- AndesTagChoice left content default color change. | Authors: [@ArnaldoIbanez](https://github.com/ArnaldoIbanez)
+
+# v2.17.0
+## 🛠 Fixes
+- Added Focus listener correctly on EditText of AndesTextField.
+
+# v2.16.0
+## 🚀 Features
+- Added AndesCarousel | Author: [@Constanza Morillo](https://github.com/constanzamorillomeli)
+
+# v2.15.0
+## 🚀 Features
+- AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
+
+## 🛠 Fixes
+- Andes Coachmark: force only portrait mode and fix scroll up
+- Improved AndesBottomSheet background dim animation
+
+# v2.14.0
+## 🚀 Features
+- Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
+
+# v2.13.0
+## 🚀 Features
+- Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+
+## Added
+- Added Andes icons (bill, cash, credit card, shipping, wallet)
+
+## 🛠 Fixes
+- Refactor AndesTag
+
+## Developer Experience
+- Added LeakCanary v2.5 to debug builds to detect memory leaks in an early stage.
+
+# v2.12.0
+## 🚀 Features
+- Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
+- Auto enable Show Taps option when Android version is API 22 or below.
+
+## Developer Experience
+- Fixed crash when taping on "I want to contribute" in the Andes App.
+- Minor UX improvements in the Andes App.
+
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.

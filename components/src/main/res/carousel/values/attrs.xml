@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesCarousel" tools:ignore="ResourceName">
+        <attr name="andesCarouselCenter" format="boolean"/>
+        <attr name="andesCarouselMargin">
+            <enum name="none" value="100" />
+            <enum name="defaultMargin" value="101" />
+        </attr>
+    </declare-styleable>
+</resources>

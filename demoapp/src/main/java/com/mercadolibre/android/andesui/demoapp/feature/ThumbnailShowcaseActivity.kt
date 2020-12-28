@@ -2,9 +2,9 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,7 +56,7 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
                 hierarchySpinner.adapter = adapter
             }
 
-        val typeSpinner: Spinner = container.findViewById(R.id.type_spinner)
+        val typeSpinner: Spinner = container.findViewById(R.id.simple_type_spinner)
         ArrayAdapter.createFromResource(
             this,
             R.array.thumbnail_type_spinner,

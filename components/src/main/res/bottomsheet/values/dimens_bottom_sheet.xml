@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_bottom_sheet_default_margin">24dp</dimen>
+
+    <dimen name="andes_bottom_sheet_drag_indicator_height">4dp</dimen>
+    <dimen name="andes_bottom_sheet_drag_indicator_width">32dp</dimen>
+    <dimen name="andes_bottom_sheet_drag_indicator_top_margin">8dp</dimen>
+    <dimen name="andes_bottom_sheet_drag_indicator_bottom_margin">12dp</dimen>
+    <dimen name="andes_bottom_sheet_drag_indicator_corner_radius">2dp</dimen>
+
+    <dimen name="andes_bottom_sheet_frame_view_margin_top">12dp</dimen>
+
+    <dimen name="andes_bottom_sheet_title_top_margin">24dp</dimen>
+    <dimen name="andes_bottom_sheet_title_bottom_margin">20dp</dimen>
+    <dimen name="andes_bottom_sheet_title_size">20sp</dimen>
+
+    <dimen name="andes_bottom_sheet_default_radius">6dp</dimen>
+</resources>

@@ -23,7 +23,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesTextfieldTest {
     private var context = RuntimeEnvironment.application
     private lateinit var textfield: AndesTextfield
@@ -58,6 +58,18 @@ class AndesTextfieldTest {
     fun `set right icon`() {
         textfield.setRightIcon("andes_navegacion_categorias_24")
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `textfield with textComponentFocusChangedListener`() {
+        val focusListener = View.OnFocusChangeListener { _, _ -> }
+        textfield.onFocusChangeListener = focusListener
+        assertNotNull(textfield.textComponentFocusChangedListener)
+    }
+
+    @Test
+    fun `textfield without textComponentFocusChangedListener`() {
+        assertNull(textfield.textComponentFocusChangedListener)
     }
 
     @Test
