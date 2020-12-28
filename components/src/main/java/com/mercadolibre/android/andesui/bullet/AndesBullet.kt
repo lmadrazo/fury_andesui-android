@@ -1,8 +1,6 @@
 package com.mercadolibre.android.andesui.bullet
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
-import android.support.v4.content.ContextCompat
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
@@ -14,6 +12,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.bullet.factory.AndesBulletAttrParser
 import com.mercadolibre.android.andesui.bullet.factory.AndesBulletAttrs
