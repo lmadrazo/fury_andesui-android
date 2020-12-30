@@ -110,6 +110,8 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
             val titleText = layoutMessagesChange.findViewById<AndesTextfield>(R.id.title_text)
 
+            val bulletText = layoutMessagesChange.findViewById<AndesTextfield>(R.id.bullet_text)
+
             val primaryActionText = layoutMessagesChange.findViewById<AndesTextfield>(R.id.primary_action_text)
 
             val secondaryActionText = layoutMessagesChange.findViewById<AndesTextfield>(R.id.secondary_action_text)
@@ -117,7 +119,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
             val linkActionText = layoutMessagesChange.findViewById<AndesTextfield>(R.id.link_action_text)
 
             val changeButton = layoutMessagesChange.findViewById<AndesButton>(R.id.change_button)
-            val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
+            val  changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
 
             val links = listOf(
                 AndesBodyLink(4, 11),
@@ -134,11 +136,11 @@ class MessageShowcaseActivity : AppCompatActivity() {
             ))
 
             val bullets = arrayListOf<BulletItem>()
-            bullets.add(BulletItem("Bullet 1", null))
+            /*bullets.add(BulletItem("Bullet 1", null))
             bullets.add(BulletItem("Bullet 2", null))
             bullets.add(BulletItem("Bullet 3", null))
             bullets.add(BulletItem("Bullet 4", null))
-            changeMessage.bullets = bullets
+            changeMessage.bullets = bullets*/
 
             changeButton.setOnClickListener {
                 if (bodyText.text.toString().isEmpty()) {
@@ -150,6 +152,14 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     bodyText.state = AndesTextfieldState.IDLE
                     bodyText.helper = null
                     changeMessage.body = bodyText.text.toString()
+                }
+
+                val bulletItemText = bulletText.text.toString()
+                if (bulletItemText.isNotEmpty()) {
+                    bullets.add(BulletItem(bulletItemText, null))
+                    changeMessage.bullets = bullets
+                } else {
+                    changeMessage.bullets = null
                 }
 
                 changeMessage.isDismissable = dismissableCheckbox.status == AndesCheckboxStatus.SELECTED

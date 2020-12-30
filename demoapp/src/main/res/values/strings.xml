@@ -52,6 +52,7 @@
     <string name="andes_message_showcase_change">Update</string>
     <string name="change_text">Title text</string>
     <string name="change_body">Body text</string>
+    <string name="change_bullet">Bullet text</string>
     <string name="change_primary">Primary action text</string>
     <string name="change_secondary">Secondary action text</string>
     <string name="change_link_button">Link action text</string>

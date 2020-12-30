@@ -147,10 +147,10 @@ class AndesBullet : ConstraintLayout {
 
     private fun getText(text: String, config: AndesBulletConfiguration): SpannableString {
         val spannableString = SpannableString(text)
-        val bulletSpan = BulletSpan(
+        /*val bulletSpan = BulletSpan(
             8,
             ContextCompat.getColor(context, R.color.andes_gray_800))
-        spannableString.setSpan(bulletSpan, 0, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(bulletSpan, 0, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)*/
 
         textLinks?.let {
             it.links.forEachIndexed { linkIndex, andesBodyLink ->

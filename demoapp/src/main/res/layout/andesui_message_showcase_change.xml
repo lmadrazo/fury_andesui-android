@@ -67,6 +67,15 @@
             android:inputType="text" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/bullet_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            app:andesTextfieldPlaceholder="@string/change_bullet"
+            app:andesTextfieldRightContent="clear"
+            android:inputType="text" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/primary_action_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
