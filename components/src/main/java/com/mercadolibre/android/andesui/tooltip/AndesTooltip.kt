@@ -27,6 +27,8 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.databinding.AndesLayoutTooltipBinding
+import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipAction
+import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipLinkAction
 import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipAttrs
 import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipConfiguration
 import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipConfigurationFactory
@@ -108,7 +110,9 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
                 title: String? = TITLE_DEFAULT,
                 body: String,
                 isDismissible: Boolean = IS_DISMISSIBLE_DEFAULT,
-                tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT
+                tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT,
+                mainAction: AndesTooltipAction,
+                secondaryAction: AndesTooltipAction? = SECONDARY_ACTION_DEFAULT
 
     ): this(context) {
         andesTooltipAttrs = AndesTooltipAttrs(
@@ -116,7 +120,30 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
                 title = title,
                 body = body,
                 isDismissible = isDismissible,
-                tooltipLocation = tooltipLocation
+                tooltipLocation = tooltipLocation,
+                mainAction = mainAction,
+                secondaryAction = secondaryAction
+        )
+        initComponents(andesTooltipAttrs)
+    }
+
+    @JvmOverloads
+    constructor(context: Context,
+                style: AndesTooltipStyle = STYLE_DEFAULT,
+                title: String? = TITLE_DEFAULT,
+                body: String,
+                isDismissible: Boolean = IS_DISMISSIBLE_DEFAULT,
+                tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT,
+                linkAction: AndesTooltipLinkAction? = LINK_ACTION_DEFAULT
+
+    ): this(context) {
+        andesTooltipAttrs = AndesTooltipAttrs(
+                style = style,
+                title = title,
+                body = body,
+                isDismissible = isDismissible,
+                tooltipLocation = tooltipLocation,
+                linkAction = linkAction
         )
         initComponents(andesTooltipAttrs)
     }
@@ -258,6 +285,9 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         initTooltipTitle(config)
         initTooltipBody(config)
         initDismiss(config)
+        initPrimaryAction(config)
+        initSecondaryAction(config)
+        initLinkAction(config)
     }
 
     private fun initTooltipTitle(config: AndesTooltipConfiguration){
@@ -289,6 +319,60 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
             if (config.isDismissible){
                 setImageDrawable(config.dismissibleIcon)
                 setOnClickListener { dismiss() }
+                visible(true)
+            } else {
+                visible(false)
+            }
+        }
+    }
+
+    private fun initPrimaryAction(config: AndesTooltipConfiguration) {
+        with(primaryActionComponent){
+            if (config.primaryAction != null){
+                text = config.primaryAction.label
+                hierarchy = config.primaryAction.hierarchy
+                config.primaryActionBackgroundColor?.let { primaryActionComponent.changeBackgroundColor(it) }
+                config.primaryActionTextColor?.let { primaryActionComponent.changeTextColor(it.colorInt(context)) }
+                setOnClickListener {
+                    dismiss()
+                    config.primaryAction.onActionClicked(it, this@AndesTooltip)
+                }
+                visible(true)
+            } else {
+                visible(false)
+            }
+        }
+    }
+
+    private fun initSecondaryAction(config: AndesTooltipConfiguration) {
+        with(secondaryActionComponent){
+            if (config.secondaryAction != null){
+                text = config.secondaryAction.label
+                hierarchy = config.secondaryAction.hierarchy
+                config.secondaryActionBackgroundColor?.let { changeBackgroundColor(it) }
+                config.secondaryActionTextColor?.let { changeTextColor(it.colorInt(context)) }
+                setOnClickListener {
+                    dismiss()
+                    config.secondaryAction.onActionClicked(it, this@AndesTooltip)
+                }
+                visible(true)
+            } else {
+                visible(false)
+            }
+        }
+    }
+
+    private fun initLinkAction(config: AndesTooltipConfiguration) {
+        with(linkActionComponent){
+            if (config.linkAction != null) {
+                text = config.linkAction.label
+                typeface = context.getFontOrDefault(R.font.andes_font_regular)
+                config.linkActionTextColor?.let { setTextColor(it.colorInt(context)) }
+                config.linkActionIsUnderlined?.let { paintFlags = Paint.UNDERLINE_TEXT_FLAG }
+                setOnClickListener {
+                    dismiss()
+                    config.linkAction.onActionClicked(it, this@AndesTooltip)
+                }
                 visible(true)
             } else {
                 visible(false)
@@ -371,6 +455,8 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         private val STYLE_DEFAULT = AndesTooltipStyle.LIGHT
         private val TIP_ORIENTATION_DEFAULT = AndesTooltipLocation.TOP
         private val TITLE_DEFAULT = null
+        private val SECONDARY_ACTION_DEFAULT = null
+        private val LINK_ACTION_DEFAULT = null
         private const val IS_DISMISSIBLE_DEFAULT = true
     }
 }
