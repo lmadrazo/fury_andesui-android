@@ -20,14 +20,6 @@ default-workflow: &defaultWorkflow
         - /release\/.*$/
         - /v\/.*$/
 
-jobs:
-  deploy-mds:
-    steps:
-      - run:
-          name: Run MDS demoapp
-          command: ./scripts/run_mds.sh
-
-
 workflows:
   ci:
     jobs:
@@ -46,10 +38,6 @@ workflows:
       equal: [build, << pipeline.parameters.type >>]
     jobs:
       - meli/build-public:
-          build_context: << pipeline.parameters.build_context >>
-          pipeline_id: << pipeline.id >>
-          pipeline_number: << pipeline.number >>
-      - deploy-mds:
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
