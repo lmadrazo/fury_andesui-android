@@ -114,8 +114,8 @@ dependencies {
     implementation project(':coachmark')
 
     implementation prod.kotlinStdlib
-    implementation prod.supportConstraintLayout
-    implementation prod.supportLibraryAppCompatV7
+//    implementation prod.supportConstraintLayout
+//    implementation prod.supportLibraryAppCompatV7
     implementation prod.fresco
 
     implementation showcase.glide
