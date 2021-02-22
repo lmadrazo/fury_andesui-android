@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_badge_small_corner_radius">8dp</dimen>
+    <dimen name="andes_badge_large_corner_radius">12dp</dimen>
+
+    <dimen name="andes_badge_large_text_size">12sp</dimen>
+    <dimen name="andes_badge_small_text_size">11sp</dimen>
+
+    <dimen name="andes_badge_small_height">16sp</dimen>
+    <dimen name="andes_badge_large_height">24sp</dimen>
+
+    <dimen name="andes_badge_small_text_margin">6dp</dimen>
+    <dimen name="andes_badge_large_text_margin">8dp</dimen>
+
+    <dimen name="andes_badge_dot_size">8dp</dimen>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="AndesDatePicker" tools:ignore="ResourceName">
+        <attr name="andesDatePickerText" format="reference" />
+        <attr name="andesDatePickerMinDate" format="reference" />
+        <attr name="andesDatePickerMaxDate" format="reference" />
+    </declare-styleable>
+
+</resources>

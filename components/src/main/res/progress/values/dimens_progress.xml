@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" >
+
+    <dimen name="andes_progress_xlarge">48dp</dimen>
+    <dimen name="andes_progress_large">32dp</dimen>
+    <dimen name="andes_progress_medium">24dp</dimen>
+    <dimen name="andes_progress_small">16dp</dimen>
+
+    <!-- tools:ignore="PxUsage" added because using dp breaks the stroke, we need to be very accurate. -->
+    <dimen name="andes_progress_stroke_xlarge" tools:ignore="PxUsage">8px</dimen>
+    <dimen name="andes_progress_stroke_large" tools:ignore="PxUsage">7px</dimen>
+    <dimen name="andes_progress_stroke_medium" tools:ignore="PxUsage">6px</dimen>
+    <dimen name="andes_progress_stroke_small" tools:ignore="PxUsage">5px</dimen>
+
+</resources>

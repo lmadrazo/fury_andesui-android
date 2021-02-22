@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_coachmark_toolbar_status_bar">80dp</dimen>
+    <dimen name="andes_coachmark_toolbar">64dp</dimen>
+    <dimen name="andes_coachmark_status_bar">26dp</dimen>
+
+    <dimen name="andes_coachmark_footer_guide_line">96dp</dimen>
+
+    <dimen name="andes_coachmark_walkthrought_margin">24dp</dimen>
+
+    <dimen name="andes_coachmark_default_padding">16dp</dimen>
+
+
+    <!-- Arrow -->
+    <dimen name="andes_coachmark_min_with_for_show_arrow">48dp</dimen>
+    <dimen name="andes_coachmark_lenght_head_arrow">10dp</dimen>
+    <dimen name="andes_coachmark_radius_arrow">24dp</dimen>
+
+    <dimen name="andes_coachmark_stroke_arrow">1dp</dimen>
+
+
+    <!--
+
+         Se llegan a estos valores posicionando la flecha apuntando hacia abajo en el eje cartesiano \/
+         luego de estar posicionado de esa manera:
+         los lados de la flecha miden 10
+         el punto derecho de la flecha, es Y = 8.66 y X = 5,
+         el punto izquierdo de la flecha es Y = 8.66 y X = -5
+         Y es = 8.66 porque la suma de los catetos al cuadrado es igual a la hipotenusa al cuadrado -> 10^2 = 5^2 + C^2
+         ahora debemos sacar en donde esta ubicado el vertice
+         la posicion del vertice en Y = 0 y X = 0
+
+         Lo que debemos hacer es saber cuanto queremos rotar la flecha, en este caso rotamos 20º
+         y debemos obtener los nuevos valores de los puntos derecho e izquierdo.
+         Para esto vamos a utilizar la siguiente formula:
+
+         x' = x.cos(angulo) - y.sin(angulo)
+         y' = x.sin(angulo) + y.cos(angulo)
+
+         Punto derecho
+         x' = 5.cos(20) - 8.66.sin(20) = 1.74
+         y' = 5.sin(20) + 8.66.cos(20) = 9.86
+
+         como queremos saber que distancia tenemos que sumar o restar con respecto de la posicion actual
+         entonces:
+
+         x' = 5 - 1.74 = 3.26
+         y' = 9.86 - 8.66 = 1.20
+
+
+         Punto Izquierdo
+         x' = -5.cos(20) - 8.66.sin(20) = -7.66
+         y' = -5.sin(20) + 8.66.cos(20) = -6.43
+
+         como queremos saber que distancia tenemos que sumar o restar con respecto de la posicion actual
+         entonces:
+
+         x' = 7.66 - 5 = 2.66
+         y' = 8.66 - 6.43 = 2.23
+
+         de aca obtemos los siguientes valores
+     -->
+    <dimen name="andes_coachmark_large_x_new_position_arrow">3.26dp</dimen>
+    <dimen name="andes_coachmark_small_x_new_position_arrow">2.66dp</dimen>
+    <dimen name="andes_coachmark_large_y_new_position_arrow">2.23dp</dimen>
+    <dimen name="andes_coachmark_small_y_new_position_arrow">1.20dp</dimen>
+    <dimen name="andes_coachmark_arrow_height">54dp</dimen>
+
+    <!-- Overlay -->
+    <dimen name="andes_coachmark_padding_internal_overlay">12dp</dimen>
+    <dimen name="andes_coachmark_default_radius_overlay">8dp</dimen>
+    <dimen name="andes_coachmark_padding_border_overlay">3dp</dimen>
+
+    <!-- Next Button Step-->
+    <dimen name="andes_coachmark_next_button_radius_top_bottom">16dp</dimen>
+    <dimen name="andes_coachmark_next_button_radius_left_right">16dp</dimen>
+
+    <!--HamburguerView-->
+    <dimen name="andes_coachmark_hamburguer_height">35dp</dimen>
+
+    <!--Dimens-->
+    <dimen name="andes_coachmark_050m">4dp</dimen>
+    <dimen name="andes_coachmark_075m">6dp</dimen>
+    <dimen name="andes_coachmark_2m">16dp</dimen>
+    <dimen name="andes_coachmark_3m">24dp</dimen>
+    <dimen name="andes_coachmark_4m">32dp</dimen>
+    <dimen name="andes_coachmark_5m">40dp</dimen>
+    <dimen name="andes_coachmark_6m">48dp</dimen>
+
+    <!--TextSize-->
+    <dimen name="andes_coachmark_fontsize_xsmall">14sp</dimen>
+    <dimen name="andes_coachmark_fontsize_small">16sp</dimen>
+    <dimen name="andes_coachmark_fontsize_medium">18sp</dimen>
+    <dimen name="andes_coachmark_fontsize_large">20sp</dimen>
+
+
+</resources>

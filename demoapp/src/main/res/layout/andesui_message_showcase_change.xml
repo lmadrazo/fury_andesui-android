@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.mercadolibre.android.andesui.message.AndesMessage
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesMessageBodyText="@string/andes_message_text"
+            app:andesMessageHierarchy="quiet"
+            app:andesMessageTitleText="@string/andes_message_title"
+            app:andesMessageType="neutral" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/button_margin_vertical" >
+
+            <Spinner
+                android:id="@+id/hierarchy_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:id="@+id/simple_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:id="@+id/thumbnail_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+            android:id="@+id/dismissable_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesCheckboxText="@string/dismissable" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            app:andesTextfieldPlaceholder="@string/change_text"
+            app:andesTextfieldRightContent="clear"
+            android:inputType="text" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextarea
+            android:id="@+id/body_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            app:andesTextareaPlaceholder="@string/change_body"
+            app:andesTextareaMaxLines="3"
+            android:inputType="text" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/primary_action_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            app:andesTextfieldPlaceholder="@string/change_primary"
+            app:andesTextfieldRightContent="clear"
+            android:inputType="text" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/secondary_action_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            app:andesTextfieldPlaceholder="@string/change_secondary"
+            app:andesTextfieldRightContent="clear"
+            android:inputType="text" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/link_action_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            app:andesTextfieldPlaceholder="@string/change_link_button"
+            app:andesTextfieldRightContent="clear"
+            android:inputType="text" />
+
+        <com.mercadolibre.android.andesui.button.AndesButton
+            android:id="@+id/change_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:andesButtonHierarchy="loud"
+            app:andesButtonSize="large"
+            android:layout_marginTop="@dimen/button_margin_vertical"
+            app:andesButtonText="@string/andes_message_showcase_change" />
+
+    </LinearLayout>
+
+</ScrollView>

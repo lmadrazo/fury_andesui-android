@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesBadgePill" tools:ignore="ResourceName">
+        <attr name="andesBadgePillHierarchy">
+            <enum name="loud" value="1000" />
+            <enum name="quiet" value="1001" />
+        </attr>
+
+        <attr name="andesBadgePillType">
+            <enum name="neutral" value="2000" />
+            <enum name="highlight" value="2001" />
+            <enum name="success" value="2002" />
+            <enum name="warning" value="2003" />
+            <enum name="error" value="2004" />
+        </attr>
+
+        <attr name="andesBadgePillSize">
+            <enum name="large" value="3000" />
+            <enum name="small" value="3001" />
+        </attr>
+
+        <attr name="andesBadgePillBorder">
+            <enum name="corner" value="4000" />
+            <enum name="rounded" value="4001" />
+            <enum name="standard" value="4002" />
+        </attr>
+
+        <attr name="andesBadgePillText" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AndesBadgeDot" tools:ignore="ResourceName">
+        <attr name="andesBadgeDotType">
+            <enum name="neutral" value="2000" />
+            <enum name="highlight" value="2001" />
+            <enum name="success" value="2002" />
+            <enum name="warning" value="2003" />
+            <enum name="error" value="2004" />
+        </attr>
+    </declare-styleable>
+</resources>

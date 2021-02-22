@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesSnackbar" tools:ignore="ResourceName">
+
+        <attr name="AndesSnackbarDuration" format="integer" />
+
+        <attr name="AndesSnackbarType">
+            <enum name="neutral" value="2000" />
+            <enum name="success" value="2001" />
+            <enum name="error" value="2002" />
+        </attr>
+
+        <attr name="AndesSnackbarText" format="reference" />
+    </declare-styleable>
+</resources>

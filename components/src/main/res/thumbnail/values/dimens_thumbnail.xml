@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_thumbnail_icon_border">1dp</dimen>
+
+    <dimen name="andes_thumbnail_corner_radius_3">3dp</dimen>
+    <dimen name="andes_thumbnail_corner_radius_4">4dp</dimen>
+    <dimen name="andes_thumbnail_corner_radius_5">5dp</dimen>
+
+    <dimen name="andes_thumbnail_icon_size_16">16dp</dimen>
+    <dimen name="andes_thumbnail_icon_size_20">20dp</dimen>
+    <dimen name="andes_thumbnail_icon_size_24">24dp</dimen>
+    <dimen name="andes_thumbnail_icon_size_32">32dp</dimen>
+    <dimen name="andes_thumbnail_icon_size_48">48dp</dimen>
+
+    <dimen name="andes_thumbnail_size_24">24dp</dimen>
+    <dimen name="andes_thumbnail_size_32">32dp</dimen>
+    <dimen name="andes_thumbnail_size_40">40dp</dimen>
+    <dimen name="andes_thumbnail_size_48">48dp</dimen>
+    <dimen name="andes_thumbnail_size_56">56dp</dimen>
+    <dimen name="andes_thumbnail_size_64">64dp</dimen>
+    <dimen name="andes_thumbnail_size_72">72dp</dimen>
+    <dimen name="andes_thumbnail_size_80">80dp</dimen>
+
+</resources>

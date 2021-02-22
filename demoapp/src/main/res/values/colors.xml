@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/andes_blue_ml_500</color>
+    <color name="colorPrimaryDark">@color/andes_blue_ml_800</color>
+    <color name="colorAccent">@color/andes_blue_ml_600</color>
+</resources>

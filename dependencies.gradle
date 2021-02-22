@@ -1,0 +1,52 @@
+ext {
+
+    mockitoKotlinVersion = '2.2.0'
+    assertjVersion = '3.17.1'
+    mockitoInline = '2.13.0'
+    robolectric = '4.0'
+    soloaderVersion = '0.6.0'
+    runnerVersion = '1.0.2'
+    junitVersion = '4.13'
+    glideVersion = '3.8.0'
+    androidxTestVersion = '1.1.0'
+    markwonVersion = '4.5.1'
+    leakCanaryVersion = '2.5'
+    frescoVersion = '1.13.0'
+    appcompatVersion = '1.0.0'
+    materialVersion = '1.0.0'
+    constraintLayoutVersion = '2.0.4'
+    cardViewVersion = '1.0.0'
+    coordinatorLayoutVersion = '1.0.0'
+
+    prod = [
+            kotlinStdlib             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            supportLibraryAppCompatV7: "androidx.appcompat:appcompat:$appcompatVersion",
+            supportLibraryDesign     : "com.google.android.material:material:$materialVersion",
+            supportConstraintLayout  : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            supportCardView          : "androidx.cardview:cardview:$cardViewVersion",
+            fresco                   : "com.facebook.fresco:fresco:$frescoVersion"
+    ]
+
+    test = [
+            runner       : "androidx.test.ext:junit:$androidxTestVersion",
+            junit4       : "junit:junit:$junitVersion",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
+            assertj      : "org.assertj:assertj-core:$assertjVersion",
+            mockitoInline: "org.mockito:mockito-inline:$mockitoInline",
+            robolectric  : "org.robolectric:robolectric:$robolectric",
+            soloader     : "com.facebook.soloader:soloader:$soloaderVersion"
+    ]
+
+    showcase = [
+            glide  : "com.github.bumptech.glide:glide:$glideVersion",
+            coordinatorLayout : "androidx.coordinatorlayout:coordinatorlayout:$coordinatorLayoutVersion",
+
+            /**
+             * It let us show the What's New which is in markdown format.
+             * https://github.com/noties/Markwon
+             */
+            markwon: "io.noties.markwon:core:$markwonVersion",
+            leakCanary: "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    ]
+
+}

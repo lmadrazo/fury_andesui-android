@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Custom metrics should be referring to existing sizes-->
+
+    <dimen name="andes_text_size_button_large">@dimen/andes_text_size_subhead</dimen>
+    <dimen name="andes_text_size_button_medium">@dimen/andes_text_size_body</dimen>
+    <dimen name="andes_text_size_button_small">@dimen/andes_text_size_caption</dimen>
+
+</resources>

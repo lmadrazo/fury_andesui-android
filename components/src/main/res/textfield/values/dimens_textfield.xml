@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_textfield_label_paddingLeft">6dp</dimen>
+    <dimen name="andes_textfield_label_textSize">14sp</dimen>
+
+    <dimen name="andes_textfield_container_marginTop">4dp</dimen>
+    <dimen name="andes_textfield_container_minHeight">50dp</dimen>
+
+    <dimen name="andes_textfield_edittext_paddingLeft">12dp</dimen>
+    <dimen name="andes_textfield_edittext_paddingRight">12dp</dimen>
+    <dimen name="andes_textfield_edittext_textSize">16sp</dimen>
+
+    <dimen name="andes_textfield_helper_paddingLeft">6dp</dimen>
+    <dimen name="andes_textfield_helper_textSize">13sp</dimen>
+    <dimen name="andes_textfield_helper_marginTop">6dp</dimen>
+
+    <dimen name="andes_textfield_counter_textSize">13sp</dimen>
+    <dimen name="andes_textfield_counter_marginTop">6dp</dimen>
+
+    <dimen name="andes_textfield_placeholder_textSize">16dp</dimen>
+
+    <dimen name="andes_textfield_prefix_left_margin">12dp</dimen>
+    <dimen name="andes_textfield_prefix_right_margin">8dp</dimen>
+
+    <dimen name="andes_textfield_suffix_left_margin">8dp</dimen>
+    <dimen name="andes_textfield_suffix_right_margin">12dp</dimen>
+
+    <dimen name="andes_textfield_icon_left_margin">12dp</dimen>
+    <dimen name="andes_textfield_icon_right_margin">12dp</dimen>
+
+    <dimen name="andes_textfield_tooltip_left_margin">12dp</dimen>
+    <dimen name="andes_textfield_tooltip_right_margin">12dp</dimen>
+
+    <dimen name="andes_textfield_validated_left_margin">12dp</dimen>
+    <dimen name="andes_textfield_validated_right_margin">12dp</dimen>
+
+    <dimen name="andes_textfield_clear_left_margin">8dp</dimen>
+    <dimen name="andes_textfield_clear_right_margin">8dp</dimen>
+
+    <dimen name="andes_textfield_action_left_margin">8dp</dimen>
+    <dimen name="andes_textfield_action_right_margin">8dp</dimen>
+
+    <dimen name="andes_textfield_margin">12dp</dimen>
+    <dimen name="andes_textfield_bottom_top_margin">8dp</dimen>
+
+    <dimen name="andes_textfield_indeterminate_left_margin">12dp</dimen>
+    <dimen name="andes_textfield_indeterminate_right_margin">12dp</dimen>
+
+    <dimen name="andes_textfield_corner_radius">6dp</dimen>
+
+    <dimen name="andes_textfield_simple_stroke">1dp</dimen>
+
+    <dimen name="andes_textfield_focused_stroke">2dp</dimen>
+
+    <dimen name="andes_textfield_dash">1dp</dimen>
+
+    <dimen name="andes_textfield_icon_diameter">12dp</dimen>
+
+    <dimen name="andes_textfield_box_group_margin">16dp</dimen>
+
+    <dimen name="andes_textfield_box_margin">8dp</dimen>
+
+    <dimen name="andes_textfield_box_width">38dp</dimen>
+
+</resources>

@@ -1,0 +1,43 @@
+version: 2.1
+
+parameters:
+  type:
+    type: enum
+    enum: ["ci", "build", "default"]
+    default: "default"
+  build_context:
+    type: string
+    default: ""
+
+orbs:
+  meli: mercadolibre/android@volatile
+
+default-workflow: &defaultWorkflow
+  filters:
+    branches:
+      ignore:
+        - master
+        - /release\/.*$/
+        - /v\/.*$/
+
+workflows:
+  ci:
+    jobs:
+      - meli/assemble:
+          <<: *defaultWorkflow
+          build_context: << pipeline.parameters.build_context >>
+          pipeline_id: << pipeline.id >>
+          pipeline_number: << pipeline.number >>
+      - meli/check:
+          <<: *defaultWorkflow
+          build_context: << pipeline.parameters.build_context >>
+          pipeline_id: << pipeline.id >>
+          pipeline_number: << pipeline.number >>
+  build:
+    when:
+      equal: [build, << pipeline.parameters.type >>]
+    jobs:
+      - meli/build-public:
+          build_context: << pipeline.parameters.build_context >>
+          pipeline_id: << pipeline.id >>
+          pipeline_number: << pipeline.number >>

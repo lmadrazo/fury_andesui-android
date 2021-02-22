@@ -1,0 +1,14 @@
+buildscript {
+    // have the same repositories applied to buildscript…
+    apply from:"$rootDir/gradle/repositories.gradle", to:buildscript
+
+    dependencies {
+        classpath "com.mercadolibre.android.gradle:base:$gradlePluginsVersion"
+        classpath "com.gradle:gradle-enterprise-gradle-plugin:$buildScanPluginVersion"
+    }
+}
+
+include ':demoapp', ':components', ":coachmark"
+apply plugin: 'mercadolibre.mobile'
+apply from: "$rootDir/gradle/build-cache-settings.gradle"
+rootProject.name='andesui-android'

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesTextfield" tools:ignore="ResourceName">
+
+        <attr name="android:inputType" />
+
+        <attr name="andesTextfieldLabel" format="reference" />
+
+        <attr name="andesTextfieldHelper" format="reference" />
+
+        <attr name="andesTextfieldPlaceholder" format="reference" />
+
+        <attr name="andesTextfieldCounter" format="integer" />
+
+        <attr name="andesTextfieldState">
+            <enum name="idle" value="20" />
+            <enum name="error" value="21" />
+            <enum name="disabled" value="22" />
+            <enum name="readonly" value="23" />
+        </attr>
+
+        <attr name="andesTextfieldLeftContent">
+            <enum name="prefix" value="10" />
+            <enum name="icon" value="12" />
+        </attr>
+
+
+        <attr name="andesTextfieldRightContent">
+            <enum name="prefix" value="10" />
+            <enum name="suffix" value="11" />
+            <enum name="icon" value="12" />
+            <enum name="tooltip" value="13" />
+            <enum name="validated" value="14" />
+            <enum name="clear" value="15" />
+            <enum name="action" value="16" />
+            <enum name="indeterminate" value="17" />
+            <enum name="checkbox" value="18" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="AndesTextarea" tools:ignore="ResourceName">
+
+        <attr name="andesTextareaLabel" format="reference" />
+
+        <attr name="andesTextareaHelper" format="reference" />
+
+        <attr name="andesTextareaPlaceholder" format="reference" />
+
+        <attr name="andesTextareaCounter" format="integer" />
+
+        <attr name="andesTextareaMaxLines" format="integer" />
+
+        <attr name="andesTextareaState">
+            <enum name="idle" value="20" />
+            <enum name="error" value="21" />
+            <enum name="disabled" value="22" />
+            <enum name="readonly" value="23" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="AndesTextfieldCode" tools:ignore="ResourceName">
+
+        <attr name="andesTextfieldCodeLabel" format="reference" />
+
+        <attr name="andesTextfieldCodeHelper" format="reference" />
+
+        <attr name="andesTextfieldCodeStyle">
+            <enum name="threesome" value="1000" />
+            <enum name="foursome" value="1001" />
+            <enum name="three_by_three" value="1002" />
+        </attr>
+
+        <attr name="andesTextfieldCodeState">
+            <enum name="idle" value="2000" />
+            <enum name="disable" value="2001" />
+            <enum name="error" value="2002" />
+        </attr>
+    </declare-styleable>
+
+</resources>

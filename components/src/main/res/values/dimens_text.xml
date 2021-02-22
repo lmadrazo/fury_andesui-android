@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Text sizes-->
+    <dimen name="andes_title_font_size_xl">32dp</dimen>
+    <dimen name="andes_title_font_size_l">28dp</dimen>
+    <dimen name="andes_title_font_size_m">24dp</dimen>
+    <dimen name="andes_title_font_size_s">20dp</dimen>
+    <dimen name="andes_title_font_size_xs">18dp</dimen>
+    <dimen name="andes_body_font_size_l">18dp</dimen>
+    <dimen name="andes_body_font_size_m">16dp</dimen>
+    <dimen name="andes_body_font_size_s">14dp</dimen>
+    <dimen name="andes_body_font_size_xs">12dp</dimen>
+
+    <!--Text weights-->
+    <dimen name="andes_title_font_weight">600dp</dimen>
+    <dimen name="andes_body_font_weight">400dp</dimen>
+</resources>

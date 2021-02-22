@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Andes.customCalendarDemo" parent="android:Widget.CalendarView">
+        <item name="colorControlActivated">@color/andes_accent_color_500</item>
+        <item name="colorControlHighlight">@color/andes_accent_color_300</item>
+    </style>
+    <style name="Andes.CalendarDateDemo" parent="android:Widget.CalendarView">
+        <item name="android:textSize">@dimen/andes_body_font_size_s</item>
+        <item name="android:textColor">@drawable/andes_selector</item>
+        <item name="fontFamily">"@font/andes_font_regular"</item>
+    </style>
+    <style name="Andes.CalendarDateWeekDemo" parent="android:Widget.CalendarView">
+        <item name="android:textSize">@dimen/andes_datepicker_week_font_size</item>
+        <item name="fontWeight">@dimen/andes_title_font_weight</item>
+        <item name="fontFamily">"@font/andes_font_regular"</item>
+    </style>
+</resources>

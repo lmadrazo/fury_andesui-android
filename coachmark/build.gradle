@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.monits.staticCodeAnalysis'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion maxApiLevel.toInteger()
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion minApiLevel
+        targetSdkVersion maxApiLevel
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    resourcePrefix 'andes'
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+        mds{
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    dexOptions.preDexLibraries = true
+
+    // FIXME
+    lintOptions {
+        abortOnError false
+    }
+    lintGradle {
+        enabled = false
+    }
+}
+
+// FIXME
+detekt {
+    ignoreFailures = true
+}
+
+dependencies {
+    implementation project(':components')
+    implementation prod.kotlinStdlib
+    implementation prod.supportLibraryAppCompatV7
+    implementation prod.supportLibraryDesign
+    api prod.supportConstraintLayout
+
+    // Unit testing dependencies
+    testImplementation test.runner
+    testImplementation test.junit4
+    testImplementation test.mockitoKotlin
+    testImplementation test.assertj
+    testImplementation test.robolectric
+    testImplementation test.mockitoInline
+}
