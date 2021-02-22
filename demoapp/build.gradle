@@ -4,15 +4,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from:   "$rootDir/gradle/dexcount.gradle"
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexCountGradlePlugin"
-    }
-}
-
 android {
     compileSdkVersion maxApiLevel.toInteger()
     buildToolsVersion androidBuildToolsVersion
@@ -89,9 +80,15 @@ android {
         }
     }
 
+    lintOptions {
+        // TODO: Delete this once play services is updated. Now we need it because play services brings support library 26
+        disable 'GradleCompatible'
+    }
+
     packagingOptions {
         exclude 'META-INF/ASL2.0'
         exclude 'META-INF/LICENSE'
+        exclude("META-INF/*.kotlin_module")
     }
 
     dexOptions.preDexLibraries = true
@@ -103,19 +100,16 @@ staticCodeAnalysis {
 
     androidLintConfig = "$project.rootProject.projectDir/config/android/android-lint-demoapp.xml"
 }
-configurations.all {
-    resolutionStrategy {
-        force "androidx.appcompat:appcompat:$appCompatVersion"
-    }
-}
 
 dependencies {
     implementation project(':components')
     implementation project(':coachmark')
 
     implementation prod.kotlinStdlib
-//    implementation prod.supportConstraintLayout
-//    implementation prod.supportLibraryAppCompatV7
+    implementation prod.supportConstraintLayout
+    implementation prod.supportLibraryAppCompatV7
+    implementation showcase.coordinatorLayout
+
     implementation prod.fresco
 
     implementation showcase.glide

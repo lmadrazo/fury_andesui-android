@@ -16,6 +16,7 @@ ext {
     materialVersion = '1.0.0'
     constraintLayoutVersion = '2.0.4'
     cardViewVersion = '1.0.0'
+    coordinatorLayoutVersion = '1.0.0'
 
     prod = [
             kotlinStdlib             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
@@ -38,6 +39,7 @@ ext {
 
     showcase = [
             glide  : "com.github.bumptech.glide:glide:$glideVersion",
+            coordinatorLayout : "androidx.coordinatorlayout:coordinatorlayout:$coordinatorLayoutVersion",
 
             /**
              * It let us show the What's New which is in markdown format.
