@@ -1,4 +1,8 @@
-#3.8.0
+# v3.9.0
+## 🚀 Feature
+- FMA repository migration | Authors [eportasML](https://github.com/eportasML)
+
+# v3.8.0
 ## 🚀 Feature
 - Added keystores inside the demoapp module so each build will use that instead of the particular keystore located in every machine.
 
