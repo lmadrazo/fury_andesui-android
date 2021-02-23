@@ -38,19 +38,10 @@ android {
     }
 
     dexOptions.preDexLibraries = true
-
-    // FIXME
-    lintOptions {
-        abortOnError false
-    }
-    lintGradle {
-        enabled = false
-    }
 }
 
-// FIXME
-detekt {
-    ignoreFailures = true
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
+    autoCorrect = true
 }
 
 dependencies {

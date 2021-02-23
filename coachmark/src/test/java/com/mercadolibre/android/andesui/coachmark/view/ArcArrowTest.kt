@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.coachmark.view
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.coachmark.view.walkthroughmessage.ArcArrow
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -20,7 +19,7 @@ class ArcArrowTest {
     fun `addRect - setTopLeftArrow`() {
         val arcArrow = ArcArrow(context)
 
-        arcArrow.addRect(540,144, 233, 0)
+        arcArrow.addRect(540, 144, 233, 0)
 
         assertEquals(arcArrow.startHeadArrowX, 233F)
         assertEquals(arcArrow.startHeadArrowY, 96F)
@@ -53,7 +52,7 @@ class ArcArrowTest {
     fun `addRect - setTopRightArrow`() {
         val arcArrow = ArcArrow(context)
 
-        arcArrow.addRect(540,144, 852, 0)
+        arcArrow.addRect(540, 144, 852, 0)
 
         assertEquals(arcArrow.startHeadArrowX, 852F)
         assertEquals(arcArrow.startHeadArrowY, 96F)
@@ -86,7 +85,7 @@ class ArcArrowTest {
     fun `addRect - setBottomRightArrow`() {
         val arcArrow = ArcArrow(context)
 
-        arcArrow.addRect(540,0, 852, 144)
+        arcArrow.addRect(540, 0, 852, 144)
 
         assertEquals(arcArrow.startHeadArrowX, 852F)
         assertEquals(arcArrow.startHeadArrowY, 48F)
@@ -119,7 +118,7 @@ class ArcArrowTest {
     fun `addRect - setBottomLeftArrow`() {
         val arcArrow = ArcArrow(context)
 
-        arcArrow.addRect(540,0, 228, 144)
+        arcArrow.addRect(540, 0, 228, 144)
 
         assertEquals(arcArrow.startHeadArrowX, 228F)
         assertEquals(arcArrow.startHeadArrowY, 48F)

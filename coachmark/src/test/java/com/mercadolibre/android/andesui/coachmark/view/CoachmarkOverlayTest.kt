@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.coachmark.view
 
 import android.graphics.Rect
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,7 +17,7 @@ class CoachmarkOverlayTest {
 
     @Test
     fun `addRectTest - Circle`() {
-        val targetRect = Rect(228,1052,418,361)
+        val targetRect = Rect(228, 1052, 418, 361)
 
         val coachmarkOverlay = CoachmarkOverlay(context)
         coachmarkOverlay.addRect(targetRect.left, targetRect.top - 240, 0, 0, true, 216F)
@@ -33,7 +32,7 @@ class CoachmarkOverlayTest {
 
     @Test
     fun `addRectTest - Rectangle`() {
-        val targetRect = Rect(48,288,418,361)
+        val targetRect = Rect(48, 288, 418, 361)
 
         val coachmarkOverlay = CoachmarkOverlay(context)
         coachmarkOverlay.addRect(targetRect.left, targetRect.top - 240, targetRect.width(), targetRect.height(), false)
@@ -45,5 +44,4 @@ class CoachmarkOverlayTest {
         assertEquals(coachmarkOverlay.radius, 8F)
         assertEquals(coachmarkOverlay.isCircle, false)
     }
-
 }

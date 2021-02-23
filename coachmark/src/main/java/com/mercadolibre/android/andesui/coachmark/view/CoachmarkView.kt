@@ -129,7 +129,6 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
                 onTrackingListener?.onNext(position)
             }
         })
-
     }
 
     /**
