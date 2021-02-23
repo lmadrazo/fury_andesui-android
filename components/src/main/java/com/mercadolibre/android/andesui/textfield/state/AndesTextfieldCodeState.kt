@@ -1,6 +1,6 @@
 package com.mercadolibre.android.andesui.textfield.state
 
-import java.util.*
+import java.util.Locale
 
 /**
  * Utility class that does two things: Defines the possible states an [AndesTextfieldCode] can take.

@@ -39,7 +39,7 @@ class AndesDropdownTest {
         list.delegate = object : AndesListDelegate {
 
             override fun onItemClick(andesList: AndesList, position: Int) {
-                //Do nothing
+                // Do nothing
             }
 
             override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
@@ -49,7 +49,6 @@ class AndesDropdownTest {
             override fun getDataSetSize(andesList: AndesList): Int {
                 return SIZE
             }
-
         }
 
         val listItems = ArrayList<AndesDropDownItem>()
@@ -101,5 +100,4 @@ class AndesDropdownTest {
         Assert.assertEquals(config.helper, helper)
         Assert.assertEquals(config.placeHolder, placeHolder)
     }
-
 }

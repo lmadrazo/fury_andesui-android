@@ -179,10 +179,11 @@ class AndesCarousel : ConstraintLayout {
      * DEFAULT = 0.10 (to show the next view)
      */
     private fun getPaddingRecyclerView() =
-        if (andesCarouselAttrs.andesCarouselMargin == AndesCarouselMargin.DEFAULT)
+        if (andesCarouselAttrs.andesCarouselMargin == AndesCarouselMargin.DEFAULT) {
             (context.resources.displayMetrics.widthPixels * PERCENTAGE).toInt()
-        else
+        } else {
             (context.resources.displayMetrics.widthPixels * ZERO).toInt()
+        }
 
     companion object {
         const val PERCENTAGE = 0.10

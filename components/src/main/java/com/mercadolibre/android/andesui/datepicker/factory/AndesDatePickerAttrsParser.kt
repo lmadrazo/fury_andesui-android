@@ -5,10 +5,10 @@ import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 
 internal data class AndesDatePickerAttrs(
-        val andesDatePickerText: String?,
-        val andesDatePickerMinDate: String?,
-        val andesDatePickerMaxDate: String?,
-        val andesBtnVisibility : Boolean?
+    val andesDatePickerText: String?,
+    val andesDatePickerMinDate: String?,
+    val andesDatePickerMaxDate: String?,
+    val andesBtnVisibility: Boolean?
 )
 
 /**
@@ -28,9 +28,4 @@ internal object AndesDatePickerAttrParser {
                 andesBtnVisibility = null
         ).also { typedArray.recycle() }
     }
-
 }
-
-
-
-

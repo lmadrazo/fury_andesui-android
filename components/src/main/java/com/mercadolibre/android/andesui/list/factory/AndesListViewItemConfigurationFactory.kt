@@ -10,24 +10,24 @@ import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 internal data class AndesListViewItemConfiguration(
-        val paddingLeft: Int,
-        val paddingRight: Int,
-        val paddingTop: Int,
-        val paddingBottom: Int,
-        val titleFontSize: Float,
-        val subTitleFontSize: Float,
-        val titleTypeface: Typeface,
-        val subTitleTypeface: Typeface,
-        val titleColor: Int,
-        val subTitleColor: Int,
-        val height: Float,
-        val titleMaxLines: Int,
-        val spaceTitleSubtitle: Int,
-        val separatorThumbnailWidth: Int,
-        val avatarSize: AndesThumbnailSize,
-        val iconSize: Int,
-        val chevronSize: Int,
-        val showSubtitle: Boolean
+    val paddingLeft: Int,
+    val paddingRight: Int,
+    val paddingTop: Int,
+    val paddingBottom: Int,
+    val titleFontSize: Float,
+    val subTitleFontSize: Float,
+    val titleTypeface: Typeface,
+    val subTitleTypeface: Typeface,
+    val titleColor: Int,
+    val subTitleColor: Int,
+    val height: Float,
+    val titleMaxLines: Int,
+    val spaceTitleSubtitle: Int,
+    val separatorThumbnailWidth: Int,
+    val avatarSize: AndesThumbnailSize,
+    val iconSize: Int,
+    val chevronSize: Int,
+    val showSubtitle: Boolean
 )
 
 @Suppress("TooManyFunctions")

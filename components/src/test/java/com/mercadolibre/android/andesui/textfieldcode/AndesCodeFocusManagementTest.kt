@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.textfieldcode
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.textfield.textwatcher.AndesCodeFocusManagement
 import com.mercadolibre.android.andesui.textfield.textwatcher.NextFocus
 import com.nhaarman.mockitokotlin2.argumentCaptor
@@ -79,5 +78,4 @@ class AndesCodeFocusManagementTest {
         assertEquals(nextFocusExpected, captorIndexNextFocus.lastValue)
         assertEquals(previousFocusExpected, captorIndexPreviousFocus.lastValue)
     }
-
 }

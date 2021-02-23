@@ -29,7 +29,6 @@ import com.mercadolibre.android.andesui.textfield.textwatcher.AndesTextfieldBoxW
 import kotlinx.android.parcel.Parcelize
 import kotlin.math.min
 
-
 @Suppress("TooManyFunctions")
 class AndesTextfieldCode : ConstraintLayout {
 
@@ -106,7 +105,8 @@ class AndesTextfieldCode : ConstraintLayout {
         label: String? = LABEL_DEFAULT,
         helpLabel: String? = HELP_LABEL_DEFAULT,
         style: AndesTextfieldCodeStyle = STYLE_DEFAULT,
-        state: AndesTextfieldCodeState = STATE_DEFAULT) : super(context) {
+        state: AndesTextfieldCodeState = STATE_DEFAULT
+    ) : super(context) {
 
         initAttrs(label, helpLabel, style, state)
     }
@@ -129,7 +129,8 @@ class AndesTextfieldCode : ConstraintLayout {
         label: String?,
         helpLabel: String?,
         style: AndesTextfieldCodeStyle,
-        state: AndesTextfieldCodeState) {
+        state: AndesTextfieldCodeState
+    ) {
         andesTextfieldCodeAttrs = AndesTextfieldCodeAttrs(label, helpLabel, style, state)
         val config = AndesTextfieldCodeConfigurationFactory.create(context, andesTextfieldCodeAttrs)
         setupComponents(config)
@@ -328,7 +329,6 @@ class AndesTextfieldCode : ConstraintLayout {
         }
     }
 
-
     private fun setTextInBoxes(cleanText: String, startIndex: Int = 0) {
         val childCount = textfieldBoxCodeContainer.childCount
         val textArray = Array(childCount) { DIRTY_CHARACTER }
@@ -485,7 +485,7 @@ class AndesTextfieldCode : ConstraintLayout {
     }
 
     override fun onRestoreInstanceState(savedState: Parcelable) {
-        if(savedState is AndesTextfieldCodeSavedState) {
+        if (savedState is AndesTextfieldCodeSavedState) {
             super.onRestoreInstanceState(savedState.superState)
             currentText = savedState.currentText
             state = AndesTextfieldCodeState.valueOf(savedState.state)
@@ -498,14 +498,14 @@ class AndesTextfieldCode : ConstraintLayout {
     }
 
     @Parcelize
-    internal data class AndesTextfieldCodeSavedState (
+    internal data class AndesTextfieldCodeSavedState(
         val currentText: String,
         val state: String,
         val style: String,
         val label: String,
         val helper: String,
         val superState: Parcelable?
-    ): Parcelable
+    ) : Parcelable
 
     /**
      * Default values for AndesTextfieldCode basic properties

@@ -1,6 +1,5 @@
 package com.mercadolibre.android.andesui.font
-
-import java.util.*
+import java.util.EnumMap
 
 /**
  * The font types that we support

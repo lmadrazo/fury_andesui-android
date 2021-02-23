@@ -178,6 +178,7 @@ internal object AndesButtonConfigurationFactory {
      * Needed because the margins are different if the button has icon or not.
      * @param context needed for accessing dimen resources.
      */
+    @Suppress("LongParameterList")
     private fun resolveMargin(
         size: AndesButtonSizeInterface,
         leftIconPath: String?,
@@ -221,6 +222,7 @@ internal object AndesButtonConfigurationFactory {
      * to be used properly inside the button.
      * @param context needed for accessing some resources.
      */
+    @Suppress("LongParameterList")
     private fun resolveIconConfig(
         size: AndesButtonSizeInterface,
         hierarchy: AndesButtonHierarchyInterface,

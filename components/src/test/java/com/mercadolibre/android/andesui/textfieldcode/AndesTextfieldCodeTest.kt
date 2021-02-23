@@ -7,7 +7,6 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.textfield.AndesTextfieldCode
 import com.mercadolibre.android.andesui.textfield.style.AndesTextfieldCodeStyle
 import com.nhaarman.mockitokotlin2.argumentCaptor

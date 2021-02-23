@@ -14,7 +14,7 @@ class AndesCarouselAdapter(
     private val delegate: AndesCarouselDelegate
 ) : RecyclerView.Adapter<AndesCarouselAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(delegate.getLayoutItem(andesCarouselView), parent, false)
         return ViewHolder(view)
     }

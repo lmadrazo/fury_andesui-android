@@ -84,11 +84,11 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
     }
 
     constructor(
-            context: Context,
-            menuType: AndesDropdownMenuType = AndesDropdownMenuType.BOTTOMSHEET,
-            label: String,
-            helper: String,
-            placeHolder: String
+        context: Context,
+        menuType: AndesDropdownMenuType = AndesDropdownMenuType.BOTTOMSHEET,
+        label: String,
+        helper: String,
+        placeHolder: String
     ) : super(context) {
         initAttrs(menuType, label, helper, placeHolder)
     }
@@ -112,10 +112,10 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
     }
 
     private fun initAttrs(
-            menuType: AndesDropdownMenuType,
-            label: String,
-            helper: String,
-            placeHolder: String
+        menuType: AndesDropdownMenuType,
+        label: String,
+        helper: String,
+        placeHolder: String
     ) {
         andesDropdownAttrs = AndesDropdownAttrs(
                 andesDropdownMenuType = menuType,
@@ -165,7 +165,6 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
             setChevronIcon(ICON_CHEVRON_DOWN)
             andesTextfield.clearFocus()
         }
-
     }
 
     private val onFocusChange = OnFocusChangeListener { v, hasFocus ->
@@ -177,7 +176,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
     /**
      * Sets the list of item that the Dropdown will draw
      */
-    fun setItems(listItems: List<AndesDropDownItem>){
+    fun setItems(listItems: List<AndesDropDownItem>) {
         this.listItems = listItems
     }
 
@@ -231,7 +230,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         bottomSheetDialog.dismiss()
     }
 
-    private fun selectItem(position: Int){
+    private fun selectItem(position: Int) {
         val itemSelected = listItems[position]
 
         listItems.forEach {
@@ -264,5 +263,4 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         private const val ICON_CHEVRON_DOWN: String = "andes_ui_chevron_down_24"
         private const val ICON_CHEVRON_UP: String = "andes_ui_chevron_up_24"
     }
-
 }

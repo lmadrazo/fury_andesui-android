@@ -2,16 +2,12 @@ package com.mercadolibre.android.andesui.list
 
 import android.os.Build
 import android.view.View
-import com.mercadolibre.android.andesui.BuildConfig
-import com.mercadolibre.android.andesui.button.size.AndesLargeButtonSize
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
-import com.mercadolibre.android.andesui.list.size.AndesListViewItemSmallSize
 import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
@@ -41,7 +37,6 @@ class AndesListTest {
             }
 
             override fun getDataSetSize(andesList: AndesList): Int = SIZE
-
         }
 
         andesListDelegate.onItemClick(list, 0)
@@ -76,7 +71,6 @@ class AndesListTest {
         Assert.assertEquals(list.type, AndesListType.RADIO_BUTTON)
     }
 
-
     @Test
     fun `test list item selection`() {
 
@@ -100,11 +94,9 @@ class AndesListTest {
             }
 
             override fun getDataSetSize(andesList: AndesList): Int = SIZE
-
         }
 
         list.delegate = andesListDelegate
         andesListDelegate.onItemClick(list, 5)
     }
-
 }

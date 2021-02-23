@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.checkbox.factory.AndesCheckboxAttrParser
 import com.mercadolibre.android.andesui.checkbox.factory.AndesCheckboxAttrs

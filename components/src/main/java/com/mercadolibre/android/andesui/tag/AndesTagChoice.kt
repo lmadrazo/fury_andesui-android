@@ -10,7 +10,6 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
@@ -122,11 +121,11 @@ class AndesTagChoice : ConstraintLayout {
 
     @Suppress("unused")
     constructor(
-            context: Context,
-            mode: AndesTagChoiceMode = TYPE_DEFAULT,
-            size: AndesTagSize = SIZE_DEFAULT,
-            state: AndesTagChoiceState = STATE_DEFAULT,
-            text: String? = TEXT_DEFAULT
+        context: Context,
+        mode: AndesTagChoiceMode = TYPE_DEFAULT,
+        size: AndesTagSize = SIZE_DEFAULT,
+        state: AndesTagChoiceState = STATE_DEFAULT,
+        text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(mode, size, state, text)
     }

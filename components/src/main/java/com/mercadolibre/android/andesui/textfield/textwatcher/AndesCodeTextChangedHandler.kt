@@ -6,9 +6,10 @@ internal typealias OnComplete = (isFull: Boolean) -> Unit
 internal class AndesCodeTextChangedHandler(
     private val boxCount: Int,
     private val onChange: OnChange,
-    private val onComplete: OnComplete) {
+    private val onComplete: OnComplete
+) {
 
-    private val textArray = Array(boxCount) {""}
+    private val textArray = Array(boxCount) { "" }
 
     fun onTextChanged(charSequence: CharSequence, indexChild: Int) {
         val oldCharSequence = textArray[indexChild]

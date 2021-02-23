@@ -19,7 +19,7 @@ import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfiguratio
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
 import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
-import java.util.*
+import java.util.Locale
 
 class AndesBadgePill : CardView {
 
@@ -89,12 +89,12 @@ class AndesBadgePill : CardView {
 
     @Suppress("unused", "LongParameterList")
     constructor(
-            context: Context,
-            pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
-            type: AndesBadgeType = STATE_DEFAULT,
-            pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
-            pillSize: AndesBadgePillSize = SIZE_DEFAULT,
-            text: String? = TEXT_DEFAULT
+        context: Context,
+        pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
+        type: AndesBadgeType = STATE_DEFAULT,
+        pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
+        pillSize: AndesBadgePillSize = SIZE_DEFAULT,
+        text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(pillHierarchy, type, pillBorder, pillSize, text)
     }
@@ -111,11 +111,11 @@ class AndesBadgePill : CardView {
     }
 
     private fun initAttrs(
-            pillHierarchy: AndesBadgePillHierarchy,
-            type: AndesBadgeType,
-            pillBorder: AndesBadgePillBorder,
-            pillSize: AndesBadgePillSize,
-            title: String?
+        pillHierarchy: AndesBadgePillHierarchy,
+        type: AndesBadgeType,
+        pillBorder: AndesBadgePillBorder,
+        pillSize: AndesBadgePillSize,
+        title: String?
     ) {
         andesBadgeAttrs = AndesBadgePillAttrs(pillHierarchy, type, pillBorder, pillSize, title)
         val config = AndesBadgePillConfigurationFactory.create(context, andesBadgeAttrs)
@@ -210,6 +210,5 @@ class AndesBadgePill : CardView {
         private const val BACKGROUND_RADIUS_1 = 1
         private const val BACKGROUND_RADIUS_2 = 2
         private const val BACKGROUND_RADIUS_3 = 3
-
     }
 }
