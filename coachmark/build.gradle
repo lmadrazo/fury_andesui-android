@@ -40,10 +40,6 @@ android {
     dexOptions.preDexLibraries = true
 }
 
-tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
-    autoCorrect = true
-}
-
 dependencies {
     implementation project(':components')
     implementation prod.kotlinStdlib
