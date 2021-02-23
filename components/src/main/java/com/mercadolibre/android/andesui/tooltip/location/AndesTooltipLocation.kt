@@ -7,8 +7,5 @@ enum class AndesTooltipLocation {
   RIGHT
 }
 
-enum class AndesTooltipArrowPosition{
-  FIRST,
-  MIDDLE,
-  LAST
-}
+
+

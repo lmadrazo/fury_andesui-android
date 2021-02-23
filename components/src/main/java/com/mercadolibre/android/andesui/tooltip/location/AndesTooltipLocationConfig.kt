@@ -1,13 +1,7 @@
 package com.mercadolibre.android.andesui.tooltip.location
 
 import android.view.View
-import com.mercadolibre.android.andesui.tooltip.extensions.getArrowPositionX
-import com.mercadolibre.android.andesui.tooltip.extensions.getArrowPositionY
-import com.mercadolibre.android.andesui.tooltip.extensions.getSpaceConditionByLocation
-import com.mercadolibre.android.andesui.tooltip.extensions.getTooltipXOff
-import com.mercadolibre.android.andesui.tooltip.extensions.getTooltipYOff
 
-data class AndesTooltipArrowData(val position: AndesTooltipArrowPosition, val point: Int)
 data class AndesTooltipArrowPoint(val x: Float, val y: Float)
 data class AndesTooltipPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
 
@@ -15,7 +9,7 @@ sealed class AndesTooltipLocationConfig(
         val mLocation: AndesTooltipLocation,
         val otherLocationsAttempts : List<AndesTooltipLocation>
 ){
-    protected lateinit var arrowPosition: AndesTooltipArrowPosition
+    protected lateinit var arrowPositionInSide: ArrowPositionId
     abstract fun buildTooltipInRequiredLocation(target: View): Boolean
     abstract fun iterateOtherLocations(target: View): Boolean
     abstract fun getTooltipPadding(): AndesTooltipPadding
@@ -32,7 +26,7 @@ class TopAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocati
         andesTooltip.run {
             if (mLocation.getSpaceConditionByLocation().invoke(this, target)){
                 val arrowData = getTooltipXOff(target, this)
-                arrowPosition = arrowData.position
+                arrowPositionInSide = arrowData.positionInSide
                 val xOff = arrowData.point
                 val yOff = -tooltipMeasuredHeight - target.measuredHeight
                 showDropDown(target, xOff, yOff, this@TopAndesTooltipLocationConfig)
@@ -63,9 +57,13 @@ class TopAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocati
 
     override fun getArrowPoint(): AndesTooltipArrowPoint {
         andesTooltip.run {
+            val arrowLocation: AndesTooltipArrowLocation = getAndesTooltipArrowLocation(
+                    tooltipSideId = ArrowPositionId.BOTTOM,
+                    positionInSideId = arrowPositionInSide
+            )
             return AndesTooltipArrowPoint(
-                    x = getArrowPositionX(frameLayoutContainer.width, this, arrowPosition),
-                    y = frameLayoutContainer.y + radiusLayout.height - elevation
+                    x = arrowLocation.getArrowPositionX(this),
+                    y = arrowLocation.getArrowPositionY(this)
             )
         }
     }
@@ -81,7 +79,7 @@ class BottomAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLoc
         andesTooltip.run {
             if (mLocation.getSpaceConditionByLocation().invoke(this, target)){
                 val arrowData = getTooltipXOff(target, this)
-                arrowPosition = arrowData.position
+                arrowPositionInSide = arrowData.positionInSide
                 val xOff = arrowData.point
                 val yOff = 0
                 showDropDown(target, xOff, yOff, this@BottomAndesTooltipLocationConfig)
@@ -112,9 +110,13 @@ class BottomAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLoc
 
     override fun getArrowPoint(): AndesTooltipArrowPoint {
         andesTooltip.run {
+            val arrowLocation: AndesTooltipArrowLocation = getAndesTooltipArrowLocation(
+                    tooltipSideId = ArrowPositionId.TOP,
+                    positionInSideId = arrowPositionInSide
+            )
             return AndesTooltipArrowPoint(
-                    x = getArrowPositionX(frameLayoutContainer.width, this, arrowPosition),
-                    y = radiusLayout.y - arrowBorder
+                    x = arrowLocation.getArrowPositionX(this),
+                    y = arrowLocation.getArrowPositionY(this)
             )
         }
     }
@@ -130,7 +132,7 @@ class LeftAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocat
         andesTooltip.run {
             if (mLocation.getSpaceConditionByLocation().invoke(this, target)){
                 val arrowData = getTooltipYOff(target, this)
-                arrowPosition = arrowData.position
+                arrowPositionInSide = arrowData.positionInSide
                 val yOff = arrowData.point
                 val xOff = -(tooltipMeasuredWidth)
                 showDropDown(target, xOff, yOff, this@LeftAndesTooltipLocationConfig)
@@ -161,9 +163,13 @@ class LeftAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocat
 
     override fun getArrowPoint(): AndesTooltipArrowPoint {
         andesTooltip.run {
+            val arrowLocation: AndesTooltipArrowLocation = getAndesTooltipArrowLocation(
+                    tooltipSideId = ArrowPositionId.RIGHT,
+                    positionInSideId = arrowPositionInSide
+            )
             return AndesTooltipArrowPoint(
-                    x = frameLayoutContainer.x + radiusLayout.width - elevation - arrowImageInnerPadding,
-                    y = getArrowPositionY(frameLayoutContainer.height, this, arrowPosition)
+                    x = arrowLocation.getArrowPositionX(this),
+                    y = arrowLocation.getArrowPositionY(this)
             )
         }
     }
@@ -180,7 +186,7 @@ class RightAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLoca
         andesTooltip.run {
             if (mLocation.getSpaceConditionByLocation().invoke(this, target)){
                 val arrowData = getTooltipYOff(target, this)
-                arrowPosition = arrowData.position
+                arrowPositionInSide = arrowData.positionInSide
                 val yOff = arrowData.point
                 val xOff = target.measuredWidth
                 showDropDown(target, xOff, yOff, this@RightAndesTooltipLocationConfig)
@@ -211,9 +217,13 @@ class RightAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLoca
 
     override fun getArrowPoint(): AndesTooltipArrowPoint {
         andesTooltip.run {
+            val arrowLocation: AndesTooltipArrowLocation = getAndesTooltipArrowLocation(
+                    tooltipSideId = ArrowPositionId.LEFT,
+                    positionInSideId = arrowPositionInSide
+            )
             return AndesTooltipArrowPoint(
-                    x = frameLayoutContainer.x,
-                    y = getArrowPositionY(frameLayoutContainer.height, this, arrowPosition)
+                    x = arrowLocation.getArrowPositionX(this),
+                    y = arrowLocation.getArrowPositionY(this)
             )
         }
     }
