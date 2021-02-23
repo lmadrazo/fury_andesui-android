@@ -71,24 +71,22 @@ internal fun getTooltipXOff(target: View, tooltip: AndesTooltipLocationInterface
     val rightSpaceNeededForLeftArrow = targetHalfXPoint - tooltip.arrowWidth/2 - tooltip.arrowBorder + tooltipWidth
     val availableSpaceForLeftArrow = tooltip.displaySizeX - targetHalfXPoint
 
+    val canArrowCenter = leftSpaceNeededForCenterArrow > 0 && rightSpaceNeededForCenterArrow < tooltip.displaySizeX
+    val canArrowLeft = rightSpaceNeededForLeftArrow < availableSpaceForLeftArrow
+
     return when {
-        //can arrow center?
-        (leftSpaceNeededForCenterArrow > 0 && rightSpaceNeededForCenterArrow < tooltip.displaySizeX) -> {
+        (canArrowCenter) -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.MIDDLE,
                     point = ((targetWidth / 2) - (tooltip.tooltipMeasuredWidth / 2))
             )
         }
-
-        //can arrow left?
-        (rightSpaceNeededForLeftArrow < availableSpaceForLeftArrow) -> {
+        (canArrowLeft) -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.LEFT,
                     point = (targetWidth/2 - tooltip.arrowWidth/2 - tooltip.arrowBorder)
             )
         }
-
-        //arrow right
         else -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.RIGHT,
@@ -116,24 +114,22 @@ internal fun getTooltipYOff(target: View, tooltip: AndesTooltipLocationInterface
     val bottomSpaceNeededForTopArrow = targetHalfYPoint - tooltip.arrowHeight/2 - tooltip.arrowBorder + tooltipHeight
     val availableSpaceForTopArrow = tooltip.displaySizeY - targetHalfYPoint
 
+    val canArrowCenter = topSpaceNeededForCenterArrow > topWall && bottomSpaceNeededForCenterArrow < tooltip.displaySizeY
+    val canArrowTop = bottomSpaceNeededForTopArrow < availableSpaceForTopArrow
+
     return when {
-        //can arrow center?
-        (topSpaceNeededForCenterArrow > topWall && bottomSpaceNeededForCenterArrow < tooltip.displaySizeY) -> {
+        (canArrowCenter) -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.MIDDLE,
                     point = -((tooltipHeight / 2) + (targetHeight / 2))
             )
         }
-
-        //can arrow top?
-        (bottomSpaceNeededForTopArrow < availableSpaceForTopArrow) -> {
+        (canArrowTop) -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.TOP,
                     point = -(targetHeight/2 + tooltip.arrowWidth/2 + tooltip.arrowBorder)
             )
         }
-
-        //arrow bottom
         else -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.BOTTOM,

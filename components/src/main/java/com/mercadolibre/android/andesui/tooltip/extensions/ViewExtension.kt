@@ -7,6 +7,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
+internal const val DEFAULT_HEIGHT = 0
 /** gets display size as a point. */
 internal fun Context.displaySize(): Point {
   return Point(
@@ -42,7 +43,7 @@ internal fun View.getStatusBarHeight(isStatusBarVisible: Boolean): Int {
   return if (context is Activity && isStatusBarVisible) {
     context.window.decorView.getWindowVisibleDisplayFrame(rectangle)
     rectangle.top
-  } else 0
+  } else DEFAULT_HEIGHT
 }
 
 internal fun View.getActionBarHeight(): Int {
@@ -51,7 +52,7 @@ internal fun View.getActionBarHeight(): Int {
       if (it.isShowing){ return it.height }
     }
   }
-  return 0
+  return DEFAULT_HEIGHT
 }
 
 internal fun View.isActionBarVisible(): Boolean {
