@@ -173,6 +173,15 @@ class TooltipShowcaseActivity : AppCompatActivity() {
             else-> AndesTooltipStyle.LIGHT
         }
 
+        builtTooltip = AndesTooltip(
+                context = this,
+                isDismissible = isDismissible,
+                style = style,
+                title = title,
+                body = body,
+                tooltipLocation = location
+        )
+
         when(container.action_type_spinner.selectedItem){
             "main action"-> {
                 val text:String = if (!container.primary_action_text.text.isNullOrEmpty()){
@@ -181,19 +190,15 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                     container.primary_action_text.text = "default text"
                     "default text"
                 }
-                builtTooltip = AndesTooltip(
-                        context = this,
-                        isDismissible = isDismissible,
-                        style = style,
-                        title = title,
-                        body = body,
-                        tooltipLocation = location,
-                        mainAction = buildMainAction(
-                                text,
-                                getHierarchyBySpinner(container.main_action_style_spinner, R.array.tooltip_main_action_style_spinner)
-                        )
+                builtTooltip.title = title
+                builtTooltip.body = body
+                builtTooltip.isDismissible = isDismissible
+                builtTooltip.style = style
+                builtTooltip.location = location
+                builtTooltip.mainAction = buildMainAction(
+                        text,
+                        getHierarchyBySpinner(container.main_action_style_spinner, R.array.tooltip_main_action_style_spinner)
                 )
-
             }
             "main and second"-> {
                 val textPrimary:String = if (!container.primary_action_text.text.isNullOrEmpty()){
@@ -208,21 +213,18 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                     container.secondary_action_text.text = "default text2"
                     "default text2"
                 }
-                builtTooltip = AndesTooltip(
-                        context = this,
-                        isDismissible = isDismissible,
-                        style = style,
-                        title = title,
-                        body = body,
-                        tooltipLocation = location,
-                        mainAction = buildMainAction(
-                                textPrimary,
-                                getHierarchyBySpinner(container.main_action_style_spinner, R.array.tooltip_main_action_style_spinner)
-                        ),
-                        secondaryAction = buildMainAction(
-                                textSecondary,
-                                getHierarchyBySpinner(container.secondary_action_style_spinner, R.array.tooltip_sec_action_style_spinner)
-                        )
+                builtTooltip.title = title
+                builtTooltip.body = body
+                builtTooltip.isDismissible = isDismissible
+                builtTooltip.style = style
+                builtTooltip.location = location
+                builtTooltip.mainAction = buildMainAction(
+                        textPrimary,
+                        getHierarchyBySpinner(container.main_action_style_spinner, R.array.tooltip_main_action_style_spinner)
+                )
+                builtTooltip.secondaryAction = buildMainAction(
+                        textSecondary,
+                        getHierarchyBySpinner(container.secondary_action_style_spinner, R.array.tooltip_sec_action_style_spinner)
                 )
             }
             "link"-> {
@@ -232,25 +234,19 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                     container.link_action_text.text = "default text"
                     "default text"
                 }
-                builtTooltip = AndesTooltip(
-                        context = this,
-                        isDismissible = isDismissible,
-                        style = style,
-                        title = title,
-                        body = body,
-                        tooltipLocation = location,
-                        linkAction = buildLinkAction(text)
-                )
+                builtTooltip.title = title
+                builtTooltip.body = body
+                builtTooltip.isDismissible = isDismissible
+                builtTooltip.style = style
+                builtTooltip.location = location
+                builtTooltip.linkAction = buildLinkAction(text)
             }
             else-> {
-                builtTooltip = AndesTooltip(
-                        context = this,
-                        isDismissible = isDismissible,
-                        style = style,
-                        title = title,
-                        body = body,
-                        tooltipLocation = location
-                )
+                builtTooltip.title = title
+                builtTooltip.body = body
+                builtTooltip.isDismissible = isDismissible
+                builtTooltip.style = style
+                builtTooltip.location = location
             }
         }
         andesTooltipToShow = builtTooltip
