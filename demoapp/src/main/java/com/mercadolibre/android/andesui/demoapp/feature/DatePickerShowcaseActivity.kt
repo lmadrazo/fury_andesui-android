@@ -127,7 +127,8 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
                     val dateFormatter = DateFormat.getDateInstance(DateFormat.SHORT)
                     val formattedDate = dateFormatter.format(date.time)
                     Toast.makeText(context, formattedDate, Toast.LENGTH_SHORT).show()
-                } })
+                }
+            })
 
             return layoutDatePicker
         }
