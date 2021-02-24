@@ -93,7 +93,7 @@ class AndesBottomSheetTest {
 
         andesBottomSheet.removeContent()
 
-        verify(mockFrameLayout, `never`()).removeAllViews()
+        verify(mockFrameLayout, never()).removeAllViews()
     }
 
     @Test
