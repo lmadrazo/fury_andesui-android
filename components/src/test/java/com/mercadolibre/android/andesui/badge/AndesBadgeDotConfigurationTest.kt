@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.badge
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotConfigurationFactory

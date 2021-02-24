@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.checkbox
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.checkbox.align.AndesCheckboxAlign
 import com.mercadolibre.android.andesui.checkbox.factory.AndesCheckboxAttrs

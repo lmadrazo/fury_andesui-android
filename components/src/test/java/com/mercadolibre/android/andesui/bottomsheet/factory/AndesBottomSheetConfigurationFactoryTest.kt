@@ -1,10 +1,9 @@
 package com.mercadolibre.android.andesui.bottomsheet.factory
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
@@ -12,7 +11,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Build.VERSION_CODES.LOLLIPOP] )
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesBottomSheetConfigurationFactoryTest {
 
     private val configFactory = Mockito.spy(AndesBottomSheetConfigurationFactory)

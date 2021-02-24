@@ -30,6 +30,7 @@ import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
 class MessageShowcaseActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
@@ -225,7 +226,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     changeMessage.hideLinkAction()
                 }
 
-                val thumbnailDrawable = if(thumbnailSpinner.selectedItem.toString() == "With Thumbnail") {
+                val thumbnailDrawable = if (thumbnailSpinner.selectedItem.toString() == "With Thumbnail") {
                     ResourcesCompat.getDrawable(context.resources, R.mipmap.andesui_demoapp_ic_launcher, null)
                 } else {
                     null
@@ -302,10 +303,9 @@ class MessageShowcaseActivity : AppCompatActivity() {
                             Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
                         }
                     )
-            val bodyLink = 11
             val links = listOf(
-                AndesBodyLink(6, bodyLink),
-                AndesBodyLink(64, 71)
+                AndesBodyLink(firstMessageLink.first, firstMessageLink.second),
+                AndesBodyLink(secondMessageLink.first, secondMessageLink.second)
             )
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(
                 links,
@@ -321,5 +321,10 @@ class MessageShowcaseActivity : AppCompatActivity() {
             ))
             return layoutMessages
         }
+    }
+
+    companion object {
+        private val firstMessageLink = 6 to 11
+        private val secondMessageLink = 64 to 71
     }
 }

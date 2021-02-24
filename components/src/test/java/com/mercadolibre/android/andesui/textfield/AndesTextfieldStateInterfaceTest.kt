@@ -12,7 +12,11 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.IconProvider
-import com.mercadolibre.android.andesui.textfield.state.*
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldStateInterface
+import com.mercadolibre.android.andesui.textfield.state.AndesIdleTextfieldState
+import com.mercadolibre.android.andesui.textfield.state.AndesErrorTextfieldState
+import com.mercadolibre.android.andesui.textfield.state.AndesDisabledTextfieldState
+import com.mercadolibre.android.andesui.textfield.state.AndesReadonlyTextfieldState
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNull

@@ -27,4 +27,5 @@ class AndesTextfieldShowcasePagerAdapter(private val views: List<TextFieldPage>)
 
 data class TextFieldPage(
     val page: View,
-    val titleResource: Int = R.string.andesui_demoapp_screen_textfield)
+    val titleResource: Int = R.string.andesui_demoapp_screen_textfield
+)

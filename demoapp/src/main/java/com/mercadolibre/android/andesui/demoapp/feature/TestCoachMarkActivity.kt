@@ -40,17 +40,40 @@ class TestCoachMarkActivity : AppCompatActivity() {
 
         val stepsNewCoachmark = ArrayList<AndesWalkthroughCoachmarkStep>()
 
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Primer titulo", "Resaltamos el primer texto", "Siguiente", texto, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Segundo titulo", "Probando el circulo magico con flecha abajo a la izquierda Probando el circulo magico con flecha abajo a la izquierda Probando el circulo magico con flecha abajo a la izquierda", "Siguiente", circleAdd, AndesWalkthroughCoachmarkStyle.CIRCLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Tercer titulo ", "Resaltamos el primer texto", "Siguiente", texto, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Cuarto titulo ", "Probando el circulo magico con flecha abajo a la derecha", "Siguiente", circleRight, AndesWalkthroughCoachmarkStyle.CIRCLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Quinto titulo ", "Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo", "Siguiente", textoLargo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Sexto titulo ", "Si vemos esto es porque scrolleo al fin y estamos al final del coachmark ;)", "Siguiente", textoAbajo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Septimo titulo ", "Probando el circulo magico con flecha arriba a la izquierda", "Siguiente", circleAdd, AndesWalkthroughCoachmarkStyle.CIRCLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Octavo titulo ", "Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha", "Siguiente", circleRight, AndesWalkthroughCoachmarkStyle.CIRCLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Noveno titulo ", "Probando scroll hacia arriba", "Siguiente", textoLargo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Decimo titulo ", "Esto sigue en prueba y esta bueno que funcione bien", "Siguiente", actionButton, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Primer titulo",
+                "Resaltamos el primer texto", "Siguiente", texto, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Segundo titulo",
+                "Probando el circulo magico con flecha abajo a la izquierda Probando el " +
+                        "circulo magico con flecha abajo a la izquierda Probando el circulo magico " +
+                        "con flecha abajo a la izquierda", "Siguiente", circleAdd, AndesWalkthroughCoachmarkStyle.CIRCLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Tercer titulo ",
+                "Resaltamos el primer texto", "Siguiente", texto, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Cuarto titulo ",
+                "Probando el circulo magico con flecha abajo a la derecha",
+                "Siguiente", circleRight, AndesWalkthroughCoachmarkStyle.CIRCLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Quinto titulo ",
+                "Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo " +
+                        "Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo " +
+                        "Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo " +
+                        "Resaltamos el texto largo Resaltamos el texto largo",
+                "Siguiente", textoLargo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Sexto titulo ",
+                "Si vemos esto es porque scrolleo al fin y estamos al final del coachmark ;)",
+                "Siguiente", textoAbajo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Septimo titulo ",
+                "Probando el circulo magico con flecha arriba a la izquierda",
+                "Siguiente", circleAdd, AndesWalkthroughCoachmarkStyle.CIRCLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Octavo titulo ",
+                "Probando el circulo magico con flecha arriba a la derecha Probando el " +
+                        "circulo magico con flecha arriba a la derecha Probando el circulo magico con " +
+                        "flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha",
+                "Siguiente", circleRight, AndesWalkthroughCoachmarkStyle.CIRCLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Noveno titulo ",
+                "Probando scroll hacia arriba", "Siguiente",
+                textoLargo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Decimo titulo ",
+                "Esto sigue en prueba y esta bueno que funcione bien",
+                "Siguiente", actionButton, AndesWalkthroughCoachmarkStyle.RECTANGLE))
 
         actionButton.setOnClickListener {
             CoachmarkView.Builder(this, AndesWalkthroughCoachmark(stepsNewCoachmark, scrollview) {

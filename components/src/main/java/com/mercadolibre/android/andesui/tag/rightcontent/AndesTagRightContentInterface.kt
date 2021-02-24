@@ -26,7 +26,7 @@ internal object AndesTagRightContentNone : AndesTagRightContentInterface() {
 
     override fun leftMargin(context: Context, size: AndesTagSize) = ANDES_TAG_MARGIN
     override fun rightMargin(context: Context, size: AndesTagSize) = ANDES_TAG_MARGIN
-    override fun rightMarginText(context: Context, size: AndesTagSize) : Int {
+    override fun rightMarginText(context: Context, size: AndesTagSize): Int {
         return when (size) {
             AndesTagSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
             else -> context.resources.getDimension(R.dimen.andes_tag_large_margin).toInt()

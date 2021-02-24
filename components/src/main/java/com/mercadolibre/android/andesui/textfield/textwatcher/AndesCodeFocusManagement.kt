@@ -4,7 +4,8 @@ internal typealias NextFocus = (indexNextFocus: Int, indexPreviousFocus: Int) ->
 
 internal class AndesCodeFocusManagement(
     private val maxIndexFocus: Int,
-    private val onNextFocus: NextFocus) {
+    private val onNextFocus: NextFocus
+) {
 
     private var currentIndexFocus: Int = 0
 

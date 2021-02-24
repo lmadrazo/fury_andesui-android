@@ -187,8 +187,12 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
         }
     }
 
-    private fun handleIcon(context: Context, icon: Drawable,
-        hierarchy: AndesButtonHierarchyInterface, orientation: AndesButtonIconOrientation): IconConfig? {
+    private fun handleIcon(
+        context: Context,
+        icon: Drawable,
+        hierarchy: AndesButtonHierarchyInterface,
+        orientation: AndesButtonIconOrientation
+    ): IconConfig? {
         return try {
             val bitmapDrawable = buildColoredAndesBitmapDrawable(
                 icon as BitmapDrawable,
@@ -200,15 +204,18 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
             when (orientation) {
                 AndesButtonIconOrientation.LEFT -> IconConfig(leftIcon = bitmapDrawable, rightIcon = null)
                 AndesButtonIconOrientation.RIGHT -> IconConfig(leftIcon = null, rightIcon = bitmapDrawable)
-
             }
         } catch (e: FileNotFoundException) {
             IconConfig(leftIcon = null, rightIcon = null)
         }
     }
 
-    private fun handlePathIcon(context: Context, leftIcon: String,
-        hierarchy: AndesButtonHierarchyInterface, orientation: AndesButtonIconOrientation): IconConfig? {
+    private fun handlePathIcon(
+        context: Context,
+        leftIcon: String,
+        hierarchy: AndesButtonHierarchyInterface,
+        orientation: AndesButtonIconOrientation
+    ): IconConfig? {
         val icon = IconProvider(context)
             .loadIcon(leftIcon)
         icon?.let {

@@ -1,11 +1,13 @@
 package com.mercadolibre.android.andesui.textfieldcode
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.textfield.textwatcher.AndesCodeTextChangedHandler
 import com.mercadolibre.android.andesui.textfield.textwatcher.OnChange
 import com.mercadolibre.android.andesui.textfield.textwatcher.OnComplete
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -62,5 +64,4 @@ class AndesCodeTextChangedHandlerTest {
         verify(onComplete, times(4)).invoke(false)
         verify(onComplete, times(2)).invoke(true)
     }
-
 }

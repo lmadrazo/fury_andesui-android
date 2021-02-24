@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.progress
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.progress.factory.AndesProgressAttrs
 import com.mercadolibre.android.andesui.progress.factory.AndesProgressConfigurationFactory

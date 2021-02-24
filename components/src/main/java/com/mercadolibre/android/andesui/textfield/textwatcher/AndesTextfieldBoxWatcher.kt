@@ -52,7 +52,6 @@ internal class AndesTextfieldBoxWatcher(
         isRunning = false
     }
 
-
     companion object {
         const val DIRTY_CHARACTER = "\r"
     }

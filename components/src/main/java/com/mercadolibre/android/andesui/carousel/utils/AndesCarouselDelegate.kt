@@ -16,7 +16,7 @@ interface AndesCarouselDelegate {
     /**
      * Listener that will execute when user clicks the item
      */
-    fun onClickItem (andesCarouselView: AndesCarousel, position: Int)
+    fun onClickItem(andesCarouselView: AndesCarousel, position: Int)
 
     /**
      * Amount of items in carousel

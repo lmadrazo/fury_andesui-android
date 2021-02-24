@@ -732,7 +732,8 @@ class AndesTextfield : ConstraintLayout {
      * Only visible for internal development
      */
     internal fun setAndesTextContextMenuItemListener(
-        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener) {
+        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener
+    ) {
         textComponent.setOnTextContextMenuItemListener(contextMenuItemListener)
     }
 

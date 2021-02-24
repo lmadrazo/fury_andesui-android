@@ -87,11 +87,11 @@ class AndesBottomSheet : CoordinatorLayout {
 
     @Suppress("LongParameterList")
     constructor(
-            context: Context,
-            peekHeight: Int = DEFAULT_PEEK_HEIGHT,
-            state: AndesBottomSheetState = DEFAULT_BOTTOM_SHEET_STATE,
-            title: String? = DEFAULT_TITLE,
-            titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT
+        context: Context,
+        peekHeight: Int = DEFAULT_PEEK_HEIGHT,
+        state: AndesBottomSheetState = DEFAULT_BOTTOM_SHEET_STATE,
+        title: String? = DEFAULT_TITLE,
+        titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT
     ) : super(context) {
         initAttrs(peekHeight, state, title, titleAlignment)
     }
@@ -323,7 +323,7 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
         private fun updateStateFromBehavior(bottomSheetBehaviorState: Int) {
-            when(bottomSheetBehaviorState) {
+            when (bottomSheetBehaviorState) {
                 BottomSheetBehavior.STATE_EXPANDED -> state = AndesBottomSheetState.EXPANDED
                 BottomSheetBehavior.STATE_COLLAPSED -> state = AndesBottomSheetState.COLLAPSED
             }

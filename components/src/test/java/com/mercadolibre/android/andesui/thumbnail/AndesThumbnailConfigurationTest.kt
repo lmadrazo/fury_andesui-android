@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.thumbnail
 
 import android.os.Build
 import androidx.core.content.ContextCompat
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.thumbnail.factory.AndesThumbnailAttrs

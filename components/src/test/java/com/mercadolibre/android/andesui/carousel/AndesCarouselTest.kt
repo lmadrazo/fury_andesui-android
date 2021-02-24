@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.carousel
 
 import android.os.Build
 import android.view.View
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrs
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfigurationFactory
@@ -25,7 +24,7 @@ class AndesCarouselTest {
     private lateinit var attrs: AndesCarouselAttrs
 
     @Test
-    fun `test padding none` () {
+    fun `test padding none`() {
         attrs = AndesCarouselAttrs(
             CENTER,
             AndesCarouselMargin.NONE
@@ -35,7 +34,7 @@ class AndesCarouselTest {
     }
 
     @Test
-    fun `test padding small` () {
+    fun `test padding small`() {
         attrs = AndesCarouselAttrs(
                 CENTER,
                 AndesCarouselMargin.DEFAULT
@@ -45,7 +44,7 @@ class AndesCarouselTest {
     }
 
     @Test
-    fun `test center true` () {
+    fun `test center true`() {
         attrs = AndesCarouselAttrs(
                 CENTER,
                 AndesCarouselMargin.NONE
@@ -55,7 +54,7 @@ class AndesCarouselTest {
     }
 
     @Test
-    fun `test center false` () {
+    fun `test center false`() {
         attrs = AndesCarouselAttrs(
                 FREE,
                 AndesCarouselMargin.NONE
@@ -65,16 +64,19 @@ class AndesCarouselTest {
     }
 
     @Test
-    fun `test delegate` () {
+    fun `test delegate`() {
         val andesCarouselDelegate = object : AndesCarouselDelegate {
-            override fun bind(andesCarouselView: AndesCarousel, view: View, position: Int) {}
+            override fun bind(andesCarouselView: AndesCarousel, view: View, position: Int) {
+                // Empty method
+            }
 
-            override fun onClickItem(andesCarouselView: AndesCarousel, position: Int) {}
+            override fun onClickItem(andesCarouselView: AndesCarousel, position: Int) {
+                // Empty method
+            }
 
             override fun getDataSetSize(andesCarouselView: AndesCarousel) = SIZE
 
             override fun getLayoutItem(andesCarouselView: AndesCarousel) = LAYOUT
-
         }
         val carousel = AndesCarousel(context, true, AndesCarouselMargin.NONE)
         carousel.delegate = andesCarouselDelegate
@@ -85,7 +87,7 @@ class AndesCarouselTest {
     }
 
     @Test
-    fun `test carousel with different padding` () {
+    fun `test carousel with different padding`() {
         var carousel = AndesCarousel(context, true, AndesCarouselMargin.NONE)
         Assert.assertEquals(carousel.margin, AndesCarouselMargin.NONE)
 
@@ -99,5 +101,4 @@ class AndesCarouselTest {
         private const val SIZE = 0
         private const val LAYOUT = 0
     }
-
 }

@@ -6,7 +6,7 @@ data class WalkthroughMessageModel(
     val title: String,
     val description: String,
     val buttonText: String = ""
-): Serializable
+) : Serializable
 
 enum class WalkthroughMessagePosition {
     ABOVE,

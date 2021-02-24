@@ -12,7 +12,7 @@ ext {
     markwonVersion = '4.5.1'
     leakCanaryVersion = '2.5'
     frescoVersion = '1.13.0'
-    appcompatVersion = '1.0.0'
+    appcompatVersion = '1.2.0'
     materialVersion = '1.0.0'
     constraintLayoutVersion = '2.0.4'
     cardViewVersion = '1.0.0'

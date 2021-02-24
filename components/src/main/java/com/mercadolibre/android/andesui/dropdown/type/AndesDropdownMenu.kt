@@ -11,4 +11,3 @@ internal object AndesDropdownMenuTypeBottomSheet : AndesDropdownMenu {
 internal object AndesDropdownMenuTypeFloatingMenu : AndesDropdownMenu {
     override fun getType() = AndesDropdownMenuType.FLOATINGMENU
 }
-

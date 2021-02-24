@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.list.type
 
 import android.content.Context
-import com.mercadolibre.android.andesui.R
 
 /**
  *

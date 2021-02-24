@@ -41,8 +41,15 @@ internal class CoachmarkOverlay @JvmOverloads constructor(
     }
 
     @Suppress("LongParameterList")
-    fun addRect(x: Int, y: Int, width: Int, height: Int, isCircle: Boolean, radius: Float? = null,
-                showPadding: Boolean = true) {
+    fun addRect(
+        x: Int,
+        y: Int,
+        width: Int,
+        height: Int,
+        isCircle: Boolean,
+        radius: Float? = null,
+        showPadding: Boolean = true
+    ) {
 
         this.radius = radius ?: context.resources.getDimension(R.dimen.andes_coachmark_default_radius_overlay)
         this.isCircle = isCircle

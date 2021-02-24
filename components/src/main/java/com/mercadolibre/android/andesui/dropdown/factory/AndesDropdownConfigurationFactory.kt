@@ -3,10 +3,10 @@ package com.mercadolibre.android.andesui.dropdown.factory
 import com.mercadolibre.android.andesui.dropdown.type.AndesDropdownMenuType
 
 internal data class AndesDropdownConfiguration(
-        val menuType: AndesDropdownMenuType,
-        val label: String?,
-        val helper: String?,
-        val placeHolder: String?
+    val menuType: AndesDropdownMenuType,
+    val label: String?,
+    val helper: String?,
+    val placeHolder: String?
 )
 
 internal object AndesDropdownConfigurationFactory {
@@ -21,5 +21,4 @@ internal object AndesDropdownConfigurationFactory {
             )
         }
     }
-
 }
