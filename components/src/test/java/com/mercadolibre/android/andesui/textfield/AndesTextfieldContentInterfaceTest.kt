@@ -36,7 +36,7 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
-class AndesTexfieldContentInterfaceTest {
+class AndesTextfieldContentInterfaceTest {
     private var context = RuntimeEnvironment.application
     private lateinit var contentInterface: AndesTextfieldContentInterface
 

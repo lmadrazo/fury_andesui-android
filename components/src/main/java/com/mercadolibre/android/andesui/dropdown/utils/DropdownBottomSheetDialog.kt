@@ -1,10 +1,8 @@
 package com.mercadolibre.android.andesui.dropdown.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -26,12 +24,9 @@ class DropdownBottomSheetDialog(
     private var dragIndicator: View? = null
     internal var andesList: AndesList? = null
 
-    @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val layout = LayoutInflater.from(context).inflate(R.layout.andes_layout_dropdown_bottom_sheet, null)
-        setContentView(layout)
+        setContentView(R.layout.andes_layout_dropdown_bottom_sheet)
 
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 

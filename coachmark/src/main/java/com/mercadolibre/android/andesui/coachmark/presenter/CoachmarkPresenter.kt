@@ -56,6 +56,7 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
     /**
      * Casos en el que el stepReference no este visible o este parcialmente visible
      */
+    // LongParameterList suppressed because the visibility of the method is private
     @Suppress("LongParameterList")
     private fun resolvePartialOrNotViewedReferenceView(
         stepReferenced: AndesWalkthroughCoachmarkStep,
@@ -99,6 +100,7 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
      * Casos en el que esta visible el elemento
      */
     @Suppress("LongParameterList")
+    // LongParameterList suppressed because the visibility of the method is private
     private fun resolveCompleteReferenceView(
         stepReferenced: AndesWalkthroughCoachmarkStep,
         heightScreen: Int,
