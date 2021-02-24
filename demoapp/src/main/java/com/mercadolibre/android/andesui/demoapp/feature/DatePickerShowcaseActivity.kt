@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Calendar
 
-
 class DatePickerShowcaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,23 +99,23 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
                 }
             }
 
-            btnSend.setOnClickListener(){
+            btnSend.setOnClickListener() {
                 datepicker.clearMinMaxDate()
                 var setterMax: String? = inputMaxDate.text?.trim()
                 var setterMin: String? = inputMinDate.text?.trim()
                 if (setterMax != null && !setterMax.isEmpty() && isValid(setterMax, "dd/MM/yyyy")) {
-                    datepicker.setupMaxDate(convertStringToDate(setterMax,"dd/MM/yyyy").time)
-                }else {
+                    datepicker.setupMaxDate(convertStringToDate(setterMax, "dd/MM/yyyy").time)
+                } else {
                     Toast.makeText(context, "la fecha maxima no es una fecha valida", Toast.LENGTH_SHORT).show()
                 }
                 if (setterMin != null && !setterMin.isEmpty() && isValid(setterMin, "dd/MM/yyyy")) {
-                    datepicker.setupMinDate(convertStringToDate(setterMin,"dd/MM/yyyy").time )
-                }else {
+                    datepicker.setupMinDate(convertStringToDate(setterMin, "dd/MM/yyyy").time)
+                } else {
                     Toast.makeText(context, "la fecha minima no es una fecha valida", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            btnReset.setOnClickListener(){
+            btnReset.setOnClickListener() {
                 datepicker.clearMinMaxDate()
             }
 
@@ -128,11 +127,9 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
                     val dateFormatter = DateFormat.getDateInstance(DateFormat.SHORT)
                     val formattedDate = dateFormatter.format(date.time)
                     Toast.makeText(context, formattedDate, Toast.LENGTH_SHORT).show()
-                }})
+                } })
 
             return layoutDatePicker
-
         }
-
     }
 }

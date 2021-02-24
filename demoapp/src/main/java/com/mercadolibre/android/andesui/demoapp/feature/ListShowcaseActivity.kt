@@ -19,7 +19,6 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.list.AndesList
 import com.mercadolibre.android.andesui.list.AndesListViewItem
 import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
@@ -97,10 +96,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
         sizeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View,
-                    position: Int,
-                    id: Long
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
             ) {
                 andesList.size = when (sizeSpinner.getItemAtPosition(position).toString().toLowerCase()) {
                     "small" -> {
@@ -114,7 +113,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                     }
                     else -> AndesListViewItemSize.MEDIUM
                 }
-
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -129,7 +127,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         buttonUpdate.setOnClickListener {
             update()
         }
-
     }
 
     private fun getItemTypeSelected(): AndesListType {
@@ -248,7 +245,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         private fun addDynamicRadioButtonGroupLayout(layout: View): View {
             radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_simple), AndesRadioButtonType.IDLE))
             radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_chevron), AndesRadioButtonType.IDLE))
-
 
             radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_icon), AndesRadioButtonType.IDLE))
             radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_thumbnail), AndesRadioButtonType.IDLE))

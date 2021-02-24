@@ -245,7 +245,6 @@ class TagShowcaseActivity : AppCompatActivity() {
                     Toast.makeText(context, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
                     return false
                 }
-
             }
             secondColumn.addView(tagChoiceDropdownCallback, params)
 
@@ -261,7 +260,6 @@ class TagShowcaseActivity : AppCompatActivity() {
                     Toast.makeText(context, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
                     return true
                 }
-
             }
             secondColumn.addView(tagChoiceDropdownCallback2, params)
 
@@ -277,7 +275,6 @@ class TagShowcaseActivity : AppCompatActivity() {
                     Toast.makeText(context, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
                     return false
                 }
-
             }
             secondColumn.addView(tagChoiceDropdownCallbackSmall, params)
 
@@ -293,7 +290,6 @@ class TagShowcaseActivity : AppCompatActivity() {
                     Toast.makeText(context, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
                     return true
                 }
-
             }
             secondColumn.addView(tagChoiceDropdownCallbackSmall2, params)
 
@@ -615,7 +611,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 }
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    when(typeSpinner.getItemAtPosition(position)) {
+                    when (typeSpinner.getItemAtPosition(position)) {
                         "Simple" -> {
                             andesTagChoice.visibility = View.INVISIBLE
                             andesTagSimple.visibility = View.VISIBLE
@@ -747,8 +743,8 @@ class TagShowcaseActivity : AppCompatActivity() {
                         )
                     }
                     "Icon" -> {
-                        if (!iconBackgroundColor.text.isNullOrEmpty()
-                                && !validateColor("#${iconBackgroundColor.text!!}")) {
+                        if (!iconBackgroundColor.text.isNullOrEmpty() &&
+                                !validateColor("#${iconBackgroundColor.text!!}")) {
                             iconBackgroundColor.state = AndesTextfieldState.ERROR
                             iconBackgroundColor.helper = "Color inválido"
                             return@setOnClickListener

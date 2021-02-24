@@ -74,10 +74,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(SafeIntent(this, "meli://andes/progress"))
         }
         andesui_bottom_sheet.setOnClickListener {
-            startActivity(SafeIntent(this,"meli://andes/bottom_sheet"))
+            startActivity(SafeIntent(this, "meli://andes/bottom_sheet"))
         }
         andesui_date_picker.setOnClickListener {
-            startActivity(SafeIntent(this,"meli://andes/datepicker"))
+            startActivity(SafeIntent(this, "meli://andes/datepicker"))
         }
     }
 

@@ -22,11 +22,12 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightCon
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldCodeState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.style.AndesTextfieldCodeStyle
-import java.util.*
+import java.util.Locale
 import kotlin.collections.ArrayList
 
 object InflateTextfieldHelper {
 
+    @Suppress("LongMethod")
     fun inflateAndesTextfield(context: Context): View {
 
         val layoutTextfield = LayoutInflater

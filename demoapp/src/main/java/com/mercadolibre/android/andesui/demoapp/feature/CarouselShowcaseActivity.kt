@@ -47,11 +47,11 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         }
 
         updateButton.setOnClickListener {
-            val padding: AndesCarouselMargin = when(marginSpinner.selectedItem.toString()) {
+            val padding: AndesCarouselMargin = when (marginSpinner.selectedItem.toString()) {
                 "None" -> AndesCarouselMargin.NONE
                 else -> AndesCarouselMargin.DEFAULT
             }
-            val center = when(centerSpinner.selectedItem.toString()) {
+            val center = when (centerSpinner.selectedItem.toString()) {
                 "False" -> false
                 else -> true
             }

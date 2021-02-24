@@ -65,7 +65,7 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
         bottomSheet.setContent(supportFragmentManager, TestFragment())
 
-        Handler().postDelayed(  {
+        Handler().postDelayed({
             bottomSheet.expand()
         }, ONE_HUNDRED_MS)
     }
