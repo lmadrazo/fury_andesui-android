@@ -20,10 +20,14 @@ default-workflow: &defaultWorkflow
         - /release\/.*$/
         - /v\/.*$/
 
+default: &defaultJob
+  # The docker image all jobs that inherit from us will have (Which should be all of them)
+  docker:
+    - image: circleci/android@sha256:42812778b27d4b30a2e1d0e0c61de373f0d2bed7a53d5df03199f2115259cee6
+
 jobs:
   run-mds:
-    docker:
-      - image: circleci/android@sha256:42812778b27d4b30a2e1d0e0c61de373f0d2bed7a53d5df03199f2115259cee6
+    <<: *defaultJob
     steps:
       # Checkout to our repo and add the ssh keys for doing git stuff
       - checkout
