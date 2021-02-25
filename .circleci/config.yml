@@ -20,8 +20,26 @@ default-workflow: &defaultWorkflow
         - /release\/.*$/
         - /v\/.*$/
 
+default: &defaultJob
+  # The docker image all jobs that inherit from us will have (Which should be all of them)
+  docker:
+    - image: circleci/android@sha256:42812778b27d4b30a2e1d0e0c61de373f0d2bed7a53d5df03199f2115259cee6
+
+jobs:
+  run-mds:
+    <<: *defaultJob
+    steps:
+      # Checkout to our repo and add the ssh keys for doing git stuff
+      - checkout
+      - add_ssh_keys
+      - run:
+          name: Run MDS demoapp
+          command: ./scripts/run_mds.sh
+
 workflows:
   ci:
+    when:
+      equal: [ci, << pipeline.parameters.type >>]
     jobs:
       - meli/assemble:
           <<: *defaultWorkflow
@@ -30,6 +48,7 @@ workflows:
           pipeline_number: << pipeline.number >>
       - meli/check:
           <<: *defaultWorkflow
+          machine_size: medium+
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
@@ -41,3 +60,7 @@ workflows:
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
+      - run-mds:
+          <<: *defaultWorkflow
+          requires:
+            - meli/build-public
