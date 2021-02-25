@@ -38,6 +38,8 @@ jobs:
 
 workflows:
   ci:
+    when:
+      equal: [ci, << pipeline.parameters.type >>]
     jobs:
       - meli/assemble:
           <<: *defaultWorkflow
