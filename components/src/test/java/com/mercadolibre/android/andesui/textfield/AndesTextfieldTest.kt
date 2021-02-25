@@ -10,6 +10,7 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import junit.framework.Assert.assertEquals
@@ -64,6 +65,12 @@ class AndesTextfieldTest {
     @Test
     fun `set right icon hide true`() {
         textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = true)
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon with color listener`() {
+        textfield.setRightIcon("andes_navegacion_categorias_24", colorIcon = R.color.andes_accent_color_100, listener = View.OnClickListener {  })
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }
 
