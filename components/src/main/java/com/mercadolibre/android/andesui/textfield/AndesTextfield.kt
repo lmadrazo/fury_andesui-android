@@ -53,6 +53,9 @@ class AndesTextfield : ConstraintLayout {
             setupLabelComponent(createConfig())
         }
 
+    private var hideWhenType: Boolean = false
+    private var rightIcon: SimpleDraweeView? = null
+
     /**
      * Getter and setter for [helper].
      */
@@ -434,8 +437,8 @@ class AndesTextfield : ConstraintLayout {
             }
 
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
-
                 val textWithoutMask = removeMaskCharsText(charSequence.toString())
+                isHideIconWhenType(textWithoutMask.length)
 
                 counterComponent.text = resources.getString(
                     R.string.andes_textfield_counter_text,
@@ -548,6 +551,7 @@ class AndesTextfield : ConstraintLayout {
                     } else {
                         rightComponent.visibility = View.GONE
                     }
+                    isHideIconWhenType(text.toString()?.length)
                 }
 
                 override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {
@@ -588,23 +592,29 @@ class AndesTextfield : ConstraintLayout {
     /**
      * Set the right content to icon and provides an interface to give the icon path.
      */
-    fun setRightIcon(iconPath: String, listener: OnClickListener? = null, colorIcon: Int? = R.color.andes_gray_800) {
+    fun setRightIcon(
+        iconPath: String,
+        listener: OnClickListener? = null,
+        colorIcon: Int? = R.color.andes_gray_800,
+        hideWhenType: Boolean = false
+    ) {
         rightContent = AndesTextfieldRightContent.ICON
-        val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
+        rightIcon = rightComponent.getChildAt(0) as SimpleDraweeView
+        this.hideWhenType = hideWhenType
 
         var color: AndesColor? = null
         if (colorIcon != null) {
             color = colorIcon.toAndesColor()
         }
 
-        rightIcon.setImageDrawable(buildColoredAndesBitmapDrawable(
+        rightIcon?.setImageDrawable(buildColoredAndesBitmapDrawable(
             IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
             context,
             color = color)
         )
 
         if (listener != null) {
-            rightIcon.setOnClickListener(listener)
+            rightIcon?.setOnClickListener(listener)
         }
     }
 
@@ -678,6 +688,17 @@ class AndesTextfield : ConstraintLayout {
         textComponent.requestFocus()
     }
 
+    /**
+     * verify if is remove icon when type in field
+     */
+    private fun isHideIconWhenType(textSize: Int) {
+        if (hideWhenType && textSize >= NUMBER_CHAR_HIDE && rightIcon?.visibility == View.VISIBLE) {
+            rightIcon?.visibility = View.GONE
+        } else if (rightIcon != null && textSize <= NUMBER_CHAR_HIDE && hideWhenType && rightIcon?.visibility == View.GONE) {
+            rightIcon?.visibility = View.VISIBLE
+        }
+    }
+
     /**.___
      * Register a callback to be invoked when focus of this view changed.
      *
@@ -732,8 +753,7 @@ class AndesTextfield : ConstraintLayout {
      * Only visible for internal development
      */
     internal fun setAndesTextContextMenuItemListener(
-        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener
-    ) {
+        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener) {
         textComponent.setOnTextContextMenuItemListener(contextMenuItemListener)
     }
 
@@ -744,6 +764,7 @@ class AndesTextfield : ConstraintLayout {
      */
     companion object {
         private const val EMPTY_STRING = ""
+        private const val NUMBER_CHAR_HIDE = 4
         private val LABEL_DEFAULT = null
         private val HELPER_DEFAULT = null
         private val PLACEHOLDER_DEFAULT = null

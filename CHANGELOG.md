@@ -1,3 +1,7 @@
+# v3.9.1
+## 🚀 Feature
+- Add possibility to hide icon when typing. | Author: [@fdiassilva](https://github.com/fdiassilva)
+
 # v3.9.0
 ## 🚀 Feature
 - FMA repository migration | Authors [eportasML](https://github.com/eportasML)
