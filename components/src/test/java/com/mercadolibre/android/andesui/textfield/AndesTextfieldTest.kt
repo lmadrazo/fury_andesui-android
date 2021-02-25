@@ -57,7 +57,13 @@ class AndesTextfieldTest {
 
     @Test
     fun `set right icon`() {
-        textfield.setRightIcon("andes_navegacion_categorias_24")
+        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = false)
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon hide true`() {
+        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = true)
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }
 

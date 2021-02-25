@@ -692,9 +692,9 @@ class AndesTextfield : ConstraintLayout {
      * verify if is remove icon when type in field
      */
     private fun isHideIconWhenType(textSize: Int) {
-        if (hideWhenType && textSize >= NUMBER_CHAR_HIDE && rightIcon?.visibility == View.VISIBLE) {
+        if (hideWhenType && textSize >= NUMBER_CHAR_HIDE) {
             rightIcon?.visibility = View.GONE
-        } else if (rightIcon != null && textSize <= NUMBER_CHAR_HIDE && hideWhenType && rightIcon?.visibility == View.GONE) {
+        } else if (rightIcon != null && textSize <= NUMBER_CHAR_HIDE && hideWhenType) {
             rightIcon?.visibility = View.VISIBLE
         }
     }
