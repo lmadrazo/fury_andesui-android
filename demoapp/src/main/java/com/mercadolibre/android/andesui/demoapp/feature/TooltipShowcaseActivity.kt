@@ -47,6 +47,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
 
     private fun configInputs(container: View){
         container.body_text.text = "default body"
+        container.dismissable_checkbox.status = AndesCheckboxStatus.SELECTED
         ArrayAdapter.createFromResource(
                 this,
                 R.array.tooltip_style_spinner,
@@ -190,14 +191,9 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                     container.primary_action_text.text = "default text"
                     "default text"
                 }
-                builtTooltip.title = title
-                builtTooltip.body = body
-                builtTooltip.isDismissible = isDismissible
-                builtTooltip.style = style
-                builtTooltip.location = location
                 builtTooltip.mainAction = buildMainAction(
                         text,
-                        getHierarchyBySpinner(container.main_action_style_spinner, R.array.tooltip_main_action_style_spinner)
+                        getHierarchyBySpinner(container.main_action_style_spinner)
                 )
             }
             "main and second"-> {
@@ -213,18 +209,13 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                     container.secondary_action_text.text = "default text2"
                     "default text2"
                 }
-                builtTooltip.title = title
-                builtTooltip.body = body
-                builtTooltip.isDismissible = isDismissible
-                builtTooltip.style = style
-                builtTooltip.location = location
                 builtTooltip.mainAction = buildMainAction(
                         textPrimary,
-                        getHierarchyBySpinner(container.main_action_style_spinner, R.array.tooltip_main_action_style_spinner)
+                        getHierarchyBySpinner(container.main_action_style_spinner)
                 )
                 builtTooltip.secondaryAction = buildMainAction(
                         textSecondary,
-                        getHierarchyBySpinner(container.secondary_action_style_spinner, R.array.tooltip_sec_action_style_spinner)
+                        getHierarchyBySpinner(container.secondary_action_style_spinner)
                 )
             }
             "link"-> {
@@ -234,25 +225,14 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                     container.link_action_text.text = "default text"
                     "default text"
                 }
-                builtTooltip.title = title
-                builtTooltip.body = body
-                builtTooltip.isDismissible = isDismissible
-                builtTooltip.style = style
-                builtTooltip.location = location
                 builtTooltip.linkAction = buildLinkAction(text)
             }
-            else-> {
-                builtTooltip.title = title
-                builtTooltip.body = body
-                builtTooltip.isDismissible = isDismissible
-                builtTooltip.style = style
-                builtTooltip.location = location
-            }
+            else-> {}
         }
         andesTooltipToShow = builtTooltip
     }
 
-    private fun getHierarchyBySpinner(spinner: Spinner, @ArrayRes stringArrayRes: Int ): AndesButtonHierarchy {
+    private fun getHierarchyBySpinner(spinner: Spinner): AndesButtonHierarchy {
         return when (spinner.selectedItem){
             "loud"-> AndesButtonHierarchy.LOUD
             "quiet"-> AndesButtonHierarchy.QUIET
