@@ -68,7 +68,7 @@ internal fun getTooltipXOff(target: View, tooltip: AndesTooltipLocationInterface
     val leftSpaceNeededForCenterArrow = targetHalfXPoint - tooltipHalf
     val rightSpaceNeededForCenterArrow = targetHalfXPoint + tooltipHalf
 
-    val rightSpaceNeededForLeftArrow = targetHalfXPoint - tooltip.arrowWidth/2 - tooltip.arrowBorder + tooltipWidth
+    val rightSpaceNeededForLeftArrow = tooltipWidth - tooltip.arrowWidth/2 - tooltip.arrowBorder
     val availableSpaceForLeftArrow = tooltip.displaySizeX - targetHalfXPoint
 
     val canArrowCenter = leftSpaceNeededForCenterArrow > 0 && rightSpaceNeededForCenterArrow < tooltip.displaySizeX

@@ -19,31 +19,26 @@ import androidx.annotation.MainThread
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
 import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.databinding.AndesLayoutTooltipBinding
 import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipAction
 import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipLinkAction
-import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipAttrs
-import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipConfiguration
-import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipConfigurationFactory
-import com.mercadolibre.android.andesui.tooltip.style.AndesTooltipStyle
 import com.mercadolibre.android.andesui.tooltip.extensions.displaySize
 import com.mercadolibre.android.andesui.tooltip.extensions.isFinishing
 import com.mercadolibre.android.andesui.tooltip.extensions.visible
+import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipAttrs
+import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipConfiguration
+import com.mercadolibre.android.andesui.tooltip.factory.AndesTooltipConfigurationFactory
 import com.mercadolibre.android.andesui.tooltip.location.AndesTooltipLocation
 import com.mercadolibre.android.andesui.tooltip.location.AndesTooltipLocationConfig
 import com.mercadolibre.android.andesui.tooltip.location.AndesTooltipLocationInterface
 import com.mercadolibre.android.andesui.tooltip.location.getAndesTooltipLocationConfig
 import com.mercadolibre.android.andesui.tooltip.radius.RadiusLayout
+import com.mercadolibre.android.andesui.tooltip.style.AndesTooltipStyle
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
-class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocationInterface {
+class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
 
     var title: String?
         get() = andesTooltipAttrs.title
@@ -73,6 +68,44 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
             setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
+    var mainAction: AndesTooltipAction?
+        get() = andesTooltipAttrs.mainAction
+        set(value) {
+            value?.let {
+                andesTooltipAttrs = andesTooltipAttrs.copy(mainAction = it, secondaryAction = null, linkAction = null)
+                setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
+            }
+
+        }
+    var secondaryAction: AndesTooltipAction?
+        get() = andesTooltipAttrs.secondaryAction
+        set(value) {
+            value?.let {
+                if (andesTooltipAttrs.mainAction != null) {
+                    andesTooltipAttrs = andesTooltipAttrs.copy(secondaryAction = it, linkAction = null)
+                    setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
+                }
+            }
+
+        }
+    var linkAction: AndesTooltipLinkAction?
+        get() = andesTooltipAttrs.linkAction
+        set(value) {
+            value?.let {
+                andesTooltipAttrs = andesTooltipAttrs.copy(mainAction = null, secondaryAction = null, linkAction = it)
+                setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
+            }
+        }
+
+    var location: AndesTooltipLocation?
+        get() = andesTooltipAttrs.tooltipLocation
+        set(value) {
+            value?.let {
+                andesTooltipAttrs = andesTooltipAttrs.copy(tooltipLocation = it)
+                setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
+            }
+        }
+
     private lateinit var andesTooltipAttrs: AndesTooltipAttrs
     private lateinit var andesTooltipLocationConfigRequired: AndesTooltipLocationConfig
 
@@ -86,22 +119,17 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
     private lateinit var arrowComponent: AppCompatImageView
 
     private val bodyWindow: PopupWindow
-    private var lifecycleOwner: LifecycleOwner? = null
     private var isShowing = false
-    private var destroyed: Boolean = false
 
-
-    private val container: AndesLayoutTooltipBinding =
-            AndesLayoutTooltipBinding.inflate(LayoutInflater.from(context), null, false)
+    private var container: ViewGroup = LayoutInflater.from(context).inflate(R.layout.andes_layout_tooltip, null) as ViewGroup
 
     init {
         bodyWindow = PopupWindow(
-                container.root,
+                container,
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
         )
-        setLifecycleOwner()
-        adjustFitsSystemWindows(container.root)
+        adjustFitsSystemWindows(container)
     }
 
     @JvmOverloads
@@ -114,7 +142,7 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
                 mainAction: AndesTooltipAction,
                 secondaryAction: AndesTooltipAction? = SECONDARY_ACTION_DEFAULT
 
-    ): this(context) {
+    ) : this(context) {
         andesTooltipAttrs = AndesTooltipAttrs(
                 style = style,
                 title = title,
@@ -136,7 +164,7 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
                 tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT,
                 linkAction: AndesTooltipLinkAction? = LINK_ACTION_DEFAULT
 
-    ): this(context) {
+    ) : this(context) {
         andesTooltipAttrs = AndesTooltipAttrs(
                 style = style,
                 title = title,
@@ -148,11 +176,14 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         initComponents(andesTooltipAttrs)
     }
 
+    private fun canShowTooltip(target: View) =
+            !isShowing && !context.isFinishing() && ViewCompat.isAttachedToWindow(target)
+
     @MainThread
     fun show(target: View) {
-        if (!isShowing && !destroyed && !context.isFinishing() && ViewCompat.isAttachedToWindow(target)) {
+        if (canShowTooltip(target)) {
             target.post {
-                container.root.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+                container.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
                 bodyWindow.width = tooltipMeasuredWidth
                 bodyWindow.height = tooltipMeasuredHeight
                 constraintContainer.layoutParams = FrameLayout.LayoutParams(
@@ -160,7 +191,7 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
                         FrameLayout.LayoutParams.MATCH_PARENT
                 )
 
-                if (!andesTooltipLocationConfigRequired.buildTooltipInRequiredLocation(target)){
+                if (!andesTooltipLocationConfigRequired.canBuildTooltipInRequiredLocation(target)) {
                     andesTooltipLocationConfigRequired.iterateOtherLocations(target)
                 }
 
@@ -175,7 +206,7 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         }
     }
 
-    fun setOnAndesTooltipDismissListener(callback: (()->Unit)? = null) {
+    fun setOnAndesTooltipDismissListener(callback: (() -> Unit)? = null) {
         this.bodyWindow.setOnDismissListener {
             this@AndesTooltip.dismiss()
             callback?.invoke()
@@ -183,17 +214,17 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
     }
 
 
-    private fun initComponents(attrs: AndesTooltipAttrs){
-        radiusLayout = container.andesTooltipRadioLayout
-        frameLayoutContainer = container.andesTooltipContent
-        constraintContainer = container.andesTooltipContainer
-        titleComponent = container.andesTooltipTitle
-        bodyComponent = container.andesTooltipBody
-        dismissComponent = container.andesTooltipDismiss
-        primaryActionComponent = container.andesTooltipPrimaryAction
-        secondaryActionComponent = container.andesTooltipSecondaryAction
-        linkActionComponent = container.andesTooltipLinkAction
-        arrowComponent = container.andesTooltipArrow
+    private fun initComponents(attrs: AndesTooltipAttrs) {
+        radiusLayout = container.findViewById(R.id.andes_tooltip_radio_layout)
+        frameLayoutContainer = container.findViewById(R.id.andes_tooltip_content)
+        constraintContainer = container.findViewById(R.id.andes_tooltip_container)
+        titleComponent = container.findViewById(R.id.andes_tooltip_title)
+        bodyComponent = container.findViewById(R.id.andes_tooltip_body)
+        dismissComponent = container.findViewById(R.id.andes_tooltip_dismiss)
+        primaryActionComponent = container.findViewById(R.id.andes_tooltip_primary_action)
+        secondaryActionComponent = container.findViewById(R.id.andes_tooltip_secondary_action)
+        linkActionComponent = container.findViewById(R.id.andes_tooltip_link_action)
+        arrowComponent = container.findViewById(R.id.andes_tooltip_arrow)
 
         setupComponents(createConfig(attrs), andesTooltipLocationConfigRequired)
     }
@@ -202,15 +233,6 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         val config = AndesTooltipConfigurationFactory.create(context, attrs)
         andesTooltipLocationConfigRequired = getAndesTooltipLocationConfig(this, attrs.tooltipLocation)
         return config
-    }
-
-    private fun setLifecycleOwner(){
-        if (lifecycleOwner == null && context is LifecycleOwner) {
-            lifecycleOwner = context
-            context.lifecycle.addObserver(this@AndesTooltip)
-        } else {
-            lifecycleOwner?.lifecycle?.addObserver(this@AndesTooltip)
-        }
     }
 
     private fun adjustFitsSystemWindows(parent: ViewGroup) {
@@ -223,7 +245,7 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         }
     }
 
-    private fun setupComponents(config: AndesTooltipConfiguration, locationConfig: AndesTooltipLocationConfig){
+    private fun setupComponents(config: AndesTooltipConfiguration, locationConfig: AndesTooltipLocationConfig) {
         initializeBackground(config)
         initializeAndesTooltipWindow()
         initializeAndesTooltipContent(config, locationConfig)
@@ -290,9 +312,9 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         initLinkAction(config)
     }
 
-    private fun initTooltipTitle(config: AndesTooltipConfiguration){
-        with(titleComponent){
-            if (!config.titleText.isNullOrEmpty()){
+    private fun initTooltipTitle(config: AndesTooltipConfiguration) {
+        with(titleComponent) {
+            if (!config.titleText.isNullOrEmpty()) {
                 text = config.titleText
                 typeface = config.titleTypeface
                 config.titleTextSize?.let { setTextSize(TypedValue.COMPLEX_UNIT_PX, it) }
@@ -305,8 +327,8 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         }
     }
 
-    private fun initTooltipBody(config: AndesTooltipConfiguration){
-        with(bodyComponent){
+    private fun initTooltipBody(config: AndesTooltipConfiguration) {
+        with(bodyComponent) {
             text = config.bodyText
             typeface = config.bodyTypeface
             setTextColor(config.textColor.colorInt(context))
@@ -314,9 +336,9 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         }
     }
 
-    private fun initDismiss(config: AndesTooltipConfiguration){
-        with(dismissComponent){
-            if (config.isDismissible){
+    private fun initDismiss(config: AndesTooltipConfiguration) {
+        with(dismissComponent) {
+            if (config.isDismissible) {
                 setImageDrawable(config.dismissibleIcon)
                 setOnClickListener { dismiss() }
                 visible(true)
@@ -327,10 +349,10 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
     }
 
     private fun initPrimaryAction(config: AndesTooltipConfiguration) {
-        with(primaryActionComponent){
-            if (config.primaryAction != null){
+        with(primaryActionComponent) {
+            if (config.primaryAction != null) {
                 text = config.primaryAction.label
-                hierarchy = config.primaryAction.hierarchy
+                config.primaryAction.hierarchy?.let { hierarchy = it }
                 config.primaryActionBackgroundColor?.let { primaryActionComponent.changeBackgroundColor(it) }
                 config.primaryActionTextColor?.let { primaryActionComponent.changeTextColor(it.colorInt(context)) }
                 setOnClickListener {
@@ -345,10 +367,10 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
     }
 
     private fun initSecondaryAction(config: AndesTooltipConfiguration) {
-        with(secondaryActionComponent){
-            if (config.secondaryAction != null){
+        with(secondaryActionComponent) {
+            if (config.secondaryAction != null) {
                 text = config.secondaryAction.label
-                hierarchy = config.secondaryAction.hierarchy
+                config.secondaryAction.hierarchy?.let { hierarchy = it }
                 config.secondaryActionBackgroundColor?.let { changeBackgroundColor(it) }
                 config.secondaryActionTextColor?.let { changeTextColor(it.colorInt(context)) }
                 setOnClickListener {
@@ -363,7 +385,7 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
     }
 
     private fun initLinkAction(config: AndesTooltipConfiguration) {
-        with(linkActionComponent){
+        with(linkActionComponent) {
             if (config.linkAction != null) {
                 text = config.linkAction.label
                 typeface = context.getFontOrDefault(R.font.andes_font_regular)
@@ -384,18 +406,6 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         bodyWindow.animationStyle = R.style.Andes_FadeWindowAnimation
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause(){
-        onDestroy()
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
-        this.destroyed = true
-        this.bodyWindow.dismiss()
-    }
-
-
     override lateinit var radiusLayout: RadiusLayout
     override lateinit var frameLayoutContainer: FrameLayout
 
@@ -412,10 +422,10 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
         get() = context.displaySize().y
 
     override val tooltipMeasuredWidth: Int
-        get() = container.root.measuredWidth
+        get() = container.measuredWidth
 
     override val tooltipMeasuredHeight: Int
-        get() = container.root.measuredHeight
+        get() = container.measuredHeight
 
     override val paddingWithArrow: Int
         get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_padding_with_arrow)
@@ -435,13 +445,13 @@ class AndesTooltip(val context: Context): LifecycleObserver, AndesTooltipLocatio
     override val elevation: Int
         get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_elevation)
 
-    override fun showDropDown(target: View, xOff: Int, yOff: Int, locationConfig: AndesTooltipLocationConfig){
+    override fun showDropDown(target: View, xOff: Int, yOff: Int, locationConfig: AndesTooltipLocationConfig) {
         this.isShowing = true
         var attrs = andesTooltipAttrs
 
         bodyWindow.showAsDropDown(target, xOff, yOff)
 
-        if (locationConfig.mLocation != andesTooltipLocationConfigRequired.mLocation){
+        if (locationConfig.mLocation != andesTooltipLocationConfigRequired.mLocation) {
             attrs = andesTooltipAttrs.copy(tooltipLocation = locationConfig.mLocation)
         }
 

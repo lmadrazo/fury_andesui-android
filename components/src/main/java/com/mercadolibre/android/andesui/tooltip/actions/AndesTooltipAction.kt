@@ -4,6 +4,13 @@ import android.view.View
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.tooltip.AndesTooltip
 
-data class AndesTooltipAction(val label: String, val hierarchy: AndesButtonHierarchy, val onActionClicked: (view: View, tooltip: AndesTooltip) -> Unit)
+open class AndesTooltipAction(
+        open val label: String,
+        open val hierarchy: AndesButtonHierarchy?,
+        open val onActionClicked: (view: View, tooltip: AndesTooltip) -> Unit
+)
 
-data class AndesTooltipLinkAction(val label: String, val onActionClicked: (view: View, tooltip: AndesTooltip) -> Unit)
+class AndesTooltipLinkAction(
+        override val label: String,
+        override val onActionClicked: (view: View, tooltip: AndesTooltip) -> Unit
+): AndesTooltipAction(hierarchy = null, label = label, onActionClicked = onActionClicked)
