@@ -597,9 +597,9 @@ class AndesTextfield : ConstraintLayout {
         colorIcon: Int? = R.color.andes_gray_800,
         hideWhenType: Boolean = false
     ) {
-        rightContent = AndesTextfieldRightContent.ICON
         val rightIcon = rightComponent.getChildAt(0) as SimpleDraweeView
         this.hideWhenType = hideWhenType
+        rightContent = AndesTextfieldRightContent.ICON
 
         var color: AndesColor? = null
         if (colorIcon != null) {
@@ -693,7 +693,7 @@ class AndesTextfield : ConstraintLayout {
     private fun isHideIconWhenType(textSize: Int) {
         if (hideWhenType && textSize >= NUMBER_CHAR_HIDE) {
             (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.GONE
-        } else if (textSize <= NUMBER_CHAR_HIDE && hideWhenType) {
+        } else if (hideWhenType && textSize <= NUMBER_CHAR_HIDE) {
             (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.VISIBLE
         }
     }

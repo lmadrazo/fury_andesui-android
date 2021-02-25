@@ -59,6 +59,7 @@ class AndesTextfieldTest {
     @Test
     fun `set right icon`() {
         textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = false)
+        textfield.text = "1149778767"
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }
 
@@ -136,7 +137,7 @@ class AndesTextfieldTest {
     }
 
     @Test
-    fun `textfield with watcher`() { 
+    fun `textfield with watcher`() {
         val watcher = object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 // Empty method
