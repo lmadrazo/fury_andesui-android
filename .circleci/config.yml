@@ -20,6 +20,18 @@ default-workflow: &defaultWorkflow
         - /release\/.*$/
         - /v\/.*$/
 
+jobs:
+  run-mds:
+    docker:
+      - image: circleci/android@sha256:42812778b27d4b30a2e1d0e0c61de373f0d2bed7a53d5df03199f2115259cee6
+    steps:
+      # Checkout to our repo and add the ssh keys for doing git stuff
+      - checkout
+      - add_ssh_keys
+      - run:
+          name: Run MDS demoapp
+          command: ./scripts/run_mds.sh
+
 workflows:
   ci:
     jobs:
@@ -33,6 +45,10 @@ workflows:
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
+      - run-mds:
+          <<: *defaultWorkflow
+          requires:
+            - meli/check
   build:
     when:
       equal: [build, << pipeline.parameters.type >>]
