@@ -54,7 +54,6 @@ class AndesTextfield : ConstraintLayout {
         }
 
     private var hideWhenType: Boolean = false
-    private var rightIcon: SimpleDraweeView? = null
 
     /**
      * Getter and setter for [helper].
@@ -599,7 +598,7 @@ class AndesTextfield : ConstraintLayout {
         hideWhenType: Boolean = false
     ) {
         rightContent = AndesTextfieldRightContent.ICON
-        rightIcon = rightComponent.getChildAt(0) as SimpleDraweeView
+        val rightIcon = rightComponent.getChildAt(0) as SimpleDraweeView
         this.hideWhenType = hideWhenType
 
         var color: AndesColor? = null
@@ -607,14 +606,14 @@ class AndesTextfield : ConstraintLayout {
             color = colorIcon.toAndesColor()
         }
 
-        rightIcon?.setImageDrawable(buildColoredAndesBitmapDrawable(
+        rightIcon.setImageDrawable(buildColoredAndesBitmapDrawable(
             IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
             context,
             color = color)
         )
 
         if (listener != null) {
-            rightIcon?.setOnClickListener(listener)
+            rightIcon.setOnClickListener(listener)
         }
     }
 
@@ -693,9 +692,9 @@ class AndesTextfield : ConstraintLayout {
      */
     private fun isHideIconWhenType(textSize: Int) {
         if (hideWhenType && textSize >= NUMBER_CHAR_HIDE) {
-            rightIcon?.visibility = View.GONE
-        } else if (rightIcon != null && textSize <= NUMBER_CHAR_HIDE && hideWhenType) {
-            rightIcon?.visibility = View.VISIBLE
+            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.GONE
+        } else if (textSize <= NUMBER_CHAR_HIDE && hideWhenType) {
+            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.VISIBLE
         }
     }
 
