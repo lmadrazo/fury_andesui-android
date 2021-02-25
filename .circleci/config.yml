@@ -46,13 +46,10 @@ workflows:
           pipeline_number: << pipeline.number >>
       - meli/check:
           <<: *defaultWorkflow
+          machine_size: medium+
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
-      - run-mds:
-          <<: *defaultWorkflow
-          requires:
-            - meli/check
   build:
     when:
       equal: [build, << pipeline.parameters.type >>]
@@ -61,3 +58,7 @@ workflows:
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
+      - run-mds:
+          <<: *defaultWorkflow
+          requires:
+            - meli/build-public
