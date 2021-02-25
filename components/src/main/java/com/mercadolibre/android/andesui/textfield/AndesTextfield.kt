@@ -597,9 +597,9 @@ class AndesTextfield : ConstraintLayout {
         colorIcon: Int? = R.color.andes_gray_800,
         hideWhenType: Boolean = false
     ) {
+        rightContent = AndesTextfieldRightContent.ICON
         val rightIcon = rightComponent.getChildAt(0) as SimpleDraweeView
         this.hideWhenType = hideWhenType
-        rightContent = AndesTextfieldRightContent.ICON
 
         var color: AndesColor? = null
         if (colorIcon != null) {
