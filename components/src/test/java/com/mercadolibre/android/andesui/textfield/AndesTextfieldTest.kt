@@ -102,17 +102,6 @@ class AndesTextfieldTest {
     }
 
     @Test
-    fun `textfield with textContextMenuItemListener`() {
-        textfield.text = "1149778767"
-        textfield.setAndesTextContextMenuItemListener(object : AndesEditText.OnTextContextMenuItemListener {
-            override fun onPaste(): Boolean {
-                return true
-            }
-        })
-        assertNotNull(textfield.text)
-    }
-
-    @Test
     fun `textfield without textComponentFocusChangedListener`() {
         assertNull(textfield.textComponentFocusChangedListener)
     }
