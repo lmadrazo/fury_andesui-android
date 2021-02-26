@@ -61,6 +61,5 @@ workflows:
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
       - run-mds:
-          <<: *defaultWorkflow
           requires:
             - meli/build-public
