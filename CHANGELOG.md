@@ -1,4 +1,4 @@
-# v3.9.0
+# v3.9.1
 ## 🚀 Feature
 - FMA repository migration | Authors [eportasML](https://github.com/eportasML)
 - FMA all checks turned on | Authors [eportasML](https://github.com/eportasML)
