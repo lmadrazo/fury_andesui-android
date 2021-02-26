@@ -568,6 +568,17 @@ class AndesTextfield : ConstraintLayout {
     }
 
     /**
+     * verify if is remove icon when type in field
+     */
+    private fun isHideIconWhenType(textSize: Int) {
+        if (hideWhenType && textSize >= NUMBER_CHAR_HIDE) {
+            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.GONE
+        } else if (hideWhenType && textSize <= NUMBER_CHAR_HIDE) {
+            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.VISIBLE
+        }
+    }
+
+    /**
      * Set the right content to action and provides an interface to set button text and callback.
      */
     fun setAction(text: String, onClickListener: OnClickListener) {
@@ -743,17 +754,6 @@ class AndesTextfield : ConstraintLayout {
     internal fun setAndesTextContextMenuItemListener(
         contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener) {
         textComponent.setOnTextContextMenuItemListener(contextMenuItemListener)
-    }
-
-    /**
-     * verify if is remove icon when type in field
-     */
-    internal fun isHideIconWhenType(textSize: Int) {
-        if (hideWhenType && textSize >= NUMBER_CHAR_HIDE) {
-            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.GONE
-        } else if (hideWhenType && textSize <= NUMBER_CHAR_HIDE) {
-            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.VISIBLE
-        }
     }
 
     private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
