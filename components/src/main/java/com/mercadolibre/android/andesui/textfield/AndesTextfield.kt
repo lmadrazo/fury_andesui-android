@@ -550,7 +550,7 @@ class AndesTextfield : ConstraintLayout {
                     } else {
                         rightComponent.visibility = View.GONE
                     }
-                    isHideIconWhenType(text.toString()?.length)
+                    isHideIconWhenType(text.toString().length)
                 }
 
                 override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {
