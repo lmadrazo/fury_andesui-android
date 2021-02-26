@@ -1,4 +1,4 @@
-# v3.9.1
+# v3.9.2
 ## 🚀 Feature
 - Add possibility to hide icon when typing. | Author: [@fdiassilva](https://github.com/fdiassilva)
 
