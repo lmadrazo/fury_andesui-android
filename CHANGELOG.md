@@ -6,6 +6,7 @@
 ## 🚀 Feature
 - FMA repository migration | Authors [eportasML](https://github.com/eportasML)
 - FMA all checks turned on | Authors [eportasML](https://github.com/eportasML)
+- Added MDS ci job | Authors [eportasML](https://github.com/eportasML)
 
 # v3.8.0
 ## 🚀 Feature
