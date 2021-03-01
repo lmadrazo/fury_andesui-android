@@ -148,7 +148,7 @@ class AndesTextfieldTest {
     }
 
     @Test
-    fun `textfield with watcher`() { 
+    fun `textfield with watcher`() {
         val watcher = object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 // Empty method
