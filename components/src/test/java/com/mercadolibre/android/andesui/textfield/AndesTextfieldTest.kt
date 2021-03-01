@@ -92,8 +92,9 @@ class AndesTextfieldTest {
     fun `set right icon with color listener`() {
         textfield.setRightIcon(
             "andes_navegacion_categorias_24",
-            colorIcon = R.color.andes_accent_color_100,
-            listener = View.OnClickListener {}
+            colorIcon = null,
+            listener = View.OnClickListener {},
+            hideWhenType = true
         )
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }

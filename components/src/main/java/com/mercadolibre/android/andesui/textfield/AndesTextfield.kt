@@ -747,12 +747,14 @@ class AndesTextfield : ConstraintLayout {
     internal fun setAndesFocusChangeListener(onFocusChangeListener: OnFocusChangeListener) {
         textComponent.onFocusChangeListener = onFocusChangeListener
     }
+
     /**
      * Set contextMenuItemListener for textComponent
      * Only visible for internal development
      */
     internal fun setAndesTextContextMenuItemListener(
-        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener) {
+        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener
+    ) {
         textComponent.setOnTextContextMenuItemListener(contextMenuItemListener)
     }
 
