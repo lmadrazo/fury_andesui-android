@@ -437,7 +437,7 @@ class AndesTextfield : ConstraintLayout {
 
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
                 val textWithoutMask = removeMaskCharsText(charSequence.toString())
-                isHideIconWhenType(textWithoutMask.length)
+                verifyHideIconWhenType(textWithoutMask.length)
 
                 counterComponent.text = resources.getString(
                     R.string.andes_textfield_counter_text,
@@ -550,7 +550,7 @@ class AndesTextfield : ConstraintLayout {
                     } else {
                         rightComponent.visibility = View.GONE
                     }
-                    isHideIconWhenType(text.toString().length)
+                    verifyHideIconWhenType(text.toString().length)
                 }
 
                 override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {
@@ -570,7 +570,7 @@ class AndesTextfield : ConstraintLayout {
     /**
      * verify if is remove icon when type in field
      */
-    private fun isHideIconWhenType(textLength: Int) {
+    private fun verifyHideIconWhenType(textLength: Int) {
         if (hideWhenType && textLength > NUMBER_CHAR_HIDE) {
             (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.GONE
         } else if (hideWhenType && textLength <= NUMBER_CHAR_HIDE) {
