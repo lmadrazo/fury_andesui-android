@@ -1,6 +1,6 @@
 package com.mercadolibre.android.andesui.tooltip.style
 
-import java.util.*
+import java.util.Locale
 
 enum class AndesTooltipStyle {
     LIGHT,

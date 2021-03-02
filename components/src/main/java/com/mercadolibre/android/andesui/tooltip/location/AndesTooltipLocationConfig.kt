@@ -10,12 +10,20 @@ private const val ARROW_POINTING_UP = 180F
 private const val ARROW_POINTING_RIGHT = -90F
 private const val ARROW_POINTING_LEFT = 90F
 
-private val verticalPriorityList = listOf(AndesTooltipLocation.TOP, AndesTooltipLocation.BOTTOM, AndesTooltipLocation.LEFT, AndesTooltipLocation.RIGHT)
-private val horizontalPriorityList = listOf(AndesTooltipLocation.LEFT, AndesTooltipLocation.RIGHT, AndesTooltipLocation.TOP, AndesTooltipLocation.BOTTOM)
+private val verticalPriorityList =
+        listOf(
+                AndesTooltipLocation.TOP, AndesTooltipLocation.BOTTOM,
+                AndesTooltipLocation.LEFT, AndesTooltipLocation.RIGHT
+        )
+private val horizontalPriorityList =
+        listOf(
+                AndesTooltipLocation.LEFT, AndesTooltipLocation.RIGHT,
+                AndesTooltipLocation.TOP, AndesTooltipLocation.BOTTOM
+        )
 
 sealed class AndesTooltipLocationConfig(
-        val mLocation: AndesTooltipLocation,
-        val otherLocationsAttempts: List<AndesTooltipLocation>
+    val mLocation: AndesTooltipLocation,
+    val otherLocationsAttempts: List<AndesTooltipLocation>
 ) {
     protected lateinit var arrowPositionInSide: ArrowPositionId
     abstract fun buildTooltip(target: View)
@@ -202,7 +210,6 @@ class LeftAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocat
     }
 
     override fun getArrowRotation() = ARROW_POINTING_RIGHT
-
 }
 
 class RightAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(

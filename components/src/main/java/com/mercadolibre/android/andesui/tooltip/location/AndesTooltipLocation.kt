@@ -6,6 +6,3 @@ enum class AndesTooltipLocation {
   LEFT,
   RIGHT
 }
-
-
-

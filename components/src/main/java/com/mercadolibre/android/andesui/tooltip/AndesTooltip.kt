@@ -38,6 +38,7 @@ import com.mercadolibre.android.andesui.tooltip.radius.RadiusLayout
 import com.mercadolibre.android.andesui.tooltip.style.AndesTooltipStyle
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
+@Suppress("TooManyFunctions")
 class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
 
     var title: String?
@@ -75,7 +76,6 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 andesTooltipAttrs = andesTooltipAttrs.copy(mainAction = it, secondaryAction = null, linkAction = null)
                 setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
             }
-
         }
     var secondaryAction: AndesTooltipAction?
         get() = andesTooltipAttrs.secondaryAction
@@ -86,7 +86,6 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                     setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
                 }
             }
-
         }
     var linkAction: AndesTooltipLinkAction?
         get() = andesTooltipAttrs.linkAction
@@ -121,6 +120,7 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
     private val bodyWindow: PopupWindow
     private var isShowing = false
 
+    @SuppressLint("InflateParams")
     private var container: ViewGroup = LayoutInflater.from(context).inflate(R.layout.andes_layout_tooltip, null) as ViewGroup
 
     init {
@@ -132,16 +132,17 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         adjustFitsSystemWindows(container)
     }
 
+    @Suppress("LongParameterList")
     @JvmOverloads
-    constructor(context: Context,
-                style: AndesTooltipStyle = STYLE_DEFAULT,
-                title: String? = TITLE_DEFAULT,
-                body: String,
-                isDismissible: Boolean = IS_DISMISSIBLE_DEFAULT,
-                tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT,
-                mainAction: AndesTooltipAction,
-                secondaryAction: AndesTooltipAction? = SECONDARY_ACTION_DEFAULT
-
+    constructor(
+        context: Context,
+        style: AndesTooltipStyle = STYLE_DEFAULT,
+        title: String? = TITLE_DEFAULT,
+        body: String,
+        isDismissible: Boolean = IS_DISMISSIBLE_DEFAULT,
+        tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT,
+        mainAction: AndesTooltipAction,
+        secondaryAction: AndesTooltipAction? = SECONDARY_ACTION_DEFAULT
     ) : this(context) {
         andesTooltipAttrs = AndesTooltipAttrs(
                 style = style,
@@ -155,14 +156,16 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         initComponents(andesTooltipAttrs)
     }
 
+    @Suppress("LongParameterList")
     @JvmOverloads
-    constructor(context: Context,
-                style: AndesTooltipStyle = STYLE_DEFAULT,
-                title: String? = TITLE_DEFAULT,
-                body: String,
-                isDismissible: Boolean = IS_DISMISSIBLE_DEFAULT,
-                tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT,
-                linkAction: AndesTooltipLinkAction? = LINK_ACTION_DEFAULT
+    constructor(
+        context: Context,
+        style: AndesTooltipStyle = STYLE_DEFAULT,
+        title: String? = TITLE_DEFAULT,
+        body: String,
+        isDismissible: Boolean = IS_DISMISSIBLE_DEFAULT,
+        tooltipLocation: AndesTooltipLocation = TIP_ORIENTATION_DEFAULT,
+        linkAction: AndesTooltipLinkAction? = LINK_ACTION_DEFAULT
 
     ) : this(context) {
         andesTooltipAttrs = AndesTooltipAttrs(
@@ -194,7 +197,6 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 if (!andesTooltipLocationConfigRequired.canBuildTooltipInRequiredLocation(target)) {
                     andesTooltipLocationConfigRequired.iterateOtherLocations(target)
                 }
-
             }
         }
     }
@@ -206,13 +208,13 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         }
     }
 
+    @Suppress("unused")
     fun setOnAndesTooltipDismissListener(callback: (() -> Unit)? = null) {
         this.bodyWindow.setOnDismissListener {
             this@AndesTooltip.dismiss()
             callback?.invoke()
         }
     }
-
 
     private fun initComponents(attrs: AndesTooltipAttrs) {
         radiusLayout = container.findViewById(R.id.andes_tooltip_radio_layout)
@@ -323,7 +325,6 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
             } else {
                 visible(false)
             }
-
         }
     }
 
