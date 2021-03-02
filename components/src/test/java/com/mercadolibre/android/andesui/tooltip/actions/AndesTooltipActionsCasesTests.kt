@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.tooltip
+package com.mercadolibre.android.andesui.tooltip.actions
 
 import android.os.Build
 import com.facebook.common.logging.FLog
@@ -7,8 +7,7 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipAction
-import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipLinkAction
+import com.mercadolibre.android.andesui.tooltip.AndesTooltip
 import com.mercadolibre.android.andesui.tooltip.location.AndesTooltipLocation
 import com.mercadolibre.android.andesui.tooltip.style.AndesTooltipStyle
 import org.junit.Assert
@@ -21,6 +20,7 @@ import org.robolectric.annotation.Config
 
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Suppress("LongParameterList")
 class AndesTooltipActionsCasesTests(
     private val style: AndesTooltipStyle,
     private val title: String?,
@@ -80,15 +80,15 @@ class AndesTooltipActionsCasesTests(
     private fun buildTooltip(): AndesTooltip {
         return when {
             mainAction != null -> AndesTooltip(
-                        context = context,
-                        style = style,
-                        title = title,
-                        body = body,
-                        isDismissible = isDismissible,
-                        tooltipLocation = tooltipLocation,
-                        mainAction = mainAction,
-                        secondaryAction = secondaryAction
-                )
+                    context = context,
+                    style = style,
+                    title = title,
+                    body = body,
+                    isDismissible = isDismissible,
+                    tooltipLocation = tooltipLocation,
+                    mainAction = mainAction,
+                    secondaryAction = secondaryAction
+            )
 
             linkAction != null -> AndesTooltip(
                     context = context,
