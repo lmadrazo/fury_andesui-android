@@ -64,30 +64,9 @@ class AndesTextfieldTest {
     }
 
     @Test
-    fun `set right icon hide false short text`() {
-        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = false)
-        textfield.text = "114"
-        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
-    }
-
-    @Test
     fun `set right icon hide true`() {
         textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = true)
-        textfield.text = "1149778767"
-        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
-    }
-
-    @Test
-    fun `set right icon show true`() {
-        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = true)
-        textfield.text = "1149"
-        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
-    }
-
-    @Test
-    fun `set right icon show true short`() {
-        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = true)
-        textfield.text = "114"
+                textfield.text = "1149778767"
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }
 
@@ -98,7 +77,7 @@ class AndesTextfieldTest {
             colorIcon = R.color.andes_accent_color_100,
             hideWhenType = true
         )
-        textfield.text = "114"
+        textfield.text = "11"
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }
 
@@ -110,6 +89,7 @@ class AndesTextfieldTest {
             listener = View.OnClickListener {},
             hideWhenType = true
         )
+        textfield.text = "1134"
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }
 
