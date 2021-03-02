@@ -15,23 +15,21 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
 import org.robolectric.ParameterizedRobolectricTestRunner
-import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesTooltipActionsCasesTests(
-        private val style: AndesTooltipStyle,
-        private val title: String?,
-        private val body: String,
-        private val isDismissible: Boolean,
-        private val tooltipLocation: AndesTooltipLocation,
-        private val mainAction: AndesTooltipAction?,
-        private val secondaryAction: AndesTooltipAction?,
-        private val linkAction: AndesTooltipLinkAction?
+    private val style: AndesTooltipStyle,
+    private val title: String?,
+    private val body: String,
+    private val isDismissible: Boolean,
+    private val tooltipLocation: AndesTooltipLocation,
+    private val mainAction: AndesTooltipAction?,
+    private val secondaryAction: AndesTooltipAction?,
+    private val linkAction: AndesTooltipLinkAction?
 ) {
 
     private var context = RuntimeEnvironment.application
@@ -79,7 +77,7 @@ class AndesTooltipActionsCasesTests(
         Assert.assertEquals(linkAction, tooltip.linkAction)
     }
 
-    private fun buildTooltip(): AndesTooltip{
+    private fun buildTooltip(): AndesTooltip {
         return when {
             mainAction != null -> AndesTooltip(
                         context = context,

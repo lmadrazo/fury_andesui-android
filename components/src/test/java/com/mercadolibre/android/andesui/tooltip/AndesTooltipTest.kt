@@ -17,21 +17,28 @@ import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipLinkAction
 import com.mercadolibre.android.andesui.tooltip.location.AndesTooltipLocation
 import com.mercadolibre.android.andesui.tooltip.location.BottomAndesTooltipLocationConfig
 import com.mercadolibre.android.andesui.tooltip.style.AndesTooltipStyle
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.mock
+import junit.framework.Assert.assertNotNull
+import junit.framework.Assert.assertNull
+import junit.framework.Assert.assertEquals
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
-import org.mockito.Mockito.`when`
+import org.mockito.Mockito.spy
 import org.mockito.Mockito.validateMockitoUsage
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.times
+import org.mockito.Mockito.never
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import org.robolectric.util.ReflectionHelpers
-
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
@@ -182,7 +189,6 @@ class AndesTooltipTest {
                 "secondaryActionComponent"
         ) as AndesButton
 
-
         secActionButton.performClick()
         verify(secActionData.onActionClicked).invoke(secActionButton, tooltip)
     }
@@ -281,7 +287,6 @@ class AndesTooltipTest {
                 hierarchy = AndesButtonHierarchy.QUIET,
                 onActionClicked = { _, _ -> }
         )
-
 
         assertNotEquals(tooltip.secondaryAction, newValue)
 
