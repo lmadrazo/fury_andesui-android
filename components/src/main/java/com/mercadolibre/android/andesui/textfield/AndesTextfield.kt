@@ -606,16 +606,11 @@ class AndesTextfield : ConstraintLayout {
     /**
      * Set the right content to icon and provides an interface to give the icon path.
      */
-    fun setRightIcon(
-        iconPath: String,
-        listener: OnClickListener? = null,
-        colorIcon: Int? = R.color.andes_gray_800,
-        hideWhenType: Boolean = false
-    ) {
+    fun setRightIcon(iconPath: String, listener: OnClickListener? = null, colorIcon: Int? = R.color.andes_gray_800,
+        hideWhenType: Boolean = false) {
         rightContent = AndesTextfieldRightContent.ICON
-        val rightIcon = rightComponent.getChildAt(0) as SimpleDraweeView
+        val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
         this.hideWhenType = hideWhenType
-
         var color: AndesColor? = null
         if (colorIcon != null) {
             color = colorIcon.toAndesColor()
