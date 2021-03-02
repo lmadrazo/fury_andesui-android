@@ -576,7 +576,7 @@ class AndesTextfield : ConstraintLayout {
             val icon = (rightComponent.getChildAt(0) as SimpleDraweeView)
             if (textLength > NUMBER_CHAR_HIDE) {
                 icon.visibility = View.GONE
-            } else if (textLength <= NUMBER_CHAR_HIDE) {
+            } else {
                 icon.visibility = View.VISIBLE
             }
         }
