@@ -550,7 +550,7 @@ class AndesTextfield : ConstraintLayout {
                     } else {
                         rightComponent.visibility = View.GONE
                     }
-                    verifyHideIconWhenType(text.toString().length) 
+                    verifyHideIconWhenType(text.toString().length)
                 }
 
                 override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {
@@ -571,10 +571,14 @@ class AndesTextfield : ConstraintLayout {
      * verify if is remove icon when type in field
      */
     private fun verifyHideIconWhenType(textLength: Int) {
-        if (hideWhenType && textLength > NUMBER_CHAR_HIDE) {
-            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.GONE
-        } else if (hideWhenType && textLength <= NUMBER_CHAR_HIDE) {
-            (rightComponent.getChildAt(0) as SimpleDraweeView).visibility = View.VISIBLE
+
+        if (hideWhenType) {
+            val icon = (rightComponent.getChildAt(0) as SimpleDraweeView)
+            if (textLength > NUMBER_CHAR_HIDE) {
+                icon.visibility = View.GONE
+            } else if (textLength <= NUMBER_CHAR_HIDE) {
+                icon.visibility = View.VISIBLE
+            }
         }
     }
 
