@@ -16,6 +16,7 @@ import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.annotation.MainThread
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
@@ -217,7 +218,8 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         initComponents(andesTooltipAttrs)
     }
 
-    private fun canShowTooltip(target: View) =
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun canShowTooltip(target: View) =
             !isShowing && !context.isFinishing() && ViewCompat.isAttachedToWindow(target)
 
     @MainThread
