@@ -571,7 +571,6 @@ class AndesTextfield : ConstraintLayout {
      * verify if is remove icon when type in field
      */
     private fun verifyHideIconWhenType(textLength: Int) {
-
         if (hideWhenType) {
             val icon = (rightComponent.getChildAt(0) as SimpleDraweeView)
             if (textLength > NUMBER_CHAR_HIDE) {
