@@ -129,6 +129,18 @@
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="@+id/textView4" />
 
+        <CheckBox
+            android:id="@+id/checkboxHideIcon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_vertical_text_field"
+            android:text="@string/andesui_demoapp_textfield_hide_icon"
+            android:textColor="@color/andes_gray_800"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/label_text"
             android:layout_width="0dp"
@@ -138,8 +150,8 @@
             app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/suffix_spinner"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintStart_toStartOf="@+id/checkboxHideIcon"
+            app:layout_constraintTop_toBottomOf="@+id/checkboxHideIcon" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/placeholder_text"
