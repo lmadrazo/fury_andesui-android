@@ -16,7 +16,6 @@ import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.annotation.MainThread
-import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
@@ -42,6 +41,9 @@ import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 @Suppress("TooManyFunctions")
 class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
 
+    /**
+     * Getter and setter for [title].
+     */
     var title: String?
         get() = andesTooltipAttrs.title
         set(value) {
@@ -49,6 +51,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
             setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
+    /**
+     * Getter and setter for [body].
+     */
     var body: String
         get() = andesTooltipAttrs.body
         set(value) {
@@ -56,6 +61,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
             setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
+    /**
+     * Getter and setter for [isDismissible].
+     */
     var isDismissible: Boolean
         get() = andesTooltipAttrs.isDismissible
         set(value) {
@@ -63,6 +71,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
             setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
+    /**
+     * Getter and setter for [style].
+     */
     var style: AndesTooltipStyle
         get() = andesTooltipAttrs.style
         set(value) {
@@ -70,6 +81,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
             setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
+    /**
+     * Getter and setter for [mainAction].
+     */
     var mainAction: AndesTooltipAction?
         get() = andesTooltipAttrs.mainAction
         set(value) {
@@ -78,6 +92,10 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
             }
         }
+
+    /**
+     * Getter and setter for [secondaryAction].
+     */
     var secondaryAction: AndesTooltipAction?
         get() = andesTooltipAttrs.secondaryAction
         set(value) {
@@ -88,6 +106,10 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 }
             }
         }
+
+    /**
+     * Getter and setter for [linkAction].
+     */
     var linkAction: AndesTooltipLinkAction?
         get() = andesTooltipAttrs.linkAction
         set(value) {
@@ -97,6 +119,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
             }
         }
 
+    /**
+     * Getter and setter for [location].
+     */
     var location: AndesTooltipLocation?
         get() = andesTooltipAttrs.tooltipLocation
         set(value) {
@@ -171,6 +196,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         adjustFitsSystemWindows(container)
     }
 
+    /**
+     * Public constructor for Andes tooltip with required body and main AndesButton.
+     */
     @Suppress("LongParameterList")
     @JvmOverloads
     constructor(
@@ -195,6 +223,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         initComponents(andesTooltipAttrs)
     }
 
+    /**
+     * Public constructor for Andes tooltip with required body.
+     */
     @Suppress("LongParameterList")
     @JvmOverloads
     constructor(
@@ -218,10 +249,14 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         initComponents(andesTooltipAttrs)
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun canShowTooltip(target: View) =
+    internal fun canShowTooltip(target: View) =
             !isShowing && !context.isFinishing() && ViewCompat.isAttachedToWindow(target)
 
+    /**
+     * After AndesTooltip is built, this show(target: View) method will present the tooltip on the screen.
+     *
+     * @param target view used as anchor for AndesTooltip. It is the view that is going to be referenced
+     */
     @MainThread
     fun show(target: View) {
         if (canShowTooltip(target)) {
@@ -241,16 +276,22 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         }
     }
 
+    /**
+     * After AndesTooltip is shown, this dismiss() method will dismiss the tooltip on the screen.
+     */
     fun dismiss() {
-        if (this.isShowing) {
-            this.isShowing = false
-            this.bodyWindow.dismiss()
+        if (isShowing) {
+            isShowing = false
+            bodyWindow.dismiss()
         }
     }
 
+    /**
+     * OnDismissListener for tooltip
+     * @param callback void method with no params which will be invoked when the tooltip is dismissed.*/
     @Suppress("unused")
     fun setOnAndesTooltipDismissListener(callback: (() -> Unit)? = null) {
-        this.bodyWindow.setOnDismissListener {
+        bodyWindow.setOnDismissListener {
             this@AndesTooltip.dismiss()
             callback?.invoke()
         }
