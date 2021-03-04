@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -46,6 +47,7 @@ object InflateTextfieldHelper {
         val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
         val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
         val mask = layoutTextfield.findViewById<AndesTextfield>(R.id.mask)
+        val checkBoxHideIcon = layoutTextfield.findViewById<CheckBox>(R.id.checkboxHideIcon)
 
         counter.setText(COUNTER_DEFAULT_TEXT)
         textfield.counter = COUNTER_DEFAULT
@@ -126,6 +128,10 @@ object InflateTextfieldHelper {
                 it.name == inputTypeSpinner.selectedItem.toString()
             }.value
             textfield.inputType = selectedInputType
+
+            if (checkBoxHideIcon.isChecked) {
+                textfield.setRightIcon("andes_ui_helper_16", hideWhenType = true)
+            }
         }
 
         clearButton.setOnClickListener {
@@ -151,6 +157,8 @@ object InflateTextfieldHelper {
             textfield.inputType = InputType.TYPE_CLASS_DATETIME
             textfield.leftContent = null
             textfield.rightContent = null
+            checkBoxHideIcon.isChecked = false
+
             textfield.clearMask()
         }
 

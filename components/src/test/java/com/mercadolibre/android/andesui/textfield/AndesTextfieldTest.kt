@@ -10,6 +10,7 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import junit.framework.Assert.assertEquals
@@ -57,7 +58,38 @@ class AndesTextfieldTest {
 
     @Test
     fun `set right icon`() {
-        textfield.setRightIcon("andes_navegacion_categorias_24")
+        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = false)
+        textfield.text = "1149778767"
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon hide true`() {
+        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = true)
+                textfield.text = "1149778767"
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon hide true but show`() {
+        textfield.setRightIcon(
+            "andes_navegacion_categorias_24",
+            colorIcon = R.color.andes_accent_color_100,
+            hideWhenType = true
+        )
+        textfield.text = "11"
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon with color listener`() {
+        textfield.setRightIcon(
+            "andes_navegacion_categorias_24",
+            colorIcon = null,
+            listener = View.OnClickListener {},
+            hideWhenType = true
+        )
+        textfield.text = "1134"
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
     }
 
