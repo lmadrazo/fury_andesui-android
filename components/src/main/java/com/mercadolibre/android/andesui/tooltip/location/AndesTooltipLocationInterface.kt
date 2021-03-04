@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.tooltip.radius.RadiusLayout
 
-interface AndesTooltipLocationInterface {
+internal interface AndesTooltipLocationInterface {
 
     val bodyWindowHeight: Int
     val bodyWindowWidth: Int

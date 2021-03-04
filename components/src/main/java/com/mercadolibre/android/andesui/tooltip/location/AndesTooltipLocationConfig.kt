@@ -34,7 +34,7 @@ sealed class AndesTooltipLocationConfig(
     abstract fun getArrowRotation(): Float
 }
 
-class TopAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
+internal class TopAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
         mLocation = AndesTooltipLocation.TOP,
         otherLocationsAttempts = verticalPriorityList.filterNot { it == AndesTooltipLocation.TOP }
 ) {
@@ -94,7 +94,7 @@ class TopAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocati
     override fun getArrowRotation() = ARROW_POINTING_DOWN
 }
 
-class BottomAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
+internal class BottomAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
         mLocation = AndesTooltipLocation.BOTTOM,
         otherLocationsAttempts = verticalPriorityList.filterNot { it == AndesTooltipLocation.BOTTOM }
 ) {
@@ -153,7 +153,7 @@ class BottomAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLoc
     override fun getArrowRotation() = ARROW_POINTING_UP
 }
 
-class LeftAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
+internal class LeftAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
         mLocation = AndesTooltipLocation.LEFT,
         otherLocationsAttempts = horizontalPriorityList.filterNot { it == AndesTooltipLocation.LEFT }
 ) {
@@ -212,7 +212,7 @@ class LeftAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocat
     override fun getArrowRotation() = ARROW_POINTING_RIGHT
 }
 
-class RightAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
+internal class RightAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLocationInterface) : AndesTooltipLocationConfig(
         mLocation = AndesTooltipLocation.RIGHT,
         otherLocationsAttempts = horizontalPriorityList.filterNot { it == AndesTooltipLocation.RIGHT }
 ) {
@@ -272,7 +272,7 @@ class RightAndesTooltipLocationConfig(private val andesTooltip: AndesTooltipLoca
     override fun getArrowRotation() = ARROW_POINTING_LEFT
 }
 
-fun getAndesTooltipLocationConfig(tooltip: AndesTooltipLocationInterface, location: AndesTooltipLocation): AndesTooltipLocationConfig {
+internal fun getAndesTooltipLocationConfig(tooltip: AndesTooltipLocationInterface, location: AndesTooltipLocation): AndesTooltipLocationConfig {
     return when (location) {
         AndesTooltipLocation.TOP -> TopAndesTooltipLocationConfig(tooltip)
         AndesTooltipLocation.BOTTOM -> BottomAndesTooltipLocationConfig(tooltip)

@@ -1,8 +1,8 @@
 package com.mercadolibre.android.andesui.tooltip.location
 
 sealed class AndesTooltipArrowLocation {
-    abstract fun getArrowPositionX(tooltip: AndesTooltipLocationInterface): Float
-    abstract fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float
+    internal abstract fun getArrowPositionX(tooltip: AndesTooltipLocationInterface): Float
+    internal abstract fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float
 }
 
 object AndesTooltipArrowBottomLeft : AndesTooltipArrowLocation() {

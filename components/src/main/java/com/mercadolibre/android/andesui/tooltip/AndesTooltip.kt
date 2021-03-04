@@ -107,6 +107,8 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
 
     private lateinit var andesTooltipAttrs: AndesTooltipAttrs
     private lateinit var andesTooltipLocationConfigRequired: AndesTooltipLocationConfig
+    override lateinit var radiusLayout: RadiusLayout
+    override lateinit var frameLayoutContainer: FrameLayout
 
     private lateinit var constraintContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
@@ -119,6 +121,42 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
 
     private val bodyWindow: PopupWindow
     private var isShowing = false
+
+    override val bodyWindowHeight: Int
+        get() = bodyWindow.height
+
+    override val bodyWindowWidth: Int
+        get() = bodyWindow.width
+
+    override val displaySizeX: Int
+        get() = context.displaySize().x
+
+    override val displaySizeY: Int
+        get() = context.displaySize().y
+
+    override val tooltipMeasuredWidth: Int
+        get() = container.measuredWidth
+
+    override val tooltipMeasuredHeight: Int
+        get() = container.measuredHeight
+
+    override val paddingWithArrow: Int
+        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_padding_with_arrow)
+
+    override val arrowImageInnerPadding: Int
+        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_inner_margin)
+
+    override val arrowWidth: Int
+        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_width)
+
+    override val arrowHeight: Int
+        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_height)
+
+    override val arrowBorder: Int
+        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_border)
+
+    override val elevation: Int
+        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_elevation)
 
     @SuppressLint("InflateParams")
     private var container: ViewGroup = LayoutInflater.from(context).inflate(R.layout.andes_layout_tooltip, null) as ViewGroup
@@ -407,47 +445,8 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         bodyWindow.animationStyle = R.style.Andes_FadeWindowAnimation
     }
 
-    override lateinit var radiusLayout: RadiusLayout
-    override lateinit var frameLayoutContainer: FrameLayout
-
-    override val bodyWindowHeight: Int
-        get() = bodyWindow.height
-
-    override val bodyWindowWidth: Int
-        get() = bodyWindow.width
-
-    override val displaySizeX: Int
-        get() = context.displaySize().x
-
-    override val displaySizeY: Int
-        get() = context.displaySize().y
-
-    override val tooltipMeasuredWidth: Int
-        get() = container.measuredWidth
-
-    override val tooltipMeasuredHeight: Int
-        get() = container.measuredHeight
-
-    override val paddingWithArrow: Int
-        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_padding_with_arrow)
-
-    override val arrowImageInnerPadding: Int
-        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_inner_margin)
-
-    override val arrowWidth: Int
-        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_width)
-
-    override val arrowHeight: Int
-        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_height)
-
-    override val arrowBorder: Int
-        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_arrow_border)
-
-    override val elevation: Int
-        get() = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_elevation)
-
     override fun showDropDown(target: View, xOff: Int, yOff: Int, locationConfig: AndesTooltipLocationConfig) {
-        this.isShowing = true
+        isShowing = true
         var attrs = andesTooltipAttrs
 
         bodyWindow.showAsDropDown(target, xOff, yOff)
