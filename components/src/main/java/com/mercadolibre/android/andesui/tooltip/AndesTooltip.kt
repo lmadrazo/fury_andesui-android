@@ -45,21 +45,21 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
         get() = andesTooltipAttrs.title
         set(value) {
             andesTooltipAttrs = andesTooltipAttrs.copy(title = value)
-            initTooltipTitle(createConfig(andesTooltipAttrs))
+            setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
     var body: String
         get() = andesTooltipAttrs.body
         set(value) {
             andesTooltipAttrs = andesTooltipAttrs.copy(body = value)
-            initTooltipBody(createConfig(andesTooltipAttrs))
+            setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
     var isDismissible: Boolean
         get() = andesTooltipAttrs.isDismissible
         set(value) {
             andesTooltipAttrs = andesTooltipAttrs.copy(isDismissible = value)
-            initDismiss(createConfig(andesTooltipAttrs))
+            setupComponents(createConfig(andesTooltipAttrs), andesTooltipLocationConfigRequired)
         }
 
     var style: AndesTooltipStyle
