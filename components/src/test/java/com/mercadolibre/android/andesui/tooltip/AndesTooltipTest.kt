@@ -351,16 +351,15 @@ class AndesTooltipTest {
                 title = title,
                 body = body
         ))
-        val tooltipMeasures = spy(tooltip.getAndesTooltipLocationInterfaceImpl())
         val mockTarget: View = spy(AndesButton(context))
-        val locationConfig = spy(BottomAndesTooltipLocationConfig(tooltipMeasures))
+        val locationConfig = spy(BottomAndesTooltipLocationConfig(tooltip))
         ReflectionHelpers.setField(tooltip, "andesTooltipLocationConfigRequired", locationConfig)
         `when`(tooltip.canShowTooltip(mockTarget)).thenReturn(true)
 
         tooltip.show(mockTarget)
 
         verify(locationConfig).canBuildTooltipInRequiredLocation(mockTarget)
-        verify(tooltipMeasures).showDropDown(mockTarget, -20, 0, locationConfig)
+        verify(tooltip).showDropDown(mockTarget, -20, 0, locationConfig)
     }
 
     @Test
