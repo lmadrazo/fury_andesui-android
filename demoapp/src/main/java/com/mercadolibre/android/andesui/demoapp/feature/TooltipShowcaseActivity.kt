@@ -1,5 +1,6 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.viewpager.widget.PagerAdapter
@@ -12,12 +13,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.annotation.ArrayRes
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.snackbar.AndesSnackbar
 import com.mercadolibre.android.andesui.tooltip.AndesTooltip
 import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipAction
 import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipLinkAction
@@ -45,7 +44,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
         configInputs(adapter.views[0])
     }
 
-    private fun configInputs(container: View){
+    private fun configInputs(container: View) {
         container.body_text.text = "default body"
         container.dismissable_checkbox.status = AndesCheckboxStatus.SELECTED
         ArrayAdapter.createFromResource(
@@ -73,34 +72,33 @@ class TooltipShowcaseActivity : AppCompatActivity() {
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             container.action_type_spinner.adapter = adapter
-            container.action_type_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            container.action_type_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) = Unit
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    when(position){
-                        0 -> {
+                    when (position) {
+                        TOOLTIP_WITH_MAIN_ACTION -> {
                             runOnUiThread {
                                 container.main_action_config.visibility = View.VISIBLE
                                 container.secondary_action_config.visibility = View.GONE
                                 container.link_action_text.visibility = View.GONE
                             }
-
                         }
-                        1 -> {
+                        TOOLTIP_WITH_MAIN_AND_SEC_ACTION -> {
                             runOnUiThread {
                                 container.main_action_config.visibility = View.VISIBLE
                                 container.secondary_action_config.visibility = View.VISIBLE
                                 container.link_action_text.visibility = View.GONE
                             }
                         }
-                        2 -> {
+                        TOOLTIP_WITH_LINK_ACTION -> {
                             runOnUiThread {
                                 container.main_action_config.visibility = View.GONE
                                 container.secondary_action_config.visibility = View.GONE
                                 container.link_action_text.visibility = View.VISIBLE
                             }
                         }
-                        3 -> {
+                        TOOLTIP_WITH_NO_ACTION -> {
                             runOnUiThread {
                                 container.main_action_config.visibility = View.GONE
                                 container.secondary_action_config.visibility = View.GONE
@@ -109,7 +107,6 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                         }
                     }
                 }
-
             }
         }
 
@@ -133,17 +130,17 @@ class TooltipShowcaseActivity : AppCompatActivity() {
 
         updateAndesTooltip(container)
 
-        container.andes_trigger_tooltip_top_left.setOnClickListener (onTriggerClickListener)
-        container.andes_trigger_tooltip_top_right.setOnClickListener (onTriggerClickListener)
-        container.andes_trigger_tooltip_right.setOnClickListener (onTriggerClickListener)
-        container.andes_trigger_tooltip_left.setOnClickListener (onTriggerClickListener)
-        container.andes_trigger_tooltip_bottom_left.setOnClickListener (onTriggerClickListener)
-        container.andes_trigger_tooltip_bottom_right.setOnClickListener (onTriggerClickListener)
-        container.andes_trigger_tooltip_centered.setOnClickListener (onTriggerClickListener)
-        container.andes_centered_top_left.setOnClickListener (onTriggerClickListener)
-        container.andes_centered_top_right.setOnClickListener (onTriggerClickListener)
-        container.andes_centered_bottom_left.setOnClickListener (onTriggerClickListener)
-        container.andes_centered_bottom_right.setOnClickListener (onTriggerClickListener)
+        container.andes_trigger_tooltip_top_left.setOnClickListener(onTriggerClickListener)
+        container.andes_trigger_tooltip_top_right.setOnClickListener(onTriggerClickListener)
+        container.andes_trigger_tooltip_right.setOnClickListener(onTriggerClickListener)
+        container.andes_trigger_tooltip_left.setOnClickListener(onTriggerClickListener)
+        container.andes_trigger_tooltip_bottom_left.setOnClickListener(onTriggerClickListener)
+        container.andes_trigger_tooltip_bottom_right.setOnClickListener(onTriggerClickListener)
+        container.andes_trigger_tooltip_centered.setOnClickListener(onTriggerClickListener)
+        container.andes_centered_top_left.setOnClickListener(onTriggerClickListener)
+        container.andes_centered_top_right.setOnClickListener(onTriggerClickListener)
+        container.andes_centered_bottom_left.setOnClickListener(onTriggerClickListener)
+        container.andes_centered_bottom_right.setOnClickListener(onTriggerClickListener)
 
         container.change_button.setOnClickListener {
             updateAndesTooltip(container)
@@ -153,25 +150,16 @@ class TooltipShowcaseActivity : AppCompatActivity() {
     private val onTriggerClickListener = View.OnClickListener { andesTooltipToShow.show(it) }
 
     private fun updateAndesTooltip(container: View) {
-
         val builtTooltip: AndesTooltip
-
         val title: String? = container.title_text.text.takeIf { !it.isNullOrEmpty() }
-        val body: String = if (!container.body_text.text.isNullOrEmpty()){container.body_text.text!!} else{"default body"}
+        val body: String = if (!container.body_text.text.isNullOrEmpty()) { container.body_text.text!! } else { "default body" }
         val isDismissible = container.dismissable_checkbox.status == AndesCheckboxStatus.SELECTED
+        val location: AndesTooltipLocation = getLocation(container.orientation_spinner)
 
-        val location: AndesTooltipLocation =
-        when(container.orientation_spinner.selectedItem){
-            "top"-> AndesTooltipLocation.TOP
-            "bottom"-> AndesTooltipLocation.BOTTOM
-            "left"-> AndesTooltipLocation.LEFT
-            "right"-> AndesTooltipLocation.RIGHT
-            else-> AndesTooltipLocation.TOP
-        }
         val style: AndesTooltipStyle =
-        when(container.style_spinner.selectedItem){
-            "light"-> AndesTooltipStyle.LIGHT
-            else-> AndesTooltipStyle.LIGHT
+        when (container.style_spinner.selectedItem) {
+            "light" -> AndesTooltipStyle.LIGHT
+            else -> AndesTooltipStyle.LIGHT
         }
 
         builtTooltip = AndesTooltip(
@@ -183,9 +171,9 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 tooltipLocation = location
         )
 
-        when(container.action_type_spinner.selectedItem){
-            "main action"-> {
-                val text:String = if (!container.primary_action_text.text.isNullOrEmpty()){
+        when (container.action_type_spinner.selectedItem) {
+            "main action" -> {
+                val text: String = if (!container.primary_action_text.text.isNullOrEmpty()) {
                     container.primary_action_text.text!!
                 } else {
                     container.primary_action_text.text = "default text"
@@ -196,14 +184,14 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                         getHierarchyBySpinner(container.main_action_style_spinner)
                 )
             }
-            "main and second"-> {
-                val textPrimary:String = if (!container.primary_action_text.text.isNullOrEmpty()){
+            "main and second" -> {
+                val textPrimary: String = if (!container.primary_action_text.text.isNullOrEmpty()) {
                     container.primary_action_text.text!!
                 } else {
                     container.primary_action_text.text = "default text"
                     "default text"
                 }
-                val textSecondary:String = if (!container.secondary_action_text.text.isNullOrEmpty()){
+                val textSecondary: String = if (!container.secondary_action_text.text.isNullOrEmpty()) {
                     container.secondary_action_text.text!!
                 } else {
                     container.secondary_action_text.text = "default text2"
@@ -218,8 +206,8 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                         getHierarchyBySpinner(container.secondary_action_style_spinner)
                 )
             }
-            "link"-> {
-                val text:String = if (!container.link_action_text.text.isNullOrEmpty()){
+            "link" -> {
+                val text: String = if (!container.link_action_text.text.isNullOrEmpty()) {
                     container.link_action_text.text!!
                 } else {
                     container.link_action_text.text = "default text"
@@ -227,29 +215,37 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 }
                 builtTooltip.linkAction = buildLinkAction(text)
             }
-            else-> {}
+            else -> {}
         }
         andesTooltipToShow = builtTooltip
     }
 
+    private fun getLocation(orientationSpinner: Spinner) =
+        when (orientationSpinner.selectedItem) {
+            "top" -> AndesTooltipLocation.TOP
+            "bottom" -> AndesTooltipLocation.BOTTOM
+            "left" -> AndesTooltipLocation.LEFT
+            "right" -> AndesTooltipLocation.RIGHT
+            else -> AndesTooltipLocation.TOP
+        }
     private fun getHierarchyBySpinner(spinner: Spinner): AndesButtonHierarchy {
-        return when (spinner.selectedItem){
-            "loud"-> AndesButtonHierarchy.LOUD
-            "quiet"-> AndesButtonHierarchy.QUIET
-            "transparent"-> AndesButtonHierarchy.TRANSPARENT
-            else-> AndesButtonHierarchy.QUIET
+        return when (spinner.selectedItem) {
+            "loud" -> AndesButtonHierarchy.LOUD
+            "quiet" -> AndesButtonHierarchy.QUIET
+            "transparent" -> AndesButtonHierarchy.TRANSPARENT
+            else -> AndesButtonHierarchy.QUIET
         }
     }
 
-    private fun buildMainAction(text: String, hierarchy: AndesButtonHierarchy): AndesTooltipAction{
-        return AndesTooltipAction(text, hierarchy){ _, _ ->
-            Toast.makeText(this, "$text was clicked" , Toast.LENGTH_SHORT).show()
+    private fun buildMainAction(text: String, hierarchy: AndesButtonHierarchy): AndesTooltipAction {
+        return AndesTooltipAction(text, hierarchy) { _, _ ->
+            Toast.makeText(this, "$text was clicked", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun buildLinkAction(text: String): AndesTooltipLinkAction{
-        return AndesTooltipLinkAction(text){ _, _ ->
-            Toast.makeText(this, "$text was clicked" , Toast.LENGTH_SHORT).show()
+    private fun buildLinkAction(text: String): AndesTooltipLinkAction {
+        return AndesTooltipLinkAction(text) { _, _ ->
+            Toast.makeText(this, "$text was clicked", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -276,6 +272,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
 
         override fun getCount(): Int = views.size
 
+        @SuppressLint("InflateParams")
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
             val layoutLoudButtons = inflater.inflate(
@@ -286,5 +283,12 @@ class TooltipShowcaseActivity : AppCompatActivity() {
 
             return listOf<View>(layoutLoudButtons)
         }
+    }
+
+    companion object {
+        private const val TOOLTIP_WITH_MAIN_ACTION = 0
+        private const val TOOLTIP_WITH_MAIN_AND_SEC_ACTION = 1
+        private const val TOOLTIP_WITH_LINK_ACTION = 2
+        private const val TOOLTIP_WITH_NO_ACTION = 3
     }
 }
