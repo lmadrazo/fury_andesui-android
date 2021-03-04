@@ -22,7 +22,8 @@ import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipAction
 import com.mercadolibre.android.andesui.tooltip.actions.AndesTooltipLinkAction
 import com.mercadolibre.android.andesui.tooltip.style.AndesTooltipStyle
 import com.mercadolibre.android.andesui.tooltip.location.AndesTooltipLocation
-import kotlinx.android.synthetic.main.andesui_tooltip_light_showcase.view.*
+import kotlinx.android.synthetic.main.andesui_tooltip_config_showcase.view.*
+import kotlinx.android.synthetic.main.andesui_tooltip_showcase.view.*
 
 class TooltipShowcaseActivity : AppCompatActivity() {
     private lateinit var andesTooltipToShow: AndesTooltip
@@ -41,19 +42,21 @@ class TooltipShowcaseActivity : AppCompatActivity() {
         indicator.attach(viewPager)
 
         val adapter = viewPager.adapter as AndesShowcasePagerAdapter
-        configInputs(adapter.views[0])
+        val tooltipButtons = adapter.views[0]
+        val tooltipConfig = adapter.views[1]
+        configInputs(tooltipButtons, tooltipConfig)
     }
 
-    private fun configInputs(container: View) {
-        container.body_text.text = "default body"
-        container.dismissable_checkbox.status = AndesCheckboxStatus.SELECTED
+    private fun configInputs(tooltipButtons: View, tooltipConfig: View) {
+        tooltipConfig.body_text.text = "default body"
+        tooltipConfig.dismissable_checkbox.status = AndesCheckboxStatus.SELECTED
         ArrayAdapter.createFromResource(
                 this,
                 R.array.tooltip_style_spinner,
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            container.style_spinner.adapter = adapter
+            tooltipConfig.style_spinner.adapter = adapter
         }
 
         ArrayAdapter.createFromResource(
@@ -62,7 +65,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            container.orientation_spinner.adapter = adapter
+            tooltipConfig.orientation_spinner.adapter = adapter
         }
 
         ArrayAdapter.createFromResource(
@@ -71,38 +74,40 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            container.action_type_spinner.adapter = adapter
-            container.action_type_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            tooltipConfig.action_type_spinner.adapter = adapter
+            tooltipConfig.action_type_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) = Unit
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    when (position) {
-                        TOOLTIP_WITH_MAIN_ACTION -> {
-                            runOnUiThread {
-                                container.main_action_config.visibility = View.VISIBLE
-                                container.secondary_action_config.visibility = View.GONE
-                                container.link_action_text.visibility = View.GONE
+                    with(tooltipConfig) {
+                        when (position) {
+                            TOOLTIP_WITH_MAIN_ACTION -> {
+                                runOnUiThread {
+                                    main_action_config.visibility = View.VISIBLE
+                                    secondary_action_config.visibility = View.GONE
+                                    link_action_text.visibility = View.GONE
+                                }
                             }
-                        }
-                        TOOLTIP_WITH_MAIN_AND_SEC_ACTION -> {
-                            runOnUiThread {
-                                container.main_action_config.visibility = View.VISIBLE
-                                container.secondary_action_config.visibility = View.VISIBLE
-                                container.link_action_text.visibility = View.GONE
+                            TOOLTIP_WITH_MAIN_AND_SEC_ACTION -> {
+                                runOnUiThread {
+                                    main_action_config.visibility = View.VISIBLE
+                                    secondary_action_config.visibility = View.VISIBLE
+                                    link_action_text.visibility = View.GONE
+                                }
                             }
-                        }
-                        TOOLTIP_WITH_LINK_ACTION -> {
-                            runOnUiThread {
-                                container.main_action_config.visibility = View.GONE
-                                container.secondary_action_config.visibility = View.GONE
-                                container.link_action_text.visibility = View.VISIBLE
+                            TOOLTIP_WITH_LINK_ACTION -> {
+                                runOnUiThread {
+                                    main_action_config.visibility = View.GONE
+                                    secondary_action_config.visibility = View.GONE
+                                    link_action_text.visibility = View.VISIBLE
+                                }
                             }
-                        }
-                        TOOLTIP_WITH_NO_ACTION -> {
-                            runOnUiThread {
-                                container.main_action_config.visibility = View.GONE
-                                container.secondary_action_config.visibility = View.GONE
-                                container.link_action_text.visibility = View.GONE
+                            TOOLTIP_WITH_NO_ACTION -> {
+                                runOnUiThread {
+                                    main_action_config.visibility = View.GONE
+                                    secondary_action_config.visibility = View.GONE
+                                    link_action_text.visibility = View.GONE
+                                }
                             }
                         }
                     }
@@ -116,7 +121,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            container.main_action_style_spinner.adapter = adapter
+            tooltipConfig.main_action_style_spinner.adapter = adapter
         }
 
         ArrayAdapter.createFromResource(
@@ -125,25 +130,26 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            container.secondary_action_style_spinner.adapter = adapter
+            tooltipConfig.secondary_action_style_spinner.adapter = adapter
         }
 
-        updateAndesTooltip(container)
+        updateAndesTooltip(tooltipConfig)
 
-        container.andes_trigger_tooltip_top_left.setOnClickListener(onTriggerClickListener)
-        container.andes_trigger_tooltip_top_right.setOnClickListener(onTriggerClickListener)
-        container.andes_trigger_tooltip_right.setOnClickListener(onTriggerClickListener)
-        container.andes_trigger_tooltip_left.setOnClickListener(onTriggerClickListener)
-        container.andes_trigger_tooltip_bottom_left.setOnClickListener(onTriggerClickListener)
-        container.andes_trigger_tooltip_bottom_right.setOnClickListener(onTriggerClickListener)
-        container.andes_trigger_tooltip_centered.setOnClickListener(onTriggerClickListener)
-        container.andes_centered_top_left.setOnClickListener(onTriggerClickListener)
-        container.andes_centered_top_right.setOnClickListener(onTriggerClickListener)
-        container.andes_centered_bottom_left.setOnClickListener(onTriggerClickListener)
-        container.andes_centered_bottom_right.setOnClickListener(onTriggerClickListener)
+        with(tooltipButtons) {
+            andes_trigger_tooltip_top_left.setOnClickListener(onTriggerClickListener)
+            andes_trigger_tooltip_top_right.setOnClickListener(onTriggerClickListener)
+            andes_trigger_tooltip_right.setOnClickListener(onTriggerClickListener)
+            andes_trigger_tooltip_left.setOnClickListener(onTriggerClickListener)
+            andes_trigger_tooltip_bottom_left.setOnClickListener(onTriggerClickListener)
+            andes_trigger_tooltip_bottom_right.setOnClickListener(onTriggerClickListener)
+            andes_trigger_tooltip_centered.setOnClickListener(onTriggerClickListener)
+            andes_centered_top_left.setOnClickListener(onTriggerClickListener)
+            andes_centered_top_right.setOnClickListener(onTriggerClickListener)
+            andes_centered_bottom_left.setOnClickListener(onTriggerClickListener)
+            andes_centered_bottom_right.setOnClickListener(onTriggerClickListener) }
 
-        container.change_button.setOnClickListener {
-            updateAndesTooltip(container)
+        tooltipConfig.change_button.setOnClickListener {
+            updateAndesTooltip(tooltipConfig)
         }
     }
 
@@ -276,12 +282,17 @@ class TooltipShowcaseActivity : AppCompatActivity() {
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
             val layoutLoudButtons = inflater.inflate(
-                R.layout.andesui_tooltip_light_showcase,
+                R.layout.andesui_tooltip_showcase,
                 null,
                 false
             )
+            val tooltipLayoutConfig = inflater.inflate(
+                    R.layout.andesui_tooltip_config_showcase,
+                    null,
+                    false
+            )
 
-            return listOf<View>(layoutLoudButtons)
+            return listOf<View>(layoutLoudButtons, tooltipLayoutConfig)
         }
     }
 
