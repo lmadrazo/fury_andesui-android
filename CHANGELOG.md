@@ -1,3 +1,6 @@
+## 🛠 Fixes
+- Support statusbar with variable height in CoachmarkScrolless
+
 # v3.9.1
 ## 🚀 Feature
 - FMA repository migration | Authors [eportasML](https://github.com/eportasML)

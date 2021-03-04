@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewPropertyAnimatorListener
@@ -33,6 +34,8 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
     private val activity: Activity
     private val presenter: CoachmarkPresenter
     private val coachmarkOverlayView: CoachmarkOverlay
+    private val guideLineStatusBar: Guideline
+    private val guideLineHeader: Guideline
     private val baseContainer: FrameLayout
     private val view: View
     private val walkthroughScrollessMessageView: WalkthroughScrollessMessageView
@@ -51,6 +54,10 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
         baseContainer = FrameLayout(activity)
         coachmarkContainer = CoachmarkScrollessContainerView(activity)
         coachmarkOverlayView = coachmarkContainer.findViewById(R.id.coachmarkOverlayView)
+        guideLineStatusBar = coachmarkContainer.findViewById(R.id.guideLineStatusBar)
+        guideLineHeader = coachmarkContainer.findViewById(R.id.guideLineHeader)
+        guideLineStatusBar.setGuidelineBegin(getStatusBarSize().toInt())
+        guideLineHeader.setGuidelineBegin(getToolbarSize())
 
         presenter = CoachmarkPresenter(this)
 
@@ -321,7 +328,8 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
 
         coachmarkOverlayView.addRect(
                 cx,
-                cy - activity.resources.getDimension(R.dimen.andes_coachmark_toolbar_status_bar).toInt(),
+                cy - activity.resources.getDimension(R.dimen.andes_coachmark_scrolless_toolbar_status_bar).toInt() -
+                        getStatusBarSize().toInt(),
                 0,
                 0,
                 true,
@@ -344,7 +352,7 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
                 stepReferenced.style == AndesWalkthroughCoachmarkStyle.HAMBURGER) {
             coachmarkContainer.getHeaderView().addRect(
                     rect.left,
-                    rect.top - activity.resources.getDimension(R.dimen.andes_coachmark_toolbar_status_bar).toInt() / 3,
+                    rect.top - getStatusBarSize().toInt(),
                     rect.width(),
                     rect.height(),
                     false,
@@ -353,7 +361,8 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
         } else {
             coachmarkOverlayView.addRect(
                     rect.left,
-                    rect.top - activity.resources.getDimension(R.dimen.andes_coachmark_toolbar_status_bar).toInt(),
+                    rect.top - activity.resources.getDimension(R.dimen.andes_coachmark_scrolless_toolbar_status_bar).toInt() -
+                            getStatusBarSize().toInt(),
                     rect.width(),
                     rect.height(),
                     false,
@@ -387,12 +396,22 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
         })
     }
 
+    private fun getStatusBarSize(): Float {
+        var result = 0f
+        val resourceId: Int = coachmarkOverlayView.resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = coachmarkOverlayView.resources.getDimension(resourceId)
+        }
+        return result
+    }
+
     override fun getFooterHeigh(): Int {
         return activity.resources.getDimensionPixelSize(R.dimen.andes_coachmark_footer_guide_line)
     }
 
     override fun getToolbarSize(): Int {
-        return activity.resources.getDimensionPixelSize(R.dimen.andes_coachmark_toolbar_status_bar)
+        return activity.resources.getDimensionPixelSize(R.dimen.andes_coachmark_scrolless_toolbar_status_bar) +
+                getStatusBarSize().toInt()
     }
 
     override fun getTooltipMargin(): Int {
