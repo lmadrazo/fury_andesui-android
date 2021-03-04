@@ -39,11 +39,10 @@ internal fun View.getViewPointOnScreen(): Point {
 /** returns the status bar height if the anchor is on the Activity. */
 internal fun View.getStatusBarHeight(isStatusBarVisible: Boolean): Int {
   val rectangle = Rect()
-  val context = context
   return if (context is Activity && isStatusBarVisible) {
-    context.window.decorView.getWindowVisibleDisplayFrame(rectangle)
+    (context as Activity).window.decorView.getWindowVisibleDisplayFrame(rectangle)
     rectangle.top
-  } else DEFAULT_HEIGHT
+  } else { DEFAULT_HEIGHT }
 }
 
 internal fun View.getActionBarHeight(): Int {

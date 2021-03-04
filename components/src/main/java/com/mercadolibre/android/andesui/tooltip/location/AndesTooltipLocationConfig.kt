@@ -2,8 +2,8 @@ package com.mercadolibre.android.andesui.tooltip.location
 
 import android.view.View
 
-data class AndesTooltipArrowPoint(val x: Float, val y: Float)
-data class AndesTooltipPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
+internal data class AndesTooltipArrowPoint(val x: Float, val y: Float)
+internal data class AndesTooltipPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
 
 private const val ARROW_POINTING_DOWN = 0F
 private const val ARROW_POINTING_UP = 180F
@@ -29,8 +29,8 @@ sealed class AndesTooltipLocationConfig(
     abstract fun buildTooltip(target: View)
     abstract fun canBuildTooltipInRequiredLocation(target: View): Boolean
     abstract fun iterateOtherLocations(target: View): Boolean
-    abstract fun getTooltipPadding(): AndesTooltipPadding
-    abstract fun getArrowPoint(): AndesTooltipArrowPoint
+    internal abstract fun getTooltipPadding(): AndesTooltipPadding
+    internal abstract fun getArrowPoint(): AndesTooltipArrowPoint
     abstract fun getArrowRotation(): Float
 }
 

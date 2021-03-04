@@ -15,7 +15,7 @@ internal fun AndesTooltipLocation.getSpaceConditionByLocation(): ((tooltip: Ande
     }
 }
 
-data class AndesTooltipArrowData(val positionInSide: ArrowPositionId, val point: Int)
+internal data class AndesTooltipArrowData(val positionInSide: ArrowPositionId, val point: Int)
 
 internal val tooltipHasTopSpace = fun (tooltip: AndesTooltipLocationInterface, target: View): Boolean {
     val actionBarHeight = target.getActionBarHeight() + target.getStatusBarHeight(true)
