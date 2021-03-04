@@ -18,7 +18,6 @@ import com.mercadolibre.android.andesui.tooltip.location.AndesTooltipLocation
 import com.mercadolibre.android.andesui.tooltip.location.BottomAndesTooltipLocationConfig
 import com.mercadolibre.android.andesui.tooltip.style.AndesTooltipStyle
 import com.nhaarman.mockitokotlin2.mock
-import junit.framework.Assert.assertNotNull
 import junit.framework.Assert.assertNull
 import junit.framework.Assert.assertEquals
 import org.junit.After
@@ -28,7 +27,6 @@ import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentCaptor
 import org.mockito.Mockito.spy
 import org.mockito.Mockito.validateMockitoUsage
 import org.mockito.Mockito.`when`
@@ -353,26 +351,16 @@ class AndesTooltipTest {
                 title = title,
                 body = body
         ))
-        val targetViewCaptor = ArgumentCaptor.forClass(AndesButton::class.java)
-        val xOffCaptor = ArgumentCaptor.forClass(Int::class.java)
-        val yOffCaptor = ArgumentCaptor.forClass(Int::class.java)
-
+        val tooltipMeasures = spy(tooltip.getAndesTooltipLocationInterfaceImpl())
         val mockTarget: View = spy(AndesButton(context))
-        val locationConfig = spy(BottomAndesTooltipLocationConfig(tooltip))
-        val bodyWindow: PopupWindow = mock()
+        val locationConfig = spy(BottomAndesTooltipLocationConfig(tooltipMeasures))
         ReflectionHelpers.setField(tooltip, "andesTooltipLocationConfigRequired", locationConfig)
-        ReflectionHelpers.setField(tooltip, "bodyWindow", bodyWindow)
-
         `when`(tooltip.canShowTooltip(mockTarget)).thenReturn(true)
 
         tooltip.show(mockTarget)
 
         verify(locationConfig).canBuildTooltipInRequiredLocation(mockTarget)
-        verify(bodyWindow).showAsDropDown(targetViewCaptor.capture(), xOffCaptor.capture(), yOffCaptor.capture())
-
-        assertEquals(mockTarget, targetViewCaptor.value)
-        assertNotNull(xOffCaptor.value)
-        assertNotNull(yOffCaptor.value)
+        verify(tooltipMeasures).showDropDown(mockTarget, -20, 0, locationConfig)
     }
 
     @Test
