@@ -1,3 +1,7 @@
+# v3.8.0
+## 🚀 Feature
+- Add Firebase Analytics
+
 # v3.7.0
 ## 🚀 Feature
 - Added new icons for "To Agree" and "Info" (with outer circle)
