@@ -1,13 +1,8 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
-import android.content.Context
 import android.os.Bundle
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -18,15 +13,18 @@ import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
 import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.AndesPagerAdapter
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import kotlinx.android.synthetic.main.andesui_badges_showcase_change.*
 
-class BadgeShowcaseActivity : AppCompatActivity() {
+class BadgeShowcaseActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
@@ -35,23 +33,32 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_badge)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
-        viewPager.adapter = AndesShowcasePagerAdapter(this)
+        viewPager = findViewById(R.id.andesui_viewpager)
+        viewPager.setScreenName(getString(R.string.andes_badge_showcase))
+        viewPager.adapter = AndesPagerAdapter(loadViews())
+
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)
 
-        val adapter = viewPager.adapter as AndesShowcasePagerAdapter
+        val adapter = viewPager.adapter as AndesPagerAdapter
         addDynamicBadges(adapter.views[0])
         addStaticBadges(adapter.views[1])
+    }
+
+    private fun loadViews(): List<View> {
+        val inflater = LayoutInflater.from(this)
+        val layoutDynamic = inflater.inflate(R.layout.andesui_badges_showcase_change, null, false)
+        val layoutStatic = inflater.inflate(R.layout.andesui_badges_showcase, null, false)
+        return listOf<View>(layoutDynamic, layoutStatic)
     }
 
     @Suppress("ComplexMethod", "LongMethod")
     private fun addDynamicBadges(container: View) {
         val modifierSpinner: Spinner = container.findViewById(R.id.modifier_spinner)
         ArrayAdapter.createFromResource(
-            this,
-            R.array.modifier_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.modifier_spinner,
+                android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             modifierSpinner.adapter = adapter
@@ -59,20 +66,20 @@ class BadgeShowcaseActivity : AppCompatActivity() {
 
         val hierarchySpinner: Spinner = container.findViewById(R.id.hierarchy_spinner)
         ArrayAdapter.createFromResource(
-            this,
-            R.array.hierarchy_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.hierarchy_spinner,
+                android.R.layout.simple_spinner_item
         )
-            .also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                hierarchySpinner.adapter = adapter
-            }
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    hierarchySpinner.adapter = adapter
+                }
 
         val typeSpinner: Spinner = container.findViewById(R.id.simple_type_spinner)
         ArrayAdapter.createFromResource(
-            this,
-            R.array.simple_type_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.simple_type_spinner,
+                android.R.layout.simple_spinner_item
         )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -81,9 +88,9 @@ class BadgeShowcaseActivity : AppCompatActivity() {
 
         val sizeSpinner: Spinner = container.findViewById(R.id.size_spinner)
         ArrayAdapter.createFromResource(
-            this,
-            R.array.size_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.size_spinner,
+                android.R.layout.simple_spinner_item
         )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -92,9 +99,9 @@ class BadgeShowcaseActivity : AppCompatActivity() {
 
         val borderSpinner: Spinner = container.findViewById(R.id.border_spinner)
         ArrayAdapter.createFromResource(
-            this,
-            R.array.border_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.border_spinner,
+                android.R.layout.simple_spinner_item
         )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -110,10 +117,10 @@ class BadgeShowcaseActivity : AppCompatActivity() {
 
         modifierSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parentView: AdapterView<*>?,
-                selectedItemView: View,
-                position: Int,
-                id: Long
+                    parentView: AdapterView<*>?,
+                    selectedItemView: View,
+                    position: Int,
+                    id: Long
             ) {
                 when (modifierSpinner.getItemAtPosition(position)) {
                     "Pill" -> {
@@ -224,34 +231,4 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         }
     }
 
-    class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
-
-        var views: List<View>
-
-        init {
-            views = initViews()
-        }
-
-        override fun instantiateItem(container: ViewGroup, position: Int): View {
-            container.addView(views[position])
-            return views[position]
-        }
-
-        override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
-            container.removeView(view as View?)
-        }
-
-        override fun isViewFromObject(view: View, other: Any): Boolean {
-            return view == other
-        }
-
-        override fun getCount(): Int = views.size
-
-        private fun initViews(): List<View> {
-            val inflater = LayoutInflater.from(context)
-            val layoutDynamic = inflater.inflate(R.layout.andesui_badges_showcase_change, null, false)
-            val layoutStatic = inflater.inflate(R.layout.andesui_badges_showcase, null, false)
-            return listOf<View>(layoutDynamic, layoutStatic)
-        }
-    }
 }

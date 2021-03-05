@@ -12,6 +12,7 @@ buildscript {
     }
 
     dependencies {
+        classpath "com.google.gms:google-services:$googleServicesPlugin"
         classpath "com.android.tools.build:gradle:$gradleBuildToolsVersion"
         classpath "com.novoda:bintray-release:$bintrayReleasePluginVersion"
         classpath "com.monits:static-code-analysis-plugin:$scaPluginVersion"

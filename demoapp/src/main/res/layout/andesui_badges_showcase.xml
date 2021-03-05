@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
@@ -24,15 +24,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -44,8 +44,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_neutral"
                     app:andesBadgePillType="neutral" />
@@ -54,8 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_highlight"
                     app:andesBadgePillType="highlight" />
@@ -65,8 +65,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_success"
                     app:andesBadgePillType="success" />
@@ -76,8 +76,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_warning"
                     app:andesBadgePillType="warning" />
@@ -87,8 +87,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="loud"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_error"
                     app:andesBadgePillType="error" />
@@ -98,9 +98,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,8 +112,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_neutral"
                     app:andesBadgePillType="neutral" />
@@ -122,8 +122,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_highlight"
                     app:andesBadgePillType="highlight" />
@@ -133,8 +133,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_success"
                     app:andesBadgePillType="success" />
@@ -144,8 +144,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_warning"
                     app:andesBadgePillType="warning" />
@@ -155,8 +155,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/badge_margin_vertical"
-                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillBorder="standard"
+                    app:andesBadgePillHierarchy="quiet"
                     app:andesBadgePillSize="small"
                     app:andesBadgePillText="@string/andes_badges_error"
                     app:andesBadgePillType="error" />
@@ -179,8 +179,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/badge_margin_vertical"
-            app:andesBadgePillHierarchy="loud"
             app:andesBadgePillBorder="corner"
+            app:andesBadgePillHierarchy="loud"
             app:andesBadgePillSize="large"
             app:andesBadgePillText="@string/andesui_demoapp_label_corner"
             app:andesBadgePillType="neutral" />
@@ -189,8 +189,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/badge_margin_vertical"
-            app:andesBadgePillHierarchy="loud"
             app:andesBadgePillBorder="rounded"
+            app:andesBadgePillHierarchy="loud"
             app:andesBadgePillSize="large"
             app:andesBadgePillText="@string/andesui_demoapp_label_rounded"
             app:andesBadgePillType="highlight" />
@@ -199,8 +199,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/badge_margin_vertical"
-            app:andesBadgePillHierarchy="loud"
             app:andesBadgePillBorder="standard"
+            app:andesBadgePillHierarchy="loud"
             app:andesBadgePillSize="large"
             app:andesBadgePillText="@string/andesui_demoapp_label_standard"
             app:andesBadgePillType="warning" />

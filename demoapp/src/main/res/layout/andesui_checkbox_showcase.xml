@@ -23,61 +23,61 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:baselineAligned="false"
             android:gravity="center_horizontal"
-            android:baselineAligned="false">
+            android:orientation="vertical">
 
             <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:andesCheckboxAlign="left"
                 app:andesCheckboxStatus="selected"
-                app:andesCheckboxText="@string/andes_checkbox_showcase"/>
+                app:andesCheckboxText="@string/andes_checkbox_showcase" />
 
             <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:andesCheckboxAlign="right"
                 app:andesCheckboxStatus="undefined"
-                app:andesCheckboxText="@string/andes_checkbox_showcase"/>
+                app:andesCheckboxText="@string/andes_checkbox_showcase" />
 
             <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:andesCheckboxAlign="left"
                 app:andesCheckboxStatus="unselected"
-                app:andesCheckboxText="@string/andes_checkbox_showcase"/>
+                app:andesCheckboxText="@string/andes_checkbox_showcase" />
 
             <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:andesCheckboxAlign="left"
                 app:andesCheckboxStatus="unselected"
-                app:andesCheckboxType="disabled"
-                app:andesCheckboxText="@string/andes_checkbox_showcase"/>
+                app:andesCheckboxText="@string/andes_checkbox_showcase"
+                app:andesCheckboxType="disabled" />
 
             <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:andesCheckboxAlign="right"
                 app:andesCheckboxStatus="undefined"
-                app:andesCheckboxType="disabled"
-                app:andesCheckboxText="@string/andes_checkbox_showcase"/>
+                app:andesCheckboxText="@string/andes_checkbox_showcase"
+                app:andesCheckboxType="disabled" />
 
             <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:andesCheckboxAlign="left"
                 app:andesCheckboxStatus="selected"
-                app:andesCheckboxType="disabled"
-                app:andesCheckboxText="@string/andes_checkbox_showcase"/>
+                app:andesCheckboxText="@string/andes_checkbox_showcase"
+                app:andesCheckboxType="disabled" />
 
             <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:andesCheckboxAlign="left"
-                app:andesCheckboxType="error"
-                app:andesCheckboxText="@string/andes_checkbox_showcase"/>
+                app:andesCheckboxText="@string/andes_checkbox_showcase"
+                app:andesCheckboxType="error" />
 
         </LinearLayout>
 

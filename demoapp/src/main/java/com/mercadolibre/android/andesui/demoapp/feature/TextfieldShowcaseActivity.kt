@@ -8,26 +8,23 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
-import android.widget.ScrollView
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.demoapp.InflateTextfieldHelper
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
+import com.mercadolibre.android.andesui.demoapp.commons.CustomViewPager
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.textfield.AndesTextarea
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
-class TextfieldShowcaseActivity : AppCompatActivity() {
+class TextfieldShowcaseActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +33,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
         val adapter = AndesTextfieldShowcasePagerAdapter(initViews())
+
+        viewPager = findViewById(R.id.andesui_viewpager)
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(position: Int) = Unit
@@ -46,6 +44,8 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 supportActionBar?.title = getString(adapter.getTitleResource(position))
             }
         })
+        viewPager.setScreenName(getString(R.string.andesui_demoapp_textfield))
+
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)
     }

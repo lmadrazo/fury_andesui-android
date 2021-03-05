@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,7 +18,7 @@
             android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
             app:andesButtonText="@string/andesui_demoapp_datepicker_btn_send"
             app:layout_constraintStart_toStartOf="@+id/andesTextfieldMaxDate"
-            app:layout_constraintTop_toBottomOf="@id/andesTextfieldMaxDate"/>
+            app:layout_constraintTop_toBottomOf="@id/andesTextfieldMaxDate" />
 
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/btnReset"
@@ -28,8 +27,8 @@
             android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
             app:andesButtonText="@string/andesui_demoapp_datepicker_btn_reset"
             app:layout_constraintLeft_toRightOf="@id/btnSendMinMaxDate"
-            app:layout_constraintTop_toBottomOf="@id/andesTextfieldMaxDate"
-            app:layout_constraintRight_toRightOf="@id/andesTextfieldMaxDate"/>
+            app:layout_constraintRight_toRightOf="@id/andesTextfieldMaxDate"
+            app:layout_constraintTop_toBottomOf="@id/andesTextfieldMaxDate" />
 
         <com.mercadolibre.android.andesui.datepicker.AndesDatePicker
             android:id="@+id/andesDatePicker"
@@ -38,36 +37,35 @@
             android:layout_marginTop="@dimen/andes_bottom_sheet_margin_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/andesTextfieldMinDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/andes_textfield_margin"
             android:inputType="date"
             app:andesTextfieldCounter="10"
-            android:layout_marginTop="@dimen/andes_textfield_margin"
             app:andesTextfieldLabel="@string/andesui_demoapp_datepicker_mindate_label"
             app:andesTextfieldPlaceholder="@string/andesui_demoapp_datepicker_placeholder"
             app:layout_constraintEnd_toEndOf="@+id/andesDatePicker"
             app:layout_constraintStart_toStartOf="@+id/andesDatePicker"
-            app:layout_constraintTop_toBottomOf="@id/andesDatePicker"/>
+            app:layout_constraintTop_toBottomOf="@id/andesDatePicker" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/andesTextfieldMaxDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
             android:inputType="date"
             app:andesTextfieldCounter="10"
-            android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
             app:andesTextfieldLabel="@string/andesui_demoapp_datepicker_maxdate_label"
             app:andesTextfieldPlaceholder="@string/andesui_demoapp_datepicker_placeholder"
             app:layout_constraintStart_toStartOf="@+id/andesTextfieldMinDate"
-            app:layout_constraintTop_toBottomOf="@id/andesTextfieldMinDate"/>
+            app:layout_constraintTop_toBottomOf="@id/andesTextfieldMinDate" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </ScrollView>

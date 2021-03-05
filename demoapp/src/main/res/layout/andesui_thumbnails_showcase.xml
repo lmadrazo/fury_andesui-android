@@ -15,8 +15,8 @@
         <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             android:layout_marginTop="@dimen/andes_thumbnail_icon_size_16"
+            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             app:andesThumbnailAccentColor="@color/andes_blue_ml_800"
             app:andesThumbnailHierarchy="quiet"
             app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
@@ -27,14 +27,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/description_text_size_thumbnail"
-            android:text="@string/andesui_demoapp_thumbnail_description_24" />
+            android:text="@string/andesui_demoapp_thumbnail_description_24"
+            android:textSize="@dimen/description_text_size_thumbnail" />
 
         <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             android:layout_marginTop="@dimen/andes_thumbnail_icon_size_16"
+            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             app:andesThumbnailAccentColor="@color/andes_blue_ml_800"
             app:andesThumbnailHierarchy="loud"
             app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
@@ -45,14 +45,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/description_text_size_thumbnail"
-            android:text="@string/andesui_demoapp_thumbnail_description_48" />
+            android:text="@string/andesui_demoapp_thumbnail_description_48"
+            android:textSize="@dimen/description_text_size_thumbnail" />
 
         <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             android:layout_marginTop="@dimen/andes_thumbnail_icon_size_16"
+            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             app:andesThumbnailAccentColor="@color/andes_red_800"
             app:andesThumbnailHierarchy="AndesDefault"
             app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
@@ -63,14 +63,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/description_text_size_thumbnail"
-            android:text="@string/andesui_demoapp_thumbnail_description_64" />
+            android:text="@string/andesui_demoapp_thumbnail_description_64"
+            android:textSize="@dimen/description_text_size_thumbnail" />
 
         <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             android:layout_marginTop="@dimen/andes_thumbnail_icon_size_16"
+            android:layout_marginBottom="@dimen/andes_thumbnail_icon_size_16"
             app:andesThumbnailAccentColor="@color/andes_red_800"
             app:andesThumbnailHierarchy="quiet"
             app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
@@ -81,8 +81,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/description_text_size_thumbnail"
-            android:text="@string/andesui_demoapp_thumbnail_description_80" />
+            android:text="@string/andesui_demoapp_thumbnail_description_80"
+            android:textSize="@dimen/description_text_size_thumbnail" />
 
         <TextView
             android:id="@+id/andesui_demoapp_label_more"
@@ -96,8 +96,8 @@
             android:id="@+id/andesui_demoapp_andes_specs_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/button_margin_vertical"
             android:layout_gravity="start"
+            android:layout_marginTop="@dimen/button_margin_vertical"
             app:andesButtonHierarchy="quiet"
             app:andesButtonSize="medium"
             app:andesButtonText="@string/andesui_demoapp_label_andes_thumbnail_specs"

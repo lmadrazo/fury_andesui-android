@@ -3,7 +3,6 @@ package com.mercadolibre.android.andesui.demoapp.feature.andesbottomsheet
 import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +16,11 @@ import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleA
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import kotlinx.android.synthetic.main.andesui_bottom_sheet_showcase.*
 
 @Suppress("TooManyFunctions")
-class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
+class BottomSheetShowcaseActivity : BaseActivity(), BottomSheetListener {
     private lateinit var bottomSheet: AndesBottomSheet
     private var showTitle = false
     private var leftAlignTitle = true
@@ -65,7 +65,7 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
         bottomSheet.setContent(supportFragmentManager, TestFragment())
 
-        Handler().postDelayed(  {
+        Handler().postDelayed({
             bottomSheet.expand()
         }, ONE_HUNDRED_MS)
     }
@@ -81,6 +81,7 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
             andesButton.hierarchy = AndesButtonHierarchy.LOUD
         }
     }
+
     fun onToggleAlignButtonClicked(view: View) {
         val andesButton = view as AndesButton
         leftAlignTitle = !leftAlignTitle

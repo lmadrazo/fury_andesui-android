@@ -1,20 +1,17 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.AndesPagerAdapter
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.dropdown.AndesDropDownForm
 import com.mercadolibre.android.andesui.dropdown.AndesDropDownItem
@@ -26,12 +23,11 @@ import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import kotlinx.android.synthetic.main.andesui_dropdown_form_showcase.view.*
 import kotlinx.android.synthetic.main.andesui_dropdown_standalone_showcase.view.*
 
-class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
+class DropdownShowCaseActivity : BaseActivity(), AndesDropdownDelegate {
     private var andesDropDownLabel = "Title"
     private var andesDropDownPlaceHolder = "Place holder"
     private var andesDropDownHelper = "Helper"
 
-    private lateinit var adapter: AndesShowcasePagerAdapter
     private lateinit var andesDropDownForm: AndesDropDownForm
     private lateinit var andesDropdownStandalone: AndesDropdownStandalone
     private lateinit var buttonClear: AndesButton
@@ -48,23 +44,39 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
-        setAdapterLogic()
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_dropdown)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
 
-    private fun setAdapterLogic() {
-        val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
-        viewPager.adapter = AndesShowcasePagerAdapter(this)
+        viewPager = findViewById(R.id.andesui_viewpager)
+        viewPager.setScreenName(getString(R.string.andesui_demoapp_dropdown))
+        viewPager.adapter = AndesPagerAdapter(loadViews())
 
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)
 
-        adapter = viewPager.adapter as AndesShowcasePagerAdapter
-
+        val adapter = viewPager.adapter as AndesPagerAdapter
         setupDropdownFormShowCase(adapter.views[0])
         setupDropdownStandaloneShowCase(adapter.views[1])
+    }
+
+    private fun loadViews(): List<View> {
+        val inflater = LayoutInflater.from(this)
+        val layoutDropDownForm = inflater.inflate(R.layout.andesui_dropdown_form_showcase, null, false)
+        val layoutDropDownStandalone = inflater.inflate(R.layout.andesui_dropdown_standalone_showcase, null, false)
+
+        val spinnerType: Spinner = layoutDropDownStandalone.findViewById(R.id.andes_dropdown_standalone_show_case_spinner)
+        ArrayAdapter.createFromResource(
+                this,
+                R.array.type_list_spinner,
+                android.R.layout.simple_spinner_item
+        )
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    spinnerType.adapter = adapter
+                }
+
+        return listOf<View>(layoutDropDownForm, layoutDropDownStandalone)
     }
 
     override fun onItemSelected(andesDropDown: AndesListDelegate, position: Int) {
@@ -152,49 +164,6 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         andesDropDownForm.label = editTextTitle.text.toString()
         andesDropDownForm.placeholder = editTextPlaceHolder.text.toString()
         andesDropDownForm.helper = editTextHelper.text.toString()
-    }
-
-    class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
-        var views: List<View>
-
-        init {
-            views = initViews()
-        }
-
-        override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            container.addView(views[position])
-            return views[position]
-        }
-
-        override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
-            container.removeView(view as View?)
-        }
-
-        override fun isViewFromObject(view: View, other: Any): Boolean {
-            return view == other
-        }
-
-        override fun getCount(): Int = views.size
-
-        private fun initViews(): List<View> {
-            val inflater = LayoutInflater.from(context)
-            val layoutDropDownForm = inflater.inflate(R.layout.andesui_dropdown_form_showcase, null, false)
-            val layoutDropDownStandalone = inflater.inflate(R.layout.andesui_dropdown_standalone_showcase, null, false)
-
-            val spinnerType: Spinner = layoutDropDownStandalone.findViewById(R.id.andes_dropdown_standalone_show_case_spinner)
-            ArrayAdapter.createFromResource(
-                    context,
-                    R.array.type_list_spinner,
-                    android.R.layout.simple_spinner_item
-            )
-                    .also { adapter ->
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        spinnerType.adapter = adapter
-                    }
-
-            return listOf<View>(layoutDropDownForm, layoutDropDownStandalone)
-        }
-
     }
 
     private fun getFakeList(): List<AndesDropDownItem> {

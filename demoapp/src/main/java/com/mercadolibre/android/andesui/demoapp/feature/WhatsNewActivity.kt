@@ -1,14 +1,15 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import io.noties.markwon.Markwon
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-class WhatsNewActivity : AppCompatActivity() {
+class WhatsNewActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_demoapp_whatsnew)
@@ -42,4 +43,5 @@ class WhatsNewActivity : AppCompatActivity() {
 
         return byteArrayOutputStream.toString()
     }
+
 }

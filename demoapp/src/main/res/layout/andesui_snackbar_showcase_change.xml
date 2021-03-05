@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="800dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/andes_white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,13 +14,13 @@
             android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:andesMessageTitleText="@string/title_description"
-            app:andesMessageBodyText="@string/snackbar_description"
             android:layout_marginStart="@dimen/margin_vertical_text_field"
             android:layout_marginTop="@dimen/margin_vertical_thumbnail"
             android:layout_marginEnd="@dimen/margin_vertical_text_field"
-            app:andesMessageType="neutral"
+            app:andesMessageBodyText="@string/snackbar_description"
             app:andesMessageHierarchy="quiet"
+            app:andesMessageTitleText="@string/title_description"
+            app:andesMessageType="neutral"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -69,9 +68,9 @@
             android:id="@+id/snackbar_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:andesTextfieldPlaceholder="@string/andesui_demoapp_tag_text"
             app:andesTextfieldRightContent="clear"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@+id/snackbar_type"
             app:layout_constraintStart_toStartOf="@+id/textView15"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -98,8 +97,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:andesTextfieldRightContent="clear"
             app:andesTextfieldPlaceholder="@string/andesui_demoapp_snackbar_text_action"
+            app:andesTextfieldRightContent="clear"
             app:layout_constraintEnd_toEndOf="@+id/snackbar_has_action"
             app:layout_constraintStart_toStartOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />

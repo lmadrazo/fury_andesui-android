@@ -49,9 +49,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:inputType="textCapWords|textCapSentences"
             app:andesTextfieldPlaceholder="@string/andes_textfield_label_text"
             app:andesTextfieldRightContent="clear"
-            android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/state_spinner"
             app:layout_constraintStart_toStartOf="@+id/simpleTypeTextView"
             app:layout_constraintTop_toBottomOf="@+id/simpleTypeTextView" />
@@ -61,9 +61,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
+            android:inputType="textCapWords|textCapSentences"
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
             app:andesTextfieldRightContent="clear"
-            android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/label_text"
             app:layout_constraintStart_toStartOf="@+id/label_text"
             app:layout_constraintTop_toBottomOf="@+id/label_text" />
@@ -73,9 +73,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
+            android:inputType="textCapWords|textCapSentences"
             app:andesTextfieldPlaceholder="@string/andes_textfield_helper_text"
             app:andesTextfieldRightContent="clear"
-            android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/placeholder_text"
             app:layout_constraintStart_toStartOf="@+id/placeholder_text"
             app:layout_constraintTop_toBottomOf="@+id/placeholder_text" />

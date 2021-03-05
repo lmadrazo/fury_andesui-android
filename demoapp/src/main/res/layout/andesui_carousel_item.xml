@@ -12,11 +12,11 @@
         app:andesMessageBodyText="@string/body_text"
         app:andesMessageDismissable="true"
         app:andesMessageHierarchy="quiet"
-        app:andesMessageType="success"
         app:andesMessageTitleText="@string/title_text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:andesMessageType="success"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

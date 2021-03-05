@@ -6,24 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Toast
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import com.mercadolibre.android.andesui.list.AndesList
 import com.mercadolibre.android.andesui.list.AndesListViewItem
-import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
 import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
+import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
@@ -31,8 +27,14 @@ import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 import com.mercadolibre.android.andesui.radiobuttongroup.AndesRadioButtonGroup
 import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
 import kotlinx.android.synthetic.main.andesui_list_showcase.view.*
+import java.util.*
 
-class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
+class ListShowcaseActivity : BaseActivity(), AndesListDelegate {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var screensTime: Long = 0
+    private var startTime: Long = 0
+
     private var itemSelectedPosition: Int = 0
     private lateinit var andesList: AndesList
     private lateinit var adapter: AndesShowcasePagerAdapter
@@ -67,8 +69,37 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         setContentView(R.layout.andesui_showcase_main)
         setAdapterLogic()
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
+
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_list)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+    }
+
+    override fun onDestroy() {
+        if (startTime > 0) {
+            val diff = Date().time - startTime
+            screensTime += diff
+        }
+
+        // Track
+        val bundle = Bundle()
+        bundle.putLong("Screen 1", screensTime)
+        firebaseAnalytics.logEvent(getString(R.string.andes_carousel_showcase).replace(" ", ""), bundle)
+
+        super.onDestroy()
+    }
+
+    override fun onStop() {
+        val diff = Date().time - startTime
+        screensTime += diff
+        startTime = 0
+        super.onStop()
+    }
+
+    override fun onResume() {
+        startTime = Date().time
+        super.onResume()
     }
 
     private fun setAdapterLogic() {
@@ -282,7 +313,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     override fun getDataSetSize(andesList: AndesList): Int = LIST_SIZE
 
     override fun onItemClick(andesList: AndesList, position: Int) {
-
         Toast.makeText(this, "Position of item selected $position", Toast.LENGTH_SHORT).show()
 
         itemSelectedPosition = position

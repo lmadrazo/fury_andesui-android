@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:padding="@dimen/button_margin_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/button_margin_vertical">
 
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:layout_width="match_parent"
@@ -18,29 +18,29 @@
             app:andesMessageBodyText="@string/body_text"
             app:andesMessageDismissable="true"
             app:andesMessageHierarchy="quiet"
-            app:andesMessageType="success"
-            app:andesMessageTitleText="@string/title_text" />
-
-        <com.mercadolibre.android.andesui.message.AndesMessage
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesMessageBodyText="@string/body_text"
-            app:andesMessageDismissable="true"
-            app:andesMessageHierarchy="loud"
-            app:andesMessageType="success"
-            app:andesMessageTitleText="@string/title_text" />
-
-        <com.mercadolibre.android.andesui.message.AndesMessage
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesMessageBodyText="@string/body_text"
-            app:andesMessageDismissable="true"
-            app:andesMessageHierarchy="loud"
-            app:andesMessageType="success"
             app:andesMessageTitleText="@string/title_text"
-            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher" />
+            app:andesMessageType="success" />
+
+        <com.mercadolibre.android.andesui.message.AndesMessage
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesMessageBodyText="@string/body_text"
+            app:andesMessageDismissable="true"
+            app:andesMessageHierarchy="loud"
+            app:andesMessageTitleText="@string/title_text"
+            app:andesMessageType="success" />
+
+        <com.mercadolibre.android.andesui.message.AndesMessage
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesMessageBodyText="@string/body_text"
+            app:andesMessageDismissable="true"
+            app:andesMessageHierarchy="loud"
+            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher"
+            app:andesMessageTitleText="@string/title_text"
+            app:andesMessageType="success" />
 
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:layout_width="match_parent"
@@ -48,8 +48,8 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesMessageBodyText="@string/body_text"
             app:andesMessageHierarchy="quiet"
-            app:andesMessageType="warning"
-            app:andesMessageTitleText="@string/title_text" />
+            app:andesMessageTitleText="@string/title_text"
+            app:andesMessageType="warning" />
 
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:id="@+id/messagePrimaryAction"
@@ -67,8 +67,8 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesMessageBodyText="@string/body_text"
             app:andesMessageHierarchy="loud"
-            app:andesMessageType="warning"
-            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher" />
+            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher"
+            app:andesMessageType="warning" />
 
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:id="@+id/messagePrimaryAndSecondaryActionQuiet"
@@ -86,8 +86,8 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesMessageBodyText="@string/body_text"
             app:andesMessageHierarchy="quiet"
-            app:andesMessageType="neutral"
-            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher" />
+            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher"
+            app:andesMessageType="neutral" />
 
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:id="@+id/messagePrimaryAndSecondaryActionLoud"
@@ -114,8 +114,8 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesMessageBodyText="@string/body_text"
             app:andesMessageHierarchy="quiet"
-            app:andesMessageType="error"
-            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher" />
+            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher"
+            app:andesMessageType="error" />
 
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:id="@+id/messageLinkLoud"
@@ -134,8 +134,8 @@
             app:andesMessageBodyText="@string/body_text"
             app:andesMessageDismissable="true"
             app:andesMessageHierarchy="quiet"
-            app:andesMessageType="success"
-            app:andesMessageTitleText="@string/title_text" />
+            app:andesMessageTitleText="@string/title_text"
+            app:andesMessageType="success" />
 
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:id="@+id/messageLinkBodyWithThumbnail"
@@ -145,9 +145,9 @@
             app:andesMessageBodyText="@string/body_text"
             app:andesMessageDismissable="true"
             app:andesMessageHierarchy="quiet"
-            app:andesMessageType="success"
+            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher"
             app:andesMessageTitleText="@string/title_text"
-            app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher" />
+            app:andesMessageType="success" />
 
         <TextView
             android:id="@+id/andesui_demoapp_label_more"

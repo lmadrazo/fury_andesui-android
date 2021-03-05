@@ -16,11 +16,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:andesMessageTitleText="@string/title_description"
             app:andesMessageBodyText="@string/radiobutton_description"
             app:andesMessageHierarchy="quiet"
-            app:andesMessageType="neutral"
             app:andesMessageThumbnail="@mipmap/andesui_demoapp_ic_launcher"
+            app:andesMessageTitleText="@string/title_description"
+            app:andesMessageType="neutral"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -97,8 +97,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:andesTextfieldRightContent="clear"
             app:andesTextfieldPlaceholder="@string/andes_radiobutton_placeholder_text"
+            app:andesTextfieldRightContent="clear"
             app:layout_constraintEnd_toEndOf="@+id/spinnerAlign"
             app:layout_constraintStart_toStartOf="@+id/textView17"
             app:layout_constraintTop_toBottomOf="@+id/spinnerAlign" />

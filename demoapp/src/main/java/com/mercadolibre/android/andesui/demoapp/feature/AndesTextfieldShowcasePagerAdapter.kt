@@ -1,8 +1,8 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
-import androidx.viewpager.widget.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager.widget.PagerAdapter
 import com.mercadolibre.android.andesui.demoapp.R
 
 class AndesTextfieldShowcasePagerAdapter(private val views: List<TextFieldPage>) : PagerAdapter() {
@@ -26,5 +26,5 @@ class AndesTextfieldShowcasePagerAdapter(private val views: List<TextFieldPage>)
 }
 
 data class TextFieldPage(
-    val page: View,
-    val titleResource: Int = R.string.andesui_demoapp_screen_textfield)
+        val page: View,
+        val titleResource: Int = R.string.andesui_demoapp_screen_textfield)

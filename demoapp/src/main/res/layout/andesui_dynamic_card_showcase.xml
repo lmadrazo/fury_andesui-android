@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -84,7 +83,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/spinnerBodyPadding"
             app:layout_constraintStart_toStartOf="@+id/textView17"
             app:layout_constraintTop_toTopOf="@+id/spinnerBodyPadding"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintVertical_bias="1.0" />
 
         <Spinner
             android:id="@+id/spinnerBodyPadding"
@@ -99,9 +98,9 @@
             android:id="@+id/andesTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
             app:andesTextfieldLabel="@string/andes_card_title"
             app:andesTextfieldRightContent="clear"
-            android:layout_marginRight="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/andesLink"
             app:layout_constraintEnd_toStartOf="@+id/andesLink"
             app:layout_constraintHorizontal_bias="0.5"
@@ -151,8 +150,8 @@
             android:layout_width="0dp"
             android:layout_height="49dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
             app:andesButtonText="@string/andes_message_showcase_change"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonClear"

@@ -14,28 +14,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="16dp"
             android:text="@string/andes_card_showcase"
             android:textColor="#000"
-            android:padding="16dp"
             android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:baselineAligned="false"
             android:gravity="center_horizontal"
-            android:baselineAligned="false">
+            android:orientation="vertical">
 
             <com.mercadolibre.android.andesui.card.AndesCard
                 android:id="@+id/card_example_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
-                app:andesCardType="warning"
-                app:andesCardStyle="elevated"
-                app:andesCardPadding="small"
                 app:andesCardHierarchy="primary"
-                app:andesCardTitle="@string/andes_card_showcase"/>
+                app:andesCardPadding="small"
+                app:andesCardStyle="elevated"
+                app:andesCardTitle="@string/andes_card_showcase"
+                app:andesCardType="warning" />
 
             <com.mercadolibre.android.andesui.card.AndesCard
                 android:id="@+id/card_example_4"
@@ -44,10 +44,10 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                app:andesCardType="highlight"
-                app:andesCardStyle="outline"
+                app:andesCardHierarchy="primary"
                 app:andesCardPadding="small"
-                app:andesCardHierarchy="primary"/>
+                app:andesCardStyle="outline"
+                app:andesCardType="highlight" />
 
             <com.mercadolibre.android.andesui.card.AndesCard
                 android:id="@+id/card_example_2"
@@ -56,11 +56,11 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                app:andesCardType="none"
-                app:andesCardStyle="elevated"
-                app:andesCardPadding="small"
                 app:andesCardHierarchy="secondary"
-                app:andesCardTitle="@string/andes_card_showcase"/>
+                app:andesCardPadding="small"
+                app:andesCardStyle="elevated"
+                app:andesCardTitle="@string/andes_card_showcase"
+                app:andesCardType="none" />
 
             <com.mercadolibre.android.andesui.card.AndesCard
                 android:id="@+id/card_example_3"
@@ -69,11 +69,11 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                app:andesCardType="none"
-                app:andesCardStyle="outline"
-                app:andesCardPadding="medium"
                 app:andesCardHierarchy="primary"
-                app:andesCardTitle="@string/andes_card_showcase"/>
+                app:andesCardPadding="medium"
+                app:andesCardStyle="outline"
+                app:andesCardTitle="@string/andes_card_showcase"
+                app:andesCardType="none" />
 
             <com.mercadolibre.android.andesui.card.AndesCard
                 android:id="@+id/card_example_5"
@@ -81,11 +81,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                app:andesCardType="none"
-                app:andesCardStyle="elevated"
-                app:andesCardPadding="medium"
                 app:andesCardHierarchy="secondary_dark"
-                app:andesCardTitle="@string/andes_card_showcase"/>
+                app:andesCardPadding="medium"
+                app:andesCardStyle="elevated"
+                app:andesCardTitle="@string/andes_card_showcase"
+                app:andesCardType="none" />
 
         </LinearLayout>
 

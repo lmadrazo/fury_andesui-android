@@ -1,21 +1,18 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
-import android.content.Context
 import android.os.Bundle
-import androidx.constraintlayout.widget.Group
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
+import androidx.constraintlayout.widget.Group
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.AndesPagerAdapter
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.snackbar.AndesSnackbar
 import com.mercadolibre.android.andesui.snackbar.action.AndesSnackbarAction
 import com.mercadolibre.android.andesui.snackbar.duration.AndesSnackbarDuration
@@ -23,7 +20,7 @@ import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarType
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
-class SnackbarShowcaseActivity : AppCompatActivity() {
+class SnackbarShowcaseActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +30,21 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_snackbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
-        viewPager.adapter = AndesShowcasePagerAdapter(this)
+        viewPager = findViewById(R.id.andesui_viewpager)
+        viewPager.setScreenName(getString(R.string.andes_snackbar_showcase))
+        viewPager.adapter = AndesPagerAdapter(loadViews())
+
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)
 
-        val adapter = viewPager.adapter as AndesShowcasePagerAdapter
+        val adapter = viewPager.adapter as AndesPagerAdapter
         addDynamicSnackbar(adapter.views[0])
+    }
+
+    private fun loadViews(): List<View> {
+        val inflater = LayoutInflater.from(this)
+        val layout = inflater.inflate(R.layout.andesui_snackbar_showcase_change, null, false)
+        return listOf<View>(layout)
     }
 
     @Suppress("ComplexMethod", "LongMethod")
@@ -63,9 +68,9 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
 
         val snackbarType: Spinner = container.findViewById(R.id.snackbar_type)
         ArrayAdapter.createFromResource(
-            this,
-            R.array.snackbar_type_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.snackbar_type_spinner,
+                android.R.layout.simple_spinner_item
         )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -74,9 +79,9 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
 
         val snackbarDuration: Spinner = container.findViewById(R.id.snackbar_duration)
         ArrayAdapter.createFromResource(
-            this,
-            R.array.snackbar_duration_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.snackbar_duration_spinner,
+                android.R.layout.simple_spinner_item
         )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -136,50 +141,22 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
             }
 
             val snackbar = AndesSnackbar(
-                this,
-                container,
-                selectedType,
-                text.text!!,
-                selectedDuration
+                    this,
+                    container,
+                    selectedType,
+                    text.text!!,
+                    selectedDuration
             )
             if (hasAction.isChecked) {
                 snackbar.action = AndesSnackbarAction(
-                    textAction.text!!,
-                    View.OnClickListener {
-                        Toast.makeText(this, "Callback", Toast.LENGTH_SHORT).show()
-                    }
+                        textAction.text!!,
+                        View.OnClickListener {
+                            Toast.makeText(this, "Callback", Toast.LENGTH_SHORT).show()
+                        }
                 )
             }
             snackbar.show()
         }
     }
 
-    class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
-        var views: List<View>
-
-        init {
-            views = initViews()
-        }
-
-        override fun instantiateItem(container: ViewGroup, position: Int): View {
-            container.addView(views[position])
-            return views[position]
-        }
-
-        override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
-            container.removeView(view as View?)
-        }
-
-        override fun isViewFromObject(view: View, other: Any): Boolean {
-            return view == other
-        }
-
-        override fun getCount(): Int = views.size
-
-        private fun initViews(): List<View> {
-            val inflater = LayoutInflater.from(context)
-            val layout = inflater.inflate(R.layout.andesui_snackbar_showcase_change, null, false)
-            return listOf<View>(layout)
-        }
-    }
 }

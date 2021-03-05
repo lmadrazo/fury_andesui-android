@@ -24,26 +24,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/button_margin_vertical" >
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            android:orientation="horizontal">
 
             <Spinner
                 android:id="@+id/hierarchy_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <Spinner
                 android:id="@+id/simple_type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <Spinner
                 android:id="@+id/thumbnail_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -59,53 +59,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            android:inputType="text"
             app:andesTextfieldPlaceholder="@string/change_text"
-            app:andesTextfieldRightContent="clear"
-            android:inputType="text" />
+            app:andesTextfieldRightContent="clear" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextarea
             android:id="@+id/body_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical_small"
-            app:andesTextareaPlaceholder="@string/change_body"
+            android:inputType="text"
             app:andesTextareaMaxLines="3"
-            android:inputType="text" />
+            app:andesTextareaPlaceholder="@string/change_body" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/primary_action_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            android:inputType="text"
             app:andesTextfieldPlaceholder="@string/change_primary"
-            app:andesTextfieldRightContent="clear"
-            android:inputType="text" />
+            app:andesTextfieldRightContent="clear" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/secondary_action_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            android:inputType="text"
             app:andesTextfieldPlaceholder="@string/change_secondary"
-            app:andesTextfieldRightContent="clear"
-            android:inputType="text" />
+            app:andesTextfieldRightContent="clear" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/link_action_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical_small"
+            android:inputType="text"
             app:andesTextfieldPlaceholder="@string/change_link_button"
-            app:andesTextfieldRightContent="clear"
-            android:inputType="text" />
+            app:andesTextfieldRightContent="clear" />
 
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/change_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_margin_vertical"
             app:andesButtonHierarchy="loud"
             app:andesButtonSize="large"
-            android:layout_marginTop="@dimen/button_margin_vertical"
             app:andesButtonText="@string/andes_message_showcase_change" />
 
     </LinearLayout>

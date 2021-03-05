@@ -3,9 +3,10 @@ package com.mercadolibre.android.andesui.demoapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.utils.SafeIntent
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 /**
  * Main activity class
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_demoapp_main)
@@ -74,24 +75,34 @@ class MainActivity : AppCompatActivity() {
             startActivity(SafeIntent(this, "meli://andes/progress"))
         }
         andesui_bottom_sheet.setOnClickListener {
-            startActivity(SafeIntent(this,"meli://andes/bottom_sheet"))
+            startActivity(SafeIntent(this, "meli://andes/bottom_sheet"))
         }
         andesui_date_picker.setOnClickListener {
-            startActivity(SafeIntent(this,"meli://andes/datepicker"))
+            startActivity(SafeIntent(this, "meli://andes/datepicker"))
         }
     }
 
     private fun setupExtras() {
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
         andesui_demoapp_changelog.setupPrimaryAction(
-            getString(R.string.andesui_demoapp_whatsnew_main_action),
-            View.OnClickListener { startActivity(SafeIntent(this, "meli://andes/whats-new")) }
+                getString(R.string.andesui_demoapp_whatsnew_main_action),
+                View.OnClickListener {
+                    firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_whatsnew_main_action), Bundle())
+
+                    startActivity(SafeIntent(this, "meli://andes/whats-new"))
+                }
         )
 
         andesui_demoapp_andes_specs.setOnClickListener {
+            firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_label_andes_specs), Bundle())
+
             launchSpecs(this, AndesSpecs.HOME_PAGE)
         }
 
         andesui_demoapp_contribution.setOnClickListener {
+            firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_label_andes_contribution), Bundle())
+
             ContextCompat.startActivity(this,
                     Intent(Intent.ACTION_VIEW,
                             Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")),

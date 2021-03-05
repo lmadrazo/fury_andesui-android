@@ -130,11 +130,11 @@
             android:id="@+id/andesui_date_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
             app:andesButtonHierarchy="loud"
             app:andesButtonSize="large"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
             app:andesButtonText="@string/andesui_demoapp_datepicker_button"
             app:layout_constraintEnd_toEndOf="@+id/andesui_coachmark"
             app:layout_constraintStart_toStartOf="@+id/andesui_coachmark"
@@ -162,7 +162,7 @@
             app:andesButtonHierarchy="loud"
             app:andesButtonSize="large"
             app:andesButtonText="@string/andesui_demoapp_list"
-             app:layout_constraintTop_toBottomOf="@id/andesui_dropdown" />
+            app:layout_constraintTop_toBottomOf="@id/andesui_dropdown" />
 
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/andesui_messages"
@@ -285,5 +285,5 @@
             app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_contribution" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-  
+
 </ScrollView>

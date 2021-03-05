@@ -3,22 +3,28 @@ package com.mercadolibre.android.andesui.demoapp.feature
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.TypedValue
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.mercadolibre.android.andesui.carousel.AndesCarousel
 import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselMargin
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import kotlinx.android.synthetic.main.andesui_carousel_showcase.*
+import java.util.*
 
-class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
+class CarouselShowcaseActivity : BaseActivity(), AndesCarouselDelegate {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var screensTime: Long = 0
+    private var startTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +35,9 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         carouselMain.delegate = this
 
         ArrayAdapter.createFromResource(
-    this,
-            R.array.carousel_margin_spinner,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.carousel_margin_spinner,
+                android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             marginSpinner.adapter = adapter
@@ -47,11 +53,11 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         }
 
         updateButton.setOnClickListener {
-            val padding: AndesCarouselMargin = when(marginSpinner.selectedItem.toString()) {
+            val padding: AndesCarouselMargin = when (marginSpinner.selectedItem.toString()) {
                 "None" -> AndesCarouselMargin.NONE
                 else -> AndesCarouselMargin.DEFAULT
             }
-            val center = when(centerSpinner.selectedItem.toString()) {
+            val center = when (centerSpinner.selectedItem.toString()) {
                 "False" -> false
                 else -> true
             }
@@ -63,6 +69,34 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         newCarousel.delegate = this
 
         mainContainer.addView(newCarousel)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+    }
+
+    override fun onDestroy() {
+        if (startTime > 0) {
+            val diff = Date().time - startTime
+            screensTime += diff
+        }
+
+        // Track
+        val bundle = Bundle()
+        bundle.putLong("Screen 1", screensTime)
+        firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_list).replace(" ", ""), bundle)
+
+        super.onDestroy()
+    }
+
+    override fun onStop() {
+        val diff = Date().time - startTime
+        screensTime += diff
+        startTime = 0
+        super.onStop()
+    }
+
+    override fun onResume() {
+        startTime = Date().time
+        super.onResume()
     }
 
     @SuppressLint("SetTextI18n")

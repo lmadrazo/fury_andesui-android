@@ -2,16 +2,23 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmark
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmarkStep
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmarkStyle
 import com.mercadolibre.android.andesui.coachmark.view.CoachmarkView
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import kotlinx.android.synthetic.main.andesui_coachmark_activity.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 @SuppressWarnings("MaxLineLength")
-class TestCoachMarkActivity : AppCompatActivity() {
+class TestCoachMarkActivity : BaseActivity() {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var screensTime: Long = 0
+    private var startTime: Long = 0
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,20 +30,20 @@ class TestCoachMarkActivity : AppCompatActivity() {
 
         texto.text = "Texto a resaltar"
         textoLargo.text = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
         actionButton.text = "Empezar CoachMark"
         textoAbajo.text = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum" +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
+                "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
 
         val stepsNewCoachmark = ArrayList<AndesWalkthroughCoachmarkStep>()
 
@@ -51,11 +58,39 @@ class TestCoachMarkActivity : AppCompatActivity() {
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Noveno titulo ", "Probando scroll hacia arriba", "Siguiente", textoLargo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Decimo titulo ", "Esto sigue en prueba y esta bueno que funcione bien", "Siguiente", actionButton, AndesWalkthroughCoachmarkStyle.RECTANGLE))
 
-
         actionButton.setOnClickListener {
             CoachmarkView.Builder(this, AndesWalkthroughCoachmark(stepsNewCoachmark, scrollview) {
                 println("Entro al despues de cerrar")
             }).build()
         }
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
     }
+
+    override fun onDestroy() {
+        if (startTime > 0) {
+            val diff = Date().time - startTime
+            screensTime += diff
+        }
+
+        // Track
+        val bundle = Bundle()
+        bundle.putLong("Screen 1", screensTime)
+        firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_coachmark).replace(" ", ""), bundle)
+
+        super.onDestroy()
+    }
+
+    override fun onStop() {
+        val diff = Date().time - startTime
+        screensTime += diff
+        startTime = 0
+        super.onStop()
+    }
+
+    override fun onResume() {
+        startTime = Date().time
+        super.onResume()
+    }
+
 }

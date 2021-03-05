@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.monits.staticCodeAnalysis'
@@ -8,9 +9,11 @@ apply from: rootProject.file('detekt.gradle')
 
 buildscript {
     repositories {
+        google()
         jcenter()
     }
     dependencies {
+        classpath 'com.google.gms:google-services:4.3.5'
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexCountGradlePlugin"
     }
 }
@@ -104,6 +107,10 @@ dependencies {
 
     implementation showcase.glide
     implementation showcase.markwon
+
+    implementation platform(firebase.bom)
+    implementation firebase.analytics
+
     debugImplementation showcase.leakCanary
 }
 
@@ -111,7 +118,7 @@ dependencies {
  * Based on https://stackoverflow.com/a/44218054/2823516
  */
 copy {
-    from file ('../CHANGELOG.md')
+    from file('../CHANGELOG.md')
     into 'src/main/res/raw'
     rename { String fileName ->
         fileName.replace("CHANGELOG.md", "andesui_demoapp_changelog.md")

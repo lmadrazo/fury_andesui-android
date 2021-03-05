@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/andes_white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,13 +15,13 @@
             android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:andesMessageTitleText="@string/title_description"
-            app:andesMessageBodyText="@string/badge_description"
             android:layout_marginStart="@dimen/margin_vertical_text_field"
             android:layout_marginTop="@dimen/margin_vertical_thumbnail"
             android:layout_marginEnd="@dimen/margin_vertical_text_field"
-            app:andesMessageType="neutral"
+            app:andesMessageBodyText="@string/badge_description"
             app:andesMessageHierarchy="quiet"
+            app:andesMessageTitleText="@string/title_description"
+            app:andesMessageType="neutral"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,9 +43,9 @@
             android:id="@+id/andes_badge_dot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_marginStart="@dimen/margin_vertical_text_field"
             android:layout_marginEnd="@dimen/margin_vertical_text_field"
+            android:visibility="invisible"
             app:andesBadgePillText="@string/andes_badges_text"
             app:layout_constraintBottom_toBottomOf="@+id/andes_badge_pill"
             app:layout_constraintEnd_toEndOf="parent"
