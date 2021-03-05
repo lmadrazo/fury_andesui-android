@@ -472,7 +472,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 text = config.linkAction.label
                 typeface = context.getFontOrDefault(R.font.andes_font_regular)
                 config.linkActionTextColor?.let { setTextColor(it.colorInt(context)) }
-                config.linkActionIsUnderlined?.let { paintFlags = Paint.UNDERLINE_TEXT_FLAG }
+                if (config.linkActionIsUnderlined) {
+                    paintFlags = Paint.UNDERLINE_TEXT_FLAG
+                }
                 setOnClickListener {
                     dismiss()
                     config.linkAction.onActionClicked(it, this@AndesTooltip)
