@@ -3,7 +3,6 @@ package com.mercadolibre.android.andesui.tooltip.location
 import android.view.View
 
 internal data class AndesTooltipArrowPoint(val x: Float, val y: Float)
-internal data class AndesTooltipPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
 
 private const val ARROW_POINTING_DOWN = 0F
 private const val ARROW_POINTING_UP = 180F
@@ -29,7 +28,6 @@ sealed class AndesTooltipLocationConfig(
     abstract fun buildTooltip(target: View)
     abstract fun canBuildTooltipInRequiredLocation(target: View): Boolean
     abstract fun iterateOtherLocations(target: View): Boolean
-    internal abstract fun getTooltipPadding(): AndesTooltipPadding
     internal abstract fun getArrowPoint(): AndesTooltipArrowPoint
     abstract fun getArrowRotation(): Float
 }
@@ -67,14 +65,6 @@ internal class TopAndesTooltipLocationConfig(private val andesTooltip: AndesTool
                 }
             }
             return false
-        }
-    }
-
-    override fun getTooltipPadding(): AndesTooltipPadding {
-        andesTooltip.apply {
-            val paddingSize = paddingWithArrow
-            val elevation = elevation
-            return AndesTooltipPadding(elevation, elevation, elevation, paddingSize)
         }
     }
 
@@ -129,14 +119,6 @@ internal class BottomAndesTooltipLocationConfig(private val andesTooltip: AndesT
         }
     }
 
-    override fun getTooltipPadding(): AndesTooltipPadding {
-        andesTooltip.apply {
-            val paddingSize = paddingWithArrow
-            val elevation = elevation
-            return AndesTooltipPadding(elevation, paddingSize, elevation, elevation)
-        }
-    }
-
     override fun getArrowPoint(): AndesTooltipArrowPoint {
         andesTooltip.run {
             val arrowLocation: AndesTooltipArrowLocation = getAndesTooltipArrowLocation(
@@ -185,14 +167,6 @@ internal class LeftAndesTooltipLocationConfig(private val andesTooltip: AndesToo
                 }
             }
             return false
-        }
-    }
-
-    override fun getTooltipPadding(): AndesTooltipPadding {
-        andesTooltip.apply {
-            val paddingSize = paddingWithArrow
-            val elevation = elevation
-            return AndesTooltipPadding(elevation, elevation, paddingSize, elevation)
         }
     }
 
@@ -245,14 +219,6 @@ internal class RightAndesTooltipLocationConfig(private val andesTooltip: AndesTo
                 }
             }
             return false
-        }
-    }
-
-    override fun getTooltipPadding(): AndesTooltipPadding {
-        andesTooltip.apply {
-            val paddingSize = paddingWithArrow
-            val elevation = elevation
-            return AndesTooltipPadding(paddingSize, elevation, elevation, elevation)
         }
     }
 

@@ -384,8 +384,7 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
 
     private fun initializeAndesTooltipContent(config: AndesTooltipConfiguration, locationConfig: AndesTooltipLocationConfig) {
         with(frameLayoutContainer) {
-            val paddingByConfig = locationConfig.getTooltipPadding()
-            setPadding(paddingByConfig.left, paddingByConfig.top, paddingByConfig.right, paddingByConfig.bottom)
+            setPadding(paddingWithArrow, paddingWithArrow, paddingWithArrow, paddingWithArrow)
         }
         initTooltipTitle(config)
         initTooltipBody(config)
