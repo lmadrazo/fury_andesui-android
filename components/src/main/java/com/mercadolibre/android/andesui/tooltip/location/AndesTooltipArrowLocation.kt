@@ -7,11 +7,11 @@ sealed class AndesTooltipArrowLocation {
 
 internal object AndesTooltipArrowBottomLeft : AndesTooltipArrowLocation() {
     override fun getArrowPositionX(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.arrowBorder.toFloat()
+        return tooltip.arrowBorder.toFloat() + tooltip.elevation
     }
 
     override fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.frameLayoutContainer.y + tooltip.radiusLayout.height - tooltip.elevation
+        return tooltip.frameLayoutContainer.y + tooltip.radiusLayout.height + tooltip.elevation + tooltip.arrowImageInnerPadding
     }
 }
 internal object AndesTooltipArrowBottomMiddle : AndesTooltipArrowLocation() {
@@ -20,26 +20,26 @@ internal object AndesTooltipArrowBottomMiddle : AndesTooltipArrowLocation() {
     }
 
     override fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.frameLayoutContainer.y + tooltip.radiusLayout.height - tooltip.elevation
+        return tooltip.frameLayoutContainer.y + tooltip.radiusLayout.height + tooltip.elevation + tooltip.arrowImageInnerPadding
     }
 }
 internal object AndesTooltipArrowBottomRight : AndesTooltipArrowLocation() {
     override fun getArrowPositionX(tooltip: AndesTooltipLocationInterface): Float {
-        return (tooltip.frameLayoutContainer.width - tooltip.arrowBorder - tooltip.arrowWidth).toFloat()
+        return (tooltip.frameLayoutContainer.width - tooltip.arrowBorder - tooltip.arrowWidth - tooltip.elevation).toFloat()
     }
 
     override fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.frameLayoutContainer.y + tooltip.radiusLayout.height - tooltip.elevation
+        return tooltip.frameLayoutContainer.y + tooltip.radiusLayout.height + tooltip.elevation + tooltip.arrowImageInnerPadding
     }
 }
 
 internal object AndesTooltipArrowTopLeft : AndesTooltipArrowLocation() {
     override fun getArrowPositionX(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.arrowBorder.toFloat()
+        return tooltip.arrowBorder.toFloat() + tooltip.elevation
     }
 
     override fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.radiusLayout.y - tooltip.arrowBorder
+        return tooltip.radiusLayout.y - tooltip.arrowBorder - tooltip.arrowImageInnerPadding / 2
     }
 }
 internal object AndesTooltipArrowTopMiddle : AndesTooltipArrowLocation() {
@@ -48,16 +48,16 @@ internal object AndesTooltipArrowTopMiddle : AndesTooltipArrowLocation() {
     }
 
     override fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.radiusLayout.y - tooltip.arrowBorder
+        return tooltip.radiusLayout.y - tooltip.arrowBorder - tooltip.arrowImageInnerPadding / 2
     }
 }
 internal object AndesTooltipArrowTopRight : AndesTooltipArrowLocation() {
     override fun getArrowPositionX(tooltip: AndesTooltipLocationInterface): Float {
-        return (tooltip.frameLayoutContainer.width - tooltip.arrowBorder - tooltip.arrowWidth).toFloat()
+        return (tooltip.frameLayoutContainer.width - tooltip.arrowBorder - tooltip.arrowWidth - tooltip.elevation).toFloat()
     }
 
     override fun getArrowPositionY(tooltip: AndesTooltipLocationInterface): Float {
-        return tooltip.radiusLayout.y - tooltip.arrowBorder
+        return tooltip.radiusLayout.y - tooltip.arrowBorder - tooltip.arrowImageInnerPadding / 2
     }
 }
 
