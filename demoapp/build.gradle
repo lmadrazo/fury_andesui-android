@@ -9,11 +9,9 @@ apply from: rootProject.file('detekt.gradle')
 
 buildscript {
     repositories {
-        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.5'
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexCountGradlePlugin"
     }
 }
