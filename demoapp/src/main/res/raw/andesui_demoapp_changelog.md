@@ -1,6 +1,7 @@
 # v3.10.0
 ## 🚀 Feature
 - Add possibility to hide icon when typing. | Author: [@fdiassilva](https://github.com/fdiassilva)
+- Andes Tooltip. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
 
 # v3.9.0
 ## 🚀 Feature

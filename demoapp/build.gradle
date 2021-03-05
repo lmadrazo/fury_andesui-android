@@ -22,6 +22,7 @@ android {
 
         multiDexEnabled true
         proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        vectorDrawables.useSupportLibrary = true
     }
 
     signingConfigs {
