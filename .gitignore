@@ -113,4 +113,5 @@ ajcore*.txt
 
 
 *.hprof## Ignoring Release Process Client
+rp## Ignoring Release Process Client
 rp
