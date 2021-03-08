@@ -32,7 +32,7 @@ internal data class AndesTooltipConfiguration(
     val linkAction: AndesTooltipLinkAction?,
     val linkActionBackgroundColor: BackgroundColorConfig?,
     val linkActionTextColor: AndesColor?,
-    val linkActionIsUnderlined: Boolean?,
+    val linkActionIsUnderlined: Boolean,
     val tooltipLocation: AndesTooltipLocation,
     val isDynamicWidth: Boolean
 )
