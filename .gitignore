@@ -112,4 +112,5 @@ Temporary Items
 ajcore*.txt
 
 
-*.hprof
+*.hprof## Ignoring Release Process Client
+rp
