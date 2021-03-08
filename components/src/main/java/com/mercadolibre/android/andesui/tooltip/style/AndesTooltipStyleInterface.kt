@@ -56,16 +56,14 @@ internal object AndesTooltipLightStyle : AndesTooltipStyleInterface() {
     override fun primaryActionColorConfig(buttonHierarchy: AndesButtonHierarchy): BackgroundColorConfig {
         return when (buttonHierarchy) {
             AndesButtonHierarchy.LOUD -> createBackgroundColorConfigLoud()
-            AndesButtonHierarchy.QUIET -> createBackgroundColorConfigQuiet()
-            else -> throw IllegalStateException("Transparent button hierarchy is not allowed in Andes Tooltip primary action")
+            else -> throw IllegalStateException("Quiet and Transparent button hierarchy is not allowed in Andes Tooltip primary action")
         }
     }
     override fun primaryActionTextColor(buttonHierarchy: AndesButtonHierarchy): AndesColor {
         return when (buttonHierarchy) {
             AndesButtonHierarchy.LOUD -> R.color.andes_white.toAndesColor()
-            AndesButtonHierarchy.QUIET -> R.color.andes_accent_color_500.toAndesColor()
 
-            else -> throw IllegalStateException("Transparent button hierarchy is not allowed in Andes Tooltip primary action")
+            else -> throw IllegalStateException("Quiet and Transparent button hierarchy is not allowed in Andes Tooltip primary action")
         }
     }
 

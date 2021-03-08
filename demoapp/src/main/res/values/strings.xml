@@ -484,7 +484,6 @@
 
     <string-array name="tooltip_main_action_style_spinner">
         <item>loud</item>
-        <item>quiet</item>
     </string-array>
 
     <string-array name="tooltip_sec_action_style_spinner">
