@@ -6,6 +6,7 @@
     <dimen name="andes_tooltip_padding_bottom">16dp</dimen>
 
     <dimen name="andes_tooltip_text_max_width">210dp</dimen>
+    <dimen name="andes_tooltip_min_width_with_buttons">240dp</dimen>
     <dimen name="andes_tooltip_title_margin_top">6dp</dimen>
     <dimen name="andes_tooltip_title_layout_gone_margin_bottom">2dp</dimen>
 

@@ -356,6 +356,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 setColor(config.backgroundColor.colorInt(context))
                 cornerRadius = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_corner_radius).toFloat()
             }
+            if (!config.isDynamicWidth) {
+                minimumWidth = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_min_width_with_buttons)
+            }
         }
     }
 
