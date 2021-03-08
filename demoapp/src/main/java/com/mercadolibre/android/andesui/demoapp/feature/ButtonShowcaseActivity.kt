@@ -166,7 +166,6 @@ class ButtonShowcaseActivity : BaseActivity() {
             andesButtonWithLeftDrawable.setIconDrawable(it, AndesButtonIconOrientation.LEFT)
         }
 
-
         val andesButtonWithRightDrawable = AndesButton(
                 this,
                 AndesButtonSize.LARGE,
@@ -176,7 +175,6 @@ class ButtonShowcaseActivity : BaseActivity() {
         ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
             andesButtonWithRightDrawable.setIconDrawable(it, AndesButtonIconOrientation.RIGHT)
         }
-
 
         val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,

@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.message
 
 import android.graphics.drawable.Drawable
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigLoud
 import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigTransparent
@@ -482,7 +481,6 @@ class AndesMessageConfigurationQuiet {
         val config = configFactory.create(context, attrs)
         assertEquals(config.linkActionTextColor, R.color.andes_accent_color_500.toAndesColor())
     }
-
 
     @Test
     fun `Quiet, Warning link action text color`() {

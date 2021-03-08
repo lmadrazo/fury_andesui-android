@@ -60,7 +60,7 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
         changeStatusBarColor(R.color.andes_gray_950)
     }
 
-    private fun filterEmptySteps(coachmarkData: AndesScrollessWalkthroughCoachmark) : List<AndesWalkthroughCoachmarkStep> {
+    private fun filterEmptySteps(coachmarkData: AndesScrollessWalkthroughCoachmark): List<AndesWalkthroughCoachmarkStep> {
         return coachmarkData.steps.toList().filter { coachmarkStep ->
             coachmarkStep.view != null
         }
@@ -84,7 +84,7 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
                 content?.let {
                     baseContainer.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, decorView.getChildAt(0).height)
                     decorView.addView(baseContainer)
-                    coachmarkOverlayView.setBackgroundColor(ContextCompat.getColor(activity, R.color.andes_gray_800))
+                    coachmarkOverlayView.setBackgroundColor(ContextCompat.getColor(activity, R.color.andes_gray_900))
                     baseContainer.addView(coachmarkContainer)
                     baseContainer.addView(walkthroughScrollessMessageView)
                 }
@@ -119,8 +119,9 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
      * @param coachmarkData es el que contiene todos los datos para darle al step anterior o siguiente
      * @param onTrackingListener listener para avisar sobre el trackeo cuando se hace click en los diferentes botones
      */
-    private fun initListeners(coachmarkData: AndesScrollessWalkthroughCoachmark,
-            onTrackingListener: CoachmarkTracking?
+    private fun initListeners(
+        coachmarkData: AndesScrollessWalkthroughCoachmark,
+        onTrackingListener: CoachmarkTracking?
     ) {
 
         coachmarkContainer.setListener(object : CoachmarkScrollessContainerView.CoachmarkContainerListener {
@@ -187,7 +188,7 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
         })
     }
 
-    private fun getStatusBarColor() : Int {
+    private fun getStatusBarColor(): Int {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return activity.window?.statusBarColor ?: activity.resources.getColor(R.color.andes_accent_color_500)
         }
@@ -203,7 +204,7 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
 
     private fun scroll(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
-        if (stepReferenced.style == AndesWalkthroughCoachmarkStyle.HAMBURGER){
+        if (stepReferenced.style == AndesWalkthroughCoachmarkStyle.HAMBURGER) {
             stepReferenced.view = coachmarkContainer.getHamburgerView()
         }
 
@@ -279,8 +280,8 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
 
         stepReferenced.view?.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
-                if (stepReferenced.style == AndesWalkthroughCoachmarkStyle.MENU_ITEM
-                        || stepReferenced.style == AndesWalkthroughCoachmarkStyle.HAMBURGER) {
+                if (stepReferenced.style == AndesWalkthroughCoachmarkStyle.MENU_ITEM ||
+                        stepReferenced.style == AndesWalkthroughCoachmarkStyle.HAMBURGER) {
 
                     if (stepReferenced.style == AndesWalkthroughCoachmarkStyle.MENU_ITEM) {
                         coachmarkContainer.getCloseButtonView().visibility = View.GONE
@@ -339,8 +340,8 @@ class CoachmarkScrollessView private constructor(builder: Builder) : CoachmarkVi
         val rect = Rect()
         stepReferenced.view?.getGlobalVisibleRect(rect)
 
-        if(stepReferenced.style == AndesWalkthroughCoachmarkStyle.MENU_ITEM
-                || stepReferenced.style == AndesWalkthroughCoachmarkStyle.HAMBURGER) {
+        if (stepReferenced.style == AndesWalkthroughCoachmarkStyle.MENU_ITEM ||
+                stepReferenced.style == AndesWalkthroughCoachmarkStyle.HAMBURGER) {
             coachmarkContainer.getHeaderView().addRect(
                     rect.left,
                     rect.top - activity.resources.getDimension(R.dimen.andes_coachmark_toolbar_status_bar).toInt() / 3,

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -20,11 +19,10 @@ import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
-
 class AndesListAdapter(
-        private val andesList: AndesList,
-        private val delegate: AndesListDelegate,
-        private var listType: AndesListType
+    private val andesList: AndesList,
+    private val delegate: AndesListDelegate,
+    private var listType: AndesListType
 ) : RecyclerView.Adapter<AndesListAdapter.ViewHolder>() {
 
     companion object {
@@ -117,7 +115,6 @@ class AndesListAdapter(
             setViewItemPosition(andesListItemChevron) {
                 calculateChevronTopMargin(itemConfig, andesListItemChevron)
             }
-
         }
 
         private fun findCommonViewsById() {
@@ -186,7 +183,6 @@ class AndesListAdapter(
 
                     return true
                 }
-
             })
         }
 
@@ -222,7 +218,6 @@ class AndesListAdapter(
                     itemConfig.paddingRight,
                     itemConfig.paddingBottom
             )
-
         }
 
         /**
@@ -366,7 +361,5 @@ class AndesListAdapter(
             andesViewThumbnailSeparator.visibility = View.VISIBLE
             andesViewThumbnailSeparator.layoutParams.height = spaceWidth
         }
-
     }
-
 }

@@ -95,10 +95,10 @@ class DropdownShowCaseActivity : BaseActivity(), AndesDropdownDelegate {
 
         sizeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View,
-                    position: Int,
-                    id: Long
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
             ) {
                 andesDropdownStandalone.size = when (sizeSpinner.getItemAtPosition(position).toString().toLowerCase()) {
                     "small" -> {
@@ -112,14 +112,12 @@ class DropdownShowCaseActivity : BaseActivity(), AndesDropdownDelegate {
                     }
                     else -> AndesDropdownSize.MEDIUM
                 }
-
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Do nothing.
             }
         }
-
     }
 
     private fun setupDropdownFormShowCase(container: View) {
@@ -147,7 +145,6 @@ class DropdownShowCaseActivity : BaseActivity(), AndesDropdownDelegate {
         buttonUpdate.setOnClickListener {
             update()
         }
-
     }
 
     private fun clear() {
@@ -180,5 +177,4 @@ class DropdownShowCaseActivity : BaseActivity(), AndesDropdownDelegate {
 
         return listItems
     }
-
 }

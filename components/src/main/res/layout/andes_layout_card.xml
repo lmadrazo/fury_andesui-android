@@ -74,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/andes_card_title_link"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:tint="@color/andes_accent_color_500"
+            app:tint="@color/andes_accent_color_500"
             app:layout_constraintStart_toEndOf="@+id/andes_card_title_link"
             app:layout_constraintTop_toTopOf="@+id/andes_card_title_link"
             app:srcCompat="@drawable/andes_ui_chevron_right_20"

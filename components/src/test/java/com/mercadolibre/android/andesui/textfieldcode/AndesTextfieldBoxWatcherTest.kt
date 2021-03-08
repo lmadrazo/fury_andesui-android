@@ -4,12 +4,15 @@ import android.os.Build
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.textfield.textwatcher.AndesCodeFocusManagement
 import com.mercadolibre.android.andesui.textfield.textwatcher.AndesCodeTextChangedHandler
 import com.mercadolibre.android.andesui.textfield.textwatcher.AndesTextfieldBoxWatcher
 import com.mercadolibre.android.andesui.textfield.textwatcher.AndesTextfieldBoxWatcher.Companion.DIRTY_CHARACTER
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.verifyZeroInteractions
+import com.nhaarman.mockitokotlin2.argumentCaptor
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.BeforeClass

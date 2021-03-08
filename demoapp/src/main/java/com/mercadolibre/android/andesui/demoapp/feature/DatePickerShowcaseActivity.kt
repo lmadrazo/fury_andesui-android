@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DatePickerShowcaseActivity : BaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
@@ -104,7 +103,6 @@ class DatePickerShowcaseActivity : BaseActivity() {
         })
 
         return layoutDatePicker
-
     }
 
 }

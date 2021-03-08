@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.message
 
 import android.graphics.drawable.Drawable
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.color.toAndesColor
@@ -567,8 +566,6 @@ class AndesMessageConfigurationLoudTest {
         val config = configFactory.create(context, attrs)
         assertEquals(config.linkActionTextColor, R.color.andes_white.toAndesColor())
     }
-
-
 
     @Test
     fun `Loud, Error link action text color`() {

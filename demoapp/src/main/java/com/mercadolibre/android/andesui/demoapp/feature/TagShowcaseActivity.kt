@@ -210,7 +210,6 @@ class TagShowcaseActivity : BaseActivity() {
                 Toast.makeText(this@TagShowcaseActivity, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
                 return false
             }
-
         }
         secondColumn.addView(tagChoiceDropdownCallback, params)
 
@@ -226,7 +225,6 @@ class TagShowcaseActivity : BaseActivity() {
                 Toast.makeText(this@TagShowcaseActivity, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
                 return true
             }
-
         }
         secondColumn.addView(tagChoiceDropdownCallback2, params)
 
@@ -258,7 +256,6 @@ class TagShowcaseActivity : BaseActivity() {
                 Toast.makeText(this@TagShowcaseActivity, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
                 return true
             }
-
         }
         secondColumn.addView(tagChoiceDropdownCallbackSmall2, params)
 
@@ -712,6 +709,7 @@ class TagShowcaseActivity : BaseActivity() {
                     )
                 }
                 "Icon" -> {
+                    var icon: String? = null
                     if (!iconBackgroundColor.text.isNullOrEmpty()
                             && !validateColor("#${iconBackgroundColor.text!!}")) {
                         iconBackgroundColor.state = AndesTextfieldState.ERROR
@@ -720,21 +718,7 @@ class TagShowcaseActivity : BaseActivity() {
                     } else {
                         iconBackgroundColor.state = AndesTextfieldState.IDLE
                         iconBackgroundColor.helper = ""
-                    }
-                    var icon: String? = null
-                    if (!iconColor.text.isNullOrEmpty()) {
-                        if (!validateColor("#${iconColor.text!!}")) {
-                            iconColor.state = AndesTextfieldState.ERROR
-                            iconColor.helper = "Color inválido"
-                            return@setOnClickListener
-                        } else {
-                            iconColor.state = AndesTextfieldState.IDLE
-                            iconColor.helper = ""
-                            icon = "#${iconColor.text}"
-                        }
-                    } else {
-                        iconColor.state = AndesTextfieldState.IDLE
-                        iconColor.helper = ""
+                        icon = "#${iconColor.text}"
                     }
                     val path = when (iconsSpinner.selectedItem) {
                         "Warning" -> "andes_ui_feedback_warning_24"

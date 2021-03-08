@@ -31,7 +31,6 @@ import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.toBitmap
 import com.mercadolibre.android.andesui.utils.getCircledBitmap
 
-
 @Suppress("TooManyFunctions")
 class AndesMessage : CardView {
 

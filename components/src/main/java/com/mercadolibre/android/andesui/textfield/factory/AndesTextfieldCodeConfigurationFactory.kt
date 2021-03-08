@@ -73,7 +73,8 @@ internal object AndesTextfieldCodeConfigurationFactory {
     ): Int = style.groupMargin(context)
     private fun resolveBoxWidth(
         context: Context,
-        style: AndesTextfieldCodeStyleInterface):Int = style.boxWidth(context)
+        style: AndesTextfieldCodeStyleInterface
+    ): Int = style.boxWidth(context)
     private fun resolveBoxState(state: AndesTextfieldCodeState): AndesTextfieldState {
         return when (state) {
             AndesTextfieldCodeState.IDLE -> AndesTextfieldState.IDLE

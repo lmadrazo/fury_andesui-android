@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.progress
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.progress.size.AndesLargeProgressSize
 import com.mercadolibre.android.andesui.progress.size.AndesMediumProgressSize
 import com.mercadolibre.android.andesui.progress.size.AndesSmallPogressSize

@@ -1,3 +1,25 @@
+# v3.11.0
+## 🚀 Feature
+- Add Firebase Analytics
+
+# v3.10.0
+## 🚀 Feature
+- Add possibility to hide icon when typing. | Author: [@fdiassilva](https://github.com/fdiassilva)
+- Andes Tooltip. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
+
+# v3.9.0
+## 🚀 Feature
+- FMA repository migration | Authors [eportasML](https://github.com/eportasML)
+- FMA all checks turned on | Authors [eportasML](https://github.com/eportasML)
+- Added MDS ci job | Authors [eportasML](https://github.com/eportasML)
+
+# v3.8.0
+## 🚀 Feature
+- Added keystores inside the demoapp module so each build will use that instead of the particular keystore located in every machine.
+
+### ⚙️ Other
+- Improve pull request template | Authors [joalonspint](https://github.com/joalonsopint)
+
 # v3.7.0
 ## 🚀 Feature
 - Added new icons for "To Agree" and "Info" (with outer circle)

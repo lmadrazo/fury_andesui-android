@@ -223,7 +223,8 @@ class AndesCardTest {
 
     @Test
     fun `Body none then body padding small`() {
-        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.NONE, "title", AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.NONE, "title",
+                AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
         andesCard.bodyPadding = AndesCardBodyPadding.SMALL
         assertEquals(AndesCardBodyPadding.SMALL, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.NONE, andesCard.padding)
@@ -231,7 +232,8 @@ class AndesCardTest {
 
     @Test
     fun `Body xlarge then body padding none`() {
-        val andesCard = AndesCard(context, view,AndesCardType.NONE, AndesCardPadding.XLARGE, "title",AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.XLARGE, "title",
+                AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
         andesCard.bodyPadding = AndesCardBodyPadding.NONE
         assertEquals(AndesCardBodyPadding.NONE, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.XLARGE, andesCard.padding)
@@ -239,7 +241,8 @@ class AndesCardTest {
 
     @Test
     fun `Body medium then body padding xlarge`() {
-        val andesCard = AndesCard(context,view, AndesCardType.NONE, AndesCardPadding.MEDIUM,  "title",AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.MEDIUM, "title",
+                AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
         andesCard.bodyPadding = AndesCardBodyPadding.XLARGE
         assertEquals(AndesCardBodyPadding.XLARGE, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.MEDIUM, andesCard.padding)

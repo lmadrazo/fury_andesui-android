@@ -209,7 +209,6 @@ class MessageShowcaseActivity : BaseActivity() {
             }
 
             changeMessage.setupThumbnail(thumbnailDrawable)
-
             changeMessage.visibility = View.VISIBLE
         }
 
@@ -278,13 +277,15 @@ class MessageShowcaseActivity : BaseActivity() {
                         View.OnClickListener {
                             Toast.makeText(this, "Link onClick", Toast.LENGTH_SHORT).show()
                         }
+
                 )
-        val bodyLink = 11
-        val links = listOf(
-                AndesBodyLink(6, bodyLink),
-                AndesBodyLink(64, 71)
-        )
-        layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(
+
+                val links = listOf(
+                    AndesBodyLink(firstMessageLink.first, firstMessageLink.second),
+                    AndesBodyLink(secondMessageLink.first, secondMessageLink.second)
+                )
+
+                layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(
                 links,
                 listener = {
                     Toast.makeText(this, "Click at body link: $it", Toast.LENGTH_SHORT).show()
@@ -299,4 +300,8 @@ class MessageShowcaseActivity : BaseActivity() {
         return layoutMessages
     }
 
+    companion object {
+        private val firstMessageLink = 6 to 11
+        private val secondMessageLink = 64 to 71
+    }
 }

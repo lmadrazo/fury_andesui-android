@@ -3,11 +3,9 @@ package com.mercadolibre.android.andesui.dropdown.utils
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -18,9 +16,9 @@ import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.utils.ScreenUtils
 
 class DropdownBottomSheetDialog(
-        context: Context,
-        theme: Int,
-        private val andesListDelegate: AndesListDelegate
+    context: Context,
+    theme: Int,
+    private val andesListDelegate: AndesListDelegate
 ) : BottomSheetDialog(context, theme) {
     private var containerView: ConstraintLayout? = null
     private var dragIndicator: View? = null
@@ -28,9 +26,7 @@ class DropdownBottomSheetDialog(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val layout = LayoutInflater.from(context).inflate(R.layout.andes_layout_dropdown_bottom_sheet, null)
-        setContentView(layout)
+        setContentView(R.layout.andes_layout_dropdown_bottom_sheet)
 
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
@@ -70,5 +66,4 @@ class DropdownBottomSheetDialog(
         val behavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(bottomSheet)
         behavior.peekHeight = ScreenUtils.getScreenHeight() / 2
     }
-
 }

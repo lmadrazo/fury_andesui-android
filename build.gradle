@@ -4,32 +4,36 @@ buildscript {
     // These repositories are used when building your project.
     // They are NOT used to find your module's dependencies.
     repositories {
-        google()
-        jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        // have the same repositories applied to buildscript…
+        apply from:"$rootDir/gradle/repositories.gradle", to: buildscript
     }
 
     dependencies {
         classpath "com.google.gms:google-services:$googleServicesPlugin"
         classpath "com.android.tools.build:gradle:$gradleBuildToolsVersion"
-        classpath "com.novoda:bintray-release:$bintrayReleasePluginVersion"
+        classpath "com.mercadolibre.android.gradle:base:$gradlePluginsVersion"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$gradleBintrayPlugin"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$androidMavenGradlePlugin"
         classpath "com.monits:static-code-analysis-plugin:$scaPluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath ("gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion") {
-            //TODO: we exclude Kotlin because Detekt transitively replaces project's Kotlin version with a newer one
+        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion") {
+            //TODO: once Kotlin version matches with Detekt transitives one, we can delete this
             exclude group: 'org.jetbrains.kotlin'
         }
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexCountGradlePlugin"
+
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+apply plugin: 'mercadolibre.mobile'
 
+
+wrapper {
+    gradleVersion = gradleWrapperVersion
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+allprojects {
     tasks.withType(JavaCompile) {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

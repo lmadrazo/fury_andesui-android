@@ -128,10 +128,10 @@ class ListShowcaseActivity : BaseActivity(), AndesListDelegate {
 
         sizeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View,
-                    position: Int,
-                    id: Long
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
             ) {
                 andesList.size = when (sizeSpinner.getItemAtPosition(position).toString().toLowerCase()) {
                     "small" -> {
@@ -145,7 +145,6 @@ class ListShowcaseActivity : BaseActivity(), AndesListDelegate {
                     }
                     else -> AndesListViewItemSize.MEDIUM
                 }
-
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -160,7 +159,6 @@ class ListShowcaseActivity : BaseActivity(), AndesListDelegate {
         buttonUpdate.setOnClickListener {
             update()
         }
-
     }
 
     private fun getItemTypeSelected(): AndesListType {
@@ -279,7 +277,6 @@ class ListShowcaseActivity : BaseActivity(), AndesListDelegate {
         private fun addDynamicRadioButtonGroupLayout(layout: View): View {
             radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_simple), AndesRadioButtonType.IDLE))
             radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_chevron), AndesRadioButtonType.IDLE))
-
 
             radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_icon), AndesRadioButtonType.IDLE))
             radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_thumbnail), AndesRadioButtonType.IDLE))

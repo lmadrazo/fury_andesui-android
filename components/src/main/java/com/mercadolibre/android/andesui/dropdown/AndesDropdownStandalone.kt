@@ -71,9 +71,9 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
     }
 
     constructor(
-            context: Context,
-            menuType: AndesDropdownMenuType = AndesDropdownMenuType.BOTTOMSHEET,
-            size: AndesDropdownSize
+        context: Context,
+        menuType: AndesDropdownMenuType = AndesDropdownMenuType.BOTTOMSHEET,
+        size: AndesDropdownSize
     ) : super(context) {
         initAttrs(menuType, size)
     }
@@ -89,8 +89,8 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
     }
 
     private fun initAttrs(
-            menuType: AndesDropdownMenuType,
-            size: AndesDropdownSize
+        menuType: AndesDropdownMenuType,
+        size: AndesDropdownSize
     ) {
         andesDropdownAttrs = AndesDropdownAttrs(
                 andesDropdownMenuType = menuType,
@@ -155,16 +155,15 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
                     chevronDownIcon
             )
         }
-
     }
 
     /**
      * Sets the list of item that the Dropdown will draw
      */
-    fun setItems(listItems: List<AndesDropDownItem>){
+    fun setItems(listItems: List<AndesDropDownItem>) {
         this.listItems = listItems
 
-        if (this.listItems.isNotEmpty()){
+        if (this.listItems.isNotEmpty()) {
             selectItem(0)
         }
     }
@@ -202,7 +201,7 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
         bottomSheetDialog.dismiss()
     }
 
-    private fun selectItem(position: Int){
+    private fun selectItem(position: Int) {
         val itemSelected = listItems[position]
 
         listItems.forEach {
@@ -230,5 +229,4 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
     override fun getDataSetSize(andesList: AndesList): Int = listItems.size
 
     private fun createConfig() = AndesDropdownConfigurationFactory.create(andesDropdownAttrs)
-
 }

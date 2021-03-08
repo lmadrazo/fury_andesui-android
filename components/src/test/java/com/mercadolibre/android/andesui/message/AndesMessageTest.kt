@@ -11,7 +11,6 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
@@ -22,7 +21,6 @@ import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.Mockito
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment

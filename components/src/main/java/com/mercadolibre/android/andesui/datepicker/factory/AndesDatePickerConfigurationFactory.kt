@@ -1,10 +1,10 @@
 package com.mercadolibre.android.andesui.datepicker.factory
 
 internal data class AndesDatePickerConfiguration(
-        val text: String?,
-        val minDate: String?,
-        val maxDate: String?,
-        val applyButtonVisibility : Boolean?
+    val text: String?,
+    val minDate: String?,
+    val maxDate: String?,
+    val applyButtonVisibility: Boolean?
 )
 
 internal object AndesDatePickerConfigurationFactory {
@@ -19,5 +19,4 @@ internal object AndesDatePickerConfigurationFactory {
             )
         }
     }
-
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.appcompat.widget.AppCompatEditText
 import android.util.AttributeSet
 
-
 /**
  * Custom EditText for to be able to handle the actions of onTextContextMenuItem.
  */

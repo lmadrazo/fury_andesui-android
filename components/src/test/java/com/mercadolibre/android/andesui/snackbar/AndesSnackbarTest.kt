@@ -5,9 +5,6 @@ import android.os.Build
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.test.platform.app.InstrumentationRegistry
 import android.view.View
-import androidx.test.InstrumentationRegistry.getTargetContext
-import androidx.test.core.app.ApplicationProvider
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.snackbar.duration.AndesSnackbarDuration
 import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarType

@@ -7,13 +7,12 @@ import com.mercadolibre.android.andesui.dropdown.size.AndesDropdownSize
 import com.mercadolibre.android.andesui.dropdown.type.AndesDropdownMenuType
 
 internal data class AndesDropdownAttrs(
-        val andesDropdownMenuType: AndesDropdownMenuType,
-        val andesDropdownLabel: String?,
-        val andesDropdownHelper: String?,
-        val andesDropdownPlaceHolder: String?,
-        val andesDropdownSize: AndesDropdownSize = AndesDropdownSize.MEDIUM
+    val andesDropdownMenuType: AndesDropdownMenuType,
+    val andesDropdownLabel: String?,
+    val andesDropdownHelper: String?,
+    val andesDropdownPlaceHolder: String?,
+    val andesDropdownSize: AndesDropdownSize = AndesDropdownSize.MEDIUM
 )
-
 
 /**
  * This object parse the attribute set and return an instance of AndesListAttrs
@@ -56,5 +55,4 @@ internal object AndesDropdownAttrParser {
                 andesDropdownSize = andesDropdownSize
         ).also { typedArray.recycle() }
     }
-
 }

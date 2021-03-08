@@ -7,7 +7,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.textfield.AndesTextarea
@@ -18,11 +23,13 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightCon
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldCodeState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.style.AndesTextfieldCodeStyle
-import java.util.*
+import java.util.Locale
 import kotlin.collections.ArrayList
 
 object InflateTextfieldHelper {
 
+    @Suppress("LongMethod")
+    // Method used to inflate a textfield usecase for test app
     fun inflateAndesTextfield(context: Context): View {
 
         val layoutTextfield = LayoutInflater
@@ -40,6 +47,7 @@ object InflateTextfieldHelper {
         val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
         val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
         val mask = layoutTextfield.findViewById<AndesTextfield>(R.id.mask)
+        val checkBoxHideIcon = layoutTextfield.findViewById<CheckBox>(R.id.checkboxHideIcon)
 
         counter.setText(COUNTER_DEFAULT_TEXT)
         textfield.counter = COUNTER_DEFAULT
@@ -120,6 +128,10 @@ object InflateTextfieldHelper {
                 it.name == inputTypeSpinner.selectedItem.toString()
             }.value
             textfield.inputType = selectedInputType
+
+            if (checkBoxHideIcon.isChecked) {
+                textfield.setRightIcon("andes_ui_helper_16", hideWhenType = true)
+            }
         }
 
         clearButton.setOnClickListener {
@@ -145,6 +157,8 @@ object InflateTextfieldHelper {
             textfield.inputType = InputType.TYPE_CLASS_DATETIME
             textfield.leftContent = null
             textfield.rightContent = null
+            checkBoxHideIcon.isChecked = false
+
             textfield.clearMask()
         }
 

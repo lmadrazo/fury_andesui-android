@@ -23,7 +23,6 @@ internal object AndesBottomSheetAttrsParser {
     private const val ANDES_BOTTOM_SHEET_TITLE_CENTER = "2000"
     private const val ANDES_BOTTOM_SHEET_TITLE_LEFT = "2001"
 
-
     fun parse(context: Context, attr: AttributeSet?): AndesBottomSheetAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesBottomSheet)
         val title = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetTitleText)

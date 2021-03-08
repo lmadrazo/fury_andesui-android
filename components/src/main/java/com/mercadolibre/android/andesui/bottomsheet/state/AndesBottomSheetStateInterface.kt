@@ -10,6 +10,6 @@ internal object AndesBottomSheetStateExpanded : AndesBottomSheetStateInterface {
     override fun getState(): Int = BottomSheetBehavior.STATE_EXPANDED
 }
 
-internal object AndesBottomSheetStateCollapsed: AndesBottomSheetStateInterface{
-    override  fun getState(): Int = BottomSheetBehavior.STATE_COLLAPSED
+internal object AndesBottomSheetStateCollapsed : AndesBottomSheetStateInterface {
+    override fun getState(): Int = BottomSheetBehavior.STATE_COLLAPSED
 }

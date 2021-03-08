@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.datepicker
 
 import android.os.Build
-import com.facebook.drawee.BuildConfig
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
 import org.junit.Assert
@@ -13,12 +12,12 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
-class AndesDatePickerTest{
+class AndesDatePickerTest {
     private val configFactory = Mockito.spy(AndesDatePickerConfigurationFactory)
     private lateinit var attrs: AndesDatePickerAttrs
 
     @Test
-    fun `attr btn enabled`(){
+    fun `attr btn enabled`() {
         attrs = AndesDatePickerAttrs(
                 andesDatePickerText = "aplicar",
                 andesDatePickerMinDate = "01/01/2020",
@@ -33,7 +32,7 @@ class AndesDatePickerTest{
     }
 
     @Test
-    fun `attr btn disabled`(){
+    fun `attr btn disabled`() {
         attrs = AndesDatePickerAttrs(
                 andesDatePickerText = "aplicar",
                 andesDatePickerMinDate = "01/01/2020",
@@ -46,5 +45,4 @@ class AndesDatePickerTest{
         Assert.assertEquals(config.maxDate, "31/12/2020")
         Assert.assertFalse(config.applyButtonVisibility!!)
     }
-
 }
