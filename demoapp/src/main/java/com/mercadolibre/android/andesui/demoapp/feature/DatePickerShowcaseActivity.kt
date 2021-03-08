@@ -15,7 +15,7 @@ import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 class DatePickerShowcaseActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,5 +104,4 @@ class DatePickerShowcaseActivity : BaseActivity() {
 
         return layoutDatePicker
     }
-
 }

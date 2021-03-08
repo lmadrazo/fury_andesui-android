@@ -158,5 +158,4 @@ class SnackbarShowcaseActivity : BaseActivity() {
             snackbar.show()
         }
     }
-
 }

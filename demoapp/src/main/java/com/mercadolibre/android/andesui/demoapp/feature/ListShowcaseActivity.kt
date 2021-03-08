@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -27,8 +31,9 @@ import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 import com.mercadolibre.android.andesui.radiobuttongroup.AndesRadioButtonGroup
 import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
 import kotlinx.android.synthetic.main.andesui_list_showcase.view.*
-import java.util.*
+import java.util.Date
 
+@SuppressWarnings("TooManyFunctions")
 class ListShowcaseActivity : BaseActivity(), AndesListDelegate {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics

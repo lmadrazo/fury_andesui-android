@@ -160,5 +160,4 @@ class ThumbnailShowcaseActivity : BaseActivity() {
         const val DEFAULT_TYPE_OPTION = 0
         const val DEFAULT_SIZE_OPTION = 3
     }
-
 }

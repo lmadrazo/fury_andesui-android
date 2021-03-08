@@ -10,7 +10,7 @@ import com.mercadolibre.android.andesui.coachmark.view.CoachmarkView
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import kotlinx.android.synthetic.main.andesui_coachmark_activity.*
-import java.util.*
+import java.util.Date
 import kotlin.collections.ArrayList
 
 @SuppressWarnings("MaxLineLength")
@@ -158,5 +158,4 @@ class TestCoachMarkActivity : BaseActivity() {
         startTime = Date().time
         super.onResume()
     }
-
 }

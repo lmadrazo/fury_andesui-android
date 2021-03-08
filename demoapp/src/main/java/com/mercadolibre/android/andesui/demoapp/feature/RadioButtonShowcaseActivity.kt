@@ -204,5 +204,4 @@ class RadioButtonShowcaseActivity : BaseActivity() {
 
         return layoutRadioButton
     }
-
 }

@@ -20,5 +20,4 @@ class AndesPagerAdapter(var views: List<View>) : PagerAdapter() {
     override fun isViewFromObject(view: View, other: Any): Boolean {
         return view == other
     }
-
 }

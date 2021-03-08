@@ -43,5 +43,4 @@ class WhatsNewActivity : BaseActivity() {
 
         return byteArrayOutputStream.toString()
     }
-
 }

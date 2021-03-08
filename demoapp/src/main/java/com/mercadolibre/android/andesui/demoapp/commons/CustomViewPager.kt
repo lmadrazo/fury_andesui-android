@@ -3,10 +3,10 @@ package com.mercadolibre.android.andesui.demoapp.commons
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import android.util.Log
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.analytics.FirebaseAnalytics
-import java.util.*
+import java.util.Date
+import kotlin.collections.HashMap
 
 class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(context!!, attrs) {
 
@@ -85,5 +85,4 @@ class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(conte
             firebaseAnalytics.logEvent(screen, bundle)
         }
     }
-
 }

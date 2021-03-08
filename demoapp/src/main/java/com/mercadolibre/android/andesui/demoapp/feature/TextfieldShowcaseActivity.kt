@@ -8,7 +8,11 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Spinner
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Toast
+import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -16,7 +20,6 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.demoapp.InflateTextfieldHelper
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
-import com.mercadolibre.android.andesui.demoapp.commons.CustomViewPager
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.textfield.AndesTextarea
 import com.mercadolibre.android.andesui.textfield.AndesTextfield

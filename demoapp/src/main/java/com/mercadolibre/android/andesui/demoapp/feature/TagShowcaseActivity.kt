@@ -4,7 +4,14 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.widget.Toast
+import android.widget.LinearLayout
+import android.widget.ScrollView
+import android.widget.Spinner
+import android.widget.ArrayAdapter
+import android.widget.AdapterView
+import android.widget.Switch
+import android.widget.TextView
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.constraintlayout.widget.Group
 import com.bumptech.glide.Glide
@@ -240,7 +247,6 @@ class TagShowcaseActivity : BaseActivity() {
                 Toast.makeText(this@TagShowcaseActivity, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
                 return false
             }
-
         }
         secondColumn.addView(tagChoiceDropdownCallbackSmall, params)
 
@@ -600,10 +606,10 @@ class TagShowcaseActivity : BaseActivity() {
 
         leftContentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View,
-                    position: Int,
-                    id: Long
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
             ) {
                 when (leftContentSpinner.getItemAtPosition(position)) {
                     "Dot" -> {
@@ -710,8 +716,7 @@ class TagShowcaseActivity : BaseActivity() {
                 }
                 "Icon" -> {
                     var icon: String? = null
-                    if (!iconBackgroundColor.text.isNullOrEmpty()
-                            && !validateColor("#${iconBackgroundColor.text!!}")) {
+                    if (!iconBackgroundColor.text.isNullOrEmpty() && !validateColor("#${iconBackgroundColor.text!!}")) {
                         iconBackgroundColor.state = AndesTextfieldState.ERROR
                         iconBackgroundColor.helper = "Color inválido"
                         return@setOnClickListener
@@ -751,17 +756,17 @@ class TagShowcaseActivity : BaseActivity() {
                             .load(pictureUrl)
                             .asBitmap()
                             .into(
-                                    object : SimpleTarget<Bitmap>() {
-                                        override fun onResourceReady(
-                                                resource: Bitmap?,
-                                                glideAnimation: GlideAnimation<in Bitmap?>?
-                                        ) {
-                                            if (resource != null) {
-                                                leftContent = LeftContent(image = LeftContentImage(resource))
-                                                andesTagSimple.leftContent = leftContent
-                                            }
+                                object : SimpleTarget<Bitmap>() {
+                                    override fun onResourceReady(
+                                        resource: Bitmap?,
+                                        glideAnimation: GlideAnimation<in Bitmap?>?
+                                    ) {
+                                        if (resource != null) {
+                                            leftContent = LeftContent(image = LeftContentImage(resource))
+                                            andesTagSimple.leftContent = leftContent
                                         }
                                     }
+                                }
                             )
                 }
             }
@@ -789,5 +794,4 @@ class TagShowcaseActivity : BaseActivity() {
 
         return layoutTag
     }
-
 }

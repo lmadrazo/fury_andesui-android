@@ -117,10 +117,10 @@ class BadgeShowcaseActivity : BaseActivity() {
 
         modifierSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View,
-                    position: Int,
-                    id: Long
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
             ) {
                 when (modifierSpinner.getItemAtPosition(position)) {
                     "Pill" -> {
@@ -230,5 +230,4 @@ class BadgeShowcaseActivity : BaseActivity() {
             launchSpecs(container.context, AndesSpecs.BADGE)
         }
     }
-
 }

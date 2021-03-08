@@ -26,5 +26,4 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         super.onResume()
     }
-
 }

@@ -146,5 +146,4 @@ class CheckboxShowcaseActivity : BaseActivity() {
 
         return layoutCheckbox
     }
-
 }

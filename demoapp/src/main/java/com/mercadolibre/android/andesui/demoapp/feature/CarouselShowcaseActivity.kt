@@ -18,7 +18,7 @@ import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import kotlinx.android.synthetic.main.andesui_carousel_showcase.*
-import java.util.*
+import java.util.Date
 
 class CarouselShowcaseActivity : BaseActivity(), AndesCarouselDelegate {
 

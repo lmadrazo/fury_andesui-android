@@ -14,5 +14,4 @@ class TestFragment : Fragment() {
         return layoutInflater
                 .inflate(R.layout.andesui_bottom_sheet_test_fragment, container, false)
     }
-
 }

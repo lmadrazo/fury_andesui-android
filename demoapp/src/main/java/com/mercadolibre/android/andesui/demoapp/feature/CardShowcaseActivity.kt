@@ -5,7 +5,11 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.widget.*
+import android.widget.ScrollView
+import android.widget.TextView
+import android.widget.Spinner
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.card.AndesCard
 import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
@@ -311,5 +315,4 @@ class CardShowcaseActivity : BaseActivity() {
 
         return layoutCard
     }
-
 }
