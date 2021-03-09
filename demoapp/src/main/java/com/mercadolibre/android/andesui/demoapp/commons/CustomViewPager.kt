@@ -10,7 +10,7 @@ import kotlin.collections.HashMap
 
 class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(context!!, attrs) {
 
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private val firebaseAnalytics: FirebaseAnalytics
 
     companion object {
         const val DEFAULT_POSITION = 0
@@ -34,13 +34,9 @@ class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(conte
             }
         })
 
+        firebaseAnalytics = FirebaseAnalytics.getInstance(getContext())
+
         startTime()
-
-        configureFirebase()
-    }
-
-    private fun configureFirebase() {
-        firebaseAnalytics = FirebaseAnalytics.getInstance(context)
     }
 
     private fun startTime() {
