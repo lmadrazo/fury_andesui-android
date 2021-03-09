@@ -1,3 +1,7 @@
+# v3.11.0
+## 🛠 Fixes
+- Support statusbar with variable height in CoachmarkScrolless
+
 # v3.10.1
 ## 🚀 Feature
 - Andes Tooltip with showcase and pixel perfect issues resolved. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
