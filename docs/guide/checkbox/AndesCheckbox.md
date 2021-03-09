@@ -67,10 +67,10 @@ Defines the possible positions that the checkbox can take.
 ```kotlin
 enum class AndesCheckboxAlign
 ```
-| Enum Values |
-| -------- |
-| LEFT |
-| RIGHT |
+| Enum Values | Description |
+| ----------- | ----------- |
+| LEFT | Aligns checkbox to the left of the displayed text |
+| RIGHT | Aligns checkbox to the right of the displayed text |
 
 <br/>
 
@@ -86,11 +86,11 @@ Defines the possible status that the checkbox can take.
 ```kotlin
 enum class AndesCheckboxStatus
 ```
-| Enum Values |
-| -------- |
-| SELECTED |
-| UNSELECTED |
-| UNDEFINED |
+| Enum Values | Description |
+| ----------- | ----------- |
+| SELECTED | Checkbox filled with a check sign |
+| UNSELECTED | Checkbox unfilled |
+| UNDEFINED | Checkvox filled with a minus sign |
 
 <br/>
 
@@ -106,11 +106,11 @@ Defines the possible type styles that the checkbox can take.
 ```kotlin
 enum class AndesCheckboxType
 ```
-| Enum Values |
-| -------- |
-| IDLE |
-| DISABLED |
-| ERROR |
+| Enum Values | Description |
+| ----------- | ----------- |
+| IDLE | Default status of the checkbox |
+| DISABLED | Checkbox can not be modified |
+| ERROR | Checkbox with red color until user selects it |
 
 <br/>
 
