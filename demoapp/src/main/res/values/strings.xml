@@ -1,4 +1,21 @@
 <resources>
+    <string name="firebase_analytics_badge">AndesBadge</string>
+    <string name="firebase_analytics_button">AndesButton</string>
+    <string name="firebase_analytics_card">AndesCard</string>
+    <string name="firebase_analytics_carousel">AndesCarousel</string>
+    <string name="firebase_analytics_checkbox">AndesCheckbox</string>
+    <string name="firebase_analytics_coach_mark">AndesCoachmark</string>
+    <string name="firebase_analytics_date_picker">AndesDatePicker</string>
+    <string name="firebase_analytics_dropdown">AndesDropdown</string>
+    <string name="firebase_analytics_list">AndesList</string>
+    <string name="firebase_analytics_message">AndesMessage</string>
+    <string name="firebase_analytics_progress_indicator">AndesProgressIndicator</string>
+    <string name="firebase_analytics_radio_button">AndesRadioButton</string>
+    <string name="firebase_analytics_snackbar">AndesSnackbar</string>
+    <string name="firebase_analytics_tag">AndesTag</string>
+    <string name="firebase_analytics_textfield">AndesTextfield</string>
+    <string name="firebase_analytics_thumbnail">AndesThumbnail</string>
+
     <string name="loud_large_button">Loud Large Button</string>
     <string name="loud_medium_button">Loud Medium Button</string>
     <string name="loud_small_button">Loud Small Button</string>

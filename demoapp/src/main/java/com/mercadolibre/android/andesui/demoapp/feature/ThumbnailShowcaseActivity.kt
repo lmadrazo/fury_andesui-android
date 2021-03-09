@@ -31,7 +31,7 @@ class ThumbnailShowcaseActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewPager = findViewById(R.id.andesui_viewpager)
-        viewPager.setScreenName(getString(R.string.andesui_demoapp_thumbnail))
+        viewPager.setScreenName(getString(R.string.firebase_analytics_thumbnail))
         viewPager.adapter = AndesPagerAdapter(loadViews())
 
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)

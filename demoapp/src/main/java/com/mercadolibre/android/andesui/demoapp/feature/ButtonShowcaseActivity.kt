@@ -28,7 +28,7 @@ class ButtonShowcaseActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewPager = findViewById(R.id.andesui_viewpager)
-        viewPager.setScreenName(getString(R.string.andes_button_showcase))
+        viewPager.setScreenName(getString(R.string.firebase_analytics_button))
         viewPager.adapter = AndesPagerAdapter(loadViews())
 
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)

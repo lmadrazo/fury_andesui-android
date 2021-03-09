@@ -142,7 +142,7 @@ class TestCoachMarkActivity : BaseActivity() {
         // Track
         val bundle = Bundle()
         bundle.putLong("Screen 1", screensTime)
-        firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_coachmark).replace(" ", ""), bundle)
+        firebaseAnalytics.logEvent(getString(R.string.firebase_analytics_coach_mark).replace(" ", ""), bundle)
 
         super.onDestroy()
     }

@@ -1,6 +1,6 @@
 # v3.11.0
 ## 🚀 Feature
-- Add Firebase Analytics
+- Add Firebase Analytics in demoapp
 
 # v3.10.0
 ## 🚀 Feature

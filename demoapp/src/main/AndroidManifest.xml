@@ -64,7 +64,6 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".feature.SnackbarShowcaseActivity"
             android:parentActivityName=".MainActivity">

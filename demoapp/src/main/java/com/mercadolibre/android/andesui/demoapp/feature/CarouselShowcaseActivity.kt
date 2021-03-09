@@ -82,7 +82,7 @@ class CarouselShowcaseActivity : BaseActivity(), AndesCarouselDelegate {
         // Track
         val bundle = Bundle()
         bundle.putLong("Screen 1", screensTime)
-        firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_list).replace(" ", ""), bundle)
+        firebaseAnalytics.logEvent(getString(R.string.firebase_analytics_carousel).replace(" ", ""), bundle)
 
         super.onDestroy()
     }

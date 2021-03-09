@@ -47,7 +47,7 @@ class TextfieldShowcaseActivity : BaseActivity() {
                 supportActionBar?.title = getString(adapter.getTitleResource(position))
             }
         })
-        viewPager.setScreenName(getString(R.string.andesui_demoapp_textfield))
+        viewPager.setScreenName(getString(R.string.firebase_analytics_textfield))
 
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)

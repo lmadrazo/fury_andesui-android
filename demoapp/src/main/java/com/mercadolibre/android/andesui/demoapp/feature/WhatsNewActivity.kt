@@ -2,13 +2,13 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
 import io.noties.markwon.Markwon
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-class WhatsNewActivity : BaseActivity() {
+class WhatsNewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

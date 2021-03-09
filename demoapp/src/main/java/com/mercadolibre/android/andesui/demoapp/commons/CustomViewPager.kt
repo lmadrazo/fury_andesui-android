@@ -70,7 +70,7 @@ class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(conte
         startTime()
     }
 
-    fun tracking() {
+    fun finishTracking() {
         if (startTime > 0) {
             finishTime()
         }

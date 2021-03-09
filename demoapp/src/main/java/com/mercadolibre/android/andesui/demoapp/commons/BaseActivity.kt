@@ -8,7 +8,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         if (this::viewPager.isInitialized) {
-            viewPager.tracking()
+            viewPager.finishTracking()
         }
         super.onDestroy()
     }

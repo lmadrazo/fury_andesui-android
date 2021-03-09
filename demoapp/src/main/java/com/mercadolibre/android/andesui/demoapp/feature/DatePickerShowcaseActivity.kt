@@ -28,7 +28,7 @@ class DatePickerShowcaseActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewPager = findViewById(R.id.andesui_viewpager)
-        viewPager.setScreenName(getString(R.string.andesui_demoapp_datepicker_button))
+        viewPager.setScreenName(getString(R.string.firebase_analytics_date_picker))
         viewPager.adapter = AndesPagerAdapter(loadViews())
 
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
