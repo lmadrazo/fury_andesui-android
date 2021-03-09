@@ -25,17 +25,6 @@ val tooltipLoud = arrayOf(
         null
 )
 
-val tooltipQuiet = arrayOf(
-        AndesTooltipStyle.LIGHT,
-        "title",
-        "body",
-        true,
-        AndesTooltipLocation.TOP,
-        AndesTooltipAction("main action", AndesButtonHierarchy.QUIET, { _, _ -> }),
-        null,
-        null
-)
-
 val tooltipLoudAndQuiet = arrayOf(
         AndesTooltipStyle.LIGHT,
         "title",
@@ -47,24 +36,13 @@ val tooltipLoudAndQuiet = arrayOf(
         null
 )
 
-val tooltipQuietAndQuiet = arrayOf(
+val tooltipLoudAndTransparent = arrayOf(
         AndesTooltipStyle.LIGHT,
         "title",
         "body",
         true,
         AndesTooltipLocation.TOP,
-        AndesTooltipAction("main action", AndesButtonHierarchy.QUIET, { _, _ -> }),
-        AndesTooltipAction("secondary action", AndesButtonHierarchy.QUIET, { _, _ -> }),
-        null
-)
-
-val tooltipQuietAndTransparent = arrayOf(
-        AndesTooltipStyle.LIGHT,
-        "title",
-        "body",
-        true,
-        AndesTooltipLocation.TOP,
-        AndesTooltipAction("main action", AndesButtonHierarchy.QUIET, { _, _ -> }),
+        AndesTooltipAction("main action", AndesButtonHierarchy.LOUD, { _, _ -> }),
         AndesTooltipAction("secondary action", AndesButtonHierarchy.TRANSPARENT, { _, _ -> }),
         null
 )

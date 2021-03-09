@@ -17,6 +17,10 @@ class RadiusLayout @JvmOverloads constructor(
   private val path = Path()
   private val radius = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_corner_radius).toFloat()
 
+  override fun setMinimumWidth(minWidth: Int) {
+    super.setMinimumWidth(minWidth)
+  }
+
   override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
     super.onSizeChanged(w, h, oldw, oldh)
 

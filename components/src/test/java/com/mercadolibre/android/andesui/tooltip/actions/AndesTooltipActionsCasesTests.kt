@@ -42,10 +42,8 @@ class AndesTooltipActionsCasesTests(
             return listOf(
                     tooltipNoAction,
                     tooltipLoud,
-                    tooltipQuiet,
                     tooltipLoudAndQuiet,
-                    tooltipQuietAndQuiet,
-                    tooltipQuietAndTransparent,
+                    tooltipLoudAndTransparent,
                     tooltipLink
             )
         }

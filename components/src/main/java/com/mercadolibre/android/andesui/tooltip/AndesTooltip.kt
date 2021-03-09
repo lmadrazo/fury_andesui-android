@@ -356,6 +356,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 setColor(config.backgroundColor.colorInt(context))
                 cornerRadius = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_corner_radius).toFloat()
             }
+            if (!config.isDynamicWidth) {
+                minimumWidth = context.resources.getDimensionPixelOffset(R.dimen.andes_tooltip_min_width_with_buttons)
+            }
         }
     }
 
@@ -384,8 +387,7 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
 
     private fun initializeAndesTooltipContent(config: AndesTooltipConfiguration, locationConfig: AndesTooltipLocationConfig) {
         with(frameLayoutContainer) {
-            val paddingByConfig = locationConfig.getTooltipPadding()
-            setPadding(paddingByConfig.left, paddingByConfig.top, paddingByConfig.right, paddingByConfig.bottom)
+            setPadding(paddingWithArrow, paddingWithArrow, paddingWithArrow, paddingWithArrow)
         }
         initTooltipTitle(config)
         initTooltipBody(config)
@@ -472,7 +474,9 @@ class AndesTooltip(val context: Context) : AndesTooltipLocationInterface {
                 text = config.linkAction.label
                 typeface = context.getFontOrDefault(R.font.andes_font_regular)
                 config.linkActionTextColor?.let { setTextColor(it.colorInt(context)) }
-                config.linkActionIsUnderlined?.let { paintFlags = Paint.UNDERLINE_TEXT_FLAG }
+                if (config.linkActionIsUnderlined) {
+                    paintFlags = Paint.UNDERLINE_TEXT_FLAG
+                }
                 setOnClickListener {
                     dismiss()
                     config.linkAction.onActionClicked(it, this@AndesTooltip)

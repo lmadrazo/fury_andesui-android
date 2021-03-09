@@ -83,13 +83,13 @@ internal fun getTooltipXOff(target: View, tooltip: AndesTooltipLocationInterface
         (canArrowLeft) -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.LEFT,
-                    point = (targetWidth / 2 - tooltip.arrowWidth / 2 - tooltip.arrowBorder)
+                    point = (targetWidth / 2 - tooltip.arrowWidth - tooltip.arrowBorder)
             )
         }
         else -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.RIGHT,
-                    point = (-tooltip.tooltipMeasuredWidth + targetWidth / 2 + tooltip.arrowWidth / 2 + tooltip.arrowBorder)
+                    point = (-tooltip.tooltipMeasuredWidth + targetWidth / 2 + tooltip.arrowWidth + tooltip.arrowBorder)
             )
         }
     }
@@ -126,7 +126,7 @@ internal fun getTooltipYOff(target: View, tooltip: AndesTooltipLocationInterface
         (canArrowTop) -> {
             AndesTooltipArrowData(
                     positionInSide = ArrowPositionId.TOP,
-                    point = -(targetHeight/2 + tooltip.arrowWidth/2 + tooltip.arrowBorder)
+                    point = -(targetHeight/2 + tooltip.arrowWidth + tooltip.arrowBorder + tooltip.arrowImageInnerPadding)
             )
         }
         else -> {
