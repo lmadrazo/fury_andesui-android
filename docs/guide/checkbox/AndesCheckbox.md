@@ -43,10 +43,10 @@ Basic Sample XML
 | Parameter | Description |
 | -------- | ------- |
 | context | **Context**|
-| text | **String**: Checkbox companion text. |
-| align | **[AndesCheckboxAlign](#andescheckboxalign)**: Set the checkbox position at the left or right of the text. Default alignment is **LEFT** |
-| status | **[AndesCheckboxStatus](#andescheckboxstatus)**: Set checkbox initial status. Default status is **UNSELECTED** |
-| type | **[AndesCheckboxType](#andescheckboxtype)**: Set the checkbox type style. Default type is **IDLE** |
+| text | **String**: checkbox companion text. |
+| align | **[AndesCheckboxAlign](#andescheckboxalign)**: set the checkbox position at the left or right of the text. Default alignment is **LEFT** |
+| status | **[AndesCheckboxStatus](#andescheckboxstatus)**: set checkbox initial status. Default status is **UNSELECTED** |
+| type | **[AndesCheckboxType](#andescheckboxtype)**: set the checkbox type style. Default type is **IDLE** |
 
 <br/>
 
