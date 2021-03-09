@@ -27,10 +27,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCoreComponents() {
+        andesui_tooltip.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/tooltip"))
+        }
         andesui_carousel.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/carousel"))
         }
-
         andesui_coachmark.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/coachmark"))
         }
