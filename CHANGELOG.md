@@ -1,6 +1,7 @@
 # v3.11.0
 ## 🛠 Fixes
 - Support statusbar with variable height in CoachmarkScrolless
+- Fix color of AndesCheckBox to andes_accent_color_500
 
 # v3.10.1
 ## 🚀 Feature
