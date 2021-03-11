@@ -50,7 +50,7 @@ Basic Sample XML
 | Parameter | Description |
 | -------- | ------- |
 | context | **Context**|
-| accentColor | **[AndesColor](#andescolor)**: thumbnail main color |
+| accentColor | **[AndesColor](/color/AndesColor.md)**: thumbnail main color |
 | hierarchy | **[AndesThumbnailHierarchy](#andesthumbnailhierarchy)**: thumbnail hierarchy style. Will affect color palette. |
 | image | **Drawable**: thumbnail drawable resource to display. |
 | type | **[AndesThumbnailType](#andesthumbnailtype)**: thumbnail design type. |
@@ -62,7 +62,7 @@ Basic Sample XML
 ## Properties
 | Property | Summary |
 | -------- | ------- |
-| accentColor: [AndesColor](#andescolor) | **get():** retrieves thumbnail main color. <br/> **set(value: AndesColor):** updates thumbnail main color. |
+| accentColor: [AndesColor](/color/AndesColor.md) | **get():** retrieves thumbnail main color. <br/> **set(value: AndesColor):** updates thumbnail main color. |
 | hierarchy: [AndesThumbnailHierarchy](#andesthumbnailhierarchy) | **get():** retrieves thumbnail hierarchy style. <br/> **set(value: AndesThumbnailHierarchy):** updates thumbnail hierarchy. |
 | image: Drawable | **get():** retrieves thumbnail displayed drawable. <br/> **set(value: Drawable):** updates thumbnail drawable. |
 | type: [AndesThumbnailType](#andesthumbnailtype) | **get():** retrieves thumbnail design type. <br/> **set(value: AndesThumbnailType):** updates thumbnail design type. |
