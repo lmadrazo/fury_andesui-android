@@ -18,7 +18,7 @@ internal object AndesCheckboxTypeIdle : AndesCheckboxTypeInterface {
         return if (status == AndesCheckboxStatus.UNSELECTED) {
             R.color.andes_gray_250_solid.toAndesColor()
         } else {
-            R.color.andes_blue_ml_500.toAndesColor()
+            R.color.andes_accent_color_500.toAndesColor()
         }
     }
     override fun iconColor(context: Context, status: AndesCheckboxStatus) = R.color.andes_white.toAndesColor()
@@ -26,7 +26,7 @@ internal object AndesCheckboxTypeIdle : AndesCheckboxTypeInterface {
         return if (status == AndesCheckboxStatus.UNSELECTED) {
             R.color.andes_white.toAndesColor()
         } else {
-            R.color.andes_blue_ml_500.toAndesColor()
+            R.color.andes_accent_color_500.toAndesColor()
         }
     }
     override fun textColor(context: Context) = R.color.andes_gray_800_solid.toAndesColor()
