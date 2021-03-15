@@ -5,80 +5,41 @@ import android.os.Bundle
 import android.util.AttributeSet
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.analytics.FirebaseAnalytics
-import java.util.Date
-import kotlin.collections.HashMap
 
 class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(context!!, attrs) {
 
-    private val firebaseAnalytics: FirebaseAnalytics
-
-    companion object {
-        const val DEFAULT_POSITION = 0
-    }
-
-    private lateinit var screenName: String
-    private val screensTime: HashMap<Int, Long> = hashMapOf()
-    private var currentPosition = DEFAULT_POSITION
-    private var startTime: Long = 0
+    private val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(getContext())
 
     init {
         this.addOnPageChangeListener(object : OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrollStateChanged(state: Int) {
+                // Nothing to do
+            }
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                // Nothing to do
+            }
 
             override fun onPageSelected(position: Int) {
-                finishTime()
-                currentPosition = position
-                startTime()
+                logTracking(position)
             }
         })
-
-        firebaseAnalytics = FirebaseAnalytics.getInstance(getContext())
-
-        startTime()
+        logTracking(0)
     }
 
-    private fun startTime() {
-        if (!screensTime.containsKey(currentPosition)) {
-            screensTime[currentPosition] = 0
-        }
-        startTime = Date().time
-    }
+    private fun logTracking(currentPosition: Int) {
+        context.apply {
+            val className = this.javaClass.simpleName
 
-    private fun finishTime() {
-        val diff = Date().time - startTime
-        if (screensTime.containsKey(currentPosition)) {
-            screensTime[currentPosition] = screensTime[currentPosition]!! + diff
-        }
-        startTime = 0
-    }
+            val component = AnalyticsHelper.getComponentName(className)
+            val path = AnalyticsHelper.getPath(className, currentPosition)
 
-    fun setScreenName(screenName: String) {
-        this.screenName = screenName
-    }
-
-    fun stopTracking() {
-        finishTime()
-    }
-
-    fun resumeTracking() {
-        startTime()
-    }
-
-    fun finishTracking() {
-        if (startTime > 0) {
-            finishTime()
-        }
-
-        if (this::screenName.isInitialized) {
-            val screen = screenName.replace(" ", "")
-            val bundle = Bundle()
-            for ((key, value) in screensTime) {
-                val title = "Screen ${key + 1}"
-                bundle.putLong(title, value)
+            if (component != null && path != null) {
+                val bundle = Bundle()
+                bundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, component)
+                bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, path)
+                // firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle)
             }
-            firebaseAnalytics.logEvent(screen, bundle)
         }
     }
 }

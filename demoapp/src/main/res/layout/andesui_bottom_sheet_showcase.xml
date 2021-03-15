@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/andes_bg_color_primary"
-    tools:context=".feature.andesbottomsheet.BottomSheetShowcaseActivity">
+    tools:context=".components.bottomsheet.BottomSheetShowcaseActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/andesui_nav_bar"
@@ -23,7 +23,7 @@
         android:layout_marginHorizontal="@dimen/andes_bottom_sheet_margin_large"
         android:layout_marginVertical="@dimen/andes_bottom_sheet_margin_small"
         android:onClick="onAttachViewButtonClicked"
-        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_attach_view_button"
+        app:andesButtonText="@string/andes_bottom_sheet_attach_view_button"
         app:layout_constraintEnd_toStartOf="@+id/andes_bottom_sheet_attach_fragment_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         android:layout_marginVertical="@dimen/andes_bottom_sheet_margin_small"
         android:layout_marginEnd="@dimen/andes_bottom_sheet_margin_large"
         android:onClick="onAttachFragmentButtonClicked"
-        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_attach_frag_butotn"
+        app:andesButtonText="@string/andes_bottom_sheet_attach_frag_butotn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/andes_bottom_sheet_attach_view_button"
@@ -57,7 +57,7 @@
         android:layout_marginHorizontal="@dimen/andes_bottom_sheet_margin_large"
         android:layout_marginVertical="@dimen/andes_bottom_sheet_margin_small"
         android:onClick="onToggleTitleClicked"
-        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_toggle_title_button"
+        app:andesButtonText="@string/andes_bottom_sheet_toggle_title_button"
         app:layout_constraintEnd_toStartOf="@+id/andes_bottom_sheet_toggle_title_align_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         android:layout_marginVertical="@dimen/andes_bottom_sheet_margin_small"
         android:layout_marginEnd="@dimen/andes_bottom_sheet_margin_large"
         android:onClick="onToggleAlignButtonClicked"
-        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_toggle_title_align_button"
+        app:andesButtonText="@string/andes_bottom_sheet_toggle_title_align_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/andes_bottom_sheet_toggle_title_button"
@@ -91,7 +91,7 @@
         android:layout_marginHorizontal="@dimen/andes_bottom_sheet_margin_large"
         android:layout_marginVertical="@dimen/andes_bottom_sheet_margin_small"
         android:inputType="number"
-        app:andesTextfieldPlaceholder="@string/andesui_demoapp_bottom_sheet_text_field"
+        app:andesTextfieldPlaceholder="@string/andes_bottom_sheet_text_field"
         app:layout_constraintEnd_toStartOf="@+id/andes_bottom_sheet_set_peek_height_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_separator_3" />
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/andes_bottom_sheet_margin_large"
         android:onClick="onSetPeekHeightButtonClicked"
-        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_set_button"
+        app:andesButtonText="@string/andes_bottom_sheet_set_button"
         app:layout_constraintBottom_toBottomOf="@+id/andes_bottom_sheet_peek_height_text_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/andes_bottom_sheet_peek_height_text_field"

@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.mercadolibre.android.andesui.message.AndesMessage
-        android:id="@+id/messageCarousel"
+    <com.mercadolibre.android.andesui.card.AndesCard
+        android:id="@+id/card_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_margin_vertical"
-        app:andesMessageBodyText="@string/body_text"
-        app:andesMessageDismissable="true"
-        app:andesMessageHierarchy="quiet"
-        app:andesMessageTitleText="@string/title_text"
-        app:andesMessageType="success"
+        app:andesCardBodyPadding="medium"
+        app:andesCardHierarchy="primary"
+        app:andesCardStyle="outline"
+        app:andesCardTitle="@string/andes_carousel_title"
+        app:andesCardType="warning"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

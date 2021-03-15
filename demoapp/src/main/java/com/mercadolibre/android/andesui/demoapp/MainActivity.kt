@@ -4,18 +4,18 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.mercadolibre.android.andesui.demoapp.commons.BaseActivity
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.SafeIntent
+import com.mercadolibre.android.andesui.demoapp.utils.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.utils.SafeIntent
+import com.mercadolibre.android.andesui.demoapp.utils.launchSpecs
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
 /**
  * Main activity class
  */
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_demoapp_main)
@@ -88,22 +88,22 @@ class MainActivity : BaseActivity() {
         val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         andesui_demoapp_changelog.setupPrimaryAction(
-                getString(R.string.andesui_demoapp_whatsnew_main_action),
+                getString(R.string.andes_demoapp_whatsnew_main_action),
                 View.OnClickListener {
-                    firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_whatsnew_main_action), Bundle())
+                    firebaseAnalytics.logEvent(getString(R.string.andes_demoapp_whatsnew_main_action), Bundle())
 
                     startActivity(SafeIntent(this, "meli://andes/whats-new"))
                 }
         )
 
         andesui_demoapp_andes_specs.setOnClickListener {
-            firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_label_andes_specs), Bundle())
+            firebaseAnalytics.logEvent(getString(R.string.label_andes_specs), Bundle())
 
             launchSpecs(this, AndesSpecs.HOME_PAGE)
         }
 
         andesui_demoapp_contribution.setOnClickListener {
-            firebaseAnalytics.logEvent(getString(R.string.andesui_demoapp_label_andes_contribution), Bundle())
+            firebaseAnalytics.logEvent(getString(R.string.andes_demoapp_label_andes_contribution), Bundle())
 
             ContextCompat.startActivity(this,
                     Intent(Intent.ACTION_VIEW,

@@ -3,7 +3,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.monits.staticCodeAnalysis'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from:   "$rootDir/gradle/dexcount.gradle"
+apply from: "$rootDir/gradle/dexcount.gradle"
 
 android {
     compileSdkVersion maxApiLevel.toInteger()
