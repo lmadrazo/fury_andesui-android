@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.mercadolibre.android.andesui.demoapp.utils.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.utils.SafeIntent
 import com.mercadolibre.android.andesui.demoapp.utils.launchSpecs
@@ -85,26 +84,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupExtras() {
-        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-
         andesui_demoapp_changelog.setupPrimaryAction(
                 getString(R.string.andes_demoapp_whatsnew_main_action),
                 View.OnClickListener {
-                    firebaseAnalytics.logEvent(getString(R.string.andes_demoapp_whatsnew_main_action), Bundle())
-
                     startActivity(SafeIntent(this, "meli://andes/whats-new"))
                 }
         )
 
         andesui_demoapp_andes_specs.setOnClickListener {
-            firebaseAnalytics.logEvent(getString(R.string.label_andes_specs), Bundle())
-
             launchSpecs(this, AndesSpecs.HOME_PAGE)
         }
 
         andesui_demoapp_contribution.setOnClickListener {
-            firebaseAnalytics.logEvent(getString(R.string.andes_demoapp_label_andes_contribution), Bundle())
-
             ContextCompat.startActivity(this,
                     Intent(Intent.ACTION_VIEW,
                             Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")),

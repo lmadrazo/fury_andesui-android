@@ -118,9 +118,6 @@ dependencies {
     implementation showcase.glide
     implementation showcase.markwon
 
-    implementation platform(firebase.bom)
-    implementation firebase.analytics
-
     debugImplementation showcase.leakCanary
 }
 
