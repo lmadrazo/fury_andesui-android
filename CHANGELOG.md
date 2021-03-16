@@ -1,4 +1,7 @@
-# v3.10.1
+# v3.11.0
+## 🛠 Fixes
+- Support statusbar with variable height in CoachmarkScrolless
+- Fix color of AndesCheckBox to andes_accent_color_500
 ## 🚀 Feature
 - Andes Tooltip with showcase and pixel perfect issues resolved. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
 
