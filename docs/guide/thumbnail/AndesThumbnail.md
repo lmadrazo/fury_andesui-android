@@ -152,3 +152,6 @@ enum class AndesThumbnailState
 | AndesThumbnailState | **fromString(value: String)**<br/> Retrieves an AndesThumbnailState that matches the string value |
 
 <br/>
+
+## Screenshots
+<img src="https://user-images.githubusercontent.com/58984116/111321214-7b560600-8646-11eb-8cf8-bba99b5f4df9.png" width="300">

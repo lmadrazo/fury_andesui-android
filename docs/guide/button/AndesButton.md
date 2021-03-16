@@ -168,3 +168,6 @@ enum class AndesButtonIconOrientation
 | AndesButtonIconOrientation | **fromString(value: String)**<br/> Retrieves an AndesButtonIconOrientation that matches the string value |
 
 <br/>
+
+## Screenshots
+<img src="https://user-images.githubusercontent.com/58984116/111319366-accdd200-8644-11eb-9225-64a284f6e060.png" width="300">

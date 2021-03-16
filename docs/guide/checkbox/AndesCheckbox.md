@@ -120,3 +120,6 @@ enum class AndesCheckboxType
 | AndesCheckboxType | **fromString(value: String)**<br/> Retrieves an AndesCheckboxType that matches the string value |
 
 <br/>
+
+## Screenshots
+<img src="https://user-images.githubusercontent.com/58984116/111320751-10a4ca80-8646-11eb-92b7-b15f125bd444.png" width="300">

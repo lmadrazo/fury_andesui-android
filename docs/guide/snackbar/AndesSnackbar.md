@@ -122,3 +122,6 @@ class AndesSnackbarAction
 | callback: View.OnClickListener | **get():** retrieves button on click callback. <br/> **set(value: String?):** updates button on click callback. |
 
 <br/>
+
+## Screenshots
+<img src="https://user-images.githubusercontent.com/58984116/111320872-2dd99900-8646-11eb-9883-662ae275db75.png" width="300">

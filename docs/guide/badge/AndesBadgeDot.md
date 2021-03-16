@@ -74,3 +74,6 @@ enum class AndesBadgeType
 | AndesBadgeType | **fromString(value: String)**<br/> Retrieves an AndesBadgeType that matches the string value |
 
 <br/>
+
+## Screenshots
+<img src="https://user-images.githubusercontent.com/58984116/111320619-efdc7500-8645-11eb-99f8-bbd474709ca8.png" width="300">
