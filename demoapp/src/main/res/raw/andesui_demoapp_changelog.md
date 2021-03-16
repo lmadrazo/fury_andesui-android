@@ -1,4 +1,4 @@
-# v3.11.0
+# v3.12.0
 ## 🚀 Feature
 - Refactor demo-app
 
