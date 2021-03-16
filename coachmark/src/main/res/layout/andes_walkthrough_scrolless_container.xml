@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="80dp" />
+        app:layout_constraintGuide_begin="@dimen/andes_coachmark_toolbar_status_bar" />
 
     <com.mercadolibre.android.andesui.coachmark.view.CoachmarkOverlay
         android:id="@+id/headerBackground"
@@ -38,13 +38,11 @@
         android:layout_width="@dimen/andes_coachmark_5m"
         android:layout_height="@dimen/andes_coachmark_hamburguer_height"
         android:layout_marginStart="@dimen/andes_coachmark_075m"
+        android:layout_marginTop="@dimen/andes_coachmark_075m"
         android:textColor="@color/andes_white"
-        android:textSize="@dimen/andes_coachmark_fontsize_xsmall"
-        app:layout_constraintBottom_toTopOf="@id/guideLineHeader"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideLineStatusBar"
-        android:importantForAccessibility="no"
-        tools:text="1 de 3" />
+        android:importantForAccessibility="no"/>
 
     <TextView
         android:id="@+id/counterText"

@@ -24,6 +24,7 @@ import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
+import java.lang.Exception
 
 @SuppressWarnings("TooManyFunctions")
 class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
@@ -150,7 +151,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
             dynamicSubtitle = textFieldSubtitle.text.toString()
             dynamicMaxLines = try {
                 textFieldMaxLines.text!!.toInt()
-            } catch (e: NullPointerException) {
+            } catch (e: Exception) {
                 0
             }
 

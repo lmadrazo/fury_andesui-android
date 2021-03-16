@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -17,10 +18,15 @@ import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleA
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.commons.AndesPagerAdapter
+import com.mercadolibre.android.andesui.demoapp.commons.CustomViewPager
+import com.mercadolibre.android.andesui.demoapp.utils.PageIndicator
 import kotlinx.android.synthetic.main.andesui_bottom_sheet_showcase.*
 
 @Suppress("TooManyFunctions")
 class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
+
+    private lateinit var viewPager: CustomViewPager
     private lateinit var bottomSheet: AndesBottomSheet
     private var showTitle = false
     private var leftAlignTitle = true
@@ -28,13 +34,40 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.andesui_bottom_sheet_showcase)
+        setContentView(R.layout.andesui_showcase_main)
 
+        initActionBar()
+        initViewPager()
+        attachIndicator()
+        loadViews()
+    }
+
+    private fun initActionBar() {
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andes_demoapp_screen_bottom_sheet)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
-        bottomSheet = findViewById(R.id.andes_bottom_sheet)
+    private fun initViewPager() {
+        val inflater = LayoutInflater.from(this)
+        viewPager = findViewById(R.id.andesui_viewpager)
+        viewPager.adapter = AndesPagerAdapter(listOf<View>(
+                inflater.inflate(R.layout.andesui_bottom_sheet_showcase, null, false)
+        ))
+    }
+
+    private fun attachIndicator() {
+        val indicator = findViewById<PageIndicator>(R.id.page_indicator)
+        indicator.attach(viewPager)
+    }
+
+    private fun loadViews() {
+        val adapter = viewPager.adapter as AndesPagerAdapter
+        addDynamicPage(adapter.views[0])
+    }
+
+    private fun addDynamicPage(container: View) {
+        bottomSheet = container.findViewById(R.id.andes_bottom_sheet)
         bottomSheet.setBottomSheetListener(this)
     }
 

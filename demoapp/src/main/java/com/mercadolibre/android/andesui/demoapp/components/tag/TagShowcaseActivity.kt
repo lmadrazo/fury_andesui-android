@@ -359,8 +359,8 @@ class TagShowcaseActivity : AppCompatActivity() {
                             .into(
                                     object : SimpleTarget<Bitmap>() {
                                         override fun onResourceReady(
-                                                resource: Bitmap?,
-                                                glideAnimation: GlideAnimation<in Bitmap?>?
+                                            resource: Bitmap?,
+                                            glideAnimation: GlideAnimation<in Bitmap?>?
                                         ) {
                                             if (resource != null) {
                                                 leftContent = LeftContent(image = LeftContentImage(resource))
