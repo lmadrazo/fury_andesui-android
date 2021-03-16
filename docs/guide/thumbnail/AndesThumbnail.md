@@ -42,7 +42,7 @@ Basic Sample XML
 | Summary |
 | --- |
 | AndesThumbnail(context: Context, attrs: AttributeSet?)  |
-| [AndesThumbnail](#andesthumbnailcontext-context-accentcolor-andescolor-hierarchy-andesthumbnailhierarchy-image-drawable-type-andesthumbnailtype-size-andesthumbnailsize-state-andesthumbnailstate)(context: Context, accentColor: AndesColor, hierarchy: AndesThumbnailHierarchy, image: Drawable, type: AndesThumbnailType, size: AndesThumbnailSize, state: AndesThumbnailState) |
+| [AndesThumbnail](#andesthumbnailcontext-context-accentcolor-andescolor-hierarchy-andesthumbnailhierarchy-image-drawable-type-andesthumbnailtype-size-andesthumbnailsize-state-andesthumbnailstate)(context: Context, accentColor: [AndesColor](/color/AndesColor.md), hierarchy: [AndesThumbnailHierarchy](#andesthumbnailhierarchy), image: Drawable, type: [AndesThumbnailType](#andesthumbnailtype), size: [AndesThumbnailSize](#andesthumbnailsize), state: [AndesThumbnailState](#andesthumbnailstate)) |
 
 <br/>
 

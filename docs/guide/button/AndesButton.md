@@ -47,7 +47,7 @@ Basic Sample XML
 
 <br/>
 
-##### AndesButton(context: Context, buttonSize: [AndesButtonSize](#andesbuttonsize), buttonHierarchy: [AndesButtonHierarchy](#andesbuttonhierarchy), buttonIcon: [AndesButtonIcon](#andesbuttonicon)?, buttonText: String?) 
+##### AndesButton(context: Context, buttonSize: AndesButtonSize, buttonHierarchy: AndesButtonHierarchy, buttonIcon: AndesButtonIcon?, buttonText: String?) 
 | Parameter | Description |
 | -------- | ------- |
 | context | **Context**|
