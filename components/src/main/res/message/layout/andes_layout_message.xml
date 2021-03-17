@@ -44,8 +44,10 @@
             android:scaleType="fitCenter"
             android:visibility="gone"
             tools:visibility="gone"
+            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/andes_lefticon_guideline"
-            app:layout_constraintTop_toTopOf="@+id/andes_top_guideline" />
+            app:layout_constraintTop_toTopOf="@+id/andes_top_guideline"
+            app:layout_constraintBottom_toTopOf="@id/andes_message_barrier_top"/>
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/andes_icon"
@@ -140,6 +142,14 @@
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
             app:constraint_referenced_ids="andes_thumbnail,andes_righticon_guideline_bottom" />
+
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/andes_message_barrier_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="andes_bottom_guideline" />
 
         <View
             android:id="@+id/andes_pipe"
