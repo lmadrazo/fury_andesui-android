@@ -134,7 +134,7 @@ class AndesButtonIcon
 
 <br/>
 
-###### AndesButtonIcon(icon: String?, orientation: [AndesButtonIconOrientation](#andesbuttoniconorientation))
+##### AndesButtonIcon(icon: String?, orientation: [AndesButtonIconOrientation](#andesbuttoniconorientation))
 | Parameter | Description |
 | --------- | ----------- |
 | icon | **String?**: local icon asset name |
