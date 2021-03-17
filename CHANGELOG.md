@@ -1,8 +1,11 @@
 # v3.11.0
 ## 🛠 Fixes
+- Andes Message Thumbnail without bottom margin
+
+# v3.10.1
+## 🛠 Fixes
 - Support statusbar with variable height in CoachmarkScrolless
 - Fix color of AndesCheckBox to andes_accent_color_500
-- Andes Message Thumbnail without bottom margin
 ## 🚀 Feature
 - Andes Tooltip with showcase and pixel perfect issues resolved. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
 
