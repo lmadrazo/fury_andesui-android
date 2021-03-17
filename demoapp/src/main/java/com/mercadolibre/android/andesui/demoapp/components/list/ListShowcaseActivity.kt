@@ -106,7 +106,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                 this,
                 R.array.andes_list_size_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             listSize.adapter = adapter
         }
@@ -116,7 +116,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                 this,
                 R.array.andes_list_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             listType.adapter = adapter
         }
@@ -126,7 +126,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                 this,
                 R.array.andes_list_asset_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             listAsset.adapter = adapter
         }

@@ -73,7 +73,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.hierarchy_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             hierarchySpinner.adapter = adapter
         }
@@ -83,7 +83,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_textfield_state_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             typeSpinner.adapter = adapter
         }
@@ -93,7 +93,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_thumbnail_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             thumbnailSpinner.adapter = adapter
         }

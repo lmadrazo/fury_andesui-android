@@ -35,7 +35,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetPeekHeight
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetPeekHeight = value)
-            createConfig().also {
+            createConfig().let {
                 updatePeekHeight(it)
             }
         }
@@ -47,7 +47,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetState
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetState = value)
-            createConfig().also {
+            createConfig().let {
                 resolveBottomSheetState(it)
             }
         }
@@ -59,7 +59,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetTitleText
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleText = value)
-            createConfig().also {
+            createConfig().let {
                 resolveTitleViewText(it)
             }
         }
@@ -71,7 +71,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetTitleAlignment
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleAlignment = value)
-            createConfig().also {
+            createConfig().let {
                 resolveTitleViewAlignment(it)
             }
     }
@@ -290,12 +290,12 @@ class AndesBottomSheet : CoordinatorLayout {
                     // not used
                 }
                 BottomSheetBehavior.STATE_EXPANDED -> {
-                    listener?.onExpanded().also {
+                    listener?.onExpanded().let {
                         updateStateFromBehavior(newState)
                     }
                 }
                 BottomSheetBehavior.STATE_COLLAPSED -> {
-                    listener?.onCollapsed().also {
+                    listener?.onCollapsed().let {
                         updateStateFromBehavior(newState)
                     }
                 }

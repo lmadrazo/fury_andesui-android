@@ -71,7 +71,7 @@ class BadgeShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_badge_modifier_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             modifierSpinner.adapter = adapter
         }
@@ -81,7 +81,7 @@ class BadgeShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.hierarchy_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             hierarchySpinner.adapter = adapter
         }
@@ -91,7 +91,7 @@ class BadgeShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.simple_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             typeSpinner.adapter = adapter
         }
@@ -101,7 +101,7 @@ class BadgeShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.size_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sizeSpinner.adapter = adapter
         }
@@ -111,7 +111,7 @@ class BadgeShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_border_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             borderSpinner.adapter = adapter
         }

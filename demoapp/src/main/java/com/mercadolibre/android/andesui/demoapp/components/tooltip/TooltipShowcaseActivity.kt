@@ -94,7 +94,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_tooltip_style_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerStyle.adapter = adapter
         }
@@ -114,7 +114,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_tooltip_action_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerActionType.adapter = adapter
             spinnerActionType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -160,7 +160,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_tooltip_main_action_style_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             primaryActionSpinner.adapter = adapter
         }
@@ -170,7 +170,7 @@ class TooltipShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_tooltip_sec_action_style_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerSecondAction.adapter = adapter
         }

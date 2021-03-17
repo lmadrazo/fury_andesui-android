@@ -242,11 +242,11 @@ class AndesTextfieldCode : ConstraintLayout {
      */
     private fun setUpFocusManagement(config: AndesTextfieldCodeConfiguration) {
         focusManagement = AndesCodeFocusManagement(config.boxesPattern.sum() - 1) { nextFocus, previousFocus ->
-            getBoxAt(previousFocus)?.also {
+            getBoxAt(previousFocus)?.let {
                 it.setAndesIsLongClickable(false)
                 it.setAndesFocusableInTouchMode(false)
             }
-            getBoxAt(nextFocus)?.also {
+            getBoxAt(nextFocus)?.let {
                 it.setAndesIsLongClickable(true)
                 it.setAndesFocusableInTouchMode(true)
                 it.requestFocusOnTextField()
@@ -287,7 +287,7 @@ class AndesTextfieldCode : ConstraintLayout {
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         val lastIndex = textfieldBoxCodeContainer.childCount - 1
         for (index in 0..lastIndex) {
-            getBoxAt(index)?.also { andesTextField ->
+            getBoxAt(index)?.let { andesTextField ->
                 if (andesTextField.text.isNullOrEmpty() ||
                     andesTextField.text == DIRTY_CHARACTER ||
                     index == lastIndex) {

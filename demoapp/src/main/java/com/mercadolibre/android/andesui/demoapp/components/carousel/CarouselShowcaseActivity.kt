@@ -92,7 +92,7 @@ class CarouselShowcaseActivity : AppCompatActivity(), AndesCarouselDelegate {
                 this,
                 R.array.andes_carousel_margin_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             marginSpinner.adapter = adapter
         }
