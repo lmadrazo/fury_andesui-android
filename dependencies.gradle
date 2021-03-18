@@ -16,7 +16,13 @@ ext {
     materialVersion = '1.0.0'
     constraintLayoutVersion = '2.0.4'
     cardViewVersion = '1.0.0'
+    firebaseBomVersion = '26.5.0'
     coordinatorLayoutVersion = '1.0.0'
+
+    firebase = [
+            bom : "com.google.firebase:firebase-bom:$firebaseBomVersion",
+            analytics : "com.google.firebase:firebase-analytics"
+    ]
 
     prod = [
             kotlinStdlib             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",

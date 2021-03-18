@@ -9,6 +9,7 @@ buildscript {
     }
 
     dependencies {
+        classpath "com.google.gms:google-services:$googleServicesPlugin"
         classpath "com.android.tools.build:gradle:$gradleBuildToolsVersion"
         classpath "com.mercadolibre.android.gradle:base:$gradlePluginsVersion"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$gradleBintrayPlugin"

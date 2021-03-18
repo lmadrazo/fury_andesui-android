@@ -23,7 +23,7 @@ import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 
 @Suppress("TooManyFunctions")
-class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
+class DropdownShowcaseActivity : AppCompatActivity(), AndesDropdownDelegate {
 
     private var andesDropDownLabel = "Title"
     private var andesDropDownPlaceHolder = "Place holder"

@@ -4,6 +4,7 @@
 ## 🛠 Fixes
 - Andes Message Thumbnail without bottom margin
 - Refactor demo-app
+- Add firebase analytics in demoapp
 
 # v3.10.1
 ## 🛠 Fixes
