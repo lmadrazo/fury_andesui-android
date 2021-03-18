@@ -99,7 +99,7 @@ class AndesButton : ConstraintLayout {
         get() = andesButtonAttrs.andesButtonHierarchy
         set(value) {
             andesButtonAttrs = andesButtonAttrs.copy(andesButtonHierarchy = value)
-            createConfig().also {
+            createConfig().let {
                 updateDynamicComponents(it)
                 updateComponentsAlignment(it)
             }
@@ -112,7 +112,7 @@ class AndesButton : ConstraintLayout {
         get() = andesButtonAttrs.andesButtonSize
         set(value) {
             andesButtonAttrs = andesButtonAttrs.copy(andesButtonSize = value)
-            createConfig().also {
+            createConfig().let {
                 setupHeight(it)
                 updateDynamicComponents(it)
                 updateComponentsAlignment(it)
@@ -126,7 +126,7 @@ class AndesButton : ConstraintLayout {
         get() = loadingView.visibility == View.VISIBLE
         set(value) {
             andesButtonAttrs = andesButtonAttrs.copy(andesButtonIsLoading = value)
-            createConfig().also {
+            createConfig().let {
                 updateComponentsAlignment(it)
                 updateDynamicComponents(it)
             }
@@ -499,7 +499,7 @@ class AndesButton : ConstraintLayout {
         icon.controller = controller
         icon.visibility = View.VISIBLE
 
-        createConfig().also {
+        createConfig().let {
             updateDynamicComponents(it)
             updateComponentsAlignment(it)
         }
@@ -518,7 +518,7 @@ class AndesButton : ConstraintLayout {
             simpleDraweeView.aspectRatio = iconWidth.toFloat() / iconHeight
         }
 
-        createConfig().also {
+        createConfig().let {
             updateComponentsAlignment(it)
         }
     }
@@ -534,7 +534,7 @@ class AndesButton : ConstraintLayout {
             AndesButtonIconOrientation.RIGHT -> andesButtonAttrs.copy(andesButtonRightDrawable = drawable)
         }
 
-        createConfig().also {
+        createConfig().let {
             updateDynamicComponents(it)
             updateComponentsAlignment(it)
         }

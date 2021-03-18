@@ -65,7 +65,7 @@ class AndesList : ConstraintLayout {
         get() = andesListAttrs.andesListDividerEnabled
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListDividerEnabled = value)
-            createConfig().also {
+            createConfig().let {
                 updateDynamicComponents(it)
             }
         }

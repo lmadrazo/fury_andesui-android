@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.monits.staticCodeAnalysis'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from:   "$rootDir/gradle/dexcount.gradle"
+apply from: "$rootDir/gradle/dexcount.gradle"
 
 android {
     compileSdkVersion maxApiLevel.toInteger()
@@ -116,6 +116,7 @@ dependencies {
 
     implementation showcase.glide
     implementation showcase.markwon
+
     debugImplementation showcase.leakCanary
 }
 
@@ -123,7 +124,7 @@ dependencies {
  * Based on https://stackoverflow.com/a/44218054/2823516
  */
 copy {
-    from file ('../CHANGELOG.md')
+    from file('../CHANGELOG.md')
     into 'src/main/res/raw'
     rename { String fileName ->
         fileName.replace("CHANGELOG.md", "andesui_demoapp_changelog.md")

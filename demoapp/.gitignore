@@ -112,5 +112,3 @@ ajcore*.txt
 *.hprof
 /src/main/res/font/andes_font_regular.otf
 /src/main/res/font/andes_font_semibold.otf
-
-google-services.json
