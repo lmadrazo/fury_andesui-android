@@ -260,7 +260,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".components.dropdown.DropdownShowCaseActivity"
+            android:name=".components.dropdown.DropdownShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
