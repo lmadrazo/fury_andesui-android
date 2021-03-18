@@ -20,18 +20,14 @@ class AndesProgressIndicatorIndeterminate : ConstraintLayout {
         get() = andesProgressAttr.tint
         set(value) {
             andesProgressAttr = andesProgressAttr.copy(tint = value)
-            createConfig().also {
-                setupColor(it)
-            }
+            setupColor(createConfig())
         }
 
     var size: AndesProgressSize
         get() = andesProgressAttr.andesProgressSize
         set(value) {
             andesProgressAttr = andesProgressAttr.copy(andesProgressSize = value)
-            createConfig().also {
-                setupSize(it)
-            }
+            setupSize(createConfig())
         }
 
     /**

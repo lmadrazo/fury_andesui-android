@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="@string/andes_radiobutton"
+            android:textColor="#000"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:andesRadioButtonAlign="left"
+                app:andesRadioButtonStatus="selected"
+                app:andesRadioButtonText="@string/andes_radiobutton" />
+
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:andesRadioButtonAlign="right"
+                app:andesRadioButtonStatus="unselected"
+                app:andesRadioButtonText="@string/andes_radiobutton" />
+
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:andesRadioButtonAlign="left"
+                app:andesRadioButtonStatus="unselected"
+                app:andesRadioButtonText="@string/andes_radiobutton"
+                app:andesRadioButtonType="disabled" />
+
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:andesRadioButtonAlign="right"
+                app:andesRadioButtonStatus="selected"
+                app:andesRadioButtonText="@string/andes_radiobutton"
+                app:andesRadioButtonType="disabled" />
+
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesRadioButtonAlign="left"
+                app:andesRadioButtonText="@string/andes_radiobutton"
+                app:andesRadioButtonType="error" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/andesui_demoapp_label_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_margin_vertical_2x"
+                android:text="@string/andes_demoapp_label_more" />
+
+            <com.mercadolibre.android.andesui.button.AndesButton
+                android:id="@+id/andesui_demoapp_andes_radiobutton_specs_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_margin_vertical"
+                app:andesButtonHierarchy="quiet"
+                app:andesButtonSize="medium"
+                app:andesButtonText="@string/andes_radiobutton_specs"
+                app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_more" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

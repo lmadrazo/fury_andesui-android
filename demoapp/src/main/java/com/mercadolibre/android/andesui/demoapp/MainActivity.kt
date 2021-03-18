@@ -3,12 +3,12 @@ package com.mercadolibre.android.andesui.demoapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.SafeIntent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.mercadolibre.android.andesui.demoapp.utils.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.utils.SafeIntent
+import com.mercadolibre.android.andesui.demoapp.utils.launchSpecs
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
 /**
@@ -85,8 +85,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupExtras() {
         andesui_demoapp_changelog.setupPrimaryAction(
-            getString(R.string.andesui_demoapp_whatsnew_main_action),
-            View.OnClickListener { startActivity(SafeIntent(this, "meli://andes/whats-new")) }
+                getString(R.string.andes_demoapp_whatsnew_main_action),
+                View.OnClickListener {
+                    startActivity(SafeIntent(this, "meli://andes/whats-new"))
+                }
         )
 
         andesui_demoapp_andes_specs.setOnClickListener {

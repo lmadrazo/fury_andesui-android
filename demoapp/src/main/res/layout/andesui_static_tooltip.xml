@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?><!--<ScrollView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/andes_tooltip_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/andes_tooltip_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:contentDescription="@string/andes_badge_neutral"
+        android:src="@drawable/andes_ui_info_24"
+        app:layout_constraintBottom_toBottomOf="@+id/andes_tooltip_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/andes_tooltip_left"
+        app:tint="@color/andes_accent_color_500" />
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/andes_tooltip_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        app:andesButtonHierarchy="loud"
+        app:andesButtonSize="small"
+        app:andesButtonText="@string/andes_tooltip_button_bottom"
+        app:layout_constraintEnd_toEndOf="@+id/andes_tooltip_top"
+        app:layout_constraintStart_toStartOf="@+id/andes_tooltip_top"
+        app:layout_constraintTop_toBottomOf="@+id/andes_tooltip_top" />
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/andes_tooltip_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:andesButtonHierarchy="loud"
+        app:andesButtonSize="small"
+        app:andesButtonText="@string/andes_tooltip_button_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/andes_tooltip_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:contentDescription="@string/andes_badge_neutral"
+        android:src="@drawable/andes_ui_info_24"
+        app:layout_constraintBottom_toTopOf="@+id/andes_tooltip_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andes_tooltip_top"
+        app:tint="@color/andes_accent_color_500" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andes_tooltip_bottom">
+
+        <TextView
+            android:id="@+id/andesui_demoapp_label_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_margin_vertical_2x"
+            android:text="@string/andes_demoapp_label_more" />
+
+        <com.mercadolibre.android.andesui.button.AndesButton
+            android:id="@+id/andesui_demoapp_andes_tooltip_specs_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_margin_vertical"
+            app:andesButtonHierarchy="quiet"
+            app:andesButtonSize="medium"
+            app:andesButtonText="@string/andes_tooltip_specs"
+            app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_more" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--</ScrollView>-->
+
+
+
+
