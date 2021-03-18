@@ -1,6 +1,6 @@
 package com.mercadolibre.android.andesui.demoapp.commons
 
-class AnalyticsHelper {
+internal class AnalyticsHelper {
 
     companion object {
         const val whatsNewTrack = "WhatsNew"
@@ -53,18 +53,10 @@ class AnalyticsHelper {
     )
 
     fun getPath(className: String, position: Int): String? {
-        var path: String? = null
-        if (screens.containsKey(className) && position < screens.getValue(className).size) {
-            path = screens.getValue(className)[position]
-        }
-        return path
+        return screens[className]?.getOrNull(position)
     }
 
     fun getComponentName(className: String): String? {
-        var componentName: String? = null
-        if (screens.containsKey(className)) {
-            componentName = components[className]
-        }
-        return componentName
+        return components[className]
     }
 }
