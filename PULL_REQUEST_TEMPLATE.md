@@ -17,7 +17,7 @@ Are you sure you followed all those steps? If so, repeat after me "I solemnly sw
    - [ ] I have coded an example inside the Demo App.
    - [ ] I have added proper tests.
    - [ ] I have modified the Changelog.md file.
-   - [ ] I have updated GitHub wiki.
+   - [ ] I have updated/added compontent documentation `/docs/guide/`.
    - [ ] I have the explicit approval of one or more members of the UX Team.
    - [ ] I have notify Andes team for PR.
    - [ ] I have updated the version in gradle.properties file.

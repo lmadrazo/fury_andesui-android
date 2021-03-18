@@ -1,6 +1,10 @@
 # v3.11.0
 ## 🚀 Feature
+- Andes new documentation format in `/docs/guide`.
+## 🛠 Fixes
+- Andes Message Thumbnail without bottom margin
 - Refactor demo-app
+
 
 # v3.10.1
 ## 🛠 Fixes
