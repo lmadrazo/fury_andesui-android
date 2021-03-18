@@ -50,9 +50,6 @@ workflows:
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
-      - run-mds:
-          requires:
-            - meli/assemble
   build:
     when:
       equal: [build, << pipeline.parameters.type >>]
@@ -61,6 +58,6 @@ workflows:
           build_context: << pipeline.parameters.build_context >>
           pipeline_id: << pipeline.id >>
           pipeline_number: << pipeline.number >>
-#      - run-mds:
-#          requires:
-#            - meli/build-public
+      - run-mds:
+          requires:
+            - meli/build-public
