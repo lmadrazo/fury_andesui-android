@@ -3,12 +3,11 @@ package com.mercadolibre.android.andesui.demoapp.commons
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import android.util.Log
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.mercadolibre.android.andesui.demoapp.R
 
-class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(context!!, attrs) {
+class CustomViewPager(context: Context, attrs: AttributeSet?) : ViewPager(context, attrs) {
 
     private val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(getContext())
 
@@ -41,9 +40,7 @@ class CustomViewPager(context: Context?, attrs: AttributeSet?) : ViewPager(conte
                 val bundle = Bundle()
                 bundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, component)
                 bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, path)
-
-                Log.i("LOG TRACKING", "$component $path")
-                // firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle)
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle)
             } else {
                 throw RuntimeException(getString(R.string.andesui_demoapp_error_tracking))
             }

@@ -115,6 +115,6 @@ class MainActivity : AppCompatActivity() {
         val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, screen)
-        //firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, Bundle())
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, Bundle())
     }
 }
