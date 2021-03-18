@@ -42,10 +42,12 @@ class AnalyticsHelper {
             "ListShowcaseActivity" to arrayListOf("/list/dynamic", "/list/static"),
             "MessageShowcaseActivity" to arrayListOf("/message/dynamic", "/message/static"),
             "ProgressShowcaseActivity" to arrayListOf("/progressindicator/static"),
-            "RadioButtonShowcaseActivity" to arrayListOf("/radiobutton/radiobutton/dynamic", "/radiobutton/radiobutton/static", "/radiobutton/radiobuttongroup/static"),
+            "RadioButtonShowcaseActivity" to arrayListOf("/radiobutton/radiobutton/dynamic",
+                    "/radiobutton/radiobutton/static", "/radiobutton/radiobuttongroup/static"),
             "SnackbarShowcaseActivity" to arrayListOf("/snackbar/dynamic"),
             "TagShowcaseActivity" to arrayListOf("/tag/simple/dynamic", "/tag/simple/static", "/tag/choice/static"),
-            "TextfieldShowcaseActivity" to arrayListOf("/textfield/textfield/dynamic", "/textfield/textarea/dynamic", "/textfield/textcode/dynamic", "/textfield/static"),
+            "TextfieldShowcaseActivity" to arrayListOf("/textfield/textfield/dynamic", "/textfield/textarea/dynamic",
+                    "/textfield/textcode/dynamic", "/textfield/static"),
             "ThumbnailShowcaseActivity" to arrayListOf("/thumbnail/dynamic", "/thumbnail/static"),
             "TooltipShowcaseActivity" to arrayListOf("/tooltip/dynamic", "/tooltip/static")
     )
