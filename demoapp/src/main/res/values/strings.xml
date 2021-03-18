@@ -10,6 +10,7 @@
     <string name="change_text">Title text</string>
     <string name="change_body">Body text</string>
     <string name="andesui_demoapp_clear_button">Clear</string>
+    <string name="andesui_demoapp_error_tracking">Current Activity could not be tracked. Add component and screens entries to AnalyticsHelper.</string>
     <string-array name="hierarchy_spinner">
         <item>Quiet</item>
         <item>Loud</item>
