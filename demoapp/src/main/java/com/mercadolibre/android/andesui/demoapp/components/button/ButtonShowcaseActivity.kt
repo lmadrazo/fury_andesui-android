@@ -77,7 +77,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_button_size_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sizeSpinner.adapter = adapter
         }
@@ -87,7 +87,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_button_hierarchy_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             hierarchySpinner.adapter = adapter
         }
@@ -142,19 +142,19 @@ class ButtonShowcaseActivity : AppCompatActivity() {
     }
 
     private fun addStaticPage(container: View) {
-        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.let {
             container.findViewById<AndesButton>(R.id.button_loud_with_drawable).setIconDrawable(
                     it, AndesButtonIconOrientation.LEFT
             )
         }
 
-        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.let {
             container.findViewById<AndesButton>(R.id.button_quiet_with_drawable).setIconDrawable(
                     it, AndesButtonIconOrientation.RIGHT
             )
         }
 
-        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.let {
             container.findViewById<AndesButton>(R.id.button_transparent_with_drawable).setIconDrawable(
                     it, AndesButtonIconOrientation.LEFT
             )

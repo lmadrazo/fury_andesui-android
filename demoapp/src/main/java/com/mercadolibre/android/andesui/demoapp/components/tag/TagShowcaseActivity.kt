@@ -94,7 +94,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_tag_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             typeSpinner.adapter = adapter
         }
@@ -104,7 +104,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.simple_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             simpleTypeSpinner.adapter = adapter
         }
@@ -121,7 +121,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.size_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sizeSpinner.adapter = adapter
         }
@@ -131,7 +131,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_left_content_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             leftContentSpinner.adapter = adapter
         }

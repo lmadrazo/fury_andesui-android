@@ -113,7 +113,7 @@ class DropdownShowcaseActivity : AppCompatActivity(), AndesDropdownDelegate {
                 this,
                 R.array.andes_type_list_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerType.adapter = adapter
         }

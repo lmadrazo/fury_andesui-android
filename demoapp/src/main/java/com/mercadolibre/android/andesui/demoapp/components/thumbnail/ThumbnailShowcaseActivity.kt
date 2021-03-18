@@ -69,33 +69,30 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_thumbnail_hierarchy_spinner,
                 android.R.layout.simple_spinner_item
-        )
-                .also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    hierarchySpinner.adapter = adapter
-                }
+        ).let { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            hierarchySpinner.adapter = adapter
+        }
 
         val typeSpinner: Spinner = container.findViewById(R.id.simple_type_spinner)
         ArrayAdapter.createFromResource(
                 this,
                 R.array.andes_thumbnail_type_spinner,
                 android.R.layout.simple_spinner_item
-        )
-                .also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    typeSpinner.adapter = adapter
-                }
+        ).let { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            typeSpinner.adapter = adapter
+        }
 
         val sizeSpinner: Spinner = container.findViewById(R.id.size_spinner)
         ArrayAdapter.createFromResource(
                 this,
                 R.array.andes_thumbnail_size_spinner,
                 android.R.layout.simple_spinner_item
-        )
-                .also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    sizeSpinner.adapter = adapter
-                }
+        ).let { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            sizeSpinner.adapter = adapter
+        }
 
         val stateSwitch: SwitchCompat = container.findViewById(R.id.state_switch)
 

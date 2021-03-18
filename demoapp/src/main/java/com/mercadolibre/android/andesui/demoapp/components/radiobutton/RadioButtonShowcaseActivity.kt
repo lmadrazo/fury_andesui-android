@@ -74,7 +74,7 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_radiobutton_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerType.adapter = adapter
         }
@@ -84,7 +84,7 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_radiobutton_align_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerAlign.adapter = adapter
         }
@@ -94,7 +94,7 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_radiobutton_status_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerStatus.adapter = adapter
         }

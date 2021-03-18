@@ -67,7 +67,7 @@ class CheckboxShowcaseActivity : AppCompatActivity() {
         val spinnerType: Spinner = container.findViewById(R.id.spinnerType)
         ArrayAdapter.createFromResource(
                 this, R.array.andes_checkbox_type_spinner, android.R.layout.simple_spinner_item)
-                .also { adapter ->
+                .let { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinnerType.adapter = adapter
                 }
@@ -75,7 +75,7 @@ class CheckboxShowcaseActivity : AppCompatActivity() {
         val spinnerAlign: Spinner = container.findViewById(R.id.spinnerAlign)
         ArrayAdapter.createFromResource(
                 this, R.array.andes_checkbox_align_spinner, android.R.layout.simple_spinner_item)
-                .also { adapter ->
+                .let { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinnerAlign.adapter = adapter
                 }
@@ -83,7 +83,7 @@ class CheckboxShowcaseActivity : AppCompatActivity() {
         val spinnerStatus: Spinner = container.findViewById(R.id.spinnerStatus)
         ArrayAdapter.createFromResource(
                 this, R.array.andes_checkbox_status_spinner, android.R.layout.simple_spinner_item)
-                .also { adapter ->
+                .let { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinnerStatus.adapter = adapter
                 }

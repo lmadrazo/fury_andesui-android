@@ -83,7 +83,7 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_snackbar_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             snackbarType.adapter = adapter
         }
@@ -93,7 +93,7 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_snackbar_duration_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             snackbarDuration.adapter = adapter
         }

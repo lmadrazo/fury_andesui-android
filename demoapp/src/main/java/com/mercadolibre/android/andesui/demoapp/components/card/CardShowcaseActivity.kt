@@ -111,7 +111,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_card_type_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerType.adapter = adapter
         }
@@ -122,7 +122,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_card_style_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerStyle.adapter = adapter
         }
@@ -132,7 +132,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_card_padding_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerPadding.adapter = adapter
         }
@@ -143,7 +143,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_card_body_padding_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerBodyPadding.adapter = adapter
         }
@@ -154,7 +154,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 this,
                 R.array.andes_card_hierarchy_spinner,
                 android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        ).let { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerHierarchy.adapter = adapter
         }

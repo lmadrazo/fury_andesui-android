@@ -90,20 +90,17 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.andes_demoapp_whatsnew_main_action),
                 View.OnClickListener {
                     trackAnalytics(AnalyticsHelper.whatsNewTrack)
-
                     startActivity(SafeIntent(this, "meli://andes/whats-new"))
                 }
         )
 
         andesui_demoapp_andes_specs.setOnClickListener {
             trackAnalytics(AnalyticsHelper.specsTrack)
-
             launchSpecs(this, AndesSpecs.HOME_PAGE)
         }
 
         andesui_demoapp_contribution.setOnClickListener {
             trackAnalytics(AnalyticsHelper.contributeTrack)
-
             ContextCompat.startActivity(this,
                     Intent(Intent.ACTION_VIEW,
                             Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")),
