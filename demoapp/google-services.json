@@ -76,6 +76,42 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650073515710:android:39ade1e3fa6462be84e0ef",
+        "android_client_info": {
+          "package_name": "com.mercadolibre.android.andesui.demoapp.mds.testapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "650073515710-fbcdbq0oakltjjg6rhslapfa0a7qav2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9-3AOx5Mig_8U3O2KodJ5vhKRI7dkeVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "650073515710-fbcdbq0oakltjjg6rhslapfa0a7qav2j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "650073515710-fjnb10u1j8usd0q0476u3cl088p7kp9v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mercadolibre.andesui"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
