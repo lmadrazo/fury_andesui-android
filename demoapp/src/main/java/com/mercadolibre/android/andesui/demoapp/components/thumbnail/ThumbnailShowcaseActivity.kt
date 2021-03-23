@@ -125,6 +125,8 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         changeButton.setOnClickListener {
             val type = when (typeSpinner.getItemAtPosition(typeSpinner.selectedItemPosition)) {
                 "Icon" -> AndesThumbnailType.ICON
+                "Image Circle" -> AndesThumbnailType.IMAGE_CIRCLE
+                "Image Square" -> AndesThumbnailType.IMAGE_SQUARE
                 else -> AndesThumbnailType.ICON
             }
 

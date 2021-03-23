@@ -472,6 +472,8 @@
     </string-array>
     <string-array name="andes_thumbnail_type_spinner">
         <item>Icon</item>
+        <item>Image Circle</item>
+        <item>Image Square</item>
     </string-array>
     <string-array name="andes_thumbnail_spinner">
         <item>With Thumbnail</item>
