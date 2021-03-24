@@ -35,7 +35,7 @@
             android:layout_marginEnd="@dimen/margin_horizontal_thumbnail"
             app:andesThumbnailAccentColor="@color/andes_red_700"
             app:andesThumbnailHierarchy="loud"
-            app:andesThumbnailImage="@drawable/fullimage"
+            app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
             app:andesThumbnailSize="size_48"
             app:andesThumbnailState="enabled"
             app:andesThumbnailType="icon"

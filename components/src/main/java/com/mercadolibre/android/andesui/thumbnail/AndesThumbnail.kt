@@ -209,18 +209,19 @@ class AndesThumbnail : FrameLayout {
         val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
 
         imageFrame.setImageDrawable(wrappedDrawable)
-        setupImageFitAndBounds(config.isIconType)
+        setupImageFitAndBounds(config.isImageType)
         setupImageSize(config.iconSize)
         setupImageColor(config)
     }
 
-    private fun setupImageFitAndBounds(isIconType: Boolean) {
-        if (isLollipopOrNewer()) clipToOutline = !isIconType
-        imageFrame.scaleType = if (isIconType) FIT_CENTER else CENTER_CROP
+    private fun setupImageFitAndBounds(isImageType: Boolean) {
+        if (isLollipopOrNewer()) clipToOutline = isImageType
+        imageFrame.scaleType = if (isImageType) CENTER_CROP else FIT_CENTER
     }
 
     private fun setupImageColor(config: AndesThumbnailConfiguration) {
-        val tintList = if (config.isIconType) ColorStateList.valueOf(config.iconColor.colorInt(context)) else null
+        val tintList = if (config.hasTint)
+           ColorStateList.valueOf(config.iconColor.colorInt(context)) else null
         DrawableCompat.setTintList(imageFrame.drawable, tintList)
     }
 

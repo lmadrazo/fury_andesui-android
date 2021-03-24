@@ -12,3 +12,4 @@ internal class AndesIconThumbnailType : AndesThumbnailTypeInterface
 internal class AndesImageCircleThumbnailType : AndesThumbnailTypeInterface
 
 internal class AndesImageSquareThumbnailType : AndesThumbnailTypeInterface
+

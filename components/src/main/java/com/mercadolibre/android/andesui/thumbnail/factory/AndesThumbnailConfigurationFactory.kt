@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.thumbnail.factory
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Build
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
@@ -10,10 +9,10 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierarchyInterface
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSizeInterface
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailStateInterface
-import com.mercadolibre.android.andesui.thumbnail.type.AndesIconThumbnailType
 import com.mercadolibre.android.andesui.thumbnail.type.AndesImageSquareThumbnailType
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailTypeInterface
-import com.mercadolibre.android.andesui.utils.isLollipopOrNewer
+import com.mercadolibre.android.andesui.thumbnail.utils.isIconType
+import com.mercadolibre.android.andesui.thumbnail.utils.resolverByApiLevel
 
 internal data class AndesThumbnailConfiguration(
     val backgroundColor: AndesColor,
@@ -24,7 +23,8 @@ internal data class AndesThumbnailConfiguration(
     val image: Drawable,
     val size: Float,
     val cornerRadius: Float,
-    val isIconType: Boolean
+    val isImageType: Boolean,
+    val hasTint: Boolean
 )
 
 internal object AndesThumbnailConfigurationFactory {
@@ -42,7 +42,8 @@ internal object AndesThumbnailConfigurationFactory {
                 image = resolveImage(andesThumbnailImage),
                 size = resolveSize(context, andesThumbnailSize.size),
                 cornerRadius = resolveCornerRadius(context, andesThumbnailSize.size, andesThumbnailType.type),
-                isIconType = resolveIsIconType(andesThumbnailType.type)
+                isImageType = resolveIsImageType(andesThumbnailType.type),
+                hasTint = resolveHasTint(andesThumbnailType.type)
             )
         }
     }
@@ -67,34 +68,12 @@ internal object AndesThumbnailConfigurationFactory {
             context: Context,
             size: AndesThumbnailSizeInterface,
             type: AndesThumbnailTypeInterface) = resolverByApiLevel.resolveIconSize(context, size, type)
-    private fun resolveIsIconType(type: AndesThumbnailTypeInterface) = resolverByApiLevel.resolveIsIconType(type)
+    private fun resolveIsImageType(type: AndesThumbnailTypeInterface) = resolverByApiLevel.resolveIsImageType(type)
+    private fun resolveHasTint(type: AndesThumbnailTypeInterface) = type.isIconType
     private fun resolveCornerRadius(
             context: Context,
             size: AndesThumbnailSizeInterface,
             type: AndesThumbnailTypeInterface
-    ) = context.let(if(type is AndesImageSquareThumbnailType) size::radiusSize else size::diameter)
-
-    internal interface AndesThumbnailConfigurationApiLevelResolver {
-        fun resolveIconSize(context: Context,
-                            size: AndesThumbnailSizeInterface,
-                            type: AndesThumbnailTypeInterface): Int = size.iconSize(context).toInt()
-        fun resolveIsIconType(type: AndesThumbnailTypeInterface): Boolean = true
-    }
-
-    private object ResolverApiLevelBelow21: AndesThumbnailConfigurationApiLevelResolver
-    private object ResolverApiLevel21: AndesThumbnailConfigurationApiLevelResolver {
-        override fun resolveIconSize(
-                context: Context,
-                size: AndesThumbnailSizeInterface,
-                type: AndesThumbnailTypeInterface
-        ) = if(type is AndesIconThumbnailType) super.resolveIconSize(context, size, type)
-            else size.diameter(context).toInt()
-
-        override fun resolveIsIconType(type: AndesThumbnailTypeInterface) = type is AndesIconThumbnailType
-    }
-
-    private val resolverByApiLevel: AndesThumbnailConfigurationApiLevelResolver by lazy {
-        if(isLollipopOrNewer()) ResolverApiLevel21 else ResolverApiLevelBelow21
-    }
+    ) = if(type is AndesImageSquareThumbnailType) size.radiusSize(context) else size.diameter(context)
 
 }
