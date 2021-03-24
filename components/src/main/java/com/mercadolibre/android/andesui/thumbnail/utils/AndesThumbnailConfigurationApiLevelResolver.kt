@@ -16,17 +16,18 @@ import com.mercadolibre.android.andesui.utils.isLollipopOrNewer
  * @property resolveIconSize : Always return <code>size.iconSize</code> to keep it smaller.
  */
 internal interface AndesThumbnailConfigurationApiLevelResolver {
-    fun resolveIsImageType(type: AndesThumbnailTypeInterface): Boolean = false
-    fun resolveIconSize(context: Context,
-                        size: AndesThumbnailSizeInterface,
-                        type: AndesThumbnailTypeInterface): Int = size.iconSize(context).toInt()
+    fun resolveIsImageType(type: AndesThumbnailTypeInterface) = false
+    fun resolveIconSize(
+        context: Context,
+        size: AndesThumbnailSizeInterface,
+        type: AndesThumbnailTypeInterface
+    ) = size.iconSize(context).toInt()
 }
-
 
 /**
  * Gets default implementation
  */
-private object ResolverApiLevelBelow21: AndesThumbnailConfigurationApiLevelResolver
+private object ResolverApiLevelBelow21 : AndesThumbnailConfigurationApiLevelResolver
 
 /**
  * Gets the implementation for API21 & higher
@@ -37,16 +38,16 @@ private object ResolverApiLevelBelow21: AndesThumbnailConfigurationApiLevelResol
  *                             if it uses <code>size.iconSize</code> or <code>size.diameter</code>
  *
  */
-private object ResolverApiLevel21: AndesThumbnailConfigurationApiLevelResolver {
+private object ResolverApiLevel21 : AndesThumbnailConfigurationApiLevelResolver {
     override fun resolveIsImageType(type: AndesThumbnailTypeInterface) = type.isImageType
     override fun resolveIconSize(
-            context: Context,
-            size: AndesThumbnailSizeInterface,
-            type: AndesThumbnailTypeInterface
-    ) = if(type.isIconType) super.resolveIconSize(context, size, type) else size.diameter(context).toInt()
+        context: Context,
+        size: AndesThumbnailSizeInterface,
+        type: AndesThumbnailTypeInterface
+    ) = if (type.isIconType) super.resolveIconSize(context, size, type) else size.diameter(context).toInt()
 }
 
-internal val AndesThumbnailConfigurationFactory.resolverByApiLevel : AndesThumbnailConfigurationApiLevelResolver
-        by lazy {
-            if(isLollipopOrNewer()) ResolverApiLevel21 else ResolverApiLevelBelow21
+internal val AndesThumbnailConfigurationFactory.resolverByApiLevel:
+        AndesThumbnailConfigurationApiLevelResolver by lazy {
+            if (isLollipopOrNewer()) ResolverApiLevel21 else ResolverApiLevelBelow21
         }

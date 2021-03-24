@@ -25,15 +25,7 @@ import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
 import com.mercadolibre.android.andesui.utils.isLollipopOrNewer
 
-/**
- * We are using CardView as a Container since still being a child of
- * [FrameLayout] and we take advantage of the Background Drawable that
- * Clips the inside views, this can be achieved only with
- * clipToOutline = true
- * But this is only supported on API21 & higher, CardView supports
- * 21 & lower this behaviour
- */
-
+@Suppress("TooManyFunctions")
 class AndesThumbnail : FrameLayout {
 
     /**
@@ -220,8 +212,9 @@ class AndesThumbnail : FrameLayout {
     }
 
     private fun setupImageColor(config: AndesThumbnailConfiguration) {
-        val tintList = if (config.hasTint)
-           ColorStateList.valueOf(config.iconColor.colorInt(context)) else null
+        val tintList = takeIf { config.hasTint }?.let {
+            ColorStateList.valueOf(config.iconColor.colorInt(context))
+        }
         DrawableCompat.setTintList(imageFrame.drawable, tintList)
     }
 

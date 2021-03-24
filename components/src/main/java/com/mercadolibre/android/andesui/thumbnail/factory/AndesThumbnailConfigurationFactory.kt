@@ -27,6 +27,7 @@ internal data class AndesThumbnailConfiguration(
     val hasTint: Boolean
 )
 
+@Suppress("TooManyFunctions")
 internal object AndesThumbnailConfigurationFactory {
 
     fun create(context: Context, andesThumbnailAttrs: AndesThumbnailAttrs): AndesThumbnailConfiguration {
@@ -65,15 +66,15 @@ internal object AndesThumbnailConfigurationFactory {
     private fun resolveImage(image: Drawable) = image
     private fun resolveSize(context: Context, size: AndesThumbnailSizeInterface) = size.diameter(context)
     private fun resolveIconSize(
-            context: Context,
-            size: AndesThumbnailSizeInterface,
-            type: AndesThumbnailTypeInterface) = resolverByApiLevel.resolveIconSize(context, size, type)
+        context: Context,
+        size: AndesThumbnailSizeInterface,
+        type: AndesThumbnailTypeInterface
+    ) = resolverByApiLevel.resolveIconSize(context, size, type)
     private fun resolveIsImageType(type: AndesThumbnailTypeInterface) = resolverByApiLevel.resolveIsImageType(type)
     private fun resolveHasTint(type: AndesThumbnailTypeInterface) = type.isIconType
     private fun resolveCornerRadius(
-            context: Context,
-            size: AndesThumbnailSizeInterface,
-            type: AndesThumbnailTypeInterface
-    ) = if(type is AndesImageSquareThumbnailType) size.radiusSize(context) else size.diameter(context)
-
+        context: Context,
+        size: AndesThumbnailSizeInterface,
+        type: AndesThumbnailTypeInterface
+    ) = if (type is AndesImageSquareThumbnailType) size.radiusSize(context) else size.diameter(context)
 }
