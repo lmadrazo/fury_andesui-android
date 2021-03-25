@@ -455,8 +455,8 @@
     <string name="andes_thumbnail_description_48">Hierarchy: Loud, Size: 48, State: Enabled, Type: Icon</string>
     <string name="andes_thumbnail_description_64">Hierarchy: Default, Size: 64, State: Enabled, Type: Icon</string>
     <string name="andes_thumbnail_description_80">Hierarchy: Quiet, Size: 80, State: Enabled, Type: Icon</string>
-    <string name="andes_thumbnail_description_image_circle">Hierarchy: Defaule, Size: 64, State: Enabled, Type: Image Circle</string>
-    <string name="andes_thumbnail_description_image_square">Hierarchy: Defaule, Size: 64, State: Enabled, Type: Image Square</string>
+    <string name="andes_thumbnail_description_image_circle">Hierarchy: Default, Size: 64, State: Enabled, Type: Image Circle</string>
+    <string name="andes_thumbnail_description_image_square">Hierarchy: Default, Size: 64, State: Enabled, Type: Image Square</string>
     <string-array name="andes_thumbnail_hierarchy_spinner">
         <item>Default</item>
         <item>Loud</item>
