@@ -21,7 +21,9 @@ Basic Sample XML
         android:layout_height="wrap_content"
         app:andesThumbnailImage="@drawable/awesome_icon"
         app:andesThumbnailAccentColor="@color/awesome_color"
-        app:andesThumbnailHierarchy="loud" />
+        app:andesThumbnailHierarchy="loud"
+        app:andesThumbnailType="icon"
+         />
 ```
 
 <br/>
@@ -30,7 +32,7 @@ Basic Sample XML
 | Property | Summary |
 | -------- | ------- |
 | app:andesThumbnailHierarchy | Determines hierarchy style: **AndesDefault**, **loud**, **quiet** |
-| app:andesThumbnailType | Thumbnail design type: **icon** |
+| app:andesThumbnailType | Thumbnail design type: **icon**, **image_circle**, **image_square** |
 | app:andesThumbnailSize | Thumbnail display size in dp: **size_24**, **size_32**, **size_40**, **size_48**, **size_56**, **size_64**, **size_72**, **size_80** |
 | app:andesThumbnailState | Thumbnail status color style: **enabled**, **disabled** |
 | app:andesThumbnailImage | Drawable resource to display. |
@@ -101,6 +103,8 @@ enum class AndesThumbnailType
 | Enum Values | Description |
 | ----------- | ----------- |
 | ICON | Default rounded image with a tinted icon inside |
+| IMAGE_CIRCLE | Rounded image & behaves as [AndesThumbnailHierarchy.DEFAULT](#andesthumbnailhierarchy) |
+| IMAGE_SQUARE | Squared image with rounded corners & behaves as [AndesThumbnailHierarchy.DEFAULT](#andesthumbnailhierarchy) |
 
 <br/>
 
