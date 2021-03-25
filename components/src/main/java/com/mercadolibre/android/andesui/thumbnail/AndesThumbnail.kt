@@ -83,7 +83,7 @@ class AndesThumbnail : FrameLayout {
         set(value) {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailSize = value)
             val config = createConfig()
-            setupBackgroundSize(config.size)
+            setupBackgroundSize(config.size, config.cornerRadius)
             setupImageSize(config.iconSize)
         }
 
@@ -183,14 +183,14 @@ class AndesThumbnail : FrameLayout {
             shape.setColor(config.backgroundColor.colorIntToAlpha(context))
         }
 
-        shape.cornerRadius = config.cornerRadius
         background = shape
-        setupBackgroundSize(config.size)
+        setupBackgroundSize(config.size, config.cornerRadius)
     }
 
-    private fun setupBackgroundSize(size: Float) {
+    private fun setupBackgroundSize(size: Float, configCornerRadius: Float) {
         if (background != null) {
             with(background as GradientDrawable) {
+                cornerRadius = configCornerRadius
                 setSize(size.toInt(), size.toInt())
             }
         }
