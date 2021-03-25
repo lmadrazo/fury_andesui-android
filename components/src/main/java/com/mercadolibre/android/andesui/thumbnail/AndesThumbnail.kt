@@ -183,8 +183,8 @@ class AndesThumbnail : FrameLayout {
             shape.setColor(config.backgroundColor.colorIntToAlpha(context))
         }
 
-        background = shape
         shape.cornerRadius = config.cornerRadius
+        background = shape
         setupBackgroundSize(config.size)
     }
 

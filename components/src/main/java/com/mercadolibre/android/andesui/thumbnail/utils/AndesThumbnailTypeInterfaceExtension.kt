@@ -1,5 +1,6 @@
 package com.mercadolibre.android.andesui.thumbnail.utils
 
+import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierarchy
 import com.mercadolibre.android.andesui.thumbnail.type.AndesIconThumbnailType
 import com.mercadolibre.android.andesui.thumbnail.type.AndesImageCircleThumbnailType
 import com.mercadolibre.android.andesui.thumbnail.type.AndesImageSquareThumbnailType
@@ -10,3 +11,7 @@ internal val AndesThumbnailTypeInterface.isImageType: Boolean
 
 internal val AndesThumbnailTypeInterface.isIconType: Boolean
     get() = this is AndesIconThumbnailType
+
+internal fun AndesThumbnailTypeInterface.getHierarchy(
+    hierarchy: AndesThumbnailHierarchy
+): AndesThumbnailHierarchy = if (isImageType) AndesThumbnailHierarchy.DEFAULT else hierarchy

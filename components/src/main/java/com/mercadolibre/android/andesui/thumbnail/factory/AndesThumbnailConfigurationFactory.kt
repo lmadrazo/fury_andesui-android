@@ -6,11 +6,11 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierarchy
-import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierarchyInterface
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSizeInterface
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailStateInterface
 import com.mercadolibre.android.andesui.thumbnail.type.AndesImageSquareThumbnailType
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailTypeInterface
+import com.mercadolibre.android.andesui.thumbnail.utils.getHierarchy
 import com.mercadolibre.android.andesui.thumbnail.utils.isIconType
 import com.mercadolibre.android.andesui.thumbnail.utils.resolverByApiLevel
 
@@ -34,11 +34,11 @@ internal object AndesThumbnailConfigurationFactory {
         return with(andesThumbnailAttrs) {
             AndesThumbnailConfiguration(
                 backgroundColor = resolveBackgroundColor(context, andesThumbnailState.state, andesThumbnailHierarchy,
-                    andesThumbnailAccentColor),
+                    andesThumbnailAccentColor, andesThumbnailType.type),
                 borderColor = resolveBorderColor(),
-                hasBorder = resolveHasBorder(andesThumbnailHierarchy.hierarchy),
+                hasBorder = resolveHasBorder(andesThumbnailHierarchy, andesThumbnailType.type),
                 iconColor = resolveIconColor(context, andesThumbnailState.state, andesThumbnailHierarchy,
-                    andesThumbnailAccentColor),
+                    andesThumbnailAccentColor, andesThumbnailType.type),
                 iconSize = resolveIconSize(context, andesThumbnailSize.size, andesThumbnailType.type),
                 image = resolveImage(andesThumbnailImage),
                 size = resolveSize(context, andesThumbnailSize.size),
@@ -53,16 +53,21 @@ internal object AndesThumbnailConfigurationFactory {
         context: Context,
         state: AndesThumbnailStateInterface,
         hierarchy: AndesThumbnailHierarchy,
-        accentColor: AndesColor
-    ) = state.backgroundColor(context, hierarchy, accentColor)
+        accentColor: AndesColor,
+        type: AndesThumbnailTypeInterface
+    ) = state.backgroundColor(context, type.getHierarchy(hierarchy), accentColor)
     private fun resolveBorderColor(): AndesColor = R.color.andes_gray_070_solid.toAndesColor()
-    private fun resolveHasBorder(hierarchy: AndesThumbnailHierarchyInterface): Boolean = hierarchy.hasBorder()
+    private fun resolveHasBorder(
+        hierarchy: AndesThumbnailHierarchy,
+        type: AndesThumbnailTypeInterface
+    ): Boolean = type.getHierarchy(hierarchy).hierarchy.hasBorder()
     private fun resolveIconColor(
         context: Context,
         state: AndesThumbnailStateInterface,
         hierarchy: AndesThumbnailHierarchy,
-        accentColor: AndesColor
-    ) = state.iconColor(context, hierarchy, accentColor)
+        accentColor: AndesColor,
+        type: AndesThumbnailTypeInterface
+    ) = state.iconColor(context, type.getHierarchy(hierarchy), accentColor)
     private fun resolveImage(image: Drawable) = image
     private fun resolveSize(context: Context, size: AndesThumbnailSizeInterface) = size.diameter(context)
     private fun resolveIconSize(
