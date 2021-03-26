@@ -152,7 +152,7 @@ fun buildColoredCircularShapeWithIconDrawable(
     return LayerDrawable(arrayOf(biggerCircle, icon))
 }
 
-private fun isLollipopOrNewer() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+internal fun isLollipopOrNewer() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
 fun Drawable.toBitmap(): Bitmap? {
     var bitmap: Bitmap? = null

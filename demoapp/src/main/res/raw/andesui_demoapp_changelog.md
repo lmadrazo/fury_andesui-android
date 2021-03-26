@@ -1,3 +1,7 @@
+# v3.12.0
+## 🚀 Feature
+- `AndesThumbnail` supports `image_circle` & `image_square` types.
+
 # v3.11.0
 ## 🚀 Feature
 - Andes new documentation format in `/docs/guide`.
@@ -10,7 +14,6 @@
 # v3.10.1
 ## 🛠 Fixes
 - Andes Tooltip with showcase and pixel perfect issues resolved. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
-- Andes Message Thumbnail without bottom margin
 - Support statusbar with variable height in CoachmarkScrolless
 - Fix color of AndesCheckBox to andes_accent_color_500
 

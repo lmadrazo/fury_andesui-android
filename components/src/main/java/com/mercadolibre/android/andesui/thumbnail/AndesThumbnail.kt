@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.thumbnail
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import androidx.core.graphics.drawable.DrawableCompat
@@ -10,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ImageView.ScaleType.CENTER_CROP
+import android.widget.ImageView.ScaleType.FIT_CENTER
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.thumbnail.factory.AndesThumbnailAttrs
@@ -20,7 +23,9 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
+import com.mercadolibre.android.andesui.utils.isLollipopOrNewer
 
+@Suppress("TooManyFunctions")
 class AndesThumbnail : FrameLayout {
 
     /**
@@ -32,7 +37,7 @@ class AndesThumbnail : FrameLayout {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailAccentColor = value)
             val config = createConfig()
             setupBackground(config)
-            setupImageColor(config.iconColor)
+            setupImageColor(config)
         }
 
     /**
@@ -44,7 +49,7 @@ class AndesThumbnail : FrameLayout {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailHierarchy = value)
             val config = createConfig()
             setupBackground(config)
-            setupImageColor(config.iconColor)
+            setupImageColor(config)
         }
 
     /**
@@ -78,7 +83,7 @@ class AndesThumbnail : FrameLayout {
         set(value) {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailSize = value)
             val config = createConfig()
-            setupBackgroundSize(config.size)
+            setupBackgroundSize(config.size, config.cornerRadius)
             setupImageSize(config.iconSize)
         }
 
@@ -91,7 +96,7 @@ class AndesThumbnail : FrameLayout {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailState = value)
             val config = createConfig()
             setupBackground(config)
-            setupImageColor(config.iconColor)
+            setupImageColor(config)
         }
 
     private val imageFrame by lazy { findViewById<ImageView>(R.id.andes_thumbnail_image) }
@@ -179,14 +184,13 @@ class AndesThumbnail : FrameLayout {
         }
 
         background = shape
-
-        setupBackgroundSize(config.size)
+        setupBackgroundSize(config.size, config.cornerRadius)
     }
 
-    private fun setupBackgroundSize(size: Float) {
+    private fun setupBackgroundSize(size: Float, configCornerRadius: Float) {
         if (background != null) {
             with(background as GradientDrawable) {
-                cornerRadius = size
+                cornerRadius = configCornerRadius
                 setSize(size.toInt(), size.toInt())
             }
         }
@@ -197,12 +201,21 @@ class AndesThumbnail : FrameLayout {
         val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
 
         imageFrame.setImageDrawable(wrappedDrawable)
-        setupImageColor(config.iconColor)
+        setupImageFitAndBounds(config.isImageType)
         setupImageSize(config.iconSize)
+        setupImageColor(config)
     }
 
-    private fun setupImageColor(iconColor: AndesColor) {
-        DrawableCompat.setTint(imageFrame.drawable, iconColor.colorInt(context))
+    private fun setupImageFitAndBounds(isImageType: Boolean) {
+        if (isLollipopOrNewer()) clipToOutline = isImageType
+        imageFrame.scaleType = if (isImageType) CENTER_CROP else FIT_CENTER
+    }
+
+    private fun setupImageColor(config: AndesThumbnailConfiguration) {
+        val tintList = takeIf { config.hasTint }?.let {
+            ColorStateList.valueOf(config.iconColor.colorInt(context))
+        }
+        DrawableCompat.setTintList(imageFrame.drawable, tintList)
     }
 
     private fun setupImageSize(iconSize: Int) {

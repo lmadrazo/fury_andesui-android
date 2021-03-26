@@ -1,3 +1,7 @@
+# v3.12.0
+## 🚀 Feature
+- `AndesThumbnail` supports `image_circle` & `image_square` types.
+
 # v3.11.0
 ## 🚀 Feature
 - Andes new documentation format in `/docs/guide`.

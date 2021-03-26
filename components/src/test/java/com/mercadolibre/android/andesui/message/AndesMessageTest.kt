@@ -15,7 +15,6 @@ import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.BeforeClass
