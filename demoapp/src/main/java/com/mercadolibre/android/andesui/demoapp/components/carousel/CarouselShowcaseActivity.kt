@@ -208,14 +208,4 @@ class CarouselShowcaseActivity : AppCompatActivity(), AndesCarouselDelegate {
     }
 
     override fun getLayoutItem(andesCarouselView: AndesCarousel) = R.layout.andesui_carousel_item
-
-    override fun onScrollStateChanged(andesCarouselView: AndesCarousel) {
-        AndesSnackbar(
-                this,
-                viewPager,
-                AndesSnackbarType.NEUTRAL,
-                getString(R.string.andes_carousel_scrolling),
-                AndesSnackbarDuration.SHORT
-        ).show()
-    }
 }
