@@ -71,6 +71,11 @@ class AndesCarousel : ConstraintLayout {
         initAttrs(center, margin)
     }
 
+    override fun onDetachedFromWindow() {
+        recyclerViewComponent.clearOnScrollListeners()
+        super.onDetachedFromWindow()
+    }
+
     /**
      * Sets the proper [config] for this component based on the [attrs] received via XML.
      *
@@ -134,6 +139,12 @@ class AndesCarousel : ConstraintLayout {
         recyclerViewComponent.layoutManager = viewManager
         recyclerViewComponent.overScrollMode = View.OVER_SCROLL_NEVER
         recyclerViewComponent.clipToPadding = false
+        recyclerViewComponent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                delegate.onScrolled(this@AndesCarousel)
+            }
+        })
     }
 
     /**
