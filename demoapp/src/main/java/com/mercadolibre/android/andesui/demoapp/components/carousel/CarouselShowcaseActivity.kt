@@ -24,6 +24,9 @@ import com.mercadolibre.android.andesui.demoapp.commons.CustomViewPager
 import com.mercadolibre.android.andesui.demoapp.utils.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.utils.launchSpecs
+import com.mercadolibre.android.andesui.snackbar.AndesSnackbar
+import com.mercadolibre.android.andesui.snackbar.duration.AndesSnackbarDuration
+import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarType
 
 @Suppress("TooManyFunctions", "LongMethod")
 class CarouselShowcaseActivity : AppCompatActivity(), AndesCarouselDelegate {
@@ -205,4 +208,14 @@ class CarouselShowcaseActivity : AppCompatActivity(), AndesCarouselDelegate {
     }
 
     override fun getLayoutItem(andesCarouselView: AndesCarousel) = R.layout.andesui_carousel_item
+
+    override fun onScrollStateChanged(andesCarouselView: AndesCarousel) {
+        AndesSnackbar(
+                this,
+                viewPager,
+                AndesSnackbarType.NEUTRAL,
+                getString(R.string.andes_carousel_scrolling),
+                AndesSnackbarDuration.SHORT
+        ).show()
+    }
 }

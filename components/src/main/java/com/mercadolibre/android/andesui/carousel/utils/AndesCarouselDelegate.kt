@@ -31,5 +31,5 @@ interface AndesCarouselDelegate {
     /**
      * Listener that will execute when user starts scrolling carousel
      */
-    fun onScrolled(andesCarouselView: AndesCarousel)
+    fun onScrollStateChanged(andesCarouselView: AndesCarousel)
 }

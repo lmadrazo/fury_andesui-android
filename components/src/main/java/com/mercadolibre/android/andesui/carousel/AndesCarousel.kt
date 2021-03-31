@@ -57,6 +57,14 @@ class AndesCarousel : ConstraintLayout {
             andesCarouselDelegate = value
             val carouselAdapter = AndesCarouselAdapter(this, value)
             recyclerViewComponent.adapter = carouselAdapter
+            recyclerViewComponent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                        delegate.onScrollStateChanged(this@AndesCarousel)
+                    }
+                }
+            })
         }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -139,12 +147,6 @@ class AndesCarousel : ConstraintLayout {
         recyclerViewComponent.layoutManager = viewManager
         recyclerViewComponent.overScrollMode = View.OVER_SCROLL_NEVER
         recyclerViewComponent.clipToPadding = false
-        recyclerViewComponent.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                delegate.onScrolled(this@AndesCarousel)
-            }
-        })
     }
 
     /**
