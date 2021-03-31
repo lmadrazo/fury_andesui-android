@@ -27,9 +27,4 @@ interface AndesCarouselDelegate {
      * Layout of item in carousel
      */
     fun getLayoutItem(andesCarouselView: AndesCarousel): Int
-
-    /**
-     * Listener that will execute when user starts scrolling carousel
-     */
-    fun onScrollStateChanged(andesCarouselView: AndesCarousel)
 }

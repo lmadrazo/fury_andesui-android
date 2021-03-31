@@ -77,10 +77,6 @@ class AndesCarouselTest {
             override fun getDataSetSize(andesCarouselView: AndesCarousel) = SIZE
 
             override fun getLayoutItem(andesCarouselView: AndesCarousel) = LAYOUT
-
-            override fun onScrollStateChanged(andesCarouselView: AndesCarousel) {
-                // Empty method
-            }
         }
         val carousel = AndesCarousel(context, true, AndesCarouselMargin.NONE)
         carousel.delegate = andesCarouselDelegate
