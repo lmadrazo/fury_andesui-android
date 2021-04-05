@@ -1,4 +1,4 @@
-# v3.12.0
+# v3.13.0
 ## 🚀 Feature
 - `AndesCarousel` supports onScrollListener
 
