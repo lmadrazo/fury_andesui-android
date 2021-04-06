@@ -9,15 +9,18 @@ import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
 import com.nhaarman.mockitokotlin2.anyOrNull
-import org.junit.Assert.*
+import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.never
+import org.mockito.Mockito.any
 import org.mockito.internal.util.reflection.FieldSetter
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
@@ -210,7 +213,6 @@ class AndesBottomSheetTest {
 
         verify(mockBottomSheetBehavior).setPeekHeight(newPeekHeight)
     }
-
 
     private fun mockFragmentManager(): FragmentManager {
         val fragmentTransaction = mock(FragmentTransaction::class.java)

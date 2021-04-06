@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.mercadolibre.android.andesui.message.AndesMessage
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/button_margin_vertical"
+            android:layout_marginTop="@dimen/button_margin_vertical"
+            android:layout_marginEnd="@dimen/button_margin_vertical"
+            app:andesMessageBodyText="@string/andes_tooltip_description"
+            app:andesMessageHierarchy="quiet"
+            app:andesMessageTitleText="@string/title_description"
+            app:andesMessageType="neutral"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.mercadolibre.android.andesui.button.AndesButton
+            android:id="@+id/andes_tooltip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            app:andesButtonHierarchy="loud"
+            app:andesButtonSize="medium"
+            app:andesButtonText="@string/andes_tooltip_trigger_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/message" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/andes_tooltip_style"
+            app:layout_constraintEnd_toStartOf="@+id/style_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/andes_tooltip_button" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/andes_tooltip_orientation"
+            app:layout_constraintEnd_toStartOf="@+id/orientation_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/andes_tooltip_action"
+            app:layout_constraintEnd_toStartOf="@+id/action_type_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+        <Spinner
+            android:id="@+id/style_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+        <Spinner
+            android:id="@+id/orientation_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textView22"
+            app:layout_constraintEnd_toEndOf="@+id/style_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView22"
+            app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+        <Spinner
+            android:id="@+id/action_type_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textView23"
+            app:layout_constraintEnd_toEndOf="@+id/orientation_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView23"
+            app:layout_constraintTop_toTopOf="@+id/textView23"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+            android:id="@+id/dismissable_checkbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:andesCheckboxAlign="right"
+            app:andesCheckboxStatus="unselected"
+            app:andesCheckboxText="@string/dismissable"
+            app:layout_constraintEnd_toEndOf="@+id/action_type_spinner"
+            app:layout_constraintStart_toStartOf="@+id/textView23"
+            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/title_text"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:inputType="text"
+            app:andesTextfieldPlaceholder="@string/change_text"
+            app:andesTextfieldRightContent="clear"
+            app:layout_constraintEnd_toEndOf="@+id/dismissable_checkbox"
+            app:layout_constraintStart_toStartOf="@+id/dismissable_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/dismissable_checkbox" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextarea
+            android:id="@+id/body_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:inputType="text"
+            app:andesTextareaMaxLines="3"
+            app:andesTextareaPlaceholder="@string/change_body"
+            app:layout_constraintEnd_toEndOf="@+id/title_text"
+            app:layout_constraintStart_toStartOf="@+id/title_text"
+            app:layout_constraintTop_toBottomOf="@+id/title_text" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/primary_action_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:inputType="text"
+            app:andesTextfieldPlaceholder="@string/andes_tooltip_change_primary"
+            app:andesTextfieldRightContent="clear"
+            app:layout_constraintEnd_toStartOf="@+id/primary_action_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/body_text"
+            app:layout_constraintTop_toBottomOf="@+id/body_text" />
+
+        <Spinner
+            android:id="@+id/primary_action_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:layout_constraintBottom_toBottomOf="@+id/primary_action_text"
+            app:layout_constraintEnd_toEndOf="@+id/body_text"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/primary_action_text"
+            app:layout_constraintTop_toTopOf="@+id/primary_action_text" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/secondary_action_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:inputType="text"
+            app:andesTextfieldPlaceholder="@string/andes_tooltip_change_secondary"
+            app:andesTextfieldRightContent="clear"
+            app:layout_constraintEnd_toStartOf="@+id/secondary_action_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/body_text"
+            app:layout_constraintTop_toBottomOf="@+id/primary_action_text" />
+
+        <Spinner
+            android:id="@+id/secondary_action_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:layout_constraintBottom_toBottomOf="@+id/secondary_action_text"
+            app:layout_constraintEnd_toEndOf="@+id/body_text"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/secondary_action_text"
+            app:layout_constraintTop_toTopOf="@+id/secondary_action_text" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/main_action_config"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="primary_action_text,primary_action_spinner" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/secondary_action_config"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="secondary_action_text,secondary_action_spinner" />
+
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/link_action_text"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="16dp"
+            android:inputType="text"
+            app:andesTextfieldPlaceholder="@string/andes_tooltip_change_link_button"
+            app:andesTextfieldRightContent="clear"
+            app:layout_constraintEnd_toEndOf="@+id/body_text"
+            app:layout_constraintStart_toStartOf="@+id/body_text"
+            app:layout_constraintTop_toBottomOf="@+id/secondary_action_text" />
+
+        <com.mercadolibre.android.andesui.button.AndesButton
+            android:id="@+id/change_button"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            app:andesButtonHierarchy="loud"
+            app:andesButtonSize="large"
+            app:andesButtonText="@string/andes_message_showcase_change"
+            app:layout_constraintEnd_toStartOf="@+id/clear_button"
+            app:layout_constraintStart_toStartOf="@+id/body_text"
+            app:layout_constraintTop_toBottomOf="@+id/link_action_text" />
+
+        <com.mercadolibre.android.andesui.button.AndesButton
+            android:id="@+id/clear_button"
+            android:layout_width="@dimen/button_clear_width"
+            android:layout_height="wrap_content"
+            app:andesButtonHierarchy="loud"
+            app:andesButtonSize="large"
+            app:andesButtonText="@string/andesui_demoapp_clear_button"
+            app:layout_constraintBottom_toBottomOf="@+id/change_button"
+            app:layout_constraintEnd_toEndOf="@+id/body_text"
+            app:layout_constraintTop_toTopOf="@+id/change_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

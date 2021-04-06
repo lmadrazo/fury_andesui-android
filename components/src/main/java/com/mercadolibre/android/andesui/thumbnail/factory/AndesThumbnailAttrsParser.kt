@@ -33,6 +33,8 @@ internal object AndesThumbnailAttrsParser {
     private const val ANDES_THUMBNAIL_HIERARCHY_QUIET = "1002"
 
     private const val ANDES_THUMBNAIL_TYPE_ICON = "2000"
+    private const val ANDES_THUMBNAIL_TYPE_IMAGE_CIRCLE = "2001"
+    private const val ANDES_THUMBNAIL_TYPE_IMAGE_SQUARE = "2002"
 
     private const val ANDES_THUMBNAIL_SIZE_24 = "3000"
     private const val ANDES_THUMBNAIL_SIZE_32 = "3001"
@@ -102,6 +104,8 @@ internal object AndesThumbnailAttrsParser {
     private fun getType(typedArray: TypedArray): AndesThumbnailType =
         when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailType)) {
             ANDES_THUMBNAIL_TYPE_ICON -> AndesThumbnailType.ICON
+            ANDES_THUMBNAIL_TYPE_IMAGE_CIRCLE -> AndesThumbnailType.IMAGE_CIRCLE
+            ANDES_THUMBNAIL_TYPE_IMAGE_SQUARE -> AndesThumbnailType.IMAGE_SQUARE
             else -> AndesThumbnailType.ICON
         }
 }

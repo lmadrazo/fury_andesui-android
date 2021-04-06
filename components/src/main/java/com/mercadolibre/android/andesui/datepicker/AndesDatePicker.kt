@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.datepicker
 
 import android.content.Context
+import android.os.Build
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -15,7 +16,6 @@ import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
-
 
 /**
  * Warning TooManyFunctions suppressed because of...
@@ -72,11 +72,11 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     constructor(
-            context: Context,
-            text: String? = DEFAULT_TEXT,
-            minDate: String? = DEFAULT_MIN_DATE.toString(),
-            maxDate: String? = DEFAULT_MAX_DATE.toString(),
-            applyButtonVisibility: Boolean? = false
+        context: Context,
+        text: String? = DEFAULT_TEXT,
+        minDate: String? = DEFAULT_MIN_DATE.toString(),
+        maxDate: String? = DEFAULT_MAX_DATE.toString(),
+        applyButtonVisibility: Boolean? = false
     ) : super(context) {
         initAttrs(text, minDate, maxDate, applyButtonVisibility)
     }
@@ -93,10 +93,10 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     private fun initAttrs(
-            text: String?,
-            minDate: String?,
-            maxDate: String?,
-            applyButtonVisibility: Boolean?
+        text: String?,
+        minDate: String?,
+        maxDate: String?,
+        applyButtonVisibility: Boolean?
     ) {
         andesDatePickerAttrs = AndesDatePickerAttrs(text, minDate, maxDate, applyButtonVisibility)
         val config = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
@@ -123,6 +123,11 @@ class AndesDatePicker : ConstraintLayout {
     private fun initComponents() {
         LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this)
         onCheckedChangeListener(andesBtnSelectDate)
+        val version: Int = Build.VERSION.SDK_INT
+        if (version <= API_LEVEL) {
+            calendarView.layoutParams.width = WIDTH
+            calendarView.layoutParams.height = HEIGHT
+        }
     }
 
     /**
@@ -235,7 +240,6 @@ class AndesDatePicker : ConstraintLayout {
 
         andesBtnSelectDate.setOnClickListener {
             listener?.onDateApply(calendar)
-
         }
     }
 
@@ -245,9 +249,12 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     companion object {
-        private const val DEFAULT_TEXT= "Aplicar"
+        private const val DEFAULT_TEXT = "Aplicar"
         private const val DEFAULT_MIN_DATE = -2208973392000
         private const val DEFAULT_MAX_DATE = 4133905200000
         private const val DATE_FORMAT = "dd/MM/yyyy"
+        private const val API_LEVEL = 21
+        private const val HEIGHT = 900
+        private const val WIDTH = 900
     }
 }

@@ -32,5 +32,4 @@ internal object AndesRadioButtonConfigurationFactory {
             )
         }
     }
-
 }

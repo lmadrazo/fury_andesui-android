@@ -12,10 +12,17 @@ ext {
     markwonVersion = '4.5.1'
     leakCanaryVersion = '2.5'
     frescoVersion = '1.13.0'
-    appcompatVersion = '1.0.0'
+    appcompatVersion = '1.2.0'
     materialVersion = '1.0.0'
     constraintLayoutVersion = '2.0.4'
     cardViewVersion = '1.0.0'
+    firebaseBomVersion = '26.5.0'
+    coordinatorLayoutVersion = '1.0.0'
+
+    firebase = [
+            bom : "com.google.firebase:firebase-bom:$firebaseBomVersion",
+            analytics : "com.google.firebase:firebase-analytics"
+    ]
 
     prod = [
             kotlinStdlib             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
@@ -38,6 +45,7 @@ ext {
 
     showcase = [
             glide  : "com.github.bumptech.glide:glide:$glideVersion",
+            coordinatorLayout : "androidx.coordinatorlayout:coordinatorlayout:$coordinatorLayoutVersion",
 
             /**
              * It let us show the What's New which is in markdown format.

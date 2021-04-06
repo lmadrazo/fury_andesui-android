@@ -15,19 +15,19 @@ import com.mercadolibre.android.andesui.tag.size.AndesTagSize
  * The data class that contains the public components of the tag.
  */
 internal data class AndesTagChoiceAttrs(
-        val andesSimpleTagText: String?,
-        val andesTagChoiceMode: AndesTagChoiceMode,
-        val andesTagSize: AndesTagSize,
-        val andesTagChoiceState: AndesTagChoiceState,
-        val leftContentData: LeftContent? = null,
-        val leftContent: AndesTagLeftContent? = null,
-        val shouldAnimateTag: Boolean = false
+    val andesSimpleTagText: String?,
+    val andesTagChoiceMode: AndesTagChoiceMode,
+    val andesTagSize: AndesTagSize,
+    val andesTagChoiceState: AndesTagChoiceState,
+    val leftContentData: LeftContent? = null,
+    val leftContent: AndesTagLeftContent? = null,
+    val shouldAnimateTag: Boolean = false
 
 ) {
     var rightContent: AndesTagRightContent? = null
 
     init {
-        when(andesTagChoiceMode) {
+        when (andesTagChoiceMode) {
             AndesTagChoiceMode.SIMPLE -> {
                 if (andesTagChoiceState == AndesTagChoiceState.SELECTED) {
                     rightContent = AndesTagRightContent.CHECK

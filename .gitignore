@@ -111,5 +111,6 @@ Temporary Items
 # Hugo plugin: https://github.com/JakeWharton/hugo/issues/107
 ajcore*.txt
 
-
+## Ignoring Release Process Client
 *.hprof
+rp

@@ -16,7 +16,6 @@ import com.mercadolibre.android.andesui.utils.buildCircleBitmap
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 import com.mercadolibre.android.andesui.utils.validateColor
 
-
 internal sealed class AndesTagLeftContentInterface {
     abstract fun leftMargin(context: Context): Int
     abstract fun rightMargin(context: Context): Int
@@ -33,7 +32,7 @@ internal object AndesTagLeftContentNone : AndesTagLeftContentInterface() {
 
     override fun leftMargin(context: Context) = ANDES_TAG_MARGIN
     override fun rightMargin(context: Context) = ANDES_TAG_MARGIN
-    override fun leftMarginText(context: Context, size: AndesTagSize) : Int {
+    override fun leftMarginText(context: Context, size: AndesTagSize): Int {
         return when (size) {
             AndesTagSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
             else -> context.resources.getDimension(R.dimen.andes_tag_large_margin).toInt()
@@ -141,12 +140,12 @@ internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
             }
         }
 
-        val size = when(leftIcon.iconSize) {
+        val size = when (leftIcon.iconSize) {
             IconSize.LARGE -> context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
             IconSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_icon_size_small).toInt()
             else -> context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
         }
-        
+
         val icon = buildColoredBitmapDrawable(
                 bitmapDrawable,
                 context,

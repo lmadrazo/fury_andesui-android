@@ -10,7 +10,9 @@ package com.mercadolibre.android.andesui.thumbnail.type
  * @property type Possible styles that an [AndesThumbnail] may take.
  */
 enum class AndesThumbnailType {
-    ICON;
+    ICON,
+    IMAGE_CIRCLE,
+    IMAGE_SQUARE;
 
     companion object {
         fun fromString(value: String): AndesThumbnailType = valueOf(value.toUpperCase())
@@ -21,6 +23,8 @@ enum class AndesThumbnailType {
     private fun getAndesThumbnailType(): AndesThumbnailTypeInterface {
         return when (this) {
             ICON -> AndesIconThumbnailType()
+            IMAGE_CIRCLE -> AndesImageCircleThumbnailType()
+            IMAGE_SQUARE -> AndesImageSquareThumbnailType()
         }
     }
 }

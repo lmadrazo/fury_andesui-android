@@ -20,7 +20,6 @@ import com.mercadolibre.android.andesui.list.utils.AndesListAdapter
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.list.utils.AndesListDividerItemDecoration
 
-
 @Suppress("TooManyFunctions")
 class AndesList : ConstraintLayout {
 
@@ -66,7 +65,7 @@ class AndesList : ConstraintLayout {
         get() = andesListAttrs.andesListDividerEnabled
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListDividerEnabled = value)
-            createConfig().also {
+            createConfig().let {
                 updateDynamicComponents(it)
             }
         }
@@ -78,9 +77,9 @@ class AndesList : ConstraintLayout {
     }
 
     constructor(
-            context: Context,
-            size: AndesListViewItemSize = SIZE_DEFAULT,
-            type: AndesListType = TYPE_DEFAULT
+        context: Context,
+        size: AndesListViewItemSize = SIZE_DEFAULT,
+        type: AndesListType = TYPE_DEFAULT
     ) : super(context) {
         initAttrs(size, type)
     }
@@ -166,7 +165,7 @@ class AndesList : ConstraintLayout {
      */
     private fun removeDivider() {
         while (recyclerViewComponent.itemDecorationCount > 0) {
-            recyclerViewComponent.removeItemDecorationAt(0);
+            recyclerViewComponent.removeItemDecorationAt(0)
         }
     }
 

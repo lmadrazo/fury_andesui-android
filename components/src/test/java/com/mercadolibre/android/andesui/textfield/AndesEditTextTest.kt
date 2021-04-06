@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.textfield
 
 import android.os.Build
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.BuildConfig
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.assertEquals

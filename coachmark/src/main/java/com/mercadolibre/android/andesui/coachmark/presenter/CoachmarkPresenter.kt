@@ -20,16 +20,16 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
      */
     @Suppress("LongParameterList")
     fun resolveScrollMode(
-            stepReferenced: AndesWalkthroughCoachmarkStep,
-            heightScreen: Int,
-            stepReferencedHeight: Int,
-            stepReferenceGlobalRect: Rect,
-            bodyGlobalRect: Rect,
-            tooltipHeight: Int,
-            tooltipPosition: WalkthroughMessagePosition
+        stepReferenced: AndesWalkthroughCoachmarkStep,
+        heightScreen: Int,
+        stepReferencedHeight: Int,
+        stepReferenceGlobalRect: Rect,
+        bodyGlobalRect: Rect,
+        tooltipHeight: Int,
+        tooltipPosition: WalkthroughMessagePosition
     ) {
 
-        stepReferenced.view.let {
+        stepReferenced.view?.let {
             val isBodyMoreBottom = bodyGlobalRect.bottom < stepReferenceGlobalRect.bottom
             if (isBodyMoreBottom || !it.getLocalVisibleRect(bodyGlobalRect) || bodyGlobalRect.height() < it.height) {
                 resolvePartialOrNotViewedReferenceView(
@@ -56,13 +56,15 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
     /**
      * Casos en el que el stepReference no este visible o este parcialmente visible
      */
+    // LongParameterList suppressed because the visibility of the method is private
+    @Suppress("LongParameterList")
     private fun resolvePartialOrNotViewedReferenceView(
-            stepReferenced: AndesWalkthroughCoachmarkStep,
-            heightScreen: Int,
-            stepReferencedHeight: Int,
-            targetRect: Rect,
-            tooltipHeight: Int,
-            tooltipPosition: WalkthroughMessagePosition
+        stepReferenced: AndesWalkthroughCoachmarkStep,
+        heightScreen: Int,
+        stepReferencedHeight: Int,
+        targetRect: Rect,
+        tooltipHeight: Int,
+        tooltipPosition: WalkthroughMessagePosition
     ) {
 
         var scrollToY = 0
@@ -97,13 +99,15 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
     /**
      * Casos en el que esta visible el elemento
      */
+    @Suppress("LongParameterList")
+    // LongParameterList suppressed because the visibility of the method is private
     private fun resolveCompleteReferenceView(
-            stepReferenced: AndesWalkthroughCoachmarkStep,
-            heightScreen: Int,
-            stepReferencedHeight: Int,
-            targetRect: Rect,
-            tooltipHeight: Int,
-            tooltipPosition: WalkthroughMessagePosition
+        stepReferenced: AndesWalkthroughCoachmarkStep,
+        heightScreen: Int,
+        stepReferencedHeight: Int,
+        targetRect: Rect,
+        tooltipHeight: Int,
+        tooltipPosition: WalkthroughMessagePosition
     ) {
 
         val toolbarSize = view.getToolbarSize()
@@ -120,7 +124,6 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
                 view.setScrollViewPaddings(0, paddingScrollView, 0, 0)
                 view.animateScroll(false, scrollToY, stepReferenced)
                 return
-
             }
             // Cuando el tooltip no tiene lugar para ser posicionado debajo
             tooltipPosition == WalkthroughMessagePosition.BELOW && spaceBottomReferenceView < tooltipHeight -> {
@@ -134,10 +137,19 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
     }
 
     fun addRect(stepReferenced: AndesWalkthroughCoachmarkStep) {
-        if (stepReferenced.style == AndesWalkthroughCoachmarkStyle.CIRCLE) {
-            view.addCircleRect(stepReferenced)
-        } else {
-            view.addRoundRect(stepReferenced)
+        when (stepReferenced.style) {
+            AndesWalkthroughCoachmarkStyle.CIRCLE -> {
+                view.addCircleRect(stepReferenced)
+            }
+            AndesWalkthroughCoachmarkStyle.RECTANGLE -> {
+                view.addRoundRect(stepReferenced)
+            }
+            AndesWalkthroughCoachmarkStyle.MENU_ITEM -> {
+                view.addRoundRect(stepReferenced)
+            }
+            else -> {
+                view.addRoundRect(stepReferenced)
+            }
         }
     }
 
@@ -145,9 +157,9 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
      * Coloca al tooltip en la posicion de la vista a referenciar (arriba o debajo)
      */
     fun relocateTooltip(
-            tooltipHeight: Int,
-            tooltipPosition: WalkthroughMessagePosition,
-            targetRect: Rect
+        tooltipHeight: Int,
+        tooltipPosition: WalkthroughMessagePosition,
+        targetRect: Rect
     ) {
 
         val padding = view.getTooltipMargin().toFloat()

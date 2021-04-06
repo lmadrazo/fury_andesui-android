@@ -35,7 +35,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetPeekHeight
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetPeekHeight = value)
-            createConfig().also {
+            createConfig().let {
                 updatePeekHeight(it)
             }
         }
@@ -47,7 +47,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetState
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetState = value)
-            createConfig().also {
+            createConfig().let {
                 resolveBottomSheetState(it)
             }
         }
@@ -59,7 +59,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetTitleText
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleText = value)
-            createConfig().also {
+            createConfig().let {
                 resolveTitleViewText(it)
             }
         }
@@ -71,7 +71,7 @@ class AndesBottomSheet : CoordinatorLayout {
         get() = andesBottomSheetAttrs.andesBottomSheetTitleAlignment
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleAlignment = value)
-            createConfig().also {
+            createConfig().let {
                 resolveTitleViewAlignment(it)
             }
     }
@@ -87,11 +87,11 @@ class AndesBottomSheet : CoordinatorLayout {
 
     @Suppress("LongParameterList")
     constructor(
-            context: Context,
-            peekHeight: Int = DEFAULT_PEEK_HEIGHT,
-            state: AndesBottomSheetState = DEFAULT_BOTTOM_SHEET_STATE,
-            title: String? = DEFAULT_TITLE,
-            titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT
+        context: Context,
+        peekHeight: Int = DEFAULT_PEEK_HEIGHT,
+        state: AndesBottomSheetState = DEFAULT_BOTTOM_SHEET_STATE,
+        title: String? = DEFAULT_TITLE,
+        titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT
     ) : super(context) {
         initAttrs(peekHeight, state, title, titleAlignment)
     }
@@ -162,7 +162,6 @@ class AndesBottomSheet : CoordinatorLayout {
             id = View.generateViewId()
         }
     }
-
 
     private fun resolveDragIndicator() {
         val cornerRadius = context.resources.getDimension(R.dimen.andes_bottom_sheet_drag_indicator_corner_radius)
@@ -291,12 +290,12 @@ class AndesBottomSheet : CoordinatorLayout {
                     // not used
                 }
                 BottomSheetBehavior.STATE_EXPANDED -> {
-                    listener?.onExpanded().also {
+                    listener?.onExpanded().let {
                         updateStateFromBehavior(newState)
                     }
                 }
                 BottomSheetBehavior.STATE_COLLAPSED -> {
-                    listener?.onCollapsed().also {
+                    listener?.onCollapsed().let {
                         updateStateFromBehavior(newState)
                     }
                 }
@@ -324,7 +323,7 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
         private fun updateStateFromBehavior(bottomSheetBehaviorState: Int) {
-            when(bottomSheetBehaviorState) {
+            when (bottomSheetBehaviorState) {
                 BottomSheetBehavior.STATE_EXPANDED -> state = AndesBottomSheetState.EXPANDED
                 BottomSheetBehavior.STATE_COLLAPSED -> state = AndesBottomSheetState.COLLAPSED
             }

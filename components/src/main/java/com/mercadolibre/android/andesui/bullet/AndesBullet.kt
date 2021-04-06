@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.bullet
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
@@ -9,8 +10,10 @@ import android.text.style.BulletSpan
 import android.text.style.ClickableSpan
 import android.util.AttributeSet
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -65,14 +68,11 @@ class AndesBullet : ConstraintLayout {
             setupTextComponent(createConfig())
         }
 
+    lateinit var bulletComponent: ImageView
     lateinit var textComponent: TextView
     private lateinit var andesBulletAttrs: AndesBulletAttrs
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        initAttrs(attrs)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs) {
         initAttrs(attrs)
     }
 
@@ -121,6 +121,7 @@ class AndesBullet : ConstraintLayout {
      */
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_bullet, this, true)
+        bulletComponent = container.findViewById(R.id.andes_bullet_icon)
         textComponent = container.findViewById(R.id.andes_bullet_text)
     }
 
@@ -141,17 +142,17 @@ class AndesBullet : ConstraintLayout {
         if (config.textBody.isNullOrEmpty()) {
             Log.e("AndesBullet", "Bullet cannot be visualized with null or empty body")
         } else {
+            val gradientDrawable: GradientDrawable = bulletComponent.background as GradientDrawable
+            gradientDrawable.setColor(config.textColor.colorInt(context))
             textComponent.text = getText(config.textBody, config)
+            textComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.textSize)
+            textComponent.setTextColor(config.textColor.colorInt(context))
+            textComponent.typeface = config.textTypeface
         }
     }
 
     private fun getText(text: String, config: AndesBulletConfiguration): SpannableString {
         val spannableString = SpannableString(text)
-        /*val bulletSpan = BulletSpan(
-            8,
-            ContextCompat.getColor(context, R.color.andes_gray_800))
-        spannableString.setSpan(bulletSpan, 0, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)*/
-
         textLinks?.let {
             it.links.forEachIndexed { linkIndex, andesBodyLink ->
                 if (andesBodyLink.isValidRange(spannableString)) {

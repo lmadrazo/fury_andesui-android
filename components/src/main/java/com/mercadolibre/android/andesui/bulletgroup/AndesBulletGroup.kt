@@ -9,6 +9,7 @@ import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupAttr
 import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupAttrs
 import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupConfiguration
 import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupConfigurationFactory
+import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
@@ -22,7 +23,7 @@ class AndesBulletGroup : LinearLayout {
         get() = andesBulletGroupAttrs.andesMessageHierarchy
         set(value) {
             andesBulletGroupAttrs = andesBulletGroupAttrs.copy(andesMessageHierarchy = value)
-            setupBullets()
+            setupBullets(createConfig())
         }
 
     /**
@@ -32,7 +33,7 @@ class AndesBulletGroup : LinearLayout {
         get() = andesBulletGroupAttrs.andesMessageType
         set(value) {
             andesBulletGroupAttrs = andesBulletGroupAttrs.copy(andesMessageType = value)
-            setupBullets()
+            setupBullets(createConfig())
         }
 
     /**
@@ -42,26 +43,13 @@ class AndesBulletGroup : LinearLayout {
         get() = andesBulletGroupAttrs.andesBulletGroupBullets
         set(value) {
             andesBulletGroupAttrs = andesBulletGroupAttrs.copy(andesBulletGroupBullets = value)
-            setupBullets()
+            setupBullets(createConfig())
         }
 
     private lateinit var andesBulletGroupAttrs: AndesBulletGroupAttrs
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs) {
-        initAttrs(attrs)
-    }
-
-    constructor(
-        context: Context,
-        hierarchy: AndesMessageHierarchy = HIERARCHY_DEFAULT,
-        type: AndesMessageType = STATE_DEFAULT,
-        bullets: ArrayList<BulletItem>
-    ) : super(context) {
-        initAttrs(hierarchy, type, bullets)
     }
 
     /**
@@ -89,7 +77,7 @@ class AndesBulletGroup : LinearLayout {
     private fun setupComponents(config: AndesBulletGroupConfiguration) {
         initComponents()
         setupViewId()
-        setupBullets()
+        setupBullets(config)
     }
 
     /**
@@ -109,9 +97,9 @@ class AndesBulletGroup : LinearLayout {
         }
     }
 
-    private fun setupBullets() {
+    private fun setupBullets(config: AndesBulletGroupConfiguration) {
         removeAllViews()
-        this.bullets.forEachIndexed { _, item ->
+        config.bullets.forEachIndexed { _, item ->
             val andesBullet = AndesBullet(
                 context,
                 hierarchy,

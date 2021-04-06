@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.card.factory
 import android.content.Context
 import android.graphics.Typeface
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
 import com.mercadolibre.android.andesui.card.hierarchy.AndesCardHierarchy
 import com.mercadolibre.android.andesui.card.padding.AndesCardPadding
 import com.mercadolibre.android.andesui.card.padding.AndesCardPaddingInterface
@@ -18,6 +19,7 @@ internal data class AndesCardConfiguration(
     val titleColor: AndesColor,
     val titleHeight: Int,
     val titlePadding: Int,
+    val bodyPadding: AndesCardBodyPadding,
     val elevation: Float,
     val pipeColor: AndesColor,
     val linkColor: AndesColor
@@ -33,6 +35,7 @@ internal object AndesCardConfigurationFactory {
                     titleColor = resolveTitleColor(),
                     titleHeight = resolveTitleHeight(context, andesCardAttrs.andesCardPadding.padding),
                     titlePadding = resolveLateralMargin(context, andesCardAttrs.andesCardPadding),
+                    bodyPadding = andesCardAttrs.andesCardBodyPadding,
                     elevation = resolveElevation(
                             context, andesCardAttrs.andesCardHierarchy, andesCardAttrs.andesCardStyle.style
                     ),

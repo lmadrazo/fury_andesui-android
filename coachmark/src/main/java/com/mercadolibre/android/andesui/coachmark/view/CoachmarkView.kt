@@ -23,6 +23,7 @@ import com.mercadolibre.android.andesui.coachmark.model.WalkthroughMessageModel
 import com.mercadolibre.android.andesui.coachmark.presenter.CoachmarkPresenter
 import com.mercadolibre.android.andesui.coachmark.presenter.CoachmarkViewInterface
 import com.mercadolibre.android.andesui.coachmark.view.walkthroughmessage.WalkthroughMessageView
+import com.mercadolibre.android.andesui.coachmark.view.walkthroughscrolless.WalkthroughScrollessMessageView
 
 @SuppressWarnings("TooManyFunctions")
 class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterface {
@@ -34,6 +35,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     private val walkthroughMessageView: WalkthroughMessageView
     private val coachmarkContainer: CoachmarkContainerView
     private var previousOrientationScreen = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    private var lastPosition = false
 
     init {
         val coachmarkData = builder.coachmarkData
@@ -69,7 +71,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
                 content?.let {
                     baseContainer.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, decorView.getChildAt(0).height)
                     decorView.addView(baseContainer)
-                    coachmarkOverlayView.setBackgroundColor(ContextCompat.getColor(activity, R.color.andes_gray_800))
+                    coachmarkOverlayView.setBackgroundColor(ContextCompat.getColor(activity, R.color.andes_gray_900))
                     baseContainer.addView(coachmarkContainer)
                     baseContainer.addView(walkthroughMessageView)
                 }
@@ -96,32 +98,35 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     ) {
 
         coachmarkContainer.setListener(object : CoachmarkContainerView.CoachmarkContainerListener {
+            override fun onClickClose(position: Int) {
+
+                onTrackingListener?.onClose(position)
+                dismiss(coachmarkData.completionHandler)
+            }
+        })
+
+        walkthroughMessageView.setListener(object : WalkthroughScrollessMessageView.WalkthroughButtonClicklistener {
             override fun onClickNextButton(position: Int) {
 
                 if (coachmarkData.steps.size == position + 1) {
                     dismiss(coachmarkData.completionHandler)
                 } else {
                     walkthroughMessageView.animate()
-                        .alpha(0f)
-                        .setDuration(ANIMATION_TOOLTIP_DURARION)
-                        .setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator) {
-                                super.onAnimationEnd(animation)
+                            .alpha(0f)
+                            .setDuration(ANIMATION_TOOLTIP_DURARION)
+                            .setListener(object : AnimatorListenerAdapter() {
+                                override fun onAnimationEnd(animation: Animator) {
+                                    super.onAnimationEnd(animation)
 
-                                walkthroughMessageView.clearAnimation()
-                                presenter.restorePreviousValues()
-                                setNextView(position + 1, coachmarkData)
-                            }
-                        })
-                        .start()
+                                    lastPosition = (coachmarkData.steps.size - 1) == (position + 1)
+                                    walkthroughMessageView.clearAnimation()
+                                    presenter.restorePreviousValues()
+                                    setNextView(position + 1, coachmarkData)
+                                }
+                            })
+                            .start()
                 }
                 onTrackingListener?.onNext(position)
-            }
-
-            override fun onClickClose(position: Int) {
-
-                onTrackingListener?.onClose(position)
-                dismiss(coachmarkData.completionHandler)
             }
         })
     }
@@ -135,7 +140,8 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     private fun setNextView(position: Int, coachmarkData: AndesWalkthroughCoachmark) {
 
         val stepReferenced = coachmarkData.steps[position]
-        coachmarkContainer.setData(stepReferenced.nextText, position, coachmarkData.steps.size)
+        walkthroughMessageView.setPosition(position)
+        coachmarkContainer.setData(position, coachmarkData.steps.size)
 
         // Posiciona el scroll en donde este la vista
         scrollView.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
@@ -150,13 +156,14 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     private fun scroll(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val stepReferenceGlobalRect = Rect()
-        stepReferenced.view.getGlobalVisibleRect(stepReferenceGlobalRect)
+        stepReferenced.view?.getGlobalVisibleRect(stepReferenceGlobalRect)
 
         val overlayRect = Rect()
         coachmarkOverlayView.getGlobalVisibleRect(overlayRect)
 
         walkthroughMessageView.definePosition(overlayRect, stepReferenceGlobalRect)
-        walkthroughMessageView.setData(WalkthroughMessageModel(stepReferenced.title, stepReferenced.description))
+        walkthroughMessageView.setData(WalkthroughMessageModel(stepReferenced.title, stepReferenced.description,
+        stepReferenced.nextText), lastPosition)
 
         walkthroughMessageView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
@@ -164,7 +171,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
                 presenter.resolveScrollMode(
                     stepReferenced,
                     coachmarkOverlayView.height,
-                    stepReferenced.view.height,
+                    stepReferenced.view?.height ?: 0,
                     stepReferenceGlobalRect,
                     overlayRect,
                     walkthroughMessageView.getChildAt(0).height,
@@ -218,17 +225,17 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
      */
     override fun addTarget(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
-        stepReferenced.view.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+        stepReferenced.view?.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
                 coachmarkOverlayView.clear()
                 presenter.addRect(stepReferenced)
                 coachmarkOverlayView.postInvalidate()
                 setTooltipAlignment(stepReferenced)
-                stepReferenced.view.viewTreeObserver?.removeOnPreDrawListener(this)
+                stepReferenced.view?.viewTreeObserver?.removeOnPreDrawListener(this)
                 return false
             }
         })
-        stepReferenced.view.postInvalidate()
+        stepReferenced.view?.postInvalidate()
     }
 
     /**
@@ -239,7 +246,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     override fun addCircleRect(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val rect = Rect()
-        stepReferenced.view.getGlobalVisibleRect(rect)
+        stepReferenced.view?.getGlobalVisibleRect(rect)
         val cx = rect.centerX()
         val cy = rect.centerY()
 
@@ -264,7 +271,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     override fun addRoundRect(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val rect = Rect()
-        stepReferenced.view.getGlobalVisibleRect(rect)
+        stepReferenced.view?.getGlobalVisibleRect(rect)
         coachmarkOverlayView.addRect(
             rect.left,
             rect.top - activity.resources.getDimension(R.dimen.andes_coachmark_toolbar_status_bar).toInt(),
@@ -280,7 +287,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
 
                 val tooltipHeight = walkthroughMessageView.getChildAt(0).height
                 val targetRect = Rect()
-                stepReferenced.view.getGlobalVisibleRect(targetRect)
+                stepReferenced.view?.getGlobalVisibleRect(targetRect)
                 presenter.relocateTooltip(tooltipHeight, walkthroughMessageView.getPosition(), targetRect)
 
                 walkthroughMessageView.animate()

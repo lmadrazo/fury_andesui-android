@@ -8,6 +8,7 @@ import com.mercadolibre.android.andesui.list.factory.AndesListViewItemConfigurat
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 
+@Suppress("LongParameterList")
 open class AndesListViewItem {
   internal var title: String = ""
   internal var subtitle: String? = ""
@@ -36,13 +37,15 @@ open class AndesListViewItem {
         const val DEFAULT_TITLE_NUMBER_OF_LINES = 50
     }
 
-    internal fun andesListViewItemConfig(title: String,
-                                         subtitle: String?,
-                                         config: AndesListViewItemConfiguration,
-                                         itemSelected: Boolean?,
-                                         icon: Drawable?,
-                                         avatar: Drawable?,
-                                         titleMaxLines: Int) {
+    internal fun andesListViewItemConfig(
+        title: String,
+        subtitle: String?,
+        config: AndesListViewItemConfiguration,
+        itemSelected: Boolean?,
+        icon: Drawable?,
+        avatar: Drawable?,
+        titleMaxLines: Int
+    ) {
         this.title = title
         this.subtitle = subtitle
         this.paddingBottom = config.paddingBottom
@@ -69,16 +72,16 @@ open class AndesListViewItem {
     }
 }
 
+@Suppress("LongParameterList")
 class AndesListViewItemSimple(
-        context: Context,
-        title: String,
-        subtitle: String? = null,
-        itemSelected: Boolean = false,
-        size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
-        icon: Drawable? = null,
-        avatar: Drawable? = null,
-        titleMaxLines: Int = DEFAULT_TITLE_NUMBER_OF_LINES
-
+    context: Context,
+    title: String,
+    subtitle: String? = null,
+    itemSelected: Boolean = false,
+    size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
+    icon: Drawable? = null,
+    avatar: Drawable? = null,
+    titleMaxLines: Int = DEFAULT_TITLE_NUMBER_OF_LINES
 ) : AndesListViewItem() {
 
     init {
@@ -86,29 +89,30 @@ class AndesListViewItemSimple(
         this.andesListViewItemSimpleConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
-    private fun andesListViewItemSimpleConfig(title: String,
-                                              subtitle: String?,
-                                              config: AndesListViewItemConfiguration,
-                                              itemSelected: Boolean?,
-                                              icon: Drawable?,
-                                              avatar: Drawable?,
-                                              titleMaxLines: Int) {
+    private fun andesListViewItemSimpleConfig(
+        title: String,
+        subtitle: String?,
+        config: AndesListViewItemConfiguration,
+        itemSelected: Boolean?,
+        icon: Drawable?,
+        avatar: Drawable?,
+        titleMaxLines: Int
+    ) {
 
         super.andesListViewItemConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
-
 }
 
+@Suppress("LongParameterList")
 class AndesListViewItemChevron(
-        context: Context,
-        title: String,
-        subtitle: String,
-        itemSelected: Boolean = false,
-        size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
-        icon: Drawable? = null,
-        avatar: Drawable? = null,
-        titleMaxLines: Int = DEFAULT_TITLE_NUMBER_OF_LINES
-
+    context: Context,
+    title: String,
+    subtitle: String? = null,
+    itemSelected: Boolean = false,
+    size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
+    icon: Drawable? = null,
+    avatar: Drawable? = null,
+    titleMaxLines: Int = DEFAULT_TITLE_NUMBER_OF_LINES
 ) : AndesListViewItem() {
     internal var chevronSize: Int = 0
 
@@ -117,12 +121,15 @@ class AndesListViewItemChevron(
         this.andesListViewItemSimpleConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
-    private fun andesListViewItemSimpleConfig(title: String, subtitle: String,
-                                              config: AndesListViewItemConfiguration,
-                                              itemSelected: Boolean?,
-                                              icon: Drawable?,
-                                              avatar: Drawable?,
-                                              titleMaxLines: Int) {
+    private fun andesListViewItemSimpleConfig(
+        title: String,
+        subtitle: String?,
+        config: AndesListViewItemConfiguration,
+        itemSelected: Boolean?,
+        icon: Drawable?,
+        avatar: Drawable?,
+        titleMaxLines: Int
+    ) {
 
         super.andesListViewItemConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
         this.chevronSize = config.chevronSize

@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.textfield
 
 import android.os.Build
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMaskWatcher
 import org.junit.Assert
 import org.junit.BeforeClass

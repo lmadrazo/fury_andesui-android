@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/andes_white">
+
+    <LinearLayout
+        android:id="@+id/andes_loud_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            android:text="@string/andes_carousel_centered" />
+
+        <com.mercadolibre.android.andesui.carousel.AndesCarousel
+            android:id="@+id/carousel_snapped"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:andesCarouselCenter="false"
+            app:andesCarouselMargin="defaultMargin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_margin_vertical"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            android:text="@string/andes_carousel_not_centered" />
+
+        <com.mercadolibre.android.andesui.carousel.AndesCarousel
+            android:id="@+id/carousel_free"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:andesCarouselCenter="true"
+            app:andesCarouselMargin="defaultMargin" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/andesui_demoapp_label_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_margin_vertical_2x"
+                android:text="@string/andes_demoapp_label_more" />
+
+            <com.mercadolibre.android.andesui.button.AndesButton
+                android:id="@+id/andesui_demoapp_andes_carousel_specs_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_margin_vertical"
+                app:andesButtonHierarchy="quiet"
+                app:andesButtonSize="medium"
+                app:andesButtonText="@string/andes_carousel_specs"
+                app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_more" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -29,7 +29,6 @@ import com.mercadolibre.android.andesui.textfield.textwatcher.AndesTextfieldBoxW
 import kotlinx.android.parcel.Parcelize
 import kotlin.math.min
 
-
 @Suppress("TooManyFunctions")
 class AndesTextfieldCode : ConstraintLayout {
 
@@ -106,7 +105,8 @@ class AndesTextfieldCode : ConstraintLayout {
         label: String? = LABEL_DEFAULT,
         helpLabel: String? = HELP_LABEL_DEFAULT,
         style: AndesTextfieldCodeStyle = STYLE_DEFAULT,
-        state: AndesTextfieldCodeState = STATE_DEFAULT) : super(context) {
+        state: AndesTextfieldCodeState = STATE_DEFAULT
+    ) : super(context) {
 
         initAttrs(label, helpLabel, style, state)
     }
@@ -129,7 +129,8 @@ class AndesTextfieldCode : ConstraintLayout {
         label: String?,
         helpLabel: String?,
         style: AndesTextfieldCodeStyle,
-        state: AndesTextfieldCodeState) {
+        state: AndesTextfieldCodeState
+    ) {
         andesTextfieldCodeAttrs = AndesTextfieldCodeAttrs(label, helpLabel, style, state)
         val config = AndesTextfieldCodeConfigurationFactory.create(context, andesTextfieldCodeAttrs)
         setupComponents(config)
@@ -241,11 +242,11 @@ class AndesTextfieldCode : ConstraintLayout {
      */
     private fun setUpFocusManagement(config: AndesTextfieldCodeConfiguration) {
         focusManagement = AndesCodeFocusManagement(config.boxesPattern.sum() - 1) { nextFocus, previousFocus ->
-            getBoxAt(previousFocus)?.also {
+            getBoxAt(previousFocus)?.let {
                 it.setAndesIsLongClickable(false)
                 it.setAndesFocusableInTouchMode(false)
             }
-            getBoxAt(nextFocus)?.also {
+            getBoxAt(nextFocus)?.let {
                 it.setAndesIsLongClickable(true)
                 it.setAndesFocusableInTouchMode(true)
                 it.requestFocusOnTextField()
@@ -286,7 +287,7 @@ class AndesTextfieldCode : ConstraintLayout {
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         val lastIndex = textfieldBoxCodeContainer.childCount - 1
         for (index in 0..lastIndex) {
-            getBoxAt(index)?.also { andesTextField ->
+            getBoxAt(index)?.let { andesTextField ->
                 if (andesTextField.text.isNullOrEmpty() ||
                     andesTextField.text == DIRTY_CHARACTER ||
                     index == lastIndex) {
@@ -327,7 +328,6 @@ class AndesTextfieldCode : ConstraintLayout {
             cleanText.isNotEmpty() -> setTextInBoxes(cleanText, startIndex)
         }
     }
-
 
     private fun setTextInBoxes(cleanText: String, startIndex: Int = 0) {
         val childCount = textfieldBoxCodeContainer.childCount
@@ -485,7 +485,7 @@ class AndesTextfieldCode : ConstraintLayout {
     }
 
     override fun onRestoreInstanceState(savedState: Parcelable) {
-        if(savedState is AndesTextfieldCodeSavedState) {
+        if (savedState is AndesTextfieldCodeSavedState) {
             super.onRestoreInstanceState(savedState.superState)
             currentText = savedState.currentText
             state = AndesTextfieldCodeState.valueOf(savedState.state)
@@ -498,14 +498,14 @@ class AndesTextfieldCode : ConstraintLayout {
     }
 
     @Parcelize
-    internal data class AndesTextfieldCodeSavedState (
+    internal data class AndesTextfieldCodeSavedState(
         val currentText: String,
         val state: String,
         val style: String,
         val label: String,
         val helper: String,
         val superState: Parcelable?
-    ): Parcelable
+    ) : Parcelable
 
     /**
      * Default values for AndesTextfieldCode basic properties

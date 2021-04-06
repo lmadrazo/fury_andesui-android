@@ -9,6 +9,8 @@
 
         <attr name="andesThumbnailType" format="enum">
             <enum name="icon" value="2000" />
+            <enum name="image_circle" value="2001" />
+            <enum name="image_square" value="2002" />
         </attr>
 
         <attr name="andesThumbnailSize" format="enum">

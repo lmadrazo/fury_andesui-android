@@ -1,5 +1,91 @@
+# v3.12.0
+## 🚀 Feature
+- `AndesThumbnail` supports `image_circle` & `image_square` types.
+
+# v3.11.0
+## 🚀 Feature
+- Andes new documentation format in `/docs/guide`.
+## 🛠 Fixes
+- Andes Message Thumbnail without bottom margin
+- Refactor demo-app
+- Add firebase analytics in demoapp
+- CI auto-migration build overwrite
+
+# v3.10.1
+## 🛠 Fixes
+- Andes Tooltip with showcase and pixel perfect issues resolved. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
+- Support statusbar with variable height in CoachmarkScrolless
+- Fix color of AndesCheckBox to andes_accent_color_500
+
+# v3.10.0
+## 🚀 Feature
+- Add possibility to hide icon when typing. | Author: [@fdiassilva](https://github.com/fdiassilva)
+- Andes Tooltip. | Author: [@RaelyxCordero](https://github.com/RaelyxCordero)
+
+# v3.9.0
+## 🚀 Feature
+- FMA repository migration | Authors [eportasML](https://github.com/eportasML)
+- FMA all checks turned on | Authors [eportasML](https://github.com/eportasML)
+- Added MDS ci job | Authors [eportasML](https://github.com/eportasML)
+
+# v3.8.0
+## 🚀 Feature
+- Added keystores inside the demoapp module so each build will use that instead of the particular keystore located in every machine.
+
+### ⚙️ Other
+- Improve pull request template | Authors [joalonspint](https://github.com/joalonsopint)
+
+# v3.7.0
+## 🚀 Feature
+- Added new icons for "To Agree" and "Info" (with outer circle)
+- Added "Question" and "Mail" icons. | Authors: [@amacagno](https://github.com/amacagno)
+
+## 🛠 Fixes
+- Demoapp Dropdown activity scrollview container added to avoid cutting content
+- Demoapp thumbnail showcase with same resource id as component fixed
+- Dropdown label deleted in standalone type | Author: [@snti](https://github.com/snti)
+
+# v3.6.1
+## 🛠 Fixes
+- Bump fix from version 3.5.1
+
+# v3.6.0
+## 🚀 Feature
+- AndesButton With Drawable support | Authors [a0zamora](https://github.com/a0zamora)
+
+## 🛠 Fixes
+- Datepicker accent color
+
+# v3.5.1
+## 🛠 Fixes
+- AndesMessage contructor overload for java classes compatibility | Authors [eportasML](https://github.com/eportasML)
+
+# v3.5.0
+## 🚀 Feature
+- AndesMessage With Thumbnnail | Authors [a0zamora](https://github.com/a0zamora)
+
+# v3.4.0
+## 🚀 Features
+- Dropdown | Author: [@snti](https://github.com/snti)
+
+# v3.3.1
+## 🚀 Features
+- Added new icons for "Online Payments" and "QR"
+
+## 🛠 Fixes
+- Fix bodyPadding on CardComponent when padding is none from XML | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
+
+# v3.3.0
+## 🛠 Fixes
+### AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
+- Fix the size of the calendar api level < 21
+- Fix color
+
+## 🚀 Features
+- Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
+
 # v3.2.0
-## 🚀 Fixes
+## 🛠 Fixes
 - Fix the size of the right and left componente of text
 ## 🚀 Features
 - Migración Constraint layout v2
@@ -98,8 +184,8 @@
 
 # v2.8.0
 ## 🚀 Features
-- AndesCard: Hierarchy primary/secondary | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
-- AndesCard: Actions support (link) | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
+- AndesCard: Hierarchy primary/secondary | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
+- AndesCard: Actions support (link) | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
 
 # v2.7.1
 ## 🚀 Features

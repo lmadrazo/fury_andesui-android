@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".feature.DatePickerShowcaseActivity"
+            android:name=".components.datepicker.DatePickerShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name=".feature.andesbottomsheet.BottomSheetShowcaseActivity"
+            android:name=".components.bottomsheet.BottomSheetShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.BadgeShowcaseActivity"
+            android:name=".components.badge.BadgeShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -65,7 +65,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.SnackbarShowcaseActivity"
+            android:name=".components.snackbar.SnackbarShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -80,7 +80,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.CheckboxShowcaseActivity"
+            android:name=".components.checkbox.CheckboxShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -95,7 +95,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.TagShowcaseActivity"
+            android:name=".components.tag.TagShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -110,7 +110,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.ButtonShowcaseActivity"
+            android:name=".components.button.ButtonShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -125,7 +125,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.ProgressShowcaseActivity"
+            android:name=".components.progressindicator.ProgressShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -140,7 +140,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.MessageShowcaseActivity"
+            android:name=".components.message.MessageShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -155,7 +155,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.TextfieldShowcaseActivity"
+            android:name=".components.textfield.TextfieldShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -170,7 +170,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.ThumbnailShowcaseActivity"
+            android:name=".components.thumbnail.ThumbnailShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -185,7 +185,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.WhatsNewActivity"
+            android:name=".whatsnew.WhatsNewActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -200,7 +200,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.RadioButtonShowcaseActivity"
+            android:name=".components.radiobutton.RadioButtonShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -215,7 +215,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.CardShowcaseActivity"
+            android:name=".components.card.CardShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -230,7 +230,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.TestCoachMarkActivity"
+            android:name=".components.coachmark.CoachmarkShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -245,7 +245,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.ListShowcaseActivity"
+            android:name=".components.list.ListShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -260,7 +260,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.CarouselShowcaseActivity"
+            android:name=".components.dropdown.DropdownShowcaseActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="andes"
+                    android:path="/dropdown"
+                    android:scheme="meli" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".components.carousel.CarouselShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -271,6 +286,21 @@
                 <data
                     android:host="andes"
                     android:path="/carousel"
+                    android:scheme="meli" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".components.tooltip.TooltipShowcaseActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="andes"
+                    android:path="/tooltip"
                     android:scheme="meli" />
             </intent-filter>
         </activity>
