@@ -9,7 +9,6 @@ import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchyInterface
 import com.mercadolibre.android.andesui.message.type.AndesMessageTypeInterface
-import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
 
 internal data class AndesMessageConfiguration(
     val iconBackgroundColor: AndesColor,

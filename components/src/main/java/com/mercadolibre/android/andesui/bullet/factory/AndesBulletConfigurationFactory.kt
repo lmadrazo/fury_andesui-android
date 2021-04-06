@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Typeface
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
-import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchyInterface
 import com.mercadolibre.android.andesui.message.type.AndesMessageTypeInterface
 

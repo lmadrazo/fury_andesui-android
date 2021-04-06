@@ -140,11 +140,15 @@ class AndesMessage : CardView {
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
         throw IllegalStateException(
-            "Constructor without parameters in Andes Message is not allowed. You must provide some attributes."
+                "Constructor without parameters in Andes Message is not allowed. You must provide some attributes."
         )
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        initAttrs(attrs)
+    }
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs) {
         initAttrs(attrs)
     }
 
@@ -226,7 +230,7 @@ class AndesMessage : CardView {
      */
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_message,
-            this, true)
+                this, true)
 
         messageContainer = container.findViewById(R.id.andes_message_container)
         titleComponent = container.findViewById(R.id.andes_title)
@@ -281,7 +285,7 @@ class AndesMessage : CardView {
             bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
             bodyComponent.setTextColor(config.textColor.colorInt(context))
             bodyComponent.typeface = config.bodyTypeface
-            //bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
+//          bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
         }
     }
 
@@ -301,11 +305,11 @@ class AndesMessage : CardView {
                         }
                     }
                     spannableString.setSpan(clickableSpan,
-                        andesBodyLink.startIndex, andesBodyLink.endIndex,
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            andesBodyLink.startIndex, andesBodyLink.endIndex,
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 } else {
                     Log.d("AndesMessage", "Body link range incorrect: " +
-                        "${andesBodyLink.startIndex}, ${andesBodyLink.endIndex}")
+                            "${andesBodyLink.startIndex}, ${andesBodyLink.endIndex}")
                 }
             }
             bodyComponent.movementMethod = LinkMovementMethod.getInstance()
@@ -384,9 +388,9 @@ class AndesMessage : CardView {
         if (primaryAction.visibility == View.GONE) {
 
             linkAction.setPadding(LINK_BUTTON_PADDING,
-                LINK_BUTTON_PADDING,
-                LINK_BUTTON_PADDING,
-                LINK_BUTTON_PADDING)
+                                  LINK_BUTTON_PADDING,
+                                  LINK_BUTTON_PADDING,
+                                  LINK_BUTTON_PADDING)
 
             linkAction.visibility = View.VISIBLE
             linkActionText = text

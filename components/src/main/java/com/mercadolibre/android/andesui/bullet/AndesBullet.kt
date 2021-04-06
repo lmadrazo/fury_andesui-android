@@ -6,7 +6,6 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
-import android.text.style.BulletSpan
 import android.text.style.ClickableSpan
 import android.util.AttributeSet
 import android.util.Log
@@ -16,7 +15,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.bullet.factory.AndesBulletAttrParser
 import com.mercadolibre.android.andesui.bullet.factory.AndesBulletAttrs

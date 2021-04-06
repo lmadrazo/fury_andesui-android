@@ -3,15 +3,9 @@ package com.mercadolibre.android.andesui.bulletgroup.factory
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.bullet.AndesBullet
-import com.mercadolibre.android.andesui.bullet.factory.AndesBulletAttrParser
-import com.mercadolibre.android.andesui.bullet.factory.AndesBulletAttrs
 import com.mercadolibre.android.andesui.bulletgroup.BulletItem
-import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
-import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
-import com.mercadolibre.android.andesui.radiobuttongroup.factory.AndesRadioButtonGroupAttrs
 
 internal data class AndesBulletGroupAttrs(
     val andesMessageHierarchy: AndesMessageHierarchy,

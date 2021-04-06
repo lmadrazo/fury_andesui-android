@@ -9,10 +9,8 @@ import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupAttr
 import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupAttrs
 import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupConfiguration
 import com.mercadolibre.android.andesui.bulletgroup.factory.AndesBulletGroupConfigurationFactory
-import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
-import com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
 
 class AndesBulletGroup : LinearLayout {
 
@@ -112,10 +110,4 @@ class AndesBulletGroup : LinearLayout {
     }
 
     private fun createConfig() = AndesBulletGroupConfigurationFactory.create(andesBulletGroupAttrs)
-
-    companion object {
-        private val HIERARCHY_DEFAULT = AndesMessageHierarchy.LOUD
-        private val STATE_DEFAULT = AndesMessageType.NEUTRAL
-    }
-
 }
