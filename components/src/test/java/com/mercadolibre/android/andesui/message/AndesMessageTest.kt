@@ -11,6 +11,7 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
+import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
@@ -87,5 +88,27 @@ class AndesMessageTest {
         )
 
         assertEquals(andesMessage.thumbnail.visibility, View.VISIBLE)
+    }
+
+    @Test
+    fun `Andes Message Without Bullet`() {
+        andesMessage = AndesMessage(context, AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS,
+            "This is a body message", "Title", null, true, null, null)
+
+        assertEquals(andesMessage.bulletsComponent.visibility, View.GONE)
+    }
+
+    @Test
+    fun `Andes Message With Bullet`() {
+        val bullets = arrayListOf<BulletItem>()
+        val bulletItem = Mockito.mock(BulletItem::class.java)
+        bullets.add(bulletItem)
+        Mockito.`when`(bulletItem.text).thenReturn("title")
+        Mockito.`when`(bulletItem.textLinks).thenReturn(null)
+
+        andesMessage = AndesMessage(context, AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS,
+            "This is a body message", "Title", bullets, true, null,null)
+
+        assertEquals(andesMessage.bulletsComponent.visibility, View.VISIBLE)
     }
 }

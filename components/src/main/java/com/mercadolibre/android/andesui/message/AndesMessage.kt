@@ -127,7 +127,7 @@ class AndesMessage : CardView {
     private lateinit var messageContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
     lateinit var bodyComponent: TextView
-    private lateinit var bulletsComponent: AndesBulletGroup
+    lateinit var bulletsComponent: AndesBulletGroup
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var dismissableComponent: SimpleDraweeView
     private lateinit var pipeComponent: View

@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.message
 import android.graphics.drawable.Drawable
 import android.os.Build
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
@@ -609,5 +610,38 @@ class AndesMessageConfigurationLoudTest {
             "Title", null, true, null, thumbnail)
         val config = configFactory.create(context, attrs)
         assertEquals(config.thumbnail, thumbnail)
+    }
+
+    @Test
+    fun `Loud, Success with bullet`() {
+        val bullets = arrayListOf<BulletItem>()
+        val bulletItem = Mockito.mock(BulletItem::class.java)
+        bullets.add(bulletItem)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body",
+            "Title", bullets, true, null, null)
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.bullets, bullets)
+    }
+
+    @Test
+    fun `Loud, Error with bullet`() {
+        val bullets = arrayListOf<BulletItem>()
+        val bulletItem = Mockito.mock(BulletItem::class.java)
+        bullets.add(bulletItem)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body",
+            "Title", bullets, true, null, null)
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.bullets, bullets)
+    }
+
+    @Test
+    fun `Loud, Warning with bullet`() {
+        val bullets = arrayListOf<BulletItem>()
+        val bulletItem = Mockito.mock(BulletItem::class.java)
+        bullets.add(bulletItem)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body",
+            "Title", null, true, null, null)
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.bullets, bullets)
     }
 }
