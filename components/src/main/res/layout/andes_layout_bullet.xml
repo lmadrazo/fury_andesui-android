@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/andes_gray_800"
         android:layout_marginLeft="8dp"
-        android:text="bullet 1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/andes_bullet_icon" />
