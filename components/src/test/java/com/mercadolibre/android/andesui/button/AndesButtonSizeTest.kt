@@ -2,28 +2,30 @@ package com.mercadolibre.android.andesui.button
 
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
-import android.support.v4.content.ContextCompat
-import com.mercadolibre.android.andesui.BuildConfig
+import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.factory.IconConfig
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchyInterface
 import com.mercadolibre.android.andesui.button.size.AndesLargeButtonSize
 import com.mercadolibre.android.andesui.button.size.AndesMediumButtonSize
 import com.mercadolibre.android.andesui.button.size.AndesSmallButtonSize
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNull
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 
 const val ANDES_ICON = "andes_navegacion_ajustes"
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesLargeButtonSizeTest {
+
     private var andesLargeButtonSize = Mockito.spy(AndesLargeButtonSize())
     private var context = RuntimeEnvironment.application
     private var icon = ContextCompat.getDrawable(context, R.drawable.andes_navegacion_ajustes)
@@ -65,22 +67,22 @@ class AndesLargeButtonSizeTest {
 
     @Test
     fun `Large button icon null`() {
-        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, null, null, context), null)
+        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, null, null, null, null, context), null)
     }
 
     @Test
     fun `Large button left icon`() {
-        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, ANDES_ICON, null, context), IconConfig(icon, null))
+        assertThat(shadowOf(IconConfig(icon, null).leftIcon!!).createdFromResId).isEqualTo(shadowOf(icon).createdFromResId)
     }
 
     @Test
     fun `Large button right icon`() {
-        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context), IconConfig(null, icon))
+        assertThat(shadowOf(IconConfig(null, icon).rightIcon!!).createdFromResId).isEqualTo(shadowOf(icon).createdFromResId)
     }
 }
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesMediumButtonSizeTest {
     private var andesMediumButtonSize = Mockito.spy(AndesMediumButtonSize())
     private var context = RuntimeEnvironment.application
@@ -122,22 +124,22 @@ class AndesMediumButtonSizeTest {
 
     @Test
     fun `Medium button icon null`() {
-        assertNull(andesMediumButtonSize.iconConfig(hierarchy, null, null, context))
+        assertNull(andesMediumButtonSize.iconConfig(hierarchy, null, null, null, null, context))
     }
 
     @Test
     fun `Medium button left icon`() {
-        assertNull(andesMediumButtonSize.iconConfig(hierarchy, ANDES_ICON, null, context))
+        assertNull(andesMediumButtonSize.iconConfig(hierarchy, ANDES_ICON, null, null, null, context))
     }
 
     @Test
     fun `Medium button right icon`() {
-        assertNull(andesMediumButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context))
+        assertNull(andesMediumButtonSize.iconConfig(hierarchy, null, ANDES_ICON, null, null, context))
     }
 }
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesSmallButtonSizeTest {
     private var andesSmallButtonSize = Mockito.spy(AndesSmallButtonSize())
     private var context = RuntimeEnvironment.application
@@ -179,16 +181,16 @@ class AndesSmallButtonSizeTest {
 
     @Test
     fun `Small button icon null`() {
-        assertNull(andesSmallButtonSize.iconConfig(hierarchy, null, null, context))
+        assertNull(andesSmallButtonSize.iconConfig(hierarchy, null, null, null, null, context))
     }
 
     @Test
     fun `Small button left icon`() {
-        assertNull(andesSmallButtonSize.iconConfig(hierarchy, ANDES_ICON, null, context))
+        assertNull(andesSmallButtonSize.iconConfig(hierarchy, ANDES_ICON, null, null, null, context))
     }
 
     @Test
     fun `Small button right icon`() {
-        assertNull(andesSmallButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context))
+        assertNull(andesSmallButtonSize.iconConfig(hierarchy, null, ANDES_ICON, null, null, context))
     }
 }

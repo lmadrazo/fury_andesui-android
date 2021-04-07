@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.badge
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotConfigurationFactory
@@ -16,7 +15,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesBadgeDotConfigurationTest {
 
     private var context = RuntimeEnvironment.application

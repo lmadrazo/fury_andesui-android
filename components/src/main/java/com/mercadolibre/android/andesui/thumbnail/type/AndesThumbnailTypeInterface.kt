@@ -8,3 +8,7 @@ package com.mercadolibre.android.andesui.thumbnail.type
 internal interface AndesThumbnailTypeInterface
 
 internal class AndesIconThumbnailType : AndesThumbnailTypeInterface
+
+internal class AndesImageCircleThumbnailType : AndesThumbnailTypeInterface
+
+internal class AndesImageSquareThumbnailType : AndesThumbnailTypeInterface

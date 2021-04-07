@@ -14,9 +14,9 @@ internal data class AndesTagSimpleConfiguration(
     val textColor: AndesColor,
     val dismissColor: AndesColor,
     val leftContentData: LeftContent? = null,
-    val leftContent: AndesTagLeftContent? = null,
-    val rightContentData: RightContent? = null,
-    val rightContent: AndesTagRightContent? = null
+    val leftContent: AndesTagLeftContent = AndesTagLeftContent.NONE,
+    val rightContent: AndesTagRightContent = AndesTagRightContent.NONE,
+    val rightContentData: RightContent? = null
 )
 
 internal object AndesSimpleTagConfigurationFactory {
@@ -30,9 +30,9 @@ internal object AndesSimpleTagConfigurationFactory {
                     textColor = resolveTextColor(andesTagType.type),
                     dismissColor = resolveDismissColor(andesTagType.type),
                     leftContentData = andesTagSimpleAttrs.leftContentData,
-                    leftContent = andesTagSimpleAttrs.leftContent,
-                    rightContentData = andesTagSimpleAttrs.rightContentData,
-                    rightContent = andesTagSimpleAttrs.rightContent
+                    leftContent = andesTagSimpleAttrs.leftContent ?: AndesTagLeftContent.NONE,
+                    rightContent = andesTagSimpleAttrs.rightContent ?: AndesTagRightContent.NONE,
+                    rightContentData = andesTagSimpleAttrs.rightContentData
             )
         }
     }

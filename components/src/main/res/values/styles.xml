@@ -50,5 +50,34 @@
     <style name="Andes.LinkInverted">
 
     </style>
+    <!-- Calendar -->
+    <style name="Andes.customCalendar" parent="android:Widget.CalendarView">
+        <item name="colorControlActivated">@color/andes_accent_color_500</item>
+        <item name="colorControlHighlight">@color/andes_accent_color_300</item>
+    </style>
+    <style name="Andes.CalendarDate">
+        <item name="android:textSize">@dimen/andes_body_font_size_s</item>
+        <item name="android:textColor">@drawable/andes_selector</item>
+        <item name="fontFamily">"@font/andes_font_regular"</item>
+    </style>
+    <style name="Andes.CalendarDateWeek">
+        <item name="android:textSize">@dimen/andes_datepicker_week_font_size</item>
+        <item name="fontWeight">@dimen/andes_title_font_weight</item>
+        <item name="fontFamily">"@font/andes_font_regular"</item>
+    </style>
+
+    <!-- Dropdown -->
+    <style name="Andes.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Andes.BottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="Andes.BottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="Andes.FadeWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/andes_tooltip_fade_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/andes_tooltip_fade_out_anim</item>
+    </style>
 
 </resources>

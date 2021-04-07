@@ -1,8 +1,10 @@
 package com.mercadolibre.android.andesui.message.factory
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
@@ -15,8 +17,10 @@ internal data class AndesMessageAttrs(
     val andesMessageType: AndesMessageType,
     val body: String?,
     val title: String?,
+    val bullets: ArrayList<BulletItem>?,
     val isDismissable: Boolean,
-    val bodyLinks: AndesBodyLinks?
+    val bodyLinks: AndesBodyLinks?,
+    val thumbnail: Drawable?
 )
 
 /**
@@ -50,12 +54,14 @@ internal object AndesMessageAttrsParser {
         }
 
         return AndesMessageAttrs(
-                andesMessageHierarchy = hierarchy,
-                andesMessageType = type,
-                body = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText),
-                title = typedArray.getString(R.styleable.AndesMessage_andesMessageTitleText),
-                isDismissable = typedArray.getBoolean(R.styleable.AndesMessage_andesMessageDismissable, false),
-                bodyLinks = null
+            andesMessageHierarchy = hierarchy,
+            andesMessageType = type,
+            body = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText),
+            title = typedArray.getString(R.styleable.AndesMessage_andesMessageTitleText),
+            bullets = arrayListOf(),
+            isDismissable = typedArray.getBoolean(R.styleable.AndesMessage_andesMessageDismissable, false),
+            bodyLinks = null,
+            thumbnail = typedArray.getDrawable(R.styleable.AndesMessage_andesMessageThumbnail)
         ).also { typedArray.recycle() }
     }
 }

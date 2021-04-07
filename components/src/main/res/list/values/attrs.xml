@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="AndesList" tools:ignore="ResourceName">
+
+        <attr name="andesListItemSize" format="enum">
+            <enum name="small" value="9000" />
+            <enum name="medium" value="9001" />
+            <enum name="large" value="9002" />
+        </attr>
+
+        <attr name="andesListType" format="enum">
+            <enum name="simple" value="11000" />
+            <enum name="chevron" value="11001" />
+            <enum name="check_box" value="11002" />
+            <enum name="radio_button" value="11003" />
+        </attr>
+
+        <attr name="andesListDividerItemEnabled" format="boolean" />
+
+    </declare-styleable>
+
+</resources>

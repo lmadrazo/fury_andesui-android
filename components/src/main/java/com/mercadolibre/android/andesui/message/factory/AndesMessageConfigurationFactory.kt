@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchyInterface
@@ -35,7 +36,9 @@ internal data class AndesMessageConfiguration(
     val linkActionBackgroundColor: BackgroundColorConfig,
     val linkActionTextColor: AndesColor,
     val bodyLinkIsUnderline: Boolean,
-    val bodyLinkTextColor: AndesColor
+    val bodyLinkTextColor: AndesColor,
+    val thumbnail: Drawable?,
+    val bullets: ArrayList<BulletItem>? = null
 )
 
 @Suppress("TooManyFunctions")
@@ -88,9 +91,10 @@ internal object AndesMessageConfigurationFactory {
                     andesMessageHierarchy.hierarchy,
                     andesMessageType.type
                 ),
-
                 bodyLinkIsUnderline = resolveBodyLinkIsUnderline(andesMessageHierarchy.hierarchy, andesMessageType.type),
-                bodyLinkTextColor = resolveBodyLinkTextColor(andesMessageHierarchy.hierarchy, andesMessageType.type)
+                bodyLinkTextColor = resolveBodyLinkTextColor(andesMessageHierarchy.hierarchy, andesMessageType.type),
+                thumbnail = thumbnail,
+                bullets = bullets
             )
         }
     }

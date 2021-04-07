@@ -1,8 +1,8 @@
 package com.mercadolibre.android.andesui.progress
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import android.util.AttributeSet
 import android.view.View
 import com.mercadolibre.android.andesui.progress.factory.AndesProgressAttrs
@@ -20,18 +20,14 @@ class AndesProgressIndicatorIndeterminate : ConstraintLayout {
         get() = andesProgressAttr.tint
         set(value) {
             andesProgressAttr = andesProgressAttr.copy(tint = value)
-            createConfig().also {
-                setupColor(it)
-            }
+            setupColor(createConfig())
         }
 
     var size: AndesProgressSize
         get() = andesProgressAttr.andesProgressSize
         set(value) {
             andesProgressAttr = andesProgressAttr.copy(andesProgressSize = value)
-            createConfig().also {
-                setupSize(it)
-            }
+            setupSize(createConfig())
         }
 
     /**

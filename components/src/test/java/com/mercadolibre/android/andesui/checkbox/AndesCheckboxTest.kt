@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.checkbox
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.checkbox.align.AndesCheckboxAlign
 import com.mercadolibre.android.andesui.checkbox.factory.AndesCheckboxAttrs
@@ -18,7 +17,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesCheckboxTest {
 
     private var context = RuntimeEnvironment.application
@@ -81,7 +80,7 @@ class AndesCheckboxTest {
         val config = configFactory.create(attrs)
         assertEquals(
                 config.type.type.borderColor(context, config.status),
-                R.color.andes_blue_ml_500.toAndesColor()
+                R.color.andes_accent_color_500.toAndesColor()
         )
     }
 
@@ -96,7 +95,7 @@ class AndesCheckboxTest {
         val config = configFactory.create(attrs)
         assertEquals(
                 config.type.type.backgroundColor(context, config.status),
-                R.color.andes_blue_ml_500.toAndesColor()
+                R.color.andes_accent_color_500.toAndesColor()
         )
     }
 

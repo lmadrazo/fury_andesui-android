@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
 import com.mercadolibre.android.andesui.card.hierarchy.AndesCardHierarchy
 import com.mercadolibre.android.andesui.card.padding.AndesCardPadding
 import com.mercadolibre.android.andesui.card.style.AndesCardStyle
@@ -14,6 +15,7 @@ internal data class AndesCardAttrs(
     val andesCardView: View?,
     val andesCardType: AndesCardType,
     val andesCardPadding: AndesCardPadding,
+    val andesCardBodyPadding: AndesCardBodyPadding,
     val andesCardStyle: AndesCardStyle,
     val andesCardTitle: String?,
     val andesCardHierarchy: AndesCardHierarchy,
@@ -46,11 +48,18 @@ internal object AndesCardAttrParser {
     private const val ANDES_CARD_STYLE_ELEVATED = "6000"
     private const val ANDES_CARD_STYLE_OUTLINE = "6001"
 
+    private const val ANDES_CARD_BODY_PADDING_NONE = "7000"
+    private const val ANDES_CARD_BODY_PADDING_SMALL = "7001"
+    private const val ANDES_CARD_BODY_PADDING_MEDIUM = "7002"
+    private const val ANDES_CARD_BODY_PADDING_LARGE = "7003"
+    private const val ANDES_CARD_BODY_PADDING_XLARGE = "7004"
+
     fun parse(context: Context, attr: AttributeSet?): AndesCardAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesCard)
 
         val hierarchy = parseHierarchy(typedArray)
         val padding = parsePadding(typedArray)
+        val bodyPadding = parseBodyPadding(typedArray)
         val type = parseType(typedArray)
         val style = parseStyle(typedArray)
 
@@ -58,6 +67,7 @@ internal object AndesCardAttrParser {
             andesCardView = null,
             andesCardType = type,
             andesCardPadding = padding,
+            andesCardBodyPadding = bodyPadding,
             andesCardStyle = style,
             andesCardTitle = typedArray.getString(R.styleable.AndesCard_andesCardTitle),
             andesCardHierarchy = hierarchy,
@@ -83,6 +93,17 @@ internal object AndesCardAttrParser {
             ANDES_CARD_PADDING_LARGE -> AndesCardPadding.LARGE
             ANDES_CARD_PADDING_XLARGE -> AndesCardPadding.XLARGE
             else -> AndesCardPadding.NONE
+        }
+    }
+
+    private fun parseBodyPadding(typedArray: TypedArray): AndesCardBodyPadding {
+        return when (typedArray.getString(R.styleable.AndesCard_andesCardBodyPadding)) {
+            ANDES_CARD_BODY_PADDING_NONE -> AndesCardBodyPadding.NONE
+            ANDES_CARD_BODY_PADDING_SMALL -> AndesCardBodyPadding.SMALL
+            ANDES_CARD_BODY_PADDING_MEDIUM -> AndesCardBodyPadding.MEDIUM
+            ANDES_CARD_BODY_PADDING_LARGE -> AndesCardBodyPadding.LARGE
+            ANDES_CARD_BODY_PADDING_XLARGE -> AndesCardBodyPadding.XLARGE
+            else -> AndesCardBodyPadding.NONE
         }
     }
 

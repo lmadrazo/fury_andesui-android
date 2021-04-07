@@ -10,6 +10,8 @@ package com.mercadolibre.android.andesui.tag.rightcontent
  */
 enum class AndesTagRightContent {
     DISMISS,
+    DROPDOWN,
+    CHECK,
     NONE;
 
     companion object {
@@ -21,6 +23,8 @@ enum class AndesTagRightContent {
     private fun getAndesTagRightContent(): AndesTagRightContentInterface {
         return when (this) {
             DISMISS -> AndesTagRightContentDismiss
+            DROPDOWN -> AndesTagRightContentDropDown
+            CHECK -> AndesTagRightContentCheck
             NONE -> AndesTagRightContentNone
         }
     }

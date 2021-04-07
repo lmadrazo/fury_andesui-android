@@ -10,10 +10,12 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
-import com.mercadolibre.android.andesui.BuildConfig
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
-import junit.framework.Assert.*
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNotNull
+import junit.framework.Assert.assertNull
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
@@ -23,7 +25,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesTextfieldTest {
     private var context = RuntimeEnvironment.application
     private lateinit var textfield: AndesTextfield
@@ -56,8 +58,51 @@ class AndesTextfieldTest {
 
     @Test
     fun `set right icon`() {
-        textfield.setRightIcon("andes_navegacion_categorias_24")
+        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = false)
+        textfield.text = "1149778767"
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon hide true`() {
+        textfield.setRightIcon("andes_navegacion_categorias_24", hideWhenType = true)
+                textfield.text = "1149778767"
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon hide true but show`() {
+        textfield.setRightIcon(
+            "andes_navegacion_categorias_24",
+            colorIcon = R.color.andes_accent_color_100,
+            hideWhenType = true
+        )
+        textfield.text = "11"
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `set right icon with color listener`() {
+        textfield.setRightIcon(
+            "andes_navegacion_categorias_24",
+            colorIcon = null,
+            listener = View.OnClickListener {},
+            hideWhenType = true
+        )
+        textfield.text = "1134"
+        assertEquals(textfield.rightContent, AndesTextfieldRightContent.ICON)
+    }
+
+    @Test
+    fun `textfield with textComponentFocusChangedListener`() {
+        val focusListener = View.OnFocusChangeListener { _, _ -> }
+        textfield.onFocusChangeListener = focusListener
+        assertNotNull(textfield.textComponentFocusChangedListener)
+    }
+
+    @Test
+    fun `textfield without textComponentFocusChangedListener`() {
+        assertNull(textfield.textComponentFocusChangedListener)
     }
 
     @Test
@@ -100,11 +145,17 @@ class AndesTextfieldTest {
     @Test
     fun `textfield with watcher`() {
         val watcher = object : TextWatcher {
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // Empty method
+            }
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // Empty method
+            }
 
-            override fun afterTextChanged(s: Editable) {}
+            override fun afterTextChanged(s: Editable) {
+                // Empty method
+            }
         }
         textfield.textWatcher = watcher
         assertNotNull(textfield.textWatcher)

@@ -30,6 +30,15 @@
             <enum name="outline" value="6001" />
         </attr>
 
+        <attr name="andesCardBodyPadding">
+            <enum name="none" value="7000" />
+            <enum name="small" value="7001" />
+            <enum name="medium" value="7002" />
+            <enum name="large" value="7003" />
+            <enum name="xlarge" value="7004" />
+        </attr>
+
+
         <attr name="andesCardTitle" format="reference" />
 
     </declare-styleable>

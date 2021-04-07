@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.progress
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.progress.factory.AndesProgressAttrs
 import com.mercadolibre.android.andesui.progress.factory.AndesProgressConfigurationFactory
@@ -15,7 +14,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesProgressIndicatorIndeterminateTest {
     private var context = RuntimeEnvironment.application
     private lateinit var andesProgress: AndesProgressIndicatorIndeterminate

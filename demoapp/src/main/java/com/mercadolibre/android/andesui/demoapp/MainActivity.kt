@@ -3,12 +3,14 @@ package com.mercadolibre.android.andesui.demoapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.SafeIntent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.mercadolibre.android.andesui.demoapp.commons.AnalyticsHelper
+import com.mercadolibre.android.andesui.demoapp.utils.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.utils.SafeIntent
+import com.mercadolibre.android.andesui.demoapp.utils.launchSpecs
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
 /**
@@ -27,6 +29,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCoreComponents() {
+        andesui_tooltip.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/tooltip"))
+        }
+        andesui_carousel.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/carousel"))
+        }
         andesui_coachmark.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/coachmark"))
         }
@@ -60,23 +68,50 @@ class MainActivity : AppCompatActivity() {
         andesui_thumbnail.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/thumbnail"))
         }
+        andesui_dropdown.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/dropdown"))
+        }
+        andesui_list.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/list"))
+        }
         andesui_progress.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/progress"))
+        }
+        andesui_bottom_sheet.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/bottom_sheet"))
+        }
+        andesui_date_picker.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/datepicker"))
         }
     }
 
     private fun setupExtras() {
         andesui_demoapp_changelog.setupPrimaryAction(
-            getString(R.string.andesui_demoapp_whatsnew_main_action),
-            View.OnClickListener { startActivity(SafeIntent(this, "meli://andes/whats-new")) }
+                getString(R.string.andes_demoapp_whatsnew_main_action),
+                View.OnClickListener {
+                    trackAnalytics(AnalyticsHelper.whatsNewTrack)
+                    startActivity(SafeIntent(this, "meli://andes/whats-new"))
+                }
         )
 
         andesui_demoapp_andes_specs.setOnClickListener {
+            trackAnalytics(AnalyticsHelper.specsTrack)
             launchSpecs(this, AndesSpecs.HOME_PAGE)
         }
 
         andesui_demoapp_contribution.setOnClickListener {
-            ContextCompat.startActivity(this, Intent(Intent.ACTION_VIEW, Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")), null)
+            trackAnalytics(AnalyticsHelper.contributeTrack)
+            ContextCompat.startActivity(this,
+                    Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")),
+                    null)
         }
+    }
+
+    private fun trackAnalytics(screen: String) {
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, screen)
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, Bundle())
     }
 }

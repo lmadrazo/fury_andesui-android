@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.icons.IconProvider
+import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.utils.buildCircleBitmap
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 import com.mercadolibre.android.andesui.utils.validateColor
@@ -18,24 +19,36 @@ import com.mercadolibre.android.andesui.utils.validateColor
 internal sealed class AndesTagLeftContentInterface {
     abstract fun leftMargin(context: Context): Int
     abstract fun rightMargin(context: Context): Int
+    abstract fun leftMarginText(context: Context, size: AndesTagSize): Int
     abstract fun size(context: Context): Int
     abstract fun border(context: Context): Float
     abstract fun view(context: Context, leftContent: LeftContent): View
 }
 
 internal object AndesTagLeftContentNone : AndesTagLeftContentInterface() {
-    override fun leftMargin(context: Context): Int = 0
-    override fun rightMargin(context: Context): Int = 0
-    override fun size(context: Context): Int = 0
-    override fun border(context: Context): Float = 0f
-    override fun view(context: Context, leftContent: LeftContent): View = View(context)
+    private const val ANDES_TAG_MARGIN = 0
+    private const val ANDES_TAG_SIZE = 0
+    private const val ANDES_TAG_BORDER = 0f
+
+    override fun leftMargin(context: Context) = ANDES_TAG_MARGIN
+    override fun rightMargin(context: Context) = ANDES_TAG_MARGIN
+    override fun leftMarginText(context: Context, size: AndesTagSize): Int {
+        return when (size) {
+            AndesTagSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+            else -> context.resources.getDimension(R.dimen.andes_tag_large_margin).toInt()
+        }
+    }
+    override fun size(context: Context) = ANDES_TAG_SIZE
+    override fun border(context: Context) = ANDES_TAG_BORDER
+    override fun view(context: Context, leftContent: LeftContent) = View(context)
 }
 
 internal object AndesTagLeftContentDot : AndesTagLeftContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
-    override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
-    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
-    override fun border(context: Context): Float = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
+    override fun leftMargin(context: Context) = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+    override fun rightMargin(context: Context) = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+    override fun leftMarginText(context: Context, size: AndesTagSize) = 0
+    override fun size(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
+    override fun border(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
     override fun view(context: Context, leftContent: LeftContent): View {
         // Valid colors
         var isValid = validateColor(leftContent.dot!!.backgroundColor)
@@ -75,10 +88,12 @@ internal object AndesTagLeftContentDot : AndesTagLeftContentInterface() {
 }
 
 internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
-    override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
-    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
-    override fun border(context: Context): Float = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
+    var leftMargin = 0
+    override fun leftMargin(context: Context) = leftMargin
+    override fun rightMargin(context: Context) = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+    override fun leftMarginText(context: Context, size: AndesTagSize) = 0
+    override fun size(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
+    override fun border(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
     override fun view(context: Context, leftContent: LeftContent): View {
         // Valid color
         if (!leftContent.icon!!.iconColor.isNullOrEmpty() && !validateColor(leftContent.icon!!.iconColor!!)) {
@@ -90,28 +105,53 @@ internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
         }
 
         val imageView = ImageView(context)
-        val shape = GradientDrawable()
-        shape.cornerRadius = border(context)
-        shape.setColor(Color.parseColor(leftContent.icon!!.backgroundColor))
-        imageView.background = shape
+        val background = leftContent.icon?.backgroundColor
+        if (background != null) {
+            val shape = GradientDrawable()
+            shape.cornerRadius = border(context)
+            shape.setColor(Color.parseColor(background))
+            imageView.background = shape
+            leftMargin = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+        } else {
+            leftMargin = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+        }
 
         val bitmapDrawable = if (!leftContent.icon!!.path.isNullOrEmpty()) {
             IconProvider(context).loadIcon(leftContent.icon!!.path!!) as BitmapDrawable
         } else {
-            val padding = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
-            imageView.setPadding(padding, padding, padding, padding)
+            if (background != null) {
+                val padding = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+                imageView.setPadding(padding, padding, padding, padding)
+            }
             leftContent.icon!!.icon as BitmapDrawable
         }
 
-        if (leftContent.icon!!.iconColor.isNullOrEmpty()) {
-            leftContent.icon!!.iconColor = "#000000"
+        val color: Int?
+        val leftIcon = leftContent.icon!!
+        color = when {
+            leftIcon.iconColor != null -> {
+                Color.parseColor(leftIcon.iconColor)
+            }
+            leftIcon.iconDefaultColor != null -> {
+                leftIcon.iconDefaultColor?.colorInt(context)
+            }
+            else -> {
+                Color.parseColor("#000000")
+            }
         }
+
+        val size = when (leftIcon.iconSize) {
+            IconSize.LARGE -> context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
+            IconSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_icon_size_small).toInt()
+            else -> context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
+        }
+
         val icon = buildColoredBitmapDrawable(
                 bitmapDrawable,
                 context,
-                dstWidth = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt(),
-                dstHeight = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt(),
-                color = Color.parseColor(leftContent.icon!!.iconColor)
+                dstWidth = size,
+                dstHeight = size,
+                color = color
         )
 
         imageView.setImageDrawable(icon)
@@ -120,10 +160,11 @@ internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
 }
 
 internal object AndesTagLeftContentImage : AndesTagLeftContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
-    override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
-    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
-    override fun border(context: Context): Float = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
+    override fun leftMargin(context: Context) = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+    override fun rightMargin(context: Context) = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+    override fun leftMarginText(context: Context, size: AndesTagSize) = 0
+    override fun size(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
+    override fun border(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
     override fun view(context: Context, leftContent: LeftContent): View {
         // Create avatar
         val icon = buildCircleBitmap(leftContent.image!!.avatar, size(context), size(context))

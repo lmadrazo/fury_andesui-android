@@ -2,8 +2,7 @@ package com.mercadolibre.android.andesui.message
 
 import android.content.Context
 import android.graphics.Paint
-import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.CardView
+import android.graphics.drawable.Drawable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
@@ -15,9 +14,13 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.bulletgroup.AndesBulletGroup
+import com.mercadolibre.android.andesui.bulletgroup.BulletItem
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
@@ -27,6 +30,8 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguratio
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
+import com.mercadolibre.android.andesui.utils.toBitmap
+import com.mercadolibre.android.andesui.utils.getCircledBitmap
 
 @Suppress("TooManyFunctions")
 class AndesMessage : CardView {
@@ -72,6 +77,16 @@ class AndesMessage : CardView {
         }
 
     /**
+     * Getter and setter for [bullets].
+     */
+    var bullets: ArrayList<BulletItem>?
+        get() = andesMessageAttrs.bullets
+        set(value) {
+            andesMessageAttrs = andesMessageAttrs.copy(bullets = value)
+            setupBulletComponent(createConfig())
+        }
+
+    /**
      * Getter and setter for [isDismissable].
      */
     var isDismissable: Boolean
@@ -112,6 +127,7 @@ class AndesMessage : CardView {
     private lateinit var messageContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
     lateinit var bodyComponent: TextView
+    lateinit var bulletsComponent: AndesBulletGroup
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var dismissableComponent: SimpleDraweeView
     private lateinit var pipeComponent: View
@@ -119,6 +135,7 @@ class AndesMessage : CardView {
     private lateinit var primaryAction: AndesButton
     private lateinit var secondaryAction: AndesButton
     private lateinit var linkAction: AndesButton
+    lateinit var thumbnail: SimpleDraweeView
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
@@ -136,16 +153,19 @@ class AndesMessage : CardView {
     }
 
     @Suppress("unused", "LongParameterList")
+    @JvmOverloads
     constructor(
         context: Context,
         hierarchy: AndesMessageHierarchy = HIERARCHY_DEFAULT,
         type: AndesMessageType = STATE_DEFAULT,
         body: String,
         title: String? = TITLE_DEFAULT,
+        bullets: ArrayList<BulletItem>? = arrayListOf(),
         isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT,
-        bodyLinks: AndesBodyLinks? = null
+        bodyLinks: AndesBodyLinks? = null,
+        thumbnail: Drawable? = null
     ) : super(context) {
-        initAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
+        initAttrs(hierarchy, type, body, title, bullets, isDismissable, bodyLinks, thumbnail)
     }
 
     /**
@@ -165,10 +185,12 @@ class AndesMessage : CardView {
         type: AndesMessageType,
         body: String,
         title: String?,
+        bullets: ArrayList<BulletItem>?,
         isDismissable: Boolean,
-        bodyLinks: AndesBodyLinks?
+        bodyLinks: AndesBodyLinks?,
+        thumbnail: Drawable?
     ) {
-        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
+        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, bullets, isDismissable, bodyLinks, thumbnail)
         val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
         setupComponents(config)
     }
@@ -188,11 +210,13 @@ class AndesMessage : CardView {
 
         setupColorComponents(config)
         setupDismissable(config)
+        setupThumbnail(config.thumbnail)
     }
 
     private fun setupColorComponents(config: AndesMessageConfiguration) {
         setupTitleComponent(config)
         setupBodyComponent(config)
+        setupBulletComponent(config)
         setupBackground(config)
         setupPipe(config)
         setupIcon(config)
@@ -211,12 +235,14 @@ class AndesMessage : CardView {
         messageContainer = container.findViewById(R.id.andes_message_container)
         titleComponent = container.findViewById(R.id.andes_title)
         bodyComponent = container.findViewById(R.id.andes_body)
+        bulletsComponent = container.findViewById(R.id.andes_bullets_groups)
         iconComponent = container.findViewById(R.id.andes_icon)
         dismissableComponent = container.findViewById(R.id.andes_dismissable)
         pipeComponent = container.findViewById(R.id.andes_pipe)
         primaryAction = container.findViewById(R.id.andes_primary_action)
         secondaryAction = container.findViewById(R.id.andes_secondary_action)
         linkAction = container.findViewById(R.id.andes_link_action)
+        thumbnail = container.findViewById(R.id.andes_thumbnail)
     }
 
     /**
@@ -289,6 +315,21 @@ class AndesMessage : CardView {
             bodyComponent.movementMethod = LinkMovementMethod.getInstance()
         }
         return spannableString
+    }
+
+    /**
+     * Gets data from the config and sets to the bullet component of this message.
+     *
+     */
+    private fun setupBulletComponent(config: AndesMessageConfiguration) {
+        config.bullets?.let {
+            bulletsComponent.visibility = View.VISIBLE
+            bulletsComponent.hierarchy = hierarchy
+            bulletsComponent.type = type
+            bulletsComponent.bullets = it
+        } ?: run {
+            bulletsComponent.visibility = View.GONE
+        }
     }
 
     private fun setupBackground(config: AndesMessageConfiguration) {
@@ -374,6 +415,21 @@ class AndesMessage : CardView {
         dismissableComponent.setOnClickListener {
             visibility = View.GONE
             onClickListener.onClick(it)
+        }
+    }
+
+    /**
+     * This method allows the user to add programmatically a drawable
+     *
+     */
+    fun setupThumbnail(thumbnailImage: Drawable?) {
+        thumbnailImage?.toBitmap()?.let { bitmap ->
+            with(thumbnail) {
+                visibility = View.VISIBLE
+                setImageBitmap(getCircledBitmap(bitmap))
+            }
+        } ?: with(thumbnail) {
+            visibility = View.GONE
         }
     }
 

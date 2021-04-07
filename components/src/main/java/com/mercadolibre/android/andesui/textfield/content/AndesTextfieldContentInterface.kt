@@ -40,7 +40,7 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
         suffix.setTextColor(R.color.andes_gray_450.toColor(context))
         suffix.text = context.getString(R.string.andes_suffix_hint)
         suffix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
-        suffix.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+        suffix.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.andes_textfield_edittext_textSize))
         return suffix
     }
 }
@@ -55,7 +55,7 @@ internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
         prefix.setTextColor(R.color.andes_gray_450.toColor(context))
         prefix.text = context.getString(R.string.andes_prefix_hint)
         prefix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
-        prefix.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+        prefix.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.andes_textfield_edittext_textSize))
         return prefix
     }
 }

@@ -2,8 +2,9 @@ package com.mercadolibre.android.andesui.card
 
 import android.os.Build
 import android.view.View
-import com.mercadolibre.android.andesui.BuildConfig
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
 import com.mercadolibre.android.andesui.card.factory.AndesCardAttrs
 import com.mercadolibre.android.andesui.card.factory.AndesCardConfigurationFactory
 import com.mercadolibre.android.andesui.card.hierarchy.AndesCardHierarchy
@@ -12,6 +13,7 @@ import com.mercadolibre.android.andesui.card.style.AndesCardStyle
 import com.mercadolibre.android.andesui.card.type.AndesCardType
 import com.mercadolibre.android.andesui.color.toAndesColor
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.spy
@@ -20,12 +22,19 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesCardTest {
+    lateinit var view: View
 
     private var context = RuntimeEnvironment.application
     private val configFactory = spy(AndesCardConfigurationFactory)
     private lateinit var attrs: AndesCardAttrs
+
+    @Before
+    fun setup() {
+        context.setTheme(R.style.Theme_AppCompat_Light)
+        view = CoordinatorLayout(context)
+    }
 
     @Test
     fun `Card title`() {
@@ -33,6 +42,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.NONE,
+                AndesCardBodyPadding.NONE,
                 AndesCardStyle.ELEVATED,
                 "Title",
                 AndesCardHierarchy.PRIMARY
@@ -47,6 +57,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.NONE,
+                AndesCardBodyPadding.NONE,
                 AndesCardStyle.ELEVATED,
                 "Title",
                 AndesCardHierarchy.PRIMARY
@@ -61,6 +72,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.NONE,
+                AndesCardBodyPadding.NONE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.PRIMARY
@@ -75,6 +87,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.NONE,
+                AndesCardBodyPadding.NONE,
                 AndesCardStyle.ELEVATED,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -89,6 +102,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.NONE,
+                AndesCardBodyPadding.NONE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -103,6 +117,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.NONE,
+                AndesCardBodyPadding.NONE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -117,6 +132,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.SMALL,
+                AndesCardBodyPadding.SMALL,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -131,6 +147,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.MEDIUM,
+                AndesCardBodyPadding.MEDIUM,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -148,6 +165,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.LARGE,
+                AndesCardBodyPadding.LARGE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -162,6 +180,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.XLARGE,
+                AndesCardBodyPadding.XLARGE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -171,11 +190,71 @@ class AndesCardTest {
     }
 
     @Test
+    fun `Padding small and BodyPadding none`() {
+        attrs = AndesCardAttrs(
+                View(context),
+                AndesCardType.NONE,
+                AndesCardPadding.SMALL,
+                AndesCardBodyPadding.NONE,
+                AndesCardStyle.OUTLINE,
+                "Title",
+                AndesCardHierarchy.SECONDARY
+        )
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.titlePadding, context.resources.getDimension(R.dimen.andes_card_padding_small).toInt())
+        assertEquals(config.bodyPadding.bodyPadding.bodyPaddingSize(context), context.resources.getDimension(R.dimen.andes_card_padding_none).toInt())
+    }
+
+    @Test
+    fun `Padding and BodyPadding none`() {
+        attrs = AndesCardAttrs(
+                View(context),
+                AndesCardType.NONE,
+                AndesCardPadding.NONE,
+                AndesCardBodyPadding.NONE,
+                AndesCardStyle.OUTLINE,
+                "Title",
+                AndesCardHierarchy.SECONDARY
+        )
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.titlePadding, context.resources.getDimension(R.dimen.andes_card_padding_small).toInt())
+        assertEquals(config.bodyPadding.bodyPadding.bodyPaddingSize(context), context.resources.getDimension(R.dimen.andes_card_padding_none).toInt())
+    }
+
+    @Test
+    fun `Body none then body padding small`() {
+        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.NONE, "title",
+                AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        andesCard.bodyPadding = AndesCardBodyPadding.SMALL
+        assertEquals(AndesCardBodyPadding.SMALL, andesCard.bodyPadding)
+        assertEquals(AndesCardPadding.NONE, andesCard.padding)
+    }
+
+    @Test
+    fun `Body xlarge then body padding none`() {
+        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.XLARGE, "title",
+                AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        andesCard.bodyPadding = AndesCardBodyPadding.NONE
+        assertEquals(AndesCardBodyPadding.NONE, andesCard.bodyPadding)
+        assertEquals(AndesCardPadding.XLARGE, andesCard.padding)
+    }
+
+    @Test
+    fun `Body medium then body padding xlarge`() {
+        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.MEDIUM, "title",
+                AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        andesCard.bodyPadding = AndesCardBodyPadding.XLARGE
+        assertEquals(AndesCardBodyPadding.XLARGE, andesCard.bodyPadding)
+        assertEquals(AndesCardPadding.MEDIUM, andesCard.padding)
+    }
+
+    @Test
     fun `Type none`() {
         attrs = AndesCardAttrs(
                 View(context),
                 AndesCardType.NONE,
                 AndesCardPadding.XLARGE,
+                AndesCardBodyPadding.XLARGE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -190,6 +269,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.SUCCESS,
                 AndesCardPadding.XLARGE,
+                AndesCardBodyPadding.XLARGE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -204,6 +284,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.ERROR,
                 AndesCardPadding.XLARGE,
+                AndesCardBodyPadding.XLARGE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -218,6 +299,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.WARNING,
                 AndesCardPadding.XLARGE,
+                AndesCardBodyPadding.XLARGE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY
@@ -232,6 +314,7 @@ class AndesCardTest {
                 View(context),
                 AndesCardType.HIGHLIGHT,
                 AndesCardPadding.XLARGE,
+                AndesCardBodyPadding.XLARGE,
                 AndesCardStyle.OUTLINE,
                 "Title",
                 AndesCardHierarchy.SECONDARY

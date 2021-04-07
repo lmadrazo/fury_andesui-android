@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.coachmark.view
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.coachmark.R
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -24,15 +24,12 @@ class CoachmarkContainerView @JvmOverloads constructor(
         listener = l
     }
 
-    fun setData(buttonText: String, position: Int, size: Int) {
-        nextButton.text = buttonText
-        nextButton.setOnClickListener { listener?.onClickNextButton(position) }
+    fun setData(position: Int, size: Int) {
         closeButton.setOnClickListener { listener?.onClickClose(position) }
         counterText.text = context.resources.getString(R.string.andes_coachmark_header_numeration_of, position + 1, size)
     }
 
     interface CoachmarkContainerListener {
-        fun onClickNextButton(position: Int)
         fun onClickClose(position: Int)
     }
 }

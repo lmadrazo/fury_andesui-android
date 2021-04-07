@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.tag
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.tag.factory.AndesSimpleTagConfigurationFactory
@@ -20,7 +19,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesTagSimpleTest {
 
     private var context = RuntimeEnvironment.application
@@ -178,7 +177,7 @@ class AndesTagSimpleTest {
                 AndesTagLeftContent.DOT
         )
         val config = configFactory.create(attrs)
-        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt())
+        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt())
     }
 
     @Test
@@ -192,7 +191,7 @@ class AndesTagSimpleTest {
                 AndesTagLeftContent.DOT
         )
         val config = configFactory.create(attrs)
-        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt())
+        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt())
     }
 
     @Test
@@ -206,7 +205,7 @@ class AndesTagSimpleTest {
                 AndesTagLeftContent.DOT
         )
         val config = configFactory.create(attrs)
-        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt())
+        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt())
     }
 
     @Test
@@ -220,7 +219,7 @@ class AndesTagSimpleTest {
                 AndesTagLeftContent.DOT
         )
         val config = configFactory.create(attrs)
-        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt())
+        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt())
     }
 
     @Test
@@ -234,7 +233,7 @@ class AndesTagSimpleTest {
                 AndesTagLeftContent.DOT
         )
         val config = configFactory.create(attrs)
-        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt())
+        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt())
     }
 
     @Test

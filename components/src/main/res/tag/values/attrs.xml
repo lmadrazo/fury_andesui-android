@@ -21,4 +21,28 @@
 
         <attr name="tagSimpleText" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="AndesTagChoice" tools:ignore="ResourceName">
+        <attr name="tagChoiceMode">
+            <enum name="simple" value="5000" />
+            <enum name="dropdown" value="5001" />
+        </attr>
+
+        <attr name="tagChoiceState">
+            <enum name="idle" value="6000" />
+            <enum name="selected" value="6001" />
+        </attr>
+
+        <attr name="tagChoiceSize">
+            <enum name="large" value="7000" />
+            <enum name="small" value="7001" />
+        </attr>
+
+        <attr name="shouldAnimateTag">
+            <enum name="True" value="8000" />
+            <enum name="False" value="8001" />
+        </attr>
+
+        <attr name="tagChoiceText" format="reference" />
+    </declare-styleable>
 </resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_datepicker_week_font_size">10sp</dimen>
+    <dimen name="andes_datepicker_margin">8dp</dimen>
+</resources>

@@ -2,13 +2,12 @@ package com.mercadolibre.android.andesui.checkbox
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
-import android.support.annotation.Nullable
-import android.support.constraint.ConstraintLayout
+import androidx.annotation.Nullable
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.checkbox.factory.AndesCheckboxAttrParser
 import com.mercadolibre.android.andesui.checkbox.factory.AndesCheckboxAttrs
@@ -130,12 +129,11 @@ class AndesCheckbox : ConstraintLayout {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_checkbox, this)
         containerCheckbox = container.findViewById(R.id.andes_checkbox_container)
-        onCheckedChangeListener(containerLeftCheckbox)
-        onCheckedChangeListener(containerRightCheckbox)
+        onCheckedChangeListener(containerCheckbox)
     }
 
-    private fun onCheckedChangeListener(checkbox: FrameLayout) {
-        checkbox.setOnClickListener {
+    private fun onCheckedChangeListener(view: View) {
+        view.setOnClickListener {
             when (type) {
                 AndesCheckboxType.ERROR -> {
                     type = AndesCheckboxType.IDLE

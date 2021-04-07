@@ -1,10 +1,9 @@
 package com.mercadolibre.android.andesui.coachmark.view.walkthroughmessage
-
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import com.mercadolibre.android.andesui.coachmark.R
@@ -17,7 +16,7 @@ class ArcArrow @JvmOverloads constructor(
 
     private val mPaint: Paint = Paint()
 
-    //About arcs
+    // About arcs
     var rectTooltipF: RectF
     var rectTargetF: RectF
     private val radius: Float
@@ -39,8 +38,10 @@ class ArcArrow @JvmOverloads constructor(
     private val lengthRadioHeadArrow: Float
 
     init {
-        mPaint.style = Paint.Style.STROKE       // set to STOKE
-        mPaint.strokeCap = Paint.Cap.ROUND      // set the paint cap to round too
+        // set to STOKE
+        mPaint.style = Paint.Style.STROKE
+        // set the paint cap to round too
+        mPaint.strokeCap = Paint.Cap.ROUND
         mPaint.strokeWidth = context.resources.getDimension(R.dimen.andes_coachmark_stroke_arrow)
         mPaint.isAntiAlias = true
         mPaint.color = ContextCompat.getColor(context, R.color.andes_white)

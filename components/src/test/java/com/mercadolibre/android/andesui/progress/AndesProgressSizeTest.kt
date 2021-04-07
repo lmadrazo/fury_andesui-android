@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.progress
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.progress.size.AndesLargeProgressSize
 import com.mercadolibre.android.andesui.progress.size.AndesMediumProgressSize
 import com.mercadolibre.android.andesui.progress.size.AndesSmallPogressSize
@@ -15,7 +14,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesProgressSizeTest {
     private var andesXLargeProgressSize = Mockito.spy(AndesXLargeProgressSize())
     private var andesLargeProgressSize = Mockito.spy(AndesLargeProgressSize())
